@@ -6,10 +6,9 @@
 
 
 \section{History}
-    Dark matter is arguably one of the most solid evidence for beyond the standard model physics. In 1933, Fritz Zwicky first conceptualized the existence of a dunkle Materie ("dark matter") holding the galaxies to the cluster center and thus preventing them from flying apart. The proposition was later concurred in different findings by Horace W. Babcock and Jan Oort, among many others. The existence of such matter is also supported by evidence across
-    different physics scales including the cosmic microwave background, and bullet cluster collision.
+    Dark matter is arguably one of the most solid evidence for beyond the standard model physics. In 1933, Fritz Zwicky first conceptualized the existence of a dunkle Materie ("dark matter") holding the galaxies to the cluster center and thus preventing them from flying apart ~\cite{Zwicky}. The proposition was later concurred by different findings by Horace W. Babcock ~\cite{Babcock} and Jan Oort ~\cite{oort}, among many others. The existence of such matter is also supported by evidence across different physics scales including the cosmic microwave background, and bullet cluster collision.
 
-    Dark matter is known for interacting gravitationally and at most weakly (though recent evidence has shown weak scale interaction to be unlikely) with Standard Model particles . It does not interact electromagnetically or strongly. Its known properties does not match any known standard model particle. Very little is known about its composition and and interaction mechanism. However, as dark matter makes up about 85\% of the matter in the universe, five times more than the ordinary matter covered in previous chapter. Its discovery would lead to breakthrough in human understanding about the universe. Afterall, dark matter plays a major role in astro-object mechanics, galactic cluster formation and the evolution of the universe. Without a proper understanding of dark matter and its composition, human understanding of the universe will be incomplete
+    Dark matter is known for interacting gravitationally and at most weakly (though recent evidence has shown weak scale interaction to be unlikely) with Standard Model particles . It does not interact electromagnetically or strongly. Its known properties does not match any known standard model particle. Very little is known about its composition and and interaction mechanism. However, as dark matter makes up about 85\% of the matter in the universe ~\cite{Hinshaw_2013}, five times more than the ordinary matter covered in previous chapter. Its discovery would lead to breakthrough in human understanding about the universe. Afterall, dark matter plays a major role in astro-object mechanics, galactic cluster formation and the evolution of the universe. Without a proper understanding of dark matter and its composition, human understanding of the universe will be incomplete.
 
     Experiments and observations over the years have contricted some dark matter properties, but much of the physics is still remains a mystery. It is generally accepted that dark matter is a particle. Various ways have been developed to study the mystery particle in telescope, earth based detector and colliders. In the LHC, it is believed that dark matter can be studied through direct production. If dark matter can be produced in a laboratory, it will make probing many of its other properties possible. 
 
@@ -18,25 +17,74 @@
 \section{Evidence}
 
 \subsection{Galactic Rotational Curve}
-    The first proposition of dark matter in 1930s in the Coma cluster is later confirmed by further systemic galaxy rotational curve studies by Vera Rubin, Kent Ford and Ken Freeman. It was found that ordinary luminous matter only could account for one-sixth of the matter in most galaxies. 
-    Galactic clusters can be treated as a stable system of discrete particles in astrophysical scale, and is therefore govern by the virial theorem.
-    \[ T = -\frac{1}{2} \sum_{k=1}^{N} \langle F_{k} \cdot r_{k} \rangle
+    The first proposition of dark matter in 1930s in the Coma cluster by Fritz Zwicky and others was later confirmed by further systemic galaxy rotational curve studies by Vera Rubin, Kent Ford ~\cite{Rubin} and Ken Freeman ~\cite{freeman}.  
+    Following Zwicky's original argument, galactic clusters and galaxies can be treated as a stable system of discrete particles in astrophysical scale, and is therefore govern by the Virial theorem:
+% Rubin and Ford studied galaxy M31 region and found that different region moves at a different speed than expected of the mass of the galaxy
+%
 
-[Add in virial theorem explanation]
+
+
+    \[ \langle T \rangle = -\frac{1}{2} \sum_{k=1}^{N} \langle F_{k} \cdot r_{k} \rangle
+
+    The Virial theorem shows that the there is a direct correlation between the kinetic energy and potential energy in a galactic system. Thus there is a correlation between the velocity of the rotating galactic cluster disk and the mass (through gravitational force) of the system. The correlation that allows for a stable system is as follow:
+    
+     \[ v(r) \varpropto \frac{M(r)}{\sqrt{r}} \], where r is the distance from the center of the system.
+
+    Outside of the system, M(r) is a constant, the formula can be further simplified to:
+
+     \[ v \varpropto \frac{1}{\sqrt{r}} \], 
+
+    However, in observation, it was found that the velocity for many of these cluster is close to constant to r. It is proposed that there is a missing dark halo of dark matter that is not illuminous. Through these studies, it was found that ordinary luminous matter only could account for one-sixth of the matter in some galaxies.
+
+\begin{figure}[!htb]
+    \begin{center}
+        \includegraphics[width=0.75\textwidth]{figures/chapter_DM/M33-rotation-curve}
+        \caption{
+            Figure here shows the galactic rotational curve of M33, the expected rotational curve is shown in the dotted line. Experimental evidence observes behavior in the solid line.~\cite{M33}.
+        }
+        \label{fig:M33_figure}
+    \end{center}
+\end{figure}
+
 
 \subsection{Gravitational Lensing}
 
     General relativity shows that massive objects would curve and modify the space-time curvature around them. Light ray travelling through the curved space-time around the massive object would therefore be bent. The effect mirrors that of angled lenses bending light rays due to a velocity differece of light ray across different media and is called gravitational lensing. There are different forms of lensing effect, roughly arranged by the strength of their effects. Strong lensing effect happens when bending of light result in either multiple images, a light ring or an arc, more typically observed around massive centers of galaxy clusters and galaxies; whereas weak lensing usually involves statistical analysis of many objects over a large region; micro-lensing is detected when there is an apparent change in the brightness of the source.
 
-    Figure of the bullet cluster collision of CL0024\+17 shown in here is produced from gravitational lensing effect. The red part of the diagram denotes ordinary matter and the blue part reflects dark matter. In the cluster collision, ordinary matter bend light around them and became luminous from the collision; the blue part shows a large part of the cluster did not interact with each other as ordinary matter would and simply passes through each other. This is a clear evidence for the existence of dark matter in the clusters.
+    Figure~\ref{fig:BulletCluster_figure} shows the bullet cluster collision of 1E 0657 -56. It is produced from the combination of gravitational lensing and x ray telescope imaging. The red part of the diagram denotes ordinary matter and the blue part reflects dark matter. In the cluster collision, ordinary matter bend light around them and became luminous from the collision, captured by x-ray imaging; the blue part shows a part of the clusters that did not interact and light up in the collision via gravitational lensing. This is a strong evidence for the existence of non-luminous matter in the clusters.
+
+\begin{figure}[!htb]
+    \begin{center}
+        \includegraphics[width=0.75\textwidth]{figures/chapter_DM/BulletCluster}
+        \caption{
+			Bullet cluster (1E 0657-56) showing two colliding galaxy clusters, the part in red came from x-ray image by Chandra, highlighting normal matter distribution; the part in blue came from gravitational lensing. ~\cite{BulletCluster}.
+        }
+        \label{fig:BulletCluster_figure}
+    \end{center}
+\end{figure}
+
 
 \subsection {Cosmic Microwave Background}
 
     In the beginning of the universe, ordinary matter and dark matter all exist in a hot plasma soup with frequent interaction between charged particles and photons through thomson scattering. There comes a very important period in the universe called the recombination period, where the expansion of the universe has cool the plasma soup enough that charged particles began to form neutral atoms. Photons stopped scattering on the charged particles and went on unhindered. Due to red
 shifting effect, they form a microwave background of the universe that can still be observed today. This is the Comic Microwave Background. 
-This original background is nearly a black body and is therefore very uniform, but there exists small temperature variations. The variation can be decomposed into an angular power spectrum, as shown in figure []. 
+This original background is nearly a black body and is therefore very uniform, but there exists small temperature variations. The variation can be decomposed into an angular power spectrum, as shown in Figure~\ref{fig:CMB_figure}
 Due to the different interaction between dark matter and ordinary matter with photon and each other, simulation shows that different dark matter and ordinary matter make-up of the universe would result in different angular spectroscopy shape. 
-Study from Planck on cosmic microwave background gives a clear composition and percentage abundance of dark matter. Dark matter is not only an essential part of the universe, its composition is approximately 5 times as large as ordinary matter. Giving evidence that dark matter makes up the majority of the universe. 
+Study from Planck on cosmic microwave background Figure~refgives a clear composition and percentage abundance of dark matter. Dark matter is not only an essential part of the universe, its composition is approximately 5 times as large as ordinary matter. Giving evidence that dark matter makes up the majority of the universe. 
+%\figure planck 
+
+\begin{figure}[!htb]
+    \begin{center}
+        \includegraphics[width=0.75\textwidth]{figures/chapter_DM/CMB-angular-power-spectrum}
+        \caption{
+			The Cosmic Microwave Background power spectrum measured by Planck.~\cite{CMB}.
+        }
+        \label{fig:CMB_figure}
+    \end{center}
+\end{figure}
+
+
+
 
 \section{Properties}
 While dark matter itself has never been directly observed, many studies in the cosmological, astrophysical and particle scale has constrained much of its properties. In this section and the remaining thesis, the following properties of dark matter will be assumed along with its justifications.
@@ -46,64 +94,88 @@ Dark matter got its name from its little to no interaction with light compared t
 It is taken that it will not interact with collider detector and its interaction with ordinary matter would be rare in the energy scale of the LHC. 
 
 \subsection{Long Life Time}
-In the particle model of dark matter, many requires a Z_2 symmetry (such as the R parity of supersymmetry). This prevent dark matter particles from decaying into lighter Standard Model objects. In most LHC analyses, it will be treated as a single object that does not decay further into other detectable SM particles. 
+In the particle model of dark matter, many requires a $Z_{2}$ symmetry (such as the R parity of supersymmetry). This prevent dark matter particles from decaying into lighter Standard Model objects. In most LHC analyses, it will be treated as a single object that does not decay further into other detectable SM particles. ~\cite{boveia2018dark}
 
 \subsection{Cold}
 In cosmology, hot/cold refers to the relativistic mass of an object and thus their relativistic velocity in cosmological scale evolution. Different assumption of the relativistic mass of dark matter has great impact on the cosmological evolution/ galactic formation in cosmology.
 As a hot relativistc model of dark matter will lead to cotradiction in galactic formation and universe evolution calcuation. Dark matter is taken to be non-relativistic by most physicists. 
 
 \subsection{Single Particle}
-While there are more and more composite dark matter models being proposed these days, dark matter is still taken to be a single kind of particle/ a class of particle with the same physical properties in most effective model/simplified model building. 
+While there are more and more composite dark matter models being proposed these days, dark matter is still taken to be a single kind in most effective model/simplified model building for experimental searches. 
 
 \section{Candidates}
 
 There exist a wide range of candidates for what dark matter could be. In here, I outline a few possible candidate of dark matter. , other than candidates include sterile neutrinos, axion dark matter weakly interacting  
 
 \subsection{Sterile Neutrino}
-Standard model does not predict that neutrino has a mass, however, contradicting with experimental knowledge. By replacing right-handed neutrinos in the standard model with gauge singlet fermions that has no interaction other than mixing with normal neutrinos, sterile neutrino is formed by theoretical models. Tuning parameters such its interaction rate with normal neutrino, mass and mixing angle, sterile neutrino can be a possible candidate for dark matter, as it can lead to a right
-density of dark matter with stability consistent with the scale of the universe. 
-However, their measurement proven to be challenging. 
+Standard model does not predict that neutrino has a mass, however, that contradicting with experimental finding and is therefore a problem of the standard model. By replacing right-handed neutrinos in the standard model with gauge singlet fermions that has no interaction other than mixing with normal neutrinos, sterile neutrino is formed by theoretical models. Tuning parameters such its interaction rate with normal neutrino, mass and mixing angle, sterile neutrino can be a possible candidate for dark matter, as it can lead to a right
+density of dark matter with stability consistent with the scale of the universe. ~\cite{dodelson1994sterile} They are searched for in radiator experiments such as the Daya Bay \cite{an2014search, wong2017search} and in scintillator experiments like DANSS. ~\cite{alekseev2018search}
 
+% Mass and range  mass keV scale, currently sterile neutrino mass is unknown and therefore can be either hot or cold
 
 %Daya Bay Collaboration, F. P. An et al., “Search for a Light Sterile Neutrino at Daya Bay,” Phys. Rev. Lett. 113 (2014) 141802, arXiv:1407.7259 [hep-ex].
-
 %1310.8642
 \subsection{Axion Dark Matter}
-Another exisitng problem in the standard model is the strong CP problem. The strong CP problem points to the unnaturalness of the exceptionally small experimental measure value of the term that govern strong CP violation. 
-The problem can be solved by introducing an additional axion particle and its associated fields to the standard model. With the proposition of such field, the CP violation term in strong interaction will be cancelled out naturally, thereby giving an explanation to the unnaturalness to the experimental value. 
-The axion proposed is a dark matter candidate, as its calculated life time is much greater than the age of the universe. 
-The axion dark matter is currently not a favored model for dark matter due to its instability, and also the fact that most dedicated searches has returned empty handed. 
+Another exisitng problem in the standard model is the strong CP problem. The strong CP problem points to the unnaturalness of CP symmetry observed in neutrons charge distribution measurement. This gives an exceptionally small value to the term that govern strong CP violation in the Standard Model, which is unnatural. The problem can be solved by introducing an additional axion particle and its associated fields to the standard model. ~\cite{peccei1977cp} With the proposition of such field, the CP violation term in strong interaction will be cancelled out naturally, thereby giving an explanation to the unnaturalness to the experimental value. 
+The axion proposed is a dark matter candidate, as its calculated life time is much greater than the age of the universe and it shares many properties with the known profile of dark matter. Recent experimental finding from the XENON1T and shows anomalies that could be signs of axions. ~\cite{aprile2020excess}
+%ADMX mass mu eV
+%https://arxiv.org/pdf/2105.01406.pdf
 
-%TARGET italy 
+%Xenon Collaboration, E. Aprile et al,. "Excess Electronic Recoil Events in XENON1T", Phys. Rev. D 102, 072004 (2020), arXiv: 2006.09721
 
+
+% Non-particle candidates
 %\subsection{Modified Newtonian Gravity}
+%\subsection{MACHOs}
 
 \subsection{Weakly Interacting Massive Particle (WIMP)}
 A very attractive candidate for dark matter is called the weakly interacting massive particle(WIMP). It appears naturally with many beyond-the-standard-physics model that aim to solve other physics problems, including theories of supersymmetry with R-parity and some extra dimensional theory. 
 In the study of dark matter in cosmology, it is frequently assumed to be a thermal relic. Thermal relic dark matter is in thermal equilibrium with ordinary matter in the early universe. In thermal equilibrium with ordinary matter, it gets produced and annihilated at the same rate. There comes a point in the universe called freezing out, where the expansion of the universe cools the particle bath and produce temperature lower than possible to produce enough energy statistically for dark matter to
 be produced given certain dark matter mass. Dark matter production from ordinary matter ceased. As the universe further expanse, it becomes more difficult for dark matter to find each other to be annihilated to form ordinary matter. Dark matter abundance is locked at this point and remained unchange until today. 
-Using this model and the current measured abundance of dark matter in our current universe, the self annihilation cross section of dark matter is <#{sigma}v> ~=3*10^26 cm ^3 s^-1. This annihilation cross section scale matches many prediction made in supersymmetry theories. Many supersymmetry model predicts super-symmetric partner particle with very similar property to dark matter. This is known as the WIMP miracle. 
+Using this model and the current measured abundance of dark matter in our current universe, the self annihilation cross section of dark matter is $ \langle \sigma \cdot v \rangle \simequal 3 \cdot 10^{26}cm^{3} s^{-1}$. This annihilation cross section scale matches many prediction made in supersymmetry theories. Many beyond-the-standard-model theories, such as SUSY, the Universal Extra Dimension Model, and the little Higgs all predict a particle with known dark matter properties and self interaction rate of the same scale. This is known as the WIMP miracle. ~\cite{Dev_2014}
+
+%\Figure WIMP miracle
 
 
-Figure: Solid line here shows the change in the densitiy of dark matter in an expanding unverse. In the early universe, the solid line is horizontal, indicating the time when dark matter production and annihilation is equal. The line gradually fall with increase of time when production rate began to decrease with the universe expansion. Later as the universe further expands, the annihilation stops as well and dark matter gets freezes out to different density level with different assumed
-self interaction annihilation rates.
+\begin{figure}[!htb]
+    \begin{center}
+        \includegraphics[width=0.75\textwidth]{figures/chapter_DM/WIMP}
+        \caption{
+		Solid line here shows the change in the densitiy of dark matter in an expanding unverse. In the early universe, the solid line is horizontal, indicating the time when dark matter production and annihilation is equal. The line gradually fall with increase of time when production rate began to decrease with the universe expansion. Later as the universe further expands, the annihilation stops as well and dark matter gets freezes out to different density level with different assumed self interaction annihilation rates.~\cite{WIMP}.
+        }
+        \label{fig:WIMP_figure}
+    \end{center}
+\end{figure}
 
-P.S. BHUPAL DEV, ANUPAM MAZUMDAR, & SALEH QUTUB, FRONT.IN PHYS. 2 (2014) 26
-https://indico.cern.ch/event/473000/contributions/1993414/attachments/1209863/1764345/tait-Aspen.pdf
+
+ 
+
+%P.S. BHUPAL DEV, ANUPAM MAZUMDAR, & SALEH QUTUB, FRONT.IN PHYS. 2 (2014) 26
+%https://indico.cern.ch/event/473000/contributions/1993414/attachments/1209863/1764345/tait-Aspen.pdf
 
 %https://www.particlebites.com/?p=7004
 %https://www.forbes.com/sites/startswithabang/2019/02/22/the-wimp-miracle-is-dead-as-dark-matter-experiments-come-up-empty-again/?sh=5ebc59f46dbc
 
 \section{Experimental Search Overview}
-Traditionally the search for dark matter is split into different experimental categories. 
+Traditionally the search for dark matter is split into different experimental categories sorted by the different detection methods from different dark matter/normal matter interactions. 
+
+\begin{figure}[!htb]
+    \begin{center}
+        \includegraphics[width=0.75\textwidth]{figures/chapter_DM/Interaction}
+        \caption{
+			Schematic cartoon showing the different dark matter detection methods facilitated by different interactions thus signatures. 
+        }
+        \label{fig:interaction}
+    \end{center}
+\end{figure}
 
 \subsection{Direct Detection}
 Dark matter is believed to travel through the universe and passes through the eath. Assuming weak interaction between dark matter and Standard Model nucleons, dark matter can be detected directly with different target objects. 
 
-R ∝ N ρχ ⟨σχN ⟩,
+\[ R \propto N \rho \chi \langle \sigma_{\chi } N \rangle \]
 
 There are different experiments that uses different material and targets different dark matter masses.
-Notable experiments include LZ, LUX, Xenon1T, SuperCDMS, CRESST and DAMA. 
+Notable experiments include LZ ~\cite{mckinsey ~\cite{mckinsey2016lz},   Xenon1T ~\cite{aprile2020excess}, SuperCDMS ~\cite{Agnese_2016}, CRESST ~\cite{Angloher_2014} and DAMA ~\cite{Bernabei_2008}. 
 
 As more and more experiments has excluded more and more of the model phasespace, many of the experiments now faces the challenge of the neutrino floor in low mass dark matter search, which is where neutrino background began to dominate signal region. 
 
@@ -117,7 +189,7 @@ As more and more experiments has excluded more and more of the model phasespace,
 % L. Baudis, “Direct dark matter detection: the next decade,” Phys. Dark Univ. 1 (2012) 94–108, arXiv:1211.7222 [astro-ph.IM].
 
 \subsection{Indirect Detection}
-Indirect detection looks for annihilation Standard Model product of dark matter. It looks for interaction in places where matter is dense enough to interact, usually in center of galaxies and stars. 
+Indirect detection looks for annihilation Standard Model product of dark matter. It looks for interaction in places where matter is dense enough to interact, usually in center of galaxies and stars. Experiments include FermiLAT ~\cite{albert2017searching} and H.E.S.S. ~\cite{aharonian2006hess}
 
 
 \subsection{Collider Production} 
@@ -128,6 +200,19 @@ Indirect detection looks for annihilation Standard Model product of dark matter.
 While there exist a wide range of speculation on the identity of dark matter, the use of LHC as a dark matter searching tool constrains a unique set of dark matter candidate accessible phenomenologically. 
 Focusing phenomenologically observable and interpretability for a wide range of theoretical models, different modelling approaches are used to develop benchmark models searching for dark matter in the LHC.
 Sorting by an ascending degree of completeness, the literature will review different approaches and models of dark matter used in the LHC.
+
+
+\begin{figure}[!htb]
+    \begin{center}
+        \includegraphics[width=0.75\textwidth]{figures/chapter_DM/Model}
+        \caption{
+			Colored Scheme showing dark matter modelling approach from more simplistic (left) to more complete models (right).  ~\cite{Abdallah:2024101}.
+        }
+        \label{fig:Model_figure}
+    \end{center}
+\end{figure}
+
+
 
 \subsection{Simple Portal Models}
 The simplest kind of models are simple extensions to the standard model. In these models, dark matter is mediated either through the Higgs or the Z Boson. As the Z portal models are contrained by LEP and DD experiments, dark matter that are mediated through a heavier version of Z boson ( the Z') and additional scalar is also searched for. 
