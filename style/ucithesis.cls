@@ -156,12 +156,12 @@
 \newcommand{\curriculumvitaepage}
 {
 	\begin{center}
-		\textbf{\Large CURRICULUM VITAE} \\
-		\vspace{0.4in}
-		\textbf{\large{\Authorname}}
+		%\textbf{\Large CURRICULUM VITAE} \\
+		%\vspace{0.4in}
+		%\textbf{\large{\Authorname}}
 	\end{center}
 	\Curriculumvitae
-	\clearpage
+	%\clearpage
 }
 
 \newcommand{\abstractpage}
