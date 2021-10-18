@@ -41,7 +41,9 @@
 \setlength\epigraphrule{0pt}
 
 \usepackage[sorting=none,hyperref,backend=biber,backref,backrefstyle=none]{biblatex}
-\bibliography{bib/dm.bib}
+\bibliography{bib/intro.bib
+            bib/sm.bib
+              bib/dm.bib}
 %                bib/sm_final.bib,
 %                bib/chapter2.bib,
 %                bib/bsm.bib,
@@ -390,13 +392,13 @@
 
 % start START
 \setcounter{page}{0}
+\include{sections/chapter_Intro}
+\include{sections/chapter_SM}
 \include{sections/chapter_DarkMatter}
 \include{sections/chapter_ATLASDetector}
-\include{sections/chapter_CommonAnalysisItems}
-\include{sections/chapter_Insitute_Jet_Calibration}
+\include{sections/chapter_common_analysis_items}
 \include{sections/chapter_NSW}
-\include{sections/chapter_SeachForBoostedDijet}
-\include{sections/chapter_SearchForResolvedDijet}
+\include{sections/chapter_SearchForBoostedAndResolvedDijetISR}
 \include{sections/chapter_SearchForDimuon}
 \include{sections/chapter_FutureResonanceFinding}
 \include{sections/chapter_Conclusion}
