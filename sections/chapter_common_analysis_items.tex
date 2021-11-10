@@ -1,4 +1,126 @@
 \chapter{Common Analysis Items}
-\label{chapter:CommonAnalysisItems}
-0. Jets reconstruction 
-1. Muon reconstruction
+After collisions in the LHC, the particles hits exist as different electronic signals from various detector components saved in harddisk, converting these signals into physics object worth analyzing takes different reconstruction , identification , cleaning and calibration steps. This chapter will discuss the different steps different objects go through for the before ready to be analyzed for both data and Monte Carlo. 
+
+\section{Track and primary vertex reconstruction}
+
+Charged particles leave a trajectories in two distinct ATLAS sub-detector system, namely the inner detector and the muon system. In the inner detector, the pixel detector, the Semiconductor Tracker as well as a Transition Radiation Tracker(TRT) are all used to form tracks for charged particles; In the muon system, data collected from the Monitored Drift Tubes(MDTs), the Cathode Strip Chambers(CSC), Thin Gap Chambers(TGC) and the Resistive Plate Chambers(RPC) are all used for
+track formation of muons. 
+
+A couple coincidence measurement across the different subsystem will be used to form a track seed. Then, a Kalman filter is used to fit the tracks, by forward filtering, backward smoothing and outlier rejection of the hits.  A track is described by the following few track associated paramters: ($d_{0}$, $z_{0}$, $\phi$, $\theta$, q/p), 
+.~\cite{}
+
+From the tracks formed in the inner detector, primary vertices can be found to discriminate an event from other hits. 
+Primary vertices are known as the initial interaction point of where the decay particles are formed. In an interaction environemnet where there is an increased amount of pile-up, this has become increasingly important. Vertexing is consist of a couple of different steps:
+
+1. A vertex seed is found by filtering the point where most interaction are found. This is done by an \it iterative method.  
+
+2. Tracks consistent with the chosen vertex seed are put into a group
+
+3. An adaptive vertex fitting algorithm is used to find the position and the associated error of the vertex. 
+
+4. The unused tracks are used for the next vertex creation. 
+
+There are usually a couple of primary vertices in each bunch crossing, the vertex with the highest PT particles originated from it is considered the hard-primary vertex of the event, the others are considered the pile-up primary vertices. 
+
+
+\section{Muons}
+Muons on ATLAS formed from the tracking from both the ID and the MS with additinoal information from the calorimeter. 
+As different muon PT will lead to muon hits depositing in different parts of the detector; forward region also present more difficult muon finding conditions, in view of this four different muon algorithms are developed. 
+
+They all utilize a similar principle: tracks are found in one part of the detector through pattern finding from hit patterns in the chambers. At least two matching segments from different subdetector parts is needed to form a track candidate. From the track candidate, a couple of global $\chi^{2}$ fits is done to associate other hits and drop outlier from the fit, while removing the outlier hits. 
+
+\bullet{Combined (CB) muon}
+Tracks are each constructed from the ID and the MS and a global refit done to remove outliers to improve the fit quality. This is mostly done by an outside-in approach where the tracks in ID are made to match the ones seen in the ID. 
+
+\bullet{Segment-tagged (ST) muons}
+This method is used to identify lower PT muons. If a track in the ID can be matched to at least one track segment in the MDT in the barrel or CSC in the end-cap, it will be selected as a segment-tagged muon. 
+
+\bullet{Calorimeter-tagged(CT) muon}
+Even lower PT muons between 15 < $P_{T}$ < 100GeV is formed from matching a track in ID with energy deposit in the calorimeter that matches the minimum-ionizing particle. This is optimized for barrel muons of $|\eta <0.1|$. 
+
+\bullet{Extrapolated(ME) muon}
+Extending the acceptance of muons in the forward region from 2.5< $|\eta|$<2.7 where there is no ID coverage, muon tracks in the MS chamber with a loose compatibility to the originating IP are ME muons. 
+
+\section{Muon Identification}
+Muon identification is a set of selection criteria done on the candidate muons to cut out background from pions/kaon decays that would form muons that is not interesting, basing on different analysis, different muon identification points are used. 
+
+A couple of criteria are used for muon identification, which include, q/p significance, $\rho'$ and $\chi^{2}_norm$, the definition of q/p significance and \rho' is defined as below. 
+
+\[ q/p significance = |(q/p)^{ID} - (q/p)^{MS}|/$sqrt{\sigma^{MS}_{PT}$ + \sigma^{ID}_{PT}} \]
+
+\[ \rho' = |P_{T}^{MS} - P_{T}^{ID}| / P_{T}^{Combined} \]
+
+\section{Lepton Isolation}
+Not all leptons created in the ATLAS detector is interesting for analyses. Most interesting leptons came from the hard primary vertex decay of W, Z, Higgs bosons or other BSM particles. These are known as "prompt leptons". Other "non-prompt" leptons came from semileptonic decay of jets in fragmentation process, they are not leptons from the original vertice and they are interesting to be analyzed as leptons. They are often classified as "background" processes. To distinguish these leptons and increase signal significance for the lepton
+from processes that concerns us, an isolation criteria is used. 
+There are two variables used for muon isolation, one is a track-based isolation and the other is a calorimeter-based isolation. 
+
+First, the parameters used in the isolation criteria needs to be clarified: 
+A track-based isolation variable, $P_{T}^{varcone size}$ are the sum of the PT of all the tracks in a variable-sized cone, defined as the following:
+
+\[ \delta R = min(\frac{10}{P^{\mu}_{T}[GeV]}, \delta R_{max}) \]
+The term is PT dependent, the larger the PT, the smaller the cone. 
+
+A calorimeter based paramter $E^{topocone20}_T$ is defined as the sum of the energy deposit in a \delta R= 0.2 cone. 
+
+The isolation criteria using the track based variable is the isolation variable to the transverse momentum to the muon. Studies are done on data Monte Carlo to get the best cut off point. The different working points are listed as below: 
+
+
+\section{Muon scale and resolution}
+
+
+\section{Muon Calibration}
+In data there is always margin for calibration error, and monte carlo is also not necessarily accurately describing the experimental environment. To match data result to the actual physics process that happened, transverse momentum correction done on both the MS tracks muons and the ID track on the MC result as follows: 
+\begin{equation}
+\[ P_{T}^{Cor,Det} = \frac{P^{MC, Det}_{T} + \sum_{n=0}^{1} S_{n}^{Det}{\eta, \phi}(P_{T}^{MC, Det})^n}{1+\sum_{m=0}^{2}\delta r_{m}^{Det}(\eta, \phi)(P_{T}^{MC, Det})^(m-1) g_{m}} \]
+\end{equation}
+
+,where $P_{T}^{MC, Det}$ is the uncorrected transverse momentum, $g_m$ is a unit Gausssian distribution, \delta r^{Det}_{m}(\eta, \phi) and s_{n}^{Det}(\eta, \phi) are the momentum resolution smearing and scale correction resolution. 
+
+The correction is then applied to the combined muon in the following way:
+
+\[ P_{T}^{Cor, CB} = f *P_{T}^{Cor, ID}+ (1-f) \cdot p_{T}^{Cor, MS}\]
+
+the weight f in the above is obtained from MC simulation. 
+
+\section{Muon Resolution}
+
+
+%\begin{equation}
+%\[\delta R = min( \frac{10}/P_{T}[GeV] , \delta R_{max} )\]
+%\end{equation}
+
+
+
+%For better discrimination effciency, in Run II, ATLAS has moved away from an iterative based method and moved towards a image algorithm for primary vertex finding. A brief description is as the
+%following:  
+%
+%1. A three-dimensional binned box is first defined, the x and y dimension is 4 mm long and the z dimension is 400 mm, a 3-d histogram is made for this 3d box as input data. 
+%
+%2. Helical tracks are back-projected back to this histogram using a voxel ray-tracking algorithm. All the histogram in each bin crossed by a track is incremented by the path length of the linearized rack in that bin. an example back projected in shown 
+%% Whats a vortex ray-tracing algorithm? 
+%
+%3. This projection is Fourier transformed into frequency sapce.
+%
+%4. A filter composed of both the angular accpetance of the ATLAS tracking detector in the fourier inverse of the angular acceptance and a four-term Blackman-Harris window filter is used to lessen the effect of high frequency variation is used to multiplied by the projection in the above step. 
+%
+%5. The filtered image is then transformed back to position space in x, y and z.  
+%
+%5. The resulting imag is passed to a clustering algorithm where the seeds are identified from the peaks. 
+
+\section{Jets}
+Jets originate from either quarks or gluons form the p-p collision interaction vertices. Quarks and gluons follows rules from strong physics, they shower and scatter through the hadronization process, and therefore need to go through specific reconstruction steps to be reclustered back into a physical meaningful object for analysis. 
+
+\subsection{Jet Physics}
+Parton-parton scattering function in the LHC. 
+Hadronization/ infrared and collinear safety
+
+\subsection{Clustering}
+The first step of reconstructing jet come first from a clustering of the calorimeter cells hits from the LAr and the tile calorimeters. First, seed-cells with a high signal-to-noise ratio is picked out to avoid pile-up. Then neighboring cells that satisfy  is chosen to add to the original seed cell. They form a proto-cluster. Proton clusters are merged if they satisfy merging requirements. The result of the clustering process is a collection of jet topo-clusters. 
+
+\subsection{Jet finding}
+There are a few main jet finding algorithms on ATLAS, which includes the $K_{T}$ algorithm, the Cambridge-A algorithm, and the anti-KT algorithm. 
+\subsection{Calibration}
+\subsection{Jet Origin Correction}
+
+
