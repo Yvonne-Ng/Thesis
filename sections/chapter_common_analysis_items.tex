@@ -1,20 +1,26 @@
 \chapter{Common Analysis Items}
-After collisions in the LHC, the particles hits exist as different electronic signals from various detector components saved in harddisk, converting these signals into physics object worth analyzing takes different reconstruction , identification , cleaning and calibration steps. This chapter will discuss the different steps different objects go through for the before ready to be analyzed for both data and Monte Carlo. 
+After collisions in the LHC, the particles hits exist as different electronic signals from various detector components saved in hard disk, converting these signals into physics objects worth analyzing takes different reconstruction, identification, cleaning, and calibration steps. This chapter will discuss the different steps these detector hits go through before they become analysis-ready physics objects. 
 
 \section{Track and primary vertex reconstruction}
 
-Charged particles leave a trajectories in two distinct ATLAS sub-detector system, namely the inner detector and the muon system. In the inner detector, the pixel detector, the Semiconductor Tracker as well as a Transition Radiation Tracker(TRT) are all used to form tracks for charged particles; In the muon system, data collected from the Monitored Drift Tubes(MDTs), the Cathode Strip Chambers(CSC), Thin Gap Chambers(TGC) and the Resistive Plate Chambers(RPC) are all used for
-track formation of muons. 
+Charged particles leave trajectories in two distinct ATLAS sub-detector systems, namely the inner detector(ID) and the muon system(MS). The inner detector is made up of the pixel detector, the Semiconductor Tracker, and the Transition Radiation Tracker(TRT). Tracking is done for all particles that are charged. 
+The MS is made up of Monitored Drift Tubes(MDTs), the Cathode Strip Chambers(CSC), Thin Gap Chambers(TGC), and the Resistive Plate Chambers(RPC). It's mainly used for
+track formation of muons, which are minimizing particles that through all of the ID and calorimeters.
 
-A couple coincidence measurement across the different subsystem will be used to form a track seed. Then, a Kalman filter is used to fit the tracks, by forward filtering, backward smoothing and outlier rejection of the hits.  A track is described by the following few track associated paramters: ($d_{0}$, $z_{0}$, $\phi$, $\theta$, q/p), 
-.~\cite{}
 
-From the tracks formed in the inner detector, primary vertices can be found to discriminate an event from other hits. 
-Primary vertices are known as the initial interaction point of where the decay particles are formed. In an interaction environemnet where there is an increased amount of pile-up, this has become increasingly important. Vertexing is consist of a couple of different steps:
+\subsection*{Tracks}
+To reconstruct a hit from detector raw hit information, a couple of  coincidence measurement across the different subsystems will be used to form a track seed. Then, a Kalman filter is used to fit the tracks,  irrelevant hits from pile-up are removed through the filter rejection.  
+A track formed this way is described by the following few track-associated parameters: ($d_{0}$, $z_{0}$, $\phi$, $\theta$, q/p)~\cite{}.
+%by forward filtering, backward smoothing and outlier rejection of
 
-1. A vertex seed is found by filtering the point where most interaction are found. This is done by an \it iterative method.  
+\subsection*{Primary Vertex}
+Once tracks are formed in the inner detector, primary vertices can be constructed to discriminate an event from other hits. 
+Primary vertices are the initial interaction point where the further decay particles that reach the ATLAS detector are formed. Verticing is important as it is effective in discriminating pile-up hits from the ones from the event-of-interest. This is increasingly important in newer LHC runs where the higher luminosity has resulted in additional in-time and out-of-time pile-ups. 
+Vertexing is consist of a couple of different steps:
 
-2. Tracks consistent with the chosen vertex seed are put into a group
+1. A vertex seed is found by filtering the point where most interactions are found. This is done by an iterative method or imaging method.  
+
+2. Tracks consistent with the chosen vertex seed are put into a group.
 
 3. An adaptive vertex fitting algorithm is used to find the position and the associated error of the vertex. 
 
@@ -22,26 +28,35 @@ Primary vertices are known as the initial interaction point of where the decay p
 
 There are usually a couple of primary vertices in each bunch crossing, the vertex with the highest PT particles originated from it is considered the hard-primary vertex of the event, the others are considered the pile-up primary vertices. 
 
+With tracks and primary vertices constructed, particle reconstruction can begin. 
+
 
 \section{Muons}
-Muons on ATLAS formed from the tracking from both the ID and the MS with additinoal information from the calorimeter. 
-As different muon PT will lead to muon hits depositing in different parts of the detector; forward region also present more difficult muon finding conditions, in view of this four different muon algorithms are developed. 
+Muons on ATLAS formed from the tracking and primary vertex information from both the ID and the MS described in the above section. Additinoal information from the calorimeter is also used. There are four main muon reconstruction strategies. Mainly due to different PT muon in different detector location will require different strategies for optimal reconstruction efficiency. There are four muon working points, which uses different reconstruction strategy combination and discriminating cuts to
+increase the identification efficiency for different analyses.
 
-They all utilize a similar principle: tracks are found in one part of the detector through pattern finding from hit patterns in the chambers. At least two matching segments from different subdetector parts is needed to form a track candidate. From the track candidate, a couple of global $\chi^{2}$ fits is done to associate other hits and drop outlier from the fit, while removing the outlier hits. 
+These strategies and working points are result from studies done on the standard samples of Z to $\mu \mu $ and $J/\Psi$ to \mu \mu. 
+%As different muon transverse momentum will lead to muon hits depositing in different parts of the detector and different region also require different strategy for best differentiation. 
+%forward region also present more difficult muon finding conditions, given this four different muon algorithms are developed. 
+
+\subsection*{Muon Reconstruction Strategies}
+A similar principle is utilized for all four strategies: tracks are found in one part of the detector through pattern finding from hit patterns in the chambers. At least two matching segments from different subdetector parts is needed to form a track candidate. From the track candidate, a couple of global $\chi^{2}$ fits is done to associate other hits and drop outlier from the fit, while removing the outlier hits. The main goal of muon reconstruction is to increase the
+reconstruction efficiency, which is the ratio between muon reconstructed and the number of truth muons. 
+
 
 \bullet{Combined (CB) muon}
-Tracks are each constructed from the ID and the MS and a global refit done to remove outliers to improve the fit quality. This is mostly done by an outside-in approach where the tracks in ID are made to match the ones seen in the ID. 
+This strategy is optimal for the muons that are detected in both the ID and the MS in both the barrel region and end-cap region of the detector. Tracks are each constructed from the ID and the MS and a global refit done to remove outliers to improve the fit quality. This is mostly done by an outside-in approach where the tracks in MS are made to match the ones seen in the ID. 
 
 \bullet{Segment-tagged (ST) muons}
-This method is used to identify lower PT muons. If a track in the ID can be matched to at least one track segment in the MDT in the barrel or CSC in the end-cap, it will be selected as a segment-tagged muon. 
+This method is used to identify lower PT muons that couldn't make it to multiple layer of the MS. If a track in the ID can be matched to at least one track segment in the MDT in the barrel or CSC in the end-cap, it will be selected as a segment-tagged muon. 
 
 \bullet{Calorimeter-tagged(CT) muon}
-Even lower PT muons between 15 < $P_{T}$ < 100GeV is formed from matching a track in ID with energy deposit in the calorimeter that matches the minimum-ionizing particle. This is optimized for barrel muons of $|\eta <0.1|$. 
+This method is for even lower PT muons that could not make it to the MS at all. Muons between 15 < $P_{T}$ < 100GeV is formed from matching a track in ID with energy deposit in the calorimeter that matches the minimum-ionizing particle. This is optimized for barrel muons of $|\eta <0.1|$. 
 
 \bullet{Extrapolated(ME) muon}
-Extending the acceptance of muons in the forward region from 2.5< $|\eta|$<2.7 where there is no ID coverage, muon tracks in the MS chamber with a loose compatibility to the originating IP are ME muons. 
+This strategy is for muons that are very forward and is swamp under noise from pile-up. Muon tracks in the MS chamber with a loose compatibility to the originating IP are ME muons are accepted as ME muons. This strategy extending the acceptance of muons in the forward region from 2.5< $|\eta|$<2.7, where there is no ID coverage and cannot be reconstructed by the above other methods.
 
-\section{Muon Identification}
+\subsection*{Muon Identification}
 Muon identification is a set of selection criteria done on the candidate muons to cut out background from pions/kaon decays that would form muons that is not interesting, basing on different analysis, different muon identification points are used. 
 
 A couple of criteria are used for muon identification, which include, q/p significance, $\rho'$ and $\chi^{2}_norm$, the definition of q/p significance and \rho' is defined as below. 
@@ -50,9 +65,17 @@ A couple of criteria are used for muon identification, which include, q/p signif
 
 \[ \rho' = |P_{T}^{MS} - P_{T}^{ID}| / P_{T}^{Combined} \]
 
-\section{Lepton Isolation}
-Not all leptons created in the ATLAS detector is interesting for analyses. Most interesting leptons came from the hard primary vertex decay of W, Z, Higgs bosons or other BSM particles. These are known as "prompt leptons". Other "non-prompt" leptons came from semileptonic decay of jets in fragmentation process, they are not leptons from the original vertice and they are interesting to be analyzed as leptons. They are often classified as "background" processes. To distinguish these leptons and increase signal significance for the lepton
-from processes that concerns us, an isolation criteria is used. 
+They result in 
+
+These are the working points in used: 
+
+
+
+\section{Muon Isolation}
+Not all leptons created in the ATLAS detector is interesting for analyses. Most interesting leptons came from the hard primary vertex decay of radially decaying particles. W, Z, Higgs bosons or other BSM particles such as the Z' are example decays that are interesting. Muons formed are known as "prompt muons", usually clean and does not have much associated neighboring hits. Less interested muons came from the semileptonic decay from jet fragmentation, these muons decays are formed with lots of
+neighboring hits. The neighboring hits can be used as a criteria to discriminate interesting muons from the less interesting ones, the step is call muon isolation. This increase the signal sensitivity by cutting down the background in searches and measurements.
+%They are often classified as "background" processes. To distinguish these leptons and increase signal significance for the lepton
+%from processes that concerns us, an isolation criteria is used. 
 There are two variables used for muon isolation, one is a track-based isolation and the other is a calorimeter-based isolation. 
 
 First, the parameters used in the isolation criteria needs to be clarified: 
