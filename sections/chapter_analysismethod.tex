@@ -167,7 +167,7 @@ Both the frequentist and the Bayesian method on upper limit setting will be pres
     \end{equation}
 
 
-    This quatity takes the overall deficit and or excess in the region compared to the \chi^{2} and loglikelihood calculation. Only excesses are used for this study due to the nature of the resonace signature being looked for. 
+    This quatity takes the overall deficit and or excess in the region compared to the $\chi^{2}$ and loglikelihood calculation. Only excesses are used for this study due to the nature of the resonace signature being looked for. 
 
     In this analyses two kind of bump-hunter statistics are used, one is used to described the localized excess in each window and the other on whether an excess is found for the overall spectrum.
 
@@ -200,8 +200,7 @@ Both the frequentist and the Bayesian method on upper limit setting will be pres
 
 The previous section performed a test on whether the null hypothesis of there is only known process in the Standard Model is rejected. In the section of limit setting, the alternative hypothesis is looked at, and an alternative hypothesis on the mass or cross section of the signal model the data has excluded the information of interest. 
 
-The limit is a hypothesis testing procedure that test both the 
-compares the null hypothesis of absence of signal ($H_{0}$) to the hypothesis where there is a signal($H_{1}$). 
+The limit is a hypothesis testing procedure that test both the compares the null hypothesis of absence of signal ($H_{0}$) to the hypothesis where there is a signal($H_{1}$). 
 The limit is a projection of the $H_0$ and $H_1$ hypothesis in either the cross-section or the signal strength axis. This provide another way to discuss signal discovery, and information on an 95\% confidence limit in the If $H_1$ shows agreement with $H_{0}$ when fluctuation is taken into account, the 
 Even in the absence of a signal, a statement can be made about the signal strength value that is ruled out by the signal+ background. 
 
@@ -229,6 +228,7 @@ The parameters that would influence the model's prediction fit to data include b
 Here, the denominator is the maximized unconditional likelihood function, where $\hat{\mu}$ and $\hat{\theta}$ is the parameter values that would maximize the unconditional likelihood function; the nominator is the conditional likelihood function, that would be maximized under the maximum-likelihood estimator of $\theta$ and $\mu$. 
 
 To aid the optimization process and also to reflect the nature of the excess search experiment that neglects negative signal event value, the test statistics defined as the following: 
+
 \begin{equation}
     \[ q_{\mu} = -2 ln \frac{L(\mu, \hat{\hat{\theta}})}{L(\hat{\mu}, \hat{\theta})}
 \]
@@ -250,30 +250,70 @@ If the terms in O are neglected, it follows that the test statistics will then a
 \[f(q_{\mu}) = \frac{1}{2\sqrt{q_{\mu}}} \frac{1}{\sqrt{2\pi}} [exp(-\frac{1}{2}(\sqrt{q_{\mu}}+ \sqrt{\Lambda})+ exp(-\frac{1}{2}(\sqrt{q_{\mu}-\sqrt{\Lambda}})^{2})]
 \end{equation}
 
-\subsection{The Asimov dataset for a median experimental sensitivity}
+%\[ \lambda_{A}(\mu) = \frac{L_{A}(\mu, \hat{\hat{\theta}})}{L_{A}(\hat{\mu}, \hat{\theta})} \]
 
-The finding of \hat\hat{\mu} in the denominator is CPU intensive, the dataset is large with many dimensions. The asimov dataset reduces the calcuation here by showing that \hat\hat{\mu} can be approximated by \mu', the expected value of the strength parameter. From this, CPU intensive calcuation of the p-value, significance and thus the upper limit and its fluctuation can be reduced to simple formulae that only look at the representative Asimov dataset. 
+
+%Following certain estimation, the non-centrality term, \Lambda, can be given by the following:
+
+
+%Following from this, it can be shown mathmatically the median significance, the error bands, as well as the upper limit exclusion can be given as the following: 
+
+
+%The upper limit is given by: 
+%\[ \
+
+%The median significance of the expected limit is given by
+%\[ \Lambda = \frac{(\mu- \hat{\mu})^{2}}{\sigma^2}=-2ln{lambda} \], where mu is the expected value, this is known as the asimov dataset. 
+
+
+%\begin{figure}[!htb]
+%    \begin{center}
+%        \includegraphics[width=0.75\textwidth]{figures/chapter_analysismethod/asimovApproximation}
+%        \caption{
+%			Generation showing convergence of the Asimov dataset and the median significance dataset from full generation. .
+%        }
+%        \label{fig:Model_figure}
+%    \end{center}
+%\end{figure}
+%
+%
+%\[ Z^{2}_{median} = -2ln{\lambda_{median}} \]
+%
+%As can be shown from the MC generation plot here, the median conversed 
+%
+%Using the above approximation, one distribution can be used instead of a large amout of ensemble data, the above is known as the Asimov dataset. 
+
+
+%There are some special cases where the 
+
+%From the Wilk's theorem, the upper limit on the signal strength $\mu_{95}$ can be given as the following:
+
+
+\subsection{The Asimov dataset}
+
+The finding of $\hat\hat{\mu}$ in the denominator is CPU intensive, the dataset is large with many dimensions. The asimov dataset reduces the calcuation here by showing that $\hat\hat{\mu}$ can be approximated by $\mu'$, the expected value of the strength parameter. From this, CPU intensive calcuation of the p-value, significance and thus the upper limit and its fluctuation can be reduced to simple formulae that only look at the representative Asimov dataset. 
 A proof is given as the following section, and the formulae used for upper limit and expected limit calcuation in this thesis is included in the end. 
 
 From the definition, true values of parameters will result in a maximum likelihood and therefore the derivative of the $ln_{L}$ will be equal to 0. 
 
 \[ \frac{\partial{L}}{\partial{\theta_{j}}} = \sum_{i=0}^{N}(\frac{n_{i}}{\nv_{i}}-1) \frac{\partial{\nv_{i}}}{\partial{\theta_{j}}}+ \sum_{i=0}^{N}(\frac{m_{i}}{u_{i}}-1) \frac{\partial{u_{i}}}{\partial{\theta_{j}}} =  0 \], 
 
-where n is the number of count in the bin in the signal region variable x, and N is the total number of bins, and m is the number of counts in the bin in the control region may help further constrain the background, M is the maximum number of bins. 
+,where n is the number of count in the bin in the signal region variable x, and N is the total number of bins, and m is the number of counts in the bin in the control region may help further constrain the background, M is the maximum number of bins. 
 
 The maximal likelihood value for $n_{i,A}$ and $m_{i,A}$ is associated with their expectation value. 
 
-\[ n_{i,A} = E[n_{i}] = \nv_{i} = \mu's_{i}(\theta) + b_{i}(\theta), 
+\[ n_{i,A} = E[n_{i}] = \nv_{i} = \mu's_{i}(\theta) + b_{i}(\theta), \]
 
-    m_{i,A} = E[m,i] = u_{i}(\theta) \]
+\[m_{i,A} = E[m,i] = u_{i}(\theta) \]
 
-    These optimal parameters \theta can be estimated through large size Monte Carlo generation. And it's called the asimov dataset. 
+    These optimal parameters $\theta$ can be estimated through large size Monte Carlo generation. And it's called the asimov dataset. 
 
 Therefore, it is shown that 
 
-\[ \lamda_{A}(\mu) = \frac{L_{A}(\mu, \hat{\hat{\theta}})}{L_{A}(\hat{\mu}, \hat{\theta})} = \frac{L_{A}{\mu, \hat{\hat{\theta}}}}{L_{A}(\mu', \theta)} \]
+\[ \lamda_{A}(\mu) = \frac{L_{A}(\mu, \hat{\hat{\theta}})}{L_{A}(\hat{\mu}, \hat{\theta})} 
+= \frac{L_{A}{\mu, \hat{\hat{\theta}}}}{L_{A}(\mu', \theta)} \]
 
-\sigma_{A} can be approximated as the following:
+$\sigma_{A}$ can be approximated as the following:
 
 \[ 2ln(\lambda_{A}(\mu)) \approx \frac{(\mu-\mu')^{2}}{\sigma^{2}}=\Lambda
 \]
@@ -285,23 +325,25 @@ Therefore, it is shown that
 
 Once that's found, the likelihood profile of the search can be estimated through the Asimov likelihood as such:
 
-Following from the above, the test statistics, the upper limits, the discovery median significance can all be found through substituting \hat{\mu} as \mu' by the asimov method. 
+Following from the above, the test statistics, the upper limits, the discovery median significance can all be found through substituting $\hat{\mu}$ as $\mu'$ by the asimov method. 
 Only the results are quoted here, more details are found here. 
 
-\bullet{Test statistics distribution}
+$\sbullet Test statistics distribution$
+
 \begin{equation}
 \[ F(t_{\mu}| \mu) = 2\Phi(\sqrt{t_{\mu}})-1 \]
 \end{equation}
 
-\bullet{p-value of a hypothesized \mu for an observed value t_\mu}
+$\sbullet p-value of a hypothesized \mu for an observed value t_\mu$
 
 \begin{equation}
 \[ p_\mu = 1-F(t_{\mu}| \mu})=2(1-\Phi(\sqrt(t_{\mu})))\]
 \end{equation}
 
-\bullet{The significance that corresponds to the above p-value}
+$\sbullet The significance that corresponds to the above p-value$
+
 \begin{equation}
-    \[ \Z_{\mu} = \Phi^{-1}(1-p_{\mu})  = \Phi^{-1}(2\Phi(\sqrt{t_{\mu}})-1)
+    \[ Z_{\mu} = \Phi^{-1}(1-p_{\mu})  = \Phi^{-1}(2\Phi(\sqrt{t_{\mu}})-1) \]
 \end{equation}
 
 %\subsection{The Search (discovery test)}
@@ -314,24 +356,23 @@ Only the results are quoted here, more details are found here.
 %\[ Z_{0}= \Phi(1-p_{0})= \sqrt(q_{0}) \]
 %\end{equation}
 
-To find the upper limit at a certain 1-\alpha confidence interval, \mu where p_{\mu}=\alpha needs to be found.
+To find the upper limit at a certain 1-$\alpha$ confidence interval, $\mu$ where $p_{\mu}=\alpha$ needs to be found.
 
 \begin{equation}
 \[ \mu_{up/lo} = \hat{\mu} +- \sigma\Phi^{-1}(1-\alpha/2) \]
 \end{equation}
 
-In Asimov a median distribution 
 
-In the experiment, statistical fluctuation need to be taken into account, it can either be taken as that the data has room to fluctuate, or that the expected value from the model can fluctuate and change. Either way, the sigificance will fluctuate even if \mu' is assumed to be true and hold fixed. In the analysis, it's taken that data will be fluctuating. 
+In the experiment, statistical fluctuation need to be taken into account, it can either be taken as that the data has room to fluctuate, or that the expected value from the model can fluctuate and change. Either way, the sigificance will fluctuate even if $\mu'$ is assumed to be true and hold fixed. In the analysis, it's taken that data will be fluctuating. 
 
-In the case where there is assumed that there is no background, 
+In the case where there is assumed that there is no background. Using the fluctuation, the significance can be calculated as the following: 
 
-\begin{equation}
-\[Z_{0}= \Big{\hat{\mu}\sigma    \hat{\mu}\gt 0, \newline 
-         0    \hat{\mu}<0. }\]
-\end{equation}
+%\begin{equation}
+%\[ Z_{0}= \Big \hat{\mu}\sigma    \hat{\mu}\gt 0, 
+%         \newline 
+%         0    \hat{\mu}<0. \]
+%\end{equation}
 
-Using the fluctuation, the significance can be calculated as the following: 
 
 % this is for the discovery test
 %\begin{equation}
@@ -342,7 +383,7 @@ Using the fluctuation, the significance can be calculated as the following:
 %    \[ max[Z_{0}(\mu'+N\sigma) = med[Z|\mu'] -N, 0] \] 
 %\end{equation}
 
-And the associated expected limit error band can be given as such, where the strenght parameter of \mu' is substitute by the \mu^{'} due to fluctuation and the sigma from the test statistics of the asimov set. 
+And the associated expected limit error band can be given as such, where the strength parameter of $\mu'$ is substitute by the $\mu^{'}$ due to fluctuation and the sigma from the test statistics of the asimov set. 
 
 The median upper limit:
 \begin{equation}
@@ -354,73 +395,6 @@ The error band:
     \[ band_{N\sigma} = \mu' + \sigma(\Phi(1-\alpha)+-N) \]
 \end
 
-
-
-
-
-
-
-
-
-
-
-% \hat{\hat{\theta}} is the value that maximizes the respective \mu
-% \\hat{mu} and \hat{\theta} are the value with the maximal likelihood. 
-
-% \{mu} is the value that we want to guess, if mu is of a value where in the test statistics distribution at 95%, it can be said that it's excluded. 
-
-\[ \lambda_{A}(\mu) = \frac{L_{A}(\mu, \hat{\hat{\theta}})}{L_{A}(\hat{\mu}, \hat{\theta})}
-
-
-Following certain estimation, the non-centrality term, \Lambda, can be given by the following:
-
-
-Following from this, it can be shown mathmatically the median significance, the error bands, as well as the upper limit exclusion can be given as the following: 
-
-
-The upper limit is given by: 
-\[ \
-
-The median significance of the expected limit is given by
-\[ \Lambda = \frac{(\mu- \hat{\mu})^{2}}{\sigma^2}=-2ln{lambda} \], where mu is the expected value, this is known as the asimov dataset. 
-
-
-\begin{figure}[!htb]
-    \begin{center}
-        \includegraphics[width=0.75\textwidth]{figures/chapter_analysismethod/asimovApproximation}
-        \caption{
-			Generation showing convergence of the asimov dataset and the median significance dataset from full generation. .
-        }
-        \label{fig:Model_figure}
-    \end{center}
-\end{figure}
-
-
-\[ Z^{2}_{median} = -2ln{\lambda_{median}} \]
-
-As can be shown from the MC generation plot here, the median conversed 
-
-Using the above approximation, one distribution can be used instead of a large amout of ensemble data, the above is known as the asimov dataset. 
-
-
-
-
-There are some special cases where the 
-
-From the Wilk's theorem, the upper limit on the signal strength \mu_{95} can be given as the following:
-
-
-
-%\begin{equation}
-%\[ f(t_{\mu}; \Lambda)=\
-%\end{equation}
-
-
-%\subsection{The Data spectrum}
-%
-%The frequentist limit is done in the Asimov way to save on computing resources for the calculation. 
-%
-%The limit setting procedure is done by an Asimov method, 
 
 \section{Systematics}
 \section{Future Extensions}
