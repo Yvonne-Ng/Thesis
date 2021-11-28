@@ -31,10 +31,13 @@
 % Rubin and Ford studied galaxy M31 region and found that different region moves at a different speed than expected of the mass of the galaxy
 %
 
+\begin{align}
 \begin{equation}
-    \[ \langle T \rangle = -\frac{1}{2} \sum_{k=1}^{N} \langle F_{k} \cdot r_{k} \rangle
+     \langle T \rangle = -\frac{1}{2} \sum_{k=1}^{N} \langle F_{k} \cdot r_{k} \rangle
     \label{eq:virial}
+
 \end{equation}
+\end{align}
 
 
     The Virial theorem shows that the there is a direct correlation between the kinetic energy and potential energy in a particle system. In rotating galaxies, there is therefore a correlation between the velocity of the disk and the mass (through gravitational force) of the system. The correlation is as follows: 
@@ -135,7 +138,7 @@ Current evidence (see section ~\ref{section:evidence}) suggests that dark matter
 In cosmology, hot/cold refers to the mass of an object. Only objects relatively low in mass would be affected relativistically. Different assumption of the relativistic mass of dark matter has great impact on the galaxy formations and its distribution. From most simulation results, dark matter is taken to be non-relativistic by most physicists and will be assumed for dark matter candidate searched for in the rest of the thesis. 
 
 \subsection{Low Self-Interaction}
-Dark matter is believe to have little to no self interaction, Mixed X-ray, optical and gravitational lensing study on the merging galacy cluster 1E-657-65 has restricted its self interaction limit to below $\sigma \over m < 1.25 cm^{2} g^{−1}$ (68\% confidence)~\cite{randall2008constraints}. 
+Dark matter is believe to have little to no self interaction, Mixed X-ray, optical and gravitational lensing study on the merging galacy cluster 1E-657-65 has restricted its self interaction limit to below $\sigma \over m < 1.25 cm^{2} g^{-1}$ (68\% confidence)~\cite{randall2008constraints}. 
  
 %\subsection{Single Particle}
 %While there are many composite dark matter models being proposed these days, dark matter is still taken to be a single kind in most effective model/simplified model building for experimental searches. 
@@ -269,6 +272,25 @@ The LHC dark matter working group is moving towards less simple models with more
 
 A detailed list of models used by the LHC by both the CMS and ATLAS can be found in this reference ~\cite{Abercrombie_2020}.
 
+\subsection{The LHC Dark Matter Benchmark}
+\label{sec:LHCDM}
+The dark matter benchmark from the LHC uses the effective field theory approach. (See section for more detail on this appraoch) It uses contact interaction operator as the basis of the theory model building blocks. This way, the model can be reduced to a handful of experimentally measurable qualities for more complete theory model interpretations. 
+In the dark matter benchmark of the LHC, it extends the Standard Model by an additional U(1) symmetry, and assumed dark matter along with some Stanard Model particles are all charged under this. A new gauge boson can thereby facilitate interaction between the standard model and dark matter field. 
+
+The dark matter mediator can either be an axial vector or a vector, the corresponding lagrangians are as such:
+
+\[ \mathcal{L}_{vector}= g_{q} \sum$_{q=u,d,s,c,b,t}$ Z'_{\mu}\bar{q}\gamma^{\mu}q + g_{\chi}Z'_{\mu}\bar{\chi}\gamma^{\mu}\chi \]
+
+
+\[ \mathcal{L}_{axial vector}= g_{q} \sum$_{q=u,d,s,c,b,t}$ Z'_{\mu}\bar{q}\gamma^{\mu}\gamma^{5}q + g_{\chi}Z'_{\mu}\bar{\chi}\gamma^{\mu}\gamma^{5}\chi \]
+
+This is also applicable to leptons, under this calculation the minimal parameters of the model is reduced to {g_{q}, g_{\chi}, m_{\chi}, M_{med}}. 
+
+Similar arguments can be made for the lepton couplings. 
+
+On ATLAS, these models are generated in the event generator with NLO+PS accuracy with the POWHEG generator, the product goes through parton showering at PYTHIA8 with detector simulation from GEANT4. 
+
+
 \section{Experimental Signature in the LHC}
 \label{section:signatures}
 
@@ -287,3 +309,5 @@ In recent years, new techniques such as the trigger-level-analysis and channels 
 
 \subsection{Long-Lived Particle Signature}
 
+
+The Signature used for this analysis 

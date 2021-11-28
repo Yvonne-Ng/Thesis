@@ -1,8 +1,19 @@
 \chapter{Common Analysis Items}
+\label{chapter:CommonAnalysisItems}
 
 %todo IO muons
 %todo
 After collisions in the LHC, the particles hits exist as different electronic signals from various detector components saved in hard disk, converting these signals into physics objects worth analyzing takes different reconstruction, identification, cleaning, and calibration steps. This chapter will discuss the different steps these detector hits go through before they become analysis-ready physics objects. 
+
+\begin{figure}[!htb]
+    \begin{center}
+        \includegraphics[width=1.1\textwidth]{figures/common_ana/ParticleSignature}
+        \caption{        
+            Different particles displays a different particle signature characteristics in the ATLAS detector\cite{Mehlhase:2770815}.
+        }
+        \label{fig:isolationWP}
+    \end{center}
+\end{figure}
 
 \section{Tracks and primary vertices}
 
@@ -13,12 +24,32 @@ track formation of muons, which are minimizing particles that through all of the
 
 \subsection*{Tracks}
 To reconstruct a hit from detector raw hit information, a couple of  coincidence measurement across the different subsystems will be used to form a track seed. Then, a Kalman filter is used to fit the tracks,  irrelevant hits from pile-up are removed through the filter rejection.  
-A track formed this way is described by the following few track-associated parameters: ($d_{0}$, $z_{0}$, $\phi$, $\theta$, q/p)~\cite{}.
+A track formed this way is described by the following few track-associated parameters: ($d_{0}$, $z_{0}$, $\phi$, $\theta$, q/p).
 %by forward filtering, backward smoothing and outlier rejection of
+
+\begin{figure}[!htb]
+    \begin{center}
+        \includegraphics[width=0.45\textwidth]{figures/common_ana/Track}
+        \caption{ 
+            Track reconstruction in ATLAS. Schematic view of how the parameters associated with track creation.
+        }
+        \label{fig:isolationWP}
+    \end{center}
+\end{figure}
+
 
 \subsection*{Primary Vertex}
 Once tracks are formed in the inner detector, primary vertices can be constructed to discriminate an event from other hits. 
 Primary vertices are the initial interaction point where the further decay particles that reach the ATLAS detector are formed. Verticing is important as it is effective in discriminating pile-up hits from the ones from the event-of-interest. This is increasingly important in newer LHC runs where the higher luminosity has resulted in additional in-time and out-of-time pile-ups. 
+
+\begin{figure}[!htb]
+    \begin{center}
+        \includegraphics[width=0.75\textwidth]{figures/common_ana/Vertex}
+        \caption{        
+            Schematic view showing vertexing in ATLAS\cite{4774734}.
+        }
+    \end{center}
+\end{figure}
 Vertexing is consist of a couple of different steps:
 
 1. A vertex seed is found by filtering the point where most interactions are found. This is done by an iterative method or imaging method.  
@@ -37,6 +68,15 @@ With tracks and primary vertices constructed, particle reconstruction can begin.
 \section{Muons}
 Muons on ATLAS formed from the tracking and primary vertex information from both the ID and the MS described in the above section. Additinoal information from the calorimeter is also used. There are four main muon reconstruction strategies. Mainly due to different PT muon in different detector location will require different strategies for optimal reconstruction efficiency. There are four muon working points, which uses different reconstruction strategy combination and discriminating cuts to
 increase the identification efficiency for different analyses.
+
+\begin{figure}[!htb]
+    \begin{center}
+        \includegraphics[width=0.85\textwidth]{figures/common_ana/Muon}
+        \caption{        
+            Event visualization of a four muon event in the ATLAS detector\cite{ATLAS:1697053}.
+        }
+    \end{center}
+\end{figure}
 
 These strategies and working points are result from studies done on the standard samples of Z to $\mu \mu $ and $J/\Psi$ to \mu \mu. 
 %As different muon transverse momentum will lead to muon hits depositing in different parts of the detector and different region also require different strategy for best differentiation. 
@@ -118,7 +158,7 @@ The Low-$p_{T}$ working point includes all of the muons in the medium working po
 
 \begin{figure}[!htb]
     \begin{center}
-        \includegraphics[width=0.75\textwidth]{figures/common_ana/IdentificationEff}
+        \includegraphics[width=1\textwidth]{figures/common_ana/IdentificationEff}
         \caption{
             This figure shows the reconstruction and identification efficiencies in different variable range in different working points\cite{Aad:2746302}.
     }
@@ -157,7 +197,8 @@ The isolation criteria using the track-based variable is the isolation variable 
 \begin{figure}[!htb]
     \begin{center}
         \includegraphics[width=0.75\textwidth]{figures/common_ana/Isolation}
-        \caption{
+        \caption 
+        {
             This figure shows the isolation working points on ATLAS from full run2\cite{Aad:2746302}.}
         \label{fig:isolationWP}
     \end{center}
@@ -166,7 +207,7 @@ The isolation criteria using the track-based variable is the isolation variable 
 \begin{figure}[!htb]
     \begin{center}
         \includegraphics[width=0.75\textwidth]{figures/common_ana/IsolationEff1}
-        \includegraphics[width=0.75\textwidth]{figures/common_ana/IsolationEff2}
+        %\includegraphics[width=0.75\textwidth]{figures/common_ana/IsolationEff2}
         \caption{
             This figure shows the isolation efficiency in different variable range in different working point\cite{Aad:2746302}.
         }
