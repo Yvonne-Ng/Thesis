@@ -85,6 +85,7 @@ The binning is done through the mass spectrum resolution finding of the target s
 A uniform binning is chosen for the dimuon analysis, as it would make the background estimation more simplified. For the dijet analysis, to cope with the low statistics in the high mass region, variable bin size based on detector resolution is used.
 
 \subsection{The Final Check: MC/Data Comparison}
+\label{sec:MCData}
 After the MC are properly prepared and weighted, it is then compared to data in control regions adjacent to the signal region as a final check. This step reveals issues in object calibration, sub-detector functioning, incorrect trigger weighting, Monte Carlo event weight corrections as large discrepancies and therefore is a catch-all test for whether all the above steps are done correctly. If MC and data show a reasonable agreement, the MC can be trusted to perform the test strategy on the
 background estimation study in the following part. 
 
@@ -208,6 +209,7 @@ background estimation study in the following part.
     Here, x and y are input data to constrict the distribution, $x_{*}$ is the points where the posterior GP are evaluated from. 
 
 \subsubsection{Gaussian Process: Covariance function}
+\label{sec:kernel}
 The covariance function/kernel describes how the joint distribution is related to each other in the Gaussian process. 
 It's possible to embed different information regarding the physics of the spectrum into the kernel. 
 In the dimuon analysis, it's found that the simple radial basis function and a white noise kernel are sufficient to describe the background spectrum, the signal is described by another radial basis function kernel of a particular mean value.
@@ -252,6 +254,7 @@ The kernels are given as the following:
 
     In this Gaussian process testing procedure, the hyperparameters are first found on a test fit on the MC/data, a minimum bound on the lengthscale hyperparameter is first found through a fit on different variations of the MC generated and the signal injected test.
 
+
     \subsubsection{Gaussian Process: Limit Setting}
 
     The Gaussian process is shown to be able to be incorporated within the Asimov method of frequentist limit setting in section~\ref{section:freq}. The Asimov limit is a frequentist limit calculation method that saves on computing resources. The limits are generated from a representative asimov dataset instead of a the full dataset of all values.
@@ -273,6 +276,7 @@ The kernels are given as the following:
 %New small wheel
 
     \subsection{Signal Injection Test}
+    \label{sec:signalInjection}
     Increasing number of parameters in a fit or number of windows in SWiFT provide more flexibility in modelling the background accurately. However, the increased flexibility in background modelling often comes with the price of decreased signal sensitivity: the flexible background fits the signal away as part of the background. The signal injection test is a test that quantify the amount of signal sensitivity in the chosen background modelling. On ATLAS, it is required that the background modelling provide sensitivity to signals of at least 3 $\sigma$ of the background error. 
 
    In Gaussian process and SWiFT, the signal injection test is used to constrain the lower bound of the lengthscale and SWiFT window, finding the hyperparameter or parameter that would return a background that provides the signal sensitivity. 
@@ -312,6 +316,7 @@ The kernels are given as the following:
 \end{figure}
 
     \subsection{Spurious Signal Test} 
+    \label{spurious}
     Spurious signal models the amount of signal that the background + signal fit when no signal is present. It measure the amount of possible false signal that can be captured by the background modelling method. It's a test on the stability of the background and also a measure of the background fit error\cite{}.
 
     A thousand independent background plus signal fit is performed on pseudo-experiments generated from the background MC. The spurious signal is defined as the following:
@@ -339,6 +344,7 @@ The kernels are given as the following:
 
 
 \section{Statistics Testing}
+\ref{}
 Statistical testing is the quantification of whether an excess is seen or what experimental bound can be drawn from the final analysis. 
 
 The statistics testing on a hypothesis can be presented as a test on the significance Z: 
