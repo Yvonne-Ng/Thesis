@@ -1,5 +1,8 @@
 \chapter{The Standard Model of Particle Physics}
 \label{chapter:SM}
+
+\input{tables/table_sm}
+\input{tables/tab_sm_content_EWSB}    
 	
 \epigraph{\textit{Ex pede Herculem. \newline(From the feet, Hercules.)}}{--Herodotus, Book IV, Section LXXXII. Plutarch}
 
@@ -16,87 +19,85 @@ Quantum Field Theory (QFT) framework. Particles are represented different quanti
 
 \subsection{Symmetry}
 Symmetry is the corner of many laws in physics. Mathematically, it's the invariance of quantities through transformation, and is shown by the Noether's Theorem to be related to conservation laws in physics:
-
     \begin{itemize}
         \item Spatial Translational Symmetry $\rightarrow$ Translational Momentum Conservation
         \item Time Symmetry $\rightarrow$ Energy Conservation
         \item Rotational Symmetry $\rightarrow$ Angular Momentum Conservation
     \end{itemize}
-%
-%    Symmetry and its transformation can be summarized by the mathematical language of group theory. In group theory, continuous transformation is described by the Lie group and the discrete transformation is represented by a finite group. 
-%
-%    There are two kinds of symmetries in the SM, the external symmetries and internal symmetries. External symmetries are symmteries related to space-time transformation of the particle; Internal particle symmetries that are related to other particle properties other than space-time. 
 
-%\subsubsection{External Symmetries} 
-%The external symmetries are transformations on the space-time coordinates, The SM external symmetries can be summarized by the following three groups, known collectively as the \textit{Poincar\'{e} group}. Each of the terms conserves a physics quantity. 
-%    
-%     \begin{equation}
-%     \textbf{\textit{P}} \times \textbf{\textit{J}} \times \textbf{\textit{K}}
-%     \end{equation}
-%     
-%    \begin{itemize}
-%        \item \textbf{\textit{P}}: Spatial Translational Symmetry
-%
-%            Abelian Lie group translation on space-time $\rightarrow$ conserves momentum 
-%        \item \textbf{\textit{J}}: Rotational Symmetry
-%
-%            Non-Abelian Lie group of three-dimensional rotation $\rightarrow$ conserves Angular Momentum 
-%        \item \textbf{\textit{K}}: Boost Symmetry 
-%
-%            Abelian Lie group of four dimensions $\rightarrow$ conserves \textit{Invariant Interval} in Special relativity.
-%    \end{itemize}
-%
-%
-%    The \textit{Invariant Interval} quantity is defined as:
-%
-%    \begin{equation}
-%        \Delta s^2 \overset{\mathrm{def}}{=} c^{2}\Delta t^{2} - (\Delta x^{2}+\Delta y^{2} + \Delta z^{2})
-%        \label{eq:InvariantInterval}
-%    \end{equation}
-%
-%    In special relativity, when the space-time measurement of an event is transformed through different frames of references, the \textit{Invariant Interval} remains unchanged. In the equation above, $\Delta s^{2}$ is the \textit{Invariant Interval}, $\Delta t^{2}$ is the difference in time measurements between the two frame of reference, whereas $\Delta x$, $\Delta y$ and $\Delta z$ are the differece in position in between the different frame of references.
+    Symmetry and its transformation can be summarized by the mathematical language of group theory. In group theory, continuous transformation is described by the Lie group and the discrete transformation is represented by a finite group. 
 
-%\subsubsection{Internal Symmetry}
-%The SM internal symmetries describe transformation in physical properties of the particles other than space-time. Particle gauge field interaction can be described as "transformations" from one field to another under internal symmetry. The different physical invariant quantities that are conserved under these particle transformations/interactions are called "charges". From these internal symmetries, Charge, Parity and time reversal symmetry (CPT) is observed. 
-%
-%The internal symmetries is given as:
-%
-%    \begin{equation}
-%        \SUthree_{C} \times  \SUtwo_{L} \times \Uone_{Y}
-%    \end{equation}
-%
-%
-%    The following symmetries governs the particle interactions under the strong and electro-weak forces. 
-%    
-%    The $\SUthree_{C}$ symmetry describes strong force interaction, it only affects the quark gauge field with color charges. 
-%    
-%    %The local $SU(3)_{C}$ symmetry governs the strong force and only has an effect on particles with a color charge (either red, green, or blue). These particles in the Standard Model include quarks of field $\mathcal{Q}_{i}$. It consist of the left handed doublets of  ($u_{L}$, $d_{L}$), ($c_{L}$, $s_{L}$), ($t_{L}$, $b_{L}$) and right-handed singlets of $u_{R,i}$ and $d_{R}$. The strong force is mediated by the eight gluon fields $\mathcal{G}$.
-%
-%    The $\SUtwo_{L} x \Uone_{Y}$ transformation describes the weak  and weak hypercharge transformation and is effective on particles gauge field with the weak charge and the weak-hyper charge respectively
-%    
-%    The combined effect of the weak field $\SUtwo_{L}$ and the weak hyper-charge field $\Uone_{Y}$ gives the familiar electro-magnetic weak force after spontaneous symmetry breaking. This affects both the quark field and leptonic fields transformations, The detailed mechanism of spontaneous symmetry breaking is given in section~\ref{sec:SSB}.
-%
-%    A detailed list of the gauge fields and their charges along with their mathematical group and generator under effect can be found in table~\ref{table:sm}.
-%
-%\input{tables/table_sm}
-%
-%\subsection{The Lagrangian}
-%
-%Observing the symmetries given in the above section, the Lagrangian of the SM is written as the following:
-%
-%\begin{equation}
-%    \mathcal{L}_{SM}= - \frac{1}{4} \sum\limits_{gauge} F^{i}_{\mu \nv}F^{i\mu\nv} - \sum\limits_{f} \overline{f} \gamma^{\mu} D_{\mu} f +(D_{\mu}\phi)^{\dagger}(D^{\mu}\phi) - \mu^{2}\phi^{\dagger}\phi - \lambda(\phi^{\dagger}\phi)^{2}
-%    \label{eq:SMLagrangian}
-%\end{equation}
-%
-%
+    There are two kinds of symmetries in the SM, the external symmetries and internal symmetries. External symmetries are symmteries related to space-time transformation of the particle; Internal particle symmetries that are related to other particle properties other than space-time. 
+
+\subsubsection{External Symmetries} 
+The external symmetries are transformations on the space-time coordinates, The SM external symmetries can be summarized by the following three groups, known collectively as the \textit{Poincar\'{e} group}. Each of the terms conserves a physics quantity. 
+    
+     \begin{equation}
+     \textbf{\textit{P}} \times \textbf{\textit{J}} \times \textbf{\textit{K}}
+     \end{equation}
+     
+    \begin{itemize}
+        \item \textbf{\textit{P}}: Spatial Translational Symmetry
+
+            Abelian Lie group translation on space-time $\rightarrow$ conserves momentum 
+        \item \textbf{\textit{J}}: Rotational Symmetry
+
+            Non-Abelian Lie group of three-dimensional rotation $\rightarrow$ conserves Angular Momentum 
+        \item \textbf{\textit{K}}: Boost Symmetry 
+
+            Abelian Lie group of four dimensions $\rightarrow$ conserves \textit{Invariant Interval} in Special relativity.
+    \end{itemize}
+
+
+    The \textit{Invariant Interval} quantity is defined as:
+
+    \begin{equation}
+        \Delta s^2 \overset{\mathrm{def}}{=} c^{2}\Delta t^{2} - (\Delta x^{2}+\Delta y^{2} + \Delta z^{2})
+        \label{eq:InvariantInterval}
+    \end{equation}
+
+    In special relativity, when the space-time measurement of an event is transformed through different frames of references, the \textit{Invariant Interval} remains unchanged. In the equation above, $\Delta s^{2}$ is the \textit{Invariant Interval}, $\Delta t^{2}$ is the difference in time measurements between the two frame of reference, whereas $\Delta x$, $\Delta y$ and $\Delta z$ are the differece in position in between the different frame of references.
+
+\subsubsection{Internal Symmetry}
+The SM internal symmetries describe transformation in physical properties of the particles other than space-time. Particle gauge field interaction can be described as "transformations" from one field to another under internal symmetry. The different physical invariant quantities that are conserved under these particle transformations/interactions are called "charges". From these internal symmetries, Charge, Parity and time reversal symmetry (CPT) is observed. 
+
+The internal symmetries is given as:
+
+    \begin{equation}
+        \SUthree_{C} \times  \SUtwo_{L} \times \Uone_{Y}
+    \end{equation}
+
+
+    The following symmetries governs the particle interactions under the strong and electro-weak forces. 
+    
+    The $\SUthree_{C}$ symmetry describes strong force interaction, it only affects the quark gauge field with color charges. 
+    
+    %The local $SUthree_{C}$ symmetry governs the strong force and only has an effect on particles with a color charge (either red, green, or blue). These particles in the Standard Model include quarks of field $\mathcal{Q}_{i}$. It consist of the left handed doublets of  ($u_{L}$, $d_{L}$), ($c_{L}$, $s_{L}$), ($t_{L}$, $b_{L}$) and right-handed singlets of $u_{R,i}$ and $d_{R}$. The strong force is mediated by the eight gluon fields $\mathcal{G}$.
+
+    The $\SUtwo_{L} x \Uone_{Y}$ transformation describes the weak  and weak hypercharge transformation and is effective on particles gauge field with the weak charge and the weak-hypercharge respectively
+    
+    The combined effect of the weak field $\SUtwo_{L}$ and the weak hyper-charge field $\Uone_{Y}$ gives the familiar electro-magnetic weak force after spontaneous symmetry breaking. This affects both the quark field and leptonic fields transformations, The detailed mechanism of spontaneous symmetry breaking is given in section~\ref{sec:SSB}.
+
+
+    A detailed list of the gauge fields and their charges along with their mathematical group and generator under effect can be found in table~\ref{table:sm}.
+
+\subsection{The Lagrangian}
+
+Observing the symmetries given in the above section, the Lagrangian of the SM is written as the following:
+
+\begin{equation}
+    \mathcal{L}_{SM}= - \frac{1}{4} \sum\limits_{gauge} F^{i}_{\mu \nv}F^{i\mu\nv} - \sum\limits_{f} \overline{f} \gamma^{\mu} D_{\mu} f +(D_{\mu}\phi)^{\dagger}(D^{\mu}\phi) - \mu^{2}\phi^{\dagger}\phi - \lambda(\phi^{\dagger}\phi)^{2}
+    \label{eq:SMLagrangian}
+\end{equation}
+
+
 %The first term is a summation of the gauge fields, the short from of F, where $F^{a}_{\mu\nv}=\patial_{\mu}A_{\nv}^{a}-\partial_{\nv}A_{\mu}^{a}+g f^{abc}A^{b}_{\mu}A^{c}_{\nv}$. $A_{\mu}$ represents a gauge field, g is the gauge coupling parameter, and $f^{abc}$ is the structure constants of the gauge group. 
 %
-%The second term describes the kinetic energy of the particle fields, the gauge covariant derivative $D_{\mu}$ is a short form, where $D_{\mu}=\partial_{\mu}-i g_{1} \frac{Y}{2}B_{\mu} - i g_{2}\frac{\Tau ^{i}}{2}W_{\mu}^{i} - ig_{3}\frac{\lambda^{a}}{2}G^{a}_{\mu}$. Here, $g_{1}$, $g_{2}$ and $g_{3}$ is the gauge coupling constants. The $\Tau ^{i}$ and $\lambda^{a}$ terms are the respective generators of the $ \SUtwo_{L}$ and $\SUthree_{C}$ gauge groups. 
+%The second term describes the kinetic energy of the particle fields, the gauge covariant derivative $D_{\mu}$ is a short form, where $D_{\mu}=\partial_{\mu}-i g_{1} \frac{Y}{2}B_{\mu} - i g_{2}\frac{\Tau ^{i}}{2}W_{\mu}^{i} - ig_{3}\frac{\lambda^{a}}{2}G^{a}_{\mu}$. Here, $g_{1}$, $g_{2}$ and $g_{3}$ is the gauge coupling constants. The $\Tau ^{i}$ and $\lambda^{a}$ terms are the respective generators of the $\SUtwo_{L}$ and $\SUthree_{C}$ gauge groups. 
 %
 %The last terms concerns the Higgs potential. They are discussed in detail in section ~\ref{sec:SSB}.
 %
-%
+
 %\subsection{Spontaneous Symmetry Breaking}
 %\label{sec:SSB}
 %The Standard Model theory in the form as presented in the last section does not give mass to the particles. This inconsistent with observations in experiment.  
@@ -291,7 +292,7 @@ Minimally, a minor extension to the SM is required for neutrino mass to be possi
 
 
 \subsection{Matter-Antimatter Asymmetry}
-While the CKM matrix of SM allow for matter-anti matter asymmetry, the measured value of the parameter in the SM is not large enough to account for its observed value in the universe. However, observationally, a dominating amount of matter over antimatter is necessary to account for the observed universe, which includes the formation of most galactic structure, stars, and planets. BSM physics will be necessary to account for the asymmetry. 
+While the CKM matrix of SM allow for matter-anti matter asymmetry, the measured value of the parameter in the SM is not large enough to account for its observed value in the universe. However, observationally, a dominating amount of matter over antimatter is necessary to account for the observed universe, which includes the formation of most galactic structure, stars, and planets. BSM physics is necessary to account for the asymmetry. 
 
 \subsection{Flavor Problem}
 The mass hierarchy of the quarks and the exceptionally large mass of the top quark are all questions not answered by the SM.
