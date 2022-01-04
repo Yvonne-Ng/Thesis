@@ -1,36 +1,35 @@
 \chapter{The Standard Model of Particle Physics}
 \label{chapter:SM}
 
-\input{tables/table_sm}
-\input{tables/tab_sm_content_EWSB}    
-	
+
 \epigraph{\textit{Ex pede Herculem. \newline(From the feet, Hercules.)}}{--Herodotus, Book IV, Section LXXXII. Plutarch}
 
-The Standard Model of Particle Physics (SM) is the epitome of human understanding of physical elementary building blocks to-date. From the SM, the properties and interactions of seventeen fundamnetal particles and their interactions are laid out. It provides the foundational understanding to matter and their interactions in the quantum scale.
+The Standard Model of Particle Physics (SM) is the epitome of human understanding of physical elementary building blocks to date. From the SM, the properties and interactions of seventeen fundamental particles and their interactions are laid out. It provides the foundational understanding of matter and its interactions on the quantum scale.
 
-This chapter provides an overview of the SM: In section~\ref{sec:SM} a theoretical description of the SM is given. The mechanism to the theory is discussed. The Gauge fields and their particles are listed. As a complete picture of the SM relies on experimental measurement on its paramters, the measureed values of the eighteen parameters are also catelogued in this section. Despite the many advances made by the SM, there remains many open
-questions left to be solved. Some of them are motivators to studies done in this thesis. In section~\ref{sec:UnresolvedSM}, a summarized list of resolved problems to the SM is presented.
+This chapter provides an overview of the SM: in Section~\ref{sec:SM}, a theoretical description of the SM is given, the mechanism of the theory is discussed, and the Gauge fields and their particles are listed. As a complete picture of the SM relies on experimental measurements on its parameters, the measured values of the eighteen parameters are also cataloged in this section. Despite the many advances made by the SM, there remain many open
+questions left to be solved. Some of them are motivators to studies performed in this thesis. In Section~\ref{sec:UnresolvedSM}, a summarized list of resolved problems to the SM is presented.
 
 \section{Standard Model: Theoretical Description}
 \label{sec:SM}
 
 Mathematically, the SM is a gauge theory under the 
-Quantum Field Theory (QFT) framework. Particles are represented different quantized fields operators. The particle interactions are determined by the SM Lagrangian which takes the form as shown in the eq~\ref{eq:SMLagrangian}. Through the SM Lagrangian, all physics laws concerning the particle interaction modes, their interaction cross sections and their motion through scattering can be derived.
+Quantum Field Theory (QFT) framework. Particles are represented as different quantized fields operators. The particle interactions are described by the SM Lagrangian which takes the form as shown in Eqaution~\ref{eq:SMLagrangian}. Through the SM Lagrangian, all physics laws concerning the particle interaction channels, their interaction cross sections and their motion through scattering can be derived.
 
 \subsection{Symmetry}
-Symmetry is the corner of many laws in physics. Mathematically, it's the invariance of quantities through transformation, and is shown by the Noether's Theorem to be related to conservation laws in physics:
+Symmetry is the cornerstone of many laws in physics. Mathematically, it's the invariance of quantities through transformation, and is shown by the Noether's Theorem\cite{sarlet1981generalizations} to be related to conservation laws in physics:
+
     \begin{itemize}
-        \item Spatial Translational Symmetry $\rightarrow$ Translational Momentum Conservation
-        \item Time Symmetry $\rightarrow$ Energy Conservation
-        \item Rotational Symmetry $\rightarrow$ Angular Momentum Conservation
+        \item Spatial Translational Symmetry $\leftrightarrow$ Translational Momentum Conservation
+        \item Time Symmetry $\leftrightarrow$ Energy Conservation
+        \item Rotational Symmetry $\leftrightarrow$ Angular Momentum Conservation
     \end{itemize}
 
-    Symmetry and its transformation can be summarized by the mathematical language of group theory. In group theory, continuous transformation is described by the Lie group and the discrete transformation is represented by a finite group. 
+    A symmetry and its transformation can be summarized by the mathematical language of group theory. In group theory, continuous transformation is described by the Lie group and the discrete transformation is represented by a finite group. 
 
-    There are two kinds of symmetries in the SM, the external symmetries and internal symmetries. External symmetries are symmteries related to space-time transformation of the particle; Internal particle symmetries that are related to other particle properties other than space-time. 
+    There are two kinds of symmetries in the SM, external symmetries and internal symmetries. External symmetries are related to space-time transformation of the particle; internal particle symmetries are related to other particle properties other than space-time. 
 
 \subsubsection{External Symmetries} 
-The external symmetries are transformations on the space-time coordinates, The SM external symmetries can be summarized by the following three groups, known collectively as the \textit{Poincar\'{e} group}. Each of the terms conserves a physics quantity. 
+External symmetries are transformations on the space-time coordinates, The SM external symmetries can be summarized by the following three groups, known collectively as the \textit{Poincar\'{e} group}. Each of the terms conserves a physics quantity. 
     
      \begin{equation}
      \textbf{\textit{P}} \times \textbf{\textit{J}} \times \textbf{\textit{K}}
@@ -39,13 +38,13 @@ The external symmetries are transformations on the space-time coordinates, The S
     \begin{itemize}
         \item \textbf{\textit{P}}: Spatial Translational Symmetry
 
-            Abelian Lie group translation on space-time $\rightarrow$ conserves momentum 
+            Abelian Lie group translation on space-time conserves momentum 
         \item \textbf{\textit{J}}: Rotational Symmetry
 
-            Non-Abelian Lie group of three-dimensional rotation $\rightarrow$ conserves Angular Momentum 
+            Non-Abelian Lie group of three-dimensional rotation conserves Angular Momentum 
         \item \textbf{\textit{K}}: Boost Symmetry 
 
-            Abelian Lie group of four dimensions $\rightarrow$ conserves \textit{Invariant Interval} in Special relativity.
+            Abelian Lie group of four dimensions conserves the \textit{Invariant Interval} in Special relativity.
     \end{itemize}
 
 
@@ -56,157 +55,164 @@ The external symmetries are transformations on the space-time coordinates, The S
         \label{eq:InvariantInterval}
     \end{equation}
 
-    In special relativity, when the space-time measurement of an event is transformed through different frames of references, the \textit{Invariant Interval} remains unchanged. In the equation above, $\Delta s^{2}$ is the \textit{Invariant Interval}, $\Delta t^{2}$ is the difference in time measurements between the two frame of reference, whereas $\Delta x$, $\Delta y$ and $\Delta z$ are the differece in position in between the different frame of references.
+    In special relativity, when the space-time measurement of an event is transformed through different frames of reference, the \textit{Invariant Interval} remains unchanged. In the equation above, $\Delta s^{2}$ is the Invariant Interval, $\Delta t^{2}$ is the difference in time measurements between the two frames of reference, and $\Delta x$, $\Delta y$ and $\Delta z$ are the difference in position in between the different frame of reference.
 
 \subsubsection{Internal Symmetry}
-The SM internal symmetries describe transformation in physical properties of the particles other than space-time. Particle gauge field interaction can be described as "transformations" from one field to another under internal symmetry. The different physical invariant quantities that are conserved under these particle transformations/interactions are called "charges". From these internal symmetries, Charge, Parity and time reversal symmetry (CPT) is observed. 
+The SM internal symmetries describe the transformation in physical properties of the particles other than space-time. Particle gauge field interactions can be described as "transformations" from one field to another under internal symmetry. The different physical invariant quantities that are conserved under these particle transformations/interactions are called ``charges". From these internal symmetries, Charge, Parity and Time reversal symmetry (CPT) is observed. 
 
-The internal symmetries is given as:
+The internal symmetries are given as:
 
-    \begin{equation}
-        \SUthree_{C} \times  \SUtwo_{L} \times \Uone_{Y}
-    \end{equation}
-
-
-    The following symmetries governs the particle interactions under the strong and electro-weak forces. 
-    
-    The $\SUthree_{C}$ symmetry describes strong force interaction, it only affects the quark gauge field with color charges. 
-    
-    %The local $SUthree_{C}$ symmetry governs the strong force and only has an effect on particles with a color charge (either red, green, or blue). These particles in the Standard Model include quarks of field $\mathcal{Q}_{i}$. It consist of the left handed doublets of  ($u_{L}$, $d_{L}$), ($c_{L}$, $s_{L}$), ($t_{L}$, $b_{L}$) and right-handed singlets of $u_{R,i}$ and $d_{R}$. The strong force is mediated by the eight gluon fields $\mathcal{G}$.
-
-    The $\SUtwo_{L} x \Uone_{Y}$ transformation describes the weak  and weak hypercharge transformation and is effective on particles gauge field with the weak charge and the weak-hypercharge respectively
-    
-    The combined effect of the weak field $\SUtwo_{L}$ and the weak hyper-charge field $\Uone_{Y}$ gives the familiar electro-magnetic weak force after spontaneous symmetry breaking. This affects both the quark field and leptonic fields transformations, The detailed mechanism of spontaneous symmetry breaking is given in section~\ref{sec:SSB}.
+\begin{equation}
+    SU(3)_{C} \times SU(2)_{L} \times U(1)_{Y}
+\end{equation}
 
 
-    A detailed list of the gauge fields and their charges along with their mathematical group and generator under effect can be found in table~\ref{table:sm}.
+    \input{tables/table_sm}
+    A detailed list of the fields, their charges along with their mathematical group and generator under the effect can be found in Table~\ref{table:sm1}.
+
+    The $\SUthree_{C}$ symmetry describes strong force interaction, and it only affects the quark gauge field with color charges. The $\SUtwo_{L} \times \Uone_{Y}$ transformation describes the weak-isospin(L) and hypercharge(Y) transformation and is effective on particles gauge field with the weak charge and the weak-hyper charge respectively. The combined effect of the two fields gives the familiar electro-weak force after spontaneous symmetry breaking (SSB). This affects both the quark field and leptonic fields transformations, The mechanism of SSB is given in Section~\ref{sec:SSB}.
+
 
 \subsection{The Lagrangian}
 
 Observing the symmetries given in the above section, the Lagrangian of the SM is written as the following:
 
 \begin{equation}
-    \mathcal{L}_{SM}= - \frac{1}{4} \sum\limits_{gauge} F^{i}_{\mu \nv}F^{i\mu\nv} - \sum\limits_{f} \overline{f} \gamma^{\mu} D_{\mu} f +(D_{\mu}\phi)^{\dagger}(D^{\mu}\phi) - \mu^{2}\phi^{\dagger}\phi - \lambda(\phi^{\dagger}\phi)^{2}
+    \mathcal{L}_{SM}= - \frac{1}{4} \sum\limits_{gauge} F^{i}_{\mu \nu}F^{i\mu\nu} - \sum\limits_{f} \overline{f} \gamma^{\mu} D_{\mu} f +(D_{\mu}\phi)^{\dagger}(D^{\mu}\phi) - \mu^{2}\phi^{\dagger}\phi - \lambda(\phi^{\dagger}\phi)^{2}
     \label{eq:SMLagrangian}
 \end{equation}
 
+The first term describes the interactions of the gauge fields, where $F^{a}_{\mu\nu}=\partial_{\mu}A_{\nu}^{a}-\partial_{\nu}A_{\mu}^{a}+g f^{abc}A^{b}_{\mu}A^{c}_{\nu}$. $A_{\mu}$ represents a gauge field, which could be G the gluon field, B the weak hypercharge field, or W the weak isospin field, g is the gauge coupling parameter, and $f^{abc}$ is the structure constants of the gauge group. 
 
-%The first term is a summation of the gauge fields, the short from of F, where $F^{a}_{\mu\nv}=\patial_{\mu}A_{\nv}^{a}-\partial_{\nv}A_{\mu}^{a}+g f^{abc}A^{b}_{\mu}A^{c}_{\nv}$. $A_{\mu}$ represents a gauge field, g is the gauge coupling parameter, and $f^{abc}$ is the structure constants of the gauge group. 
-%
-%The second term describes the kinetic energy of the particle fields, the gauge covariant derivative $D_{\mu}$ is a short form, where $D_{\mu}=\partial_{\mu}-i g_{1} \frac{Y}{2}B_{\mu} - i g_{2}\frac{\Tau ^{i}}{2}W_{\mu}^{i} - ig_{3}\frac{\lambda^{a}}{2}G^{a}_{\mu}$. Here, $g_{1}$, $g_{2}$ and $g_{3}$ is the gauge coupling constants. The $\Tau ^{i}$ and $\lambda^{a}$ terms are the respective generators of the $\SUtwo_{L}$ and $\SUthree_{C}$ gauge groups. 
-%
-%The last terms concerns the Higgs potential. They are discussed in detail in section ~\ref{sec:SSB}.
-%
+The second term describes the kinetic mixing of the fermion particle fields with the gauge fields, f represents the fermion matter field, which includes the quarks and the leptons. The gauge covariant derivative $D_{\mu}$ is a short form, where $D_{\mu}=\partial_{\mu}-i g_{1} \frac{Y}{2}B_{\mu} - i g_{2}\frac{\tau ^{i}}{2}W_{\mu}^{i} - ig_{3}\frac{\lambda^{a}}{2}G^{a}_{\mu}$. Here, $g_{1}$, $g_{2}$ and $g_{3}$ is the gauge coupling constants. Y, $\tau ^{i}$ and $\lambda^{a}$ terms are the respective generators of the $\Uone_{Y}$, $\SUtwo_{L}$ and $\SUthree_{C}$ gauge groups.
 
-%\subsection{Spontaneous Symmetry Breaking}
-%\label{sec:SSB}
-%The Standard Model theory in the form as presented in the last section does not give mass to the particles. This inconsistent with observations in experiment.  
-%It can be shown that adding ad-hoc mass terms for these particle fields breaks the internal symmetries and are not permitted by the theory. This is solved by the addition of a spin 0 Higgs field. SM particles gain mass through the spontaneous symmetry breaking (SSB) of the field. In the following, a condensed derivation of the SSB is described\cite{peskin2018introduction}.
-%
-%The Higgs potential is as follows:
-%
-%\begin{equation}
-%    V{\phi} = \mu^{2}\phi^{2} - \lambda \phi^{4}
-%\end{equation}
-%
-%When \mu^{2} takes a negative value, the potential takes on a symmetric shape where the minimum value is not found at 0, but rather at \nv. At this minimum point of the potential, the vacuum expectation value is:
-%
-%\begin{equation}
-%    \phi_{0} = \frac{1}{\sqrt{2}}
-%    \begin{pmatrix}
-%        0\\
-%        \nu
-%    \end{pmatrix}
-%\end{equation}
-%
-%In this value, while the overall potential is still symmetric, the particle is no longer at a symmetric equilibrium. The symmetry is spontaneously broken. 
-%
-%It can be shown that mass can be obtained when a gauge transformation is performed on the vacuum expectation value:
-%
-%\begin{equation}
-%    \phi_{0} = \frac{1}{\sqrt{2}}
-%    \begin{pmatrix}
-%        0\\
-%        \nu+h(x)
-%    \end{pmatrix}
-%\end{equation}
-%
-%It leads to the $D_{\mu} \phi$ in the third to last term in the Lagrangian ~\ref{eq:SMLagrangian} to take the following form:
-%
-%\begin{equation}
-%    D_{\mu}\ = (\partial_{\mu}- ig A_{\mu}^{a}\Tau^{a} - i\frac{1}{2}g' B_{\mu}) \phi
-%\end{equation}
-%
-%Plugging this back into the Lagrangian in ~\ref{eq:SMLagrangian}, the change in the Lagrangian will become:
-%
-%\begin{equation}
-%    \Delta \mathcal{L} = \frac{1}{2} \frac{\nv^{2}}{4}[g^{2}(A^{1}_{\mu})^2 + g^{2}(A_{\mu}^{2})^{2} + (-g A_{mu}^{3}+ g'B_{\mu})^2]
-%\end{equation}
-%
-%With the following substitutions:
-%
-%\begin{equation}
-%    W^{\pm}_{\mu} = \frac{1}{\sqrt{2}}(A_{\mu}^{1} \mp iA^{2}_{\mu}) 
-%\end{equation}
-%
-%\begin{equation}
-%    Z^{0}_{\mu}=\frac{1}{\sqrt{g^{2}+g'^{2}}}(g'A_{\mu}^{3} + gB_{\mu})
-%\end{equation}
-%
-%\begin{equation}
-%    A_{\mu} = \frac{1}{\sqrt{g^{2}+g'^{2}}}(g'A^{3}_{\mu} + g B_{\mu})
-%\end{equation}
-%
-%It can be shown that the mass of the $W^{\pm}$ and $Z_{0}$ boson are:
-%
-%\begin{equation}
-%    m_{W} = g \frac{\nv}{2}
-%\end{equation}
-%
-%\begin{equation}
-%    m_{Z} = \sqrt{g^{2}+ g'^{2}\frac{\nv}{2}}
-%\end{equation}
-%
-%The vector fields remains massless:
-%
-%\begin{equation}
-%    m_{A}=0
-%\end{equation}
-%
-%This mass gainning process follows from the Goldstone's Theorem. It states that for each broken continous symmetry, a massless scalar boson will appear. After SSB, the $W^{\pm}$ and Z field acquire mass by 'eating' the degree of freedom from the Goldstone boson. These bosons thereby acquired mass. 
-%
-%As a consequence, it can be shown that the familiar electric charge as a is the combination the weak and hyperweak coupling:
-%
-%\begin{equation}
-%    e= \frac{g g'}{\sqrt{g^{2}+g'^{2}}}
-%\end{equation}
-%
-%The electric charge quantum number can be written as:
-%\begin{equation}
-%    Q=T^{3}+Y
-%\end{equation}
-%
-%\input{tables/tab_sm_content_EWSB}    
-%
-%The particles field and their measured properties after spontaneous symmetry breaking is given in table~\ref{tab:sm_content_EWSB}.
-%
-%After SSB, the weak and hyper-weak forces $\SUtwo_{L} \times \Uone_{Y}$ becomes $\Uone_{EM}$.
-%
-%
-%After SSB, mass of the SM particles are recovered. The SM is now complete. 
-%The SM contain seventeen particles along with their anti-particle counterparts. There are two types of particles, the bosons, and the fermions: The bosons are particles that have integer spin and can be described by the Einstein-Bose statistics. They include the force mediator particles, like photon, W+-, Z bosons and a particle predicted by the Brout-Englert-Higgs mechanism, the Higgs boson; The fermions are particles that contain half spins, they include the quark and leptons, they are each divided into three generations.
-%
-%    \begin{figure}[!htb]
-%        \begin{center}
-%            \includegraphics[width=0.75\textwidth]{figures/chapter_SM/SM}
-%            \caption{
-%                A schematic diagram of the Standard Model Particles seen in the scale of the experiment of the Large Hadron Collider
-%                \cite{enwiki:1060203113}.
-%            }
-%            \label{fig:SM}
-%        \end{center}
-%    \end{figure}
-%
+The last three term concerns the Higgs potential. They are discussed in detail in Section~\ref{sec:SSB}.
+
+\subsection{Electroweak Symmetry Breaking}
+\label{sec:SSB}
+The SM Lagrangian as presented in the last section does not include mass terms. This is inconsistent with observations from experiment\footnote{It can be shown that adding ad-hoc mass terms for these particle fields breaks the internal symmetries and is not permitted by the theory.}. The mass problem is solved by the addition of a spin 0 Higgs field\cite{higgs1964broken}. SM particles gain mass through the spontaneous symmetry breaking (SSB) of the $\SUtwo_{L} \times \Uone_{Y}$ symmetry. This happen at the electron weak scale in the inAfter EWSB, the $\SUtwo_{L} \times \Uone_{Y}$ is broken into the $Uone_{em}$ symmetry. In the following, a condensed derivation of the SSB is described\cite{peskin2018introduction}.
+
+The SSB is consequential to the shape of the Higgs potential of the SM. It can be shown that the Higgs potential is given as the following:
+
+\begin{equation}
+    V(\phi) = - \lambda_{1}\phi^{2} - \lambda_{2} \phi^{4}
+    \label{eq:HiggsPotential}
+\end{equation}
+
+where $\phi$ is the Higgs potential and $\lambda_{1}$ and $\lambda_{2}$ are parameters. 
+
+\begin{figure}[!htb]
+    \begin{center}
+        \includegraphics[width=0.75\textwidth]{figures/chapter_SM/SSB}
+        \caption{
+        A schematic diagram of the Higgs potential\cite{Potential}.}
+        \label{fig:SM}
+    \end{center}
+\end{figure}
+
+When $\lambda_{1}$ and $\lambda_2$ both take on a negative value, the potential, though symmetric, has a minimum value not found at 0. The minimal value is found instead at $\nu$. At this minimum point of the potential, the vacuum expectation value is:
+
+\begin{equation}
+    \phi_{0} = \frac{1}{\sqrt{2}}
+    \begin{pmatrix}
+        0\\
+        \nu
+    \end{pmatrix}
+\end{equation}
+
+While the overall potential is still symmetric, the particle is no longer at a symmetric equilibrium. The symmetry is spontaneously broken. 
+
+It is shown in\cite{peskin2018introduction} that mass can be obtained when a gauge transformation is performed on the vacuum expectation value:
+
+\begin{equation}
+    \phi_{0} = \frac{1}{\sqrt{2}}
+    \begin{pmatrix}
+        0\\
+        \nu+h(x)
+    \end{pmatrix}
+\end{equation}
+
+where h(x) is the perturbation of the field along the x direction.
+
+This leads to the $D_{\mu} \phi$ in the third to last term in the Lagrangian Equation~\ref{eq:SMLagrangian} to take the following form:
+
+\begin{equation}
+    D_{\mu}\ = (\partial_{\mu}- ig W_{\mu}^{a}\Tau^{a} - i\frac{1}{2}g' B_{\mu}) \phi
+\end{equation}
+
+where W and B are weak isospin and weak hypercharge gauge fields defined as above, g and g' are their corresponding coupling constants. It can be shown that g and g' are related to each other by the weak mixing angle(also known as the Weinberg angle). 
+
+Plugging this back into the Lagrangian in Equation~\ref{eq:SMLagrangian}, the change in the Lagrangian will become:
+
+\begin{equation}
+    \Delta \mathcal{L} = \frac{1}{2} \frac{\nu^{2}}{4}[g^{2}(W^{1}_{\mu})^2 + g^{2}(W_{\mu}^{2})^{2} + (-g W_{mu}^{3}+ g'B_{\mu})^2]
+\end{equation}
+
+With the following substitutions:
+
+\begin{equation}
+    W^{\pm}_{\mu} = \frac{1}{\sqrt{2}}(W_{\mu}^{1} \mp iW^{2}_{\mu}) 
+\end{equation}
+
+\begin{equation}
+    Z^{0}_{\mu}=\frac{1}{\sqrt{g^{2}+g'^{2}}}(g'W_{\mu}^{3} + gB_{\mu})
+\end{equation}
+
+\begin{equation}
+    \gamma_{\mu} = \frac{1}{\sqrt{g^{2}+g'^{2}}}(g'A^{3}_{\mu} + g B_{\mu})
+\end{equation}
+
+where $W^{\pm}_{\mu}$ is the field of the $W^{\pm}$ bosons, Z is the Z boson field and $\gamma$ is the photon field. 
+
+It can be shown that the mass of the $W^{\pm}$ and $Z_{0}$ boson are:
+
+\begin{equation}
+    m_{W} = g \frac{\nu}{2}
+\end{equation}
+
+\begin{equation}
+    m_{Z} = \sqrt{g^{2}+ g'^{2}\frac{\nu}{2}}
+\end{equation}
+
+The vector field of the photon remains massless:
+
+\begin{equation}
+    m_{\gamma}=0
+\end{equation}
+
+This mass gaining process follows from the Goldstone's Theorem\cite{PhysRev.117.648}. It states that for each broken continuous symmetry, a massless scalar boson will appear. After SSB, the $W^{\pm}$ and Z field acquire mass by ``eating" the degree of freedom from the Goldstone boson. These other bosons thereby acquired mass. 
+
+As a consequence, after SSB, the weak isospin and hyper-weak forces $\SUtwo_{L} \times \Uone_{Y}$ becomes $\Uone_{EM}$. The familiar electric charge can be shown as a combination the weak and hyperweak coupling:
+
+\begin{equation}
+    e= \frac{g g'}{\sqrt{g^{2}+g'^{2}}}
+\end{equation}
+
+Here, e is the electric charge, and g and g' are the weak isospin and weak hypercharge couplings. 
+
+The electric charge quantum number can be written as:
+\begin{equation}
+    Q=T_{3}+\frac{1}{2}Y
+\end{equation}
+where Q is the electric charge, $T_{3}$ is the third component in the weak isospin from $\SUtwo_{L}$ and $Y_{W}$ is the hypercharge quantum number from the $\Uone_{Y}$ symmetry. 
+
+\input{tables/tab_sm_content_EWSB}    
+
+The particle fields and their measured properties after spontaneous symmetry breaking are given in Table~\ref{tab:sm_content_EWSB}.
+
+Mass terms the SM particles are recovered after SSB. The complete SM contains seventeen particles along with their anti-particle counterparts. There are two types of particles, the bosons, and the fermions: The bosons are particles that have integer spin and are the force mediator particles, this include photon, W+-, Z bosons, the gluons and the Higgs boson; The fermions are particles that have half spins.
+They include the quark and leptons. The quarks and leptons are each divided into three generations. Details and their experimentally measured values can be found in Figure~\ref{fig:SM} and Table~\ref{tab:sm_content_EWSB}.
+
+    \begin{figure}[!htb]
+        \begin{center}
+            \includegraphics[width=0.75\textwidth]{figures/chapter_SM/SM}
+            \caption{
+                A schematic diagram of the Standard Model Particles seen in the scale of the experiment of the Large Hadron Collider \cite{enwiki:1060203113}.
+            }
+            \label{fig:SM}
+        \end{center}
+    \end{figure}
+
 
 %\section{Experimental Measurement}
 %\label{sec:ExpMeasurement}
@@ -241,25 +247,26 @@ Observing the symmetries given in the above section, the Lagrangian of the SM is
 
 \section{Unresolved Problems in the Standard Model}
 \label{sec:UnresolvedSM}
-The SM in its current forms has had many standing unresolved problems, leading to a consensus in the physics community to believe that a more complete theory is out there to be discovered. These proposed solutions to the SM are called Beyond-the-Standard-Model(BSM) theories. The unresolved problems and testing of the BSM solutions are main motivators to many studies done in the particle physics community. In this section, a list of major known existing problems of the SM are summarized.
+The SM in its current form has many standing unresolved problems, and so a more complete theory is out there to be discovered. These proposed extensions to the SM are called Beyond-the-Standard-Model (BSM) theories. The unresolved problems and testing the BSM solutions are the main motivators to many studies done in the particle physics community. In this section, a list of major known existing problems of the SM is summarized.
 
 \subsection{Gravity}
-The Standard Model does not include gravity, one of four fundamental forces. Many attempts to reconcilliating gravity with the existing SM has proved to be challenging\cite{sep-quantum-gravity}.
+The Standard Model does not include gravity, a fundamental force. Many attempts to reconcile gravity with the existing SM has been made, but it has proven to be challenging. More details can be found here in \cite{sep-quantum-gravity}.
 
 \subsection{Naturalness}
-Naturalness is the property in physics theory where the dimensionless ratio between the free parameters and the physical constants should be in the order of 1. When a physical theory takes either a very large or small value outside the order of 1, they are considered unnatural and unlikely to be "fundamental". 
-The Standard Model shows many naturalness issues in different dimensions: 
+Naturalness is the property in physics theory where the dimensionless ratio between the free parameters and the physical constants should be of order 1. When a physical theory has a parameter ratio that takes either a very large or small value outside the order of 1, they are considered unnatural and unlikely to be fundamental physics quantities. The Standard Model shows many naturalness issues in different dimensions: in the 0th dimension, there is a cosmological constant problem; in the
+2nd order, there is the Higgs Hierarchy problem; lastly, in the fourth dimension, there is the strong CP problem. A detail description of the problems is laid out as the following.
 
 \subsubsection{The Cosmological Constant Problem}
-The Standard Model allows for a 0th dimension constant in its Lagrangian that would not break any of its symmetries. The constant would represent the vacuum energy density and would account for the quantum fluctuation in vacuum. Under Zelokoch's calculations~\cite{zel1968cosmological}, the relations between the vacuum energy density and the cosmological constant of the Einstein's Equation is directly proportional as such:
+The Standard Model allows for a 0th dimension constant in its Lagrangian that would not break any of its symmetries. The constant would represent the vacuum energy density and would account for the quantum fluctuation in vacuum. Under Zelokoch's calculations~\cite{zel1968cosmological}, the relations between the vacuum energy density and the cosmological constant of the Einstein's Equation are directly proportional as such:
 
 \begin{equation}
     \rho_{vac}c^2=\Lambda c^4/8\pi G
 \label{eq:cosmoconst}
 \end{equation}
 
-The cosmological constant is a well-measured value in cosmology from the measurement of the expansion of the universe. The cutting off in either the Planck scale or the electro-weak scale in quantum field theory gives a theoretical prediction value of the vacuum expectation value. However, these values do not match. The experimental measured value of $\rho_{vac}$ is about 40-100 more order of magnitude smaller than the natural theoretical scale. The order of magnitude discrepancy poses the
-biggest naturalness issue in the Standard Model~\cite{V2002}.
+Here, $\rho$ is the intrinsic density of the vacuum, $\Lambda$ is the cosmological constant, G is the gravitational constant and c is the speed of light. 
+
+The cosmological constant is a well-measured value in cosmology from the measurement of the expansion of the universe. The cutting off in either the Planck scale or the electro-weak scale in quantum field theory gives a theoretical prediction value of the vacuum expectation value. However, these values do not match. The experimentally measured value of $\rho_{vac}= 5.96 \times 10^{-27} kg/m^{3}$ \cite{2016Planck} is about 40-100 more order of magnitude smaller than the natural theoretical scale. The order of magnitude discrepancy poses the biggest naturalness issue in the Standard Model.
 
 %Currently, there are proposition that the discrepany could be due to the fact that the neighboring universe is antropologically different than the whole universe[], or modifications could be done to the Einstein's Equation. But as these propositions violates other universal principle or theorems, none are satisfactory.
 
@@ -269,40 +276,57 @@ biggest naturalness issue in the Standard Model~\cite{V2002}.
 
 
 \subsubsection{The Higgs Hierarchy Problem}
-The Higgs hierarchy problem of particle physics describes the apparent large discrepancy in order of magnitude between the electro-weak scale and the gravitational scale, the weak force is about $10^{24}$ greater than gravity. Its effect can be seen in the Higgs mass boson as the mass is 17 order smaller than would be expected by the Planck mass. 
-A popular solution is quantum corrections via supersymmetry, but as more phasespace for supersymmetry is being ruled out, this solution is increasingly unlikely to solve the problem and is left to be explored by physicists.
+The Higgs Hierarchy problem describes the apparent large discrepancy in the order of magnitude between the electroweak scale and the gravitational scale, the weak force is about $10^{24}$ greater than gravity. Its effect can be seen in the Higgs boson mass is 17 orders smaller than would be expected by the Planck scale, a fundamental scale predicted by quantum mechanics. 
+A popular solution is quantum corrections via supersymmetry\cite{2018SUSY}, but as more phasespace for supersymmetry is being ruled out, this solution is increasingly unlikely to solve the problem and is left to be explored by physicists.
 
 \subsubsection{The Strong CP Problem}
-The Standard Model allows for a 4-th dimension term that describes strong CP violation naturally:
+The Standard Model allows for a 4-th dimension term that describes strong Charge-Parity(CP) violation naturally:
 
 \begin{equation}
-    \mathcal{L}_{QCD} \supset \theta_{QCD}\epsilon_\mu\nu\rho\sigma \mathcal{G}^{\mu\nu}\mathcal{G}^{\rho\sigma}
+    \mathcal{L}_{QCD} \supset \theta_{QCD}\epsilon_{\mu\nu\rho\sigma} \mathcal{G}^{\mu\nu}\mathcal{G}^{\rho\sigma}
+    \label{eq:CPViolation}
 \end{equation}
 
-However experimentally, CP violation is not observed: the neutron electro-dipole moment is exceptionally small. Consequentially, the free parameter in the term that describes the CP violation is either exceptionally small or zero. The term's existence in the Lagrangian is therefore "unnatural".
-One well-known solution to the strong CP problem is the introduction of the Peccei-Quinn symmetry~\cite{PQSym}, under this solution, the new field will create a term that naturally cancels with the strong CP term. A particle named axion is predicted by this theory. Many experiments has since been on the lookout for the particle, but it's never yet been observed to date.
+Here, $\mathcal{L}_{QCD}$ is the Lagrangian term of the QCD, $\theta_{QCD}
+$ is the parameter that describes CP violation,  $\epsilon_{\mu\nu\rho\sigma}$ is the structure constant.$G^{\mu\nu}G^{\rho\sigma}$ is the strong gauge field.
+
+Experimentally, CP violation is not observed: the neutron electro-dipole moment is exceptionally small\cite{PhysRevLett.124.081803}. This is an effect that can only be observed if the positive charge distribution and the negative charge distribution in neutron is not balanced. As a consequence of the experimental result, the free parameter $\theta_{QCD}$ in ~\ref{eq:CPViolation} is believed to be either exceptionally small or zero. There would be no need for such a term in the theory if the
+parameters are exceptionally small, the term's existence in the Lagrangian is therefore seen as "unnatural". This is known as the strong CP problem.
+One well-known solution to the problem is the introduction of the Peccei-Quinn symmetry~\cite{PQSym}, under this solution, the new field will create a term that naturally cancels with the strong CP term. A particle named "axion" is predicted by this theory. Many experiments have since been on the lookout for the particle, but it's never yet been observed to date.
 
 \subsection{Neutrino Mass}
-The Standard Model does not predict neutrino to have a mass, however, this contradicts experimental findings. Neutrino oscillation, the change of neutrino flavor over time or travel distance, is observed in different solar and reactor experiment. Mathematically, this would only be possible if there must be a mixing angle between the neutrino mass eigen states and flavor eigen states of neutrinos. This forces the mass of neutrino to be a non-zero, contradicting the SM.
+The Standard Model does not predict neutrino to have a mass, however, this contradicts experimental findings. Neutrino oscillation, the change of neutrino flavor over time or travel distance, is observed in different solar and reactor experiments. Mathematically, this would only be possible if there must be a mixing angle between the neutrino mass eigenstates and flavor eigenstates of neutrinos. This forces the mass of neutrino to be non-zero, contradicting the SM.
 
-Minimally, a minor extension to the SM is required for neutrino mass to be possible in the SM. This is known as the $\nv$-SM theory. Currently, there are two leading camps of $\nu$ SM: the former camp treats neutrino as a Dirac field, much like other leptons in the SM; the latter predicts neutrinos as a Majorana field, where the anti-neutrino and the neutrino is the same particle. Further experiments are required to discover the nature of neutrino mass. 
+Minimally, a minor extension to the SM is required for neutrino mass to be possible in the SM. This is known as the $\nu$-SM theory. Currently, there are two leading camps of $\nu$-SM: the former camp treats neutrino as a Dirac field, much like other leptons in the SM; the latter predicts neutrinos as a Majorana field, where the anti-neutrino and the neutrino is the same particle. Further experiments are required to discover the nature of neutrino mass. 
 
 %\subsubsection{Triviality Problem}
 %Landau pole + asymmototic freedom 
 
 
 \subsection{Matter-Antimatter Asymmetry}
-While the CKM matrix of SM allow for matter-anti matter asymmetry, the measured value of the parameter in the SM is not large enough to account for its observed value in the universe. However, observationally, a dominating amount of matter over antimatter is necessary to account for the observed universe, which includes the formation of most galactic structure, stars, and planets. BSM physics is necessary to account for the asymmetry. 
+The Cabibbo-Kobayashi-Maskawa(CKM) matrix of SM, which descibes how quarks of different types transforms from one type to another, allows for some matter-anti matter asymmetry. However, the measured value of the parameter in the SM is not large enough to account for its observed value in the universe. Observationally, a dominating prediction of matter over antimatter is necessary to account for the observed universe, which includes the formation of galactic structures, stars, and planets. BSM physics will be necessary to account for the asymmetry. 
 
 \subsection{Flavor Problem}
-The mass hierarchy of the quarks and the exceptionally large mass of the top quark are all questions not answered by the SM.
+Not all flavors of quarks and leptons are created equal: the mass hierarchy of the quarks and leptons are questions not answered by the SM.
 
-\subsection{Dark Matter}
-In experiment, it is estimated that dark matter makes up of 25\% of all matter in the universe, about five times as much as ordinary SM particles. However, they are not accounted for in the SM theoretically.
-Neither is Dark energy, which is estimated to take up 70\% of the known content of the universe. Figure~\ref{} shows a pie chart that demonstrates the mass-energy distribution of the universe. More details on the diagram and the proposed solution to dark matter in particle form is covered in chapter~\ref{chapter:DM}.
+\subsection{Dark Matter and Dark Energy}
+SM only accounts for ordinary matter in the universe, which takes up only 4.9\%. It is estimated that dark matter makes about five times as much as ordinary SM particles. However, they are not accounted for in the SM.
+Neither is Dark energy, which is estimated to take up 68.3\% of the known content of the universe. Figure~\ref{fig:planck} shows a pie chart that demonstrates the mass-energy distribution of the universe. More details on the diagram and the proposed solution to dark matter in particle form are covered in Chapter~\ref{chapter:DM}.
+
+    \begin{figure}[!htb]
+        \begin{center}
+            \includegraphics[width=0.75\textwidth]{figures/chapter_SM/Planck}
+            \caption{
+                The energy distribution of ordinary matter from SM, dark matter and dark energy given from Planck observational data.~\cite{ade2016planck}.
+            }
+            \label{fig:planck}
+        \end{center}
+    \end{figure}
 
 \section{Summary}
-The SM has led to many breakthroughs in the understanding matter in the fundamental level. With the discovery of the Higgs boson in 2008, all the particles predicted by the model are found. Precise measurements are done on all of the eighteen model parameters of the Standard Model are made in different experiments. While there remain many open questions and unanswered issues in the theory, these ruptures to the SM serves as a reminder to a more complete theory out there to be explored.
+The SM has led to many breakthroughs in understanding of matter at the fundamental level. Precise measurements are done on all of the eighteen free SM model parameters are made in different experiments. With the discovery of the Higgs boson in 2012, all the particles predicted by the model are found. However, there remains many open questions to the SM left to be solved. These all serves as a reminder to the existence of a more complete theory beyond what is known. In the next
+chapter, the SM extension on dark matter will be discussed in detail. 
+
 
 %As a major motivator to the studies done in this thesis, evidence and hypotheses of dark matter will be examined in length in the next chapter. 
 
