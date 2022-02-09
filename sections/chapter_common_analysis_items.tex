@@ -1,9 +1,11 @@
 \chapter{Common Analysis Items}
-\label{chapter:CommonAnalysisItems}
+\label{chapter:common_analysis_objects}
 
 %todo fill in the citations
-After the collisions and interactions in the LHC, final state particles leave their mark on various detector components as electronic signal that can provide information about track/energy deposits. These electronic signal are saved in hard disks. It takes various steps of reconstruction identification, cleaning as well as calibration before the raw electronic information becomes analysis-ready physics objects. 
-In this chapter, different analysis final state objects used for the analyses are covered. In Section~\ref{sec:Tracks}, detector tracks and primary vertices construction are covered. Detector tracks are the raw ingredients in muon reconstruction. It also plays a major role primary vertices correction for jets and photon. In Section~\ref{sec:Muon}, Section~\ref{sec:Jet} and Section~\ref{sec:Photon}, the formation of muons, jets and photons from detector signal
+After the collisions and interactions in the LHC, final state particles leave their mark on various detector components as electronic signal that can provide information about track/energy deposits. These electronic signal are saved in hard disks. It takes various steps of reconstruction identification, cleaning as well as calibration before the raw electronic information becomes analysis-ready physics objects. The different particle signatures left on the detector can help
+with their identifications. Figure~\ref{fig:particleSignature} shows the different signature that different particles leave on the ATLAS detector.
+
+In this chapter, different analysis final state objects originated from different particles are covered. In Section~\ref{sec:Tracks}, detector tracks and primary vertices construction are covered. Detector tracks are the raw ingredients in muon reconstruction. It also plays a major role primary vertices correction for jets and photon. In Section~\ref{sec:Muon}, Section~\ref{sec:Jet} and Section~\ref{sec:Photon}, the formation of muons, jets and photons from detector signal
 through their reconstruction, identification, isolation as well as calibration are discussed in detail. 
 
 \begin{figure}[!htb]
@@ -12,7 +14,7 @@ through their reconstruction, identification, isolation as well as calibration a
         \caption{        
             Different particles displays a different particle signature characteristics in the ATLAS detector~\cite{Mehlhase:2770815}. The different characteristics can then be used to identify and reconstruct the objects from one another. 
         }
-        \label{fig:isolationWP}
+        \label{fig:particleSignature}
     \end{center}
 \end{figure}
 
@@ -21,8 +23,8 @@ through their reconstruction, identification, isolation as well as calibration a
 Charged particles leave trajectories in two distinct ATLAS sub-detector systems, namely the inner detector(ID) and the muon system(MS). The ID is made up of the Pixel Detector, the Semiconductor Tracker(SCT), and the Transition Radiation Tracker(TRT). All charged particles leave tracks in the the ID. The MS is made up of Monitored Drift Tubes(MDTs), the Cathode Strip Chambers(CSC), Thin Gap Chambers(TGC), and the Resistive Plate Chambers(RPC). It's mainly used to track muons,
 which are particles that leaves minimal traces in all other parts of the detector. 
 
-\subsection{Tracks}
-To reconstruct a track from detector raw hit information, a couple of coincidence measurement across the different subsystems are first used to find a track seed. Then, a Kalman-filter is used to fit the tracks, irrelevant hits from pile-up are removed through the filter rejection.  
+\subsection{ID Tracks}
+To reconstruct a track from detector raw hit information, coincidence measurements in multiple layers are first used to find a track seed. Then, a Kalman-filter is used to fit the tracks~\cite{track}, irrelevant hits from pile-up~\footnote{Pile-ups are hits and tracks that result in noise in the target event and object reconstruction.} are removed through the filter rejection.  
 Figure~\ref{fig:track} shows a schematic diagram for a track.
 
 \begin{figure}[!htb]
@@ -48,7 +50,7 @@ LHC runs, where the higher luminosity has resulted in additional in-time and out
     \end{center}
 \end{figure}
 
-Vertexing is consist of a couple of different steps: First, a vertex seed is found by filtering the points where most interactions are found. This is done by either an iterative method or imaging method on ATLAS. Then, Tracks consistent with the chosen vertex seed are put into a group. After that, the vertex position and the associated error of the vertex is found by an adaptive vertex fitting algorithm. Lastly, the unused tracks are used for the next vertex creation. The process then repeats until tracks are ran out. 
+Vertexing is consist of a couple of different steps: First, a vertex seed is found by filtering the points where most interactions are found. Then, Tracks consistent with the chosen vertex seed are put into a group. After that, the vertex position and the associated error of the vertex is found by an adaptive vertex fitting algorithm~\cite{track}. Lastly, the unused tracks are used for the next vertex creation. The process then repeats until tracks are ran out. 
 
 Usually, a couple of primary vertices are formed in each bunch crossing. The vertex with the highest $P_{T}$ particles originated from it is considered the hard-primary vertex of the event, the others are considered the pile-up primary vertices. 
 
@@ -56,8 +58,8 @@ Particle formation from detector hit information in the following sections relie
 
 \section{Muons}
 \label{sec:Muon}
-Muons in ATLAS are formed from both the tracks and primary vertex information described in the above section. Muon reconstruction mainly rely on ID and MS information, while information from the calorimeter is sometimes also used. There are four different muon reconstruction strategies, as different transverse momentum($P_{T}$) ranges and detector hit locations have different effect in the resulting muon signatures. From these four reconstruction strategies, four muon working points are derived.
-The working points summarizes major ways to produce optimal signal muon sensitivity for different analyses. 
+Muons in ATLAS are formed from both the tracks and primary vertex information described in the above section. Muon reconstruction mainly rely on ID and MS information, while information from the calorimeter is sometimes also used for low PT muons. There are four different muon reconstruction strategies, as different transverse momentum($P_{T}$) ranges and detector hit locations have different effect in the resulting muon signatures. From these four reconstruction strategies, four muon working
+points are derived. The working points summarizes major ways to produce optimal signal muon sensitivity for different analyses~\cite{Aad:2746302}.
 
 \begin{figure}[!htb]
     \begin{center}
@@ -69,14 +71,9 @@ The working points summarizes major ways to produce optimal signal muon sensitiv
     \end{center}
 \end{figure}
 
-%These strategies and working points are developed from studies done on the standard samples of Z to $\mu \mu $ and $J/\Psi$ to $\mu \mu$, where the back-to-back decay processes helps with associating of the same $P_{T}$ to one another. 
-%As different muon transverse momentum will lead to muon hits depositing in different parts of the detector and different region also require different strategy for best differentiation. 
-
-%forward region also present more difficult muon finding conditions, given this four different muon algorithms are developed. 
-
 \subsection{Muon Reconstruction}
 Reconstruction of muon is generally done in the following way: tracks are found in one part of the detector through pattern finding of hits in the ID/MS chambers. At least two matching segments from different subdetector parts are needed to form a track candidate. From the track candidate formed, global $\chi^{2}$ fits are done to add in other hits and drop outliers. While the main strategy of muon reconstruction is quite similar, different reconstruction strateties are used for muons in
-different $P_{T}$ range and detector location to maximize reconstruction efficiencies. The following is a summary taken from~\cite{muonReco2016}.
+different $P_{T}$ range and detector location to maximize reconstruction efficiencies. For details, see~\cite{muonReco2016}.
 
 \begin{itemize}
 \item \textbf{Combined muon(CB)}
@@ -128,7 +125,7 @@ These selection criteria for the muon groups above result in five different work
 This is the most commonly used working point. q/p significance $<$ 7. It accepts only the CB and IO muons.  
 
 \item \textbf{LOOSE} \newline
-    The loose working point accepts all the muons that pass the medium working point. It also accepts low-$P_{T}$ muons, including IO muons with $P_{T}$ lower than 7GeV. Some ST and CT muons are also accepted if they pass certain requirements. 
+    The loose working point accepts all the muons that pass the medium working point. It also accepts low-$P_{T}$ muons, including IO muons with $P_{T}$ lower than 7GeV. Some ST and CT muons are also accepted under certain circumstances~\cite{muonReco2016}
 
 \item \textbf{TIGHT} \newline
     This working point accepts a subset of the medium working point muons. In addition, they are required to have a normalized $\chi^{2}$ of less than 8. The requirement on q/p compatibility and $\rho'$ depends on $\eta$ and $P_{T}$ of the muon.
@@ -154,7 +151,8 @@ The Low-$p_{T}$ working point includes all of the muons in the medium working po
 
 
 \subsection{Muon Isolation}
-After the reconstruction and identification of the muon candidates, a set of muons are formed. The next step is to pick out muon candidates of interest from muon isolation. On ATLAS, the leptons of interest to physics analyses came from the hard primary vertex decay of radially decaying particles. W, Z, Higgs bosons or other BSM particles such as the Z' are examples decays that concern analyzers. Muons formed this way are known as the "prompt muons", they are usually clean and do not have many associated neighboring hits. Less interested muons came from the semileptonic decay from jet fragmentation, these muons decays are formed with lots of neighboring hits. From this difference, associated neighboring hits can be used as criteria to discriminate muons of interest from the muons not of interest. This step is called muon isolation. Signal sensitivity is cut down in the background and the search. Depending on the muon type, two different variables are used for muon isolation, one is the track-based isolation and other is calorimeter-based isolation.
+After the reconstruction and identification of the muon candidates, a set of muons are formed. The next step is to pick out muon candidates of interest from muon isolation. On ATLAS, the leptons of interest to physics analyses came from the hard primary vertex decay of radially decaying particles. W, Z, Higgs bosons or other BSM particles such as the Z' are examples decays that concern analyzers. Muons formed this way are known as the "prompt muons", they are usually clean and do not have many
+associated neighboring hits. Less interesting muons came from the semileptonic decay from jet fragmentation, these muons decays are formed with lots of neighboring hits. From this difference, associated neighboring hits can be used as criteria to discriminate muons of interest from the muons not of interest. This step is called muon isolation. Signal sensitivity is cut down in the background and the search. Depending on the muon type, two different variables are used for muon isolation, one is the track-based isolation and other is calorimeter-based isolation.
 
 \subsubsection*{Isolation Parameters}
 The parameters used in the isolation criteria are defined as the following:
@@ -168,12 +166,12 @@ The parameters used in the isolation criteria are defined as the following:
  \end{equation}
 
 The term is $P_{T}$ dependent, the larger the $P_{T}$, the smaller the cone. 
-    \item $E^{topocone\:size}_{T}$ \newline
-        A calorimeter based parameter $E^{topocone\:size}_T$ is defined as the sum of the energy deposit in a $\delta R$ size topo cone. 
+    \item $E^{\textrm{topocone\:size}}_{T}$ \newline
+        A calorimeter based parameter $E^{\textrm{topocone\:size}}_T$ is defined as the sum of the energy deposit in a $\delta R$ size topo cone. 
 
 \end{itemize}
 
-The isolation criteria using track-based variables is the variable that is related to the transverse momentum of the muon. Studies are done on data Monte Carlo to get the best cut-off point. The different working points are listed below in Section~\ref{fig:isolationWP}.
+The isolation criteria using track-based variables is the variable that is related to the transverse momentum of the muon. Studies are done on data Monte Carlo to get the best cut-off point. The different working points are listed below in Figure~\ref{fig:isolationWP}.
 
 %\begin{figure}[!htb]
 %    \begin{center}
@@ -223,7 +221,6 @@ P_{T}^{Cor, CB} = f *P_{T}^{Cor, ID}+ (1-f) \cdot P_{T}^{Cor, MS}
 The weight f in the above is obtained from MC simulation. $P_T^{Cor, CB}$ and $P_T^{Cor,ID}$ are the corrected transverse momentum in CB and MS respectively.
 
 
-
 %\begin{equation}
 %\[\delta R = min( \frac{10}/P_{T}[GeV] , \delta R_{max} )\]
 %\end{equation}
@@ -253,11 +250,12 @@ Showering lead to a cascade of energy deposits in the detector that does not loo
 
 The following is a schematic understanding of how jet finding is achieved. 
 
-$\bullet$ Jet Reconstruction
+$\bullet$ \textbf{Jet showering}
+Quark/gluon $\rightarrow$  Parton showering $\rightarrow$ detector energy deposit
+
+$\bullet$ \textbf{Jet Reconstruction}
 Energy deposit on detector  $\rightarrow$  topo-cell clustering $\rightarrow$  topo-clusers $\rightarrow$  jet-finding algorithm $\rightarrow$ jet
 
-$\bullet$ Jet showering
-Quark/gluon $\rightarrow$  Parton showering $\rightarrow$ detector energy deposit
 
 % Why is there a topocell clustering algorithm before jet finding? Maybe it's due to the physics, each one looks like a potential quark/gluon candidate. 
 % 
@@ -265,14 +263,14 @@ Quark/gluon $\rightarrow$  Parton showering $\rightarrow$ detector energy deposi
 \label{Topocell clustering}
 This step clusters the lowest level calorimeter cells energy deposits into topological clusters. ATLAS uses a 3-D clustering algorithm. 
 
-First, a seed cell with a high signal to noise(S/N) ratio of > 4 is found. Then, cells neighboring the seed cells in the 3-D that satifies S/N > 2 are collected along with the seed cell to the topocluster. Lastly, a final set of cells with S/N >0 that surround the S/N > 2 cells are added to the cluster. 
+First, a seed cell with a high signal-to-noise(S/N) ratio above a certain level is found. Then, cells neighboring the seed cells in the 3-D that satifies certain lower threshold level are collected along with the seed cell to the topocluster. Lastly, a final set of cells with S/N >0 that surround the S/N > 2 cells are added to the cluster. 
 
 \subsection*{Jet Finding algorithm}
 \label{sec:JetFinding}
 % Add the C/A clustering algorithm
 % Add the KT algorithm
 
-Jet finding algorithm aims to merge the topoclusters from the previous step to form jets. An important feature for a jet finding algorithm is that it needs to be infra-red and collinear(IRC) safe. In an IRC safe algotihm, soft radiations addition to the jet will not change the constituent or calculation of the jet. This requirement avoids the divergence in probability calculations that would lead to infinities when  jet splitting happens.
+Jet finding algorithm aims to merge the topoclusters from the previous step to form jets. An important feature for a jet finding algorithm is that it needs to be infra-red and collinear(IRC) safe. In an IRC safe algotihm, soft and small angle radiation addition to the jet will not change the constituent or calculation of the jet. This requirement avoids the divergence in probability calculations that would lead to infinities when jet splitting happens.
 
 All of the main ATLAS jet finding algorithms make use of the following quantities:
 
@@ -293,7 +291,8 @@ The algorithm clusters the topoclusters with the smallest distance together~\ref
 The current ATLAS standard jet finding algorithm is the Anti-KT algorithm.
 
 \subsection{Jet calibration}
-After jets are formed, they need to be calibrated to reflect the direction, momentum and energy of the originated quarks or gluons. The jets are required to be calibrated. In ATLAS, jets energy is measured out in both the EM calorimeter and the hadronic calorimeter, the topoclusters are calibrated to the EM scale, but not the hardronic scale. Jet energy correction needs to be perfored before the object can be used for analysis. The jet calibration takes the following steps.
+After jets are formed, they need to be calibrated to reflect the direction, momentum and energy of the originated quarks or gluons. The jets are required to be calibrated. In ATLAS, jets energy is measured out in both the EM calorimeter and the hadronic calorimeter, the topoclusters are calibrated to the EM scale, but not the hardronic scale. Jet energy correction needs to be perfored before the object can be used for analysis. The jet calibration takes the following steps as
+shown in Figure~\ref{fig:JetCalibration}.
 
 \begin{figure}[!htb]
     \begin{center}
@@ -301,7 +300,7 @@ After jets are formed, they need to be calibrated to reflect the direction, mome
         \caption{        
             The steps of calibration the jet object under take before analyzable objects\cite{Mehlhase:2770815}.
         }
-        \label{fig:isolationWP}
+        \label{fig:JetCalibration}
     \end{center}
 \end{figure}
 
@@ -311,7 +310,7 @@ Photons on ATLAS are reconstructed from clusters in the EM Calorimeter sometimes
 
 \subsection{Photon Reconstructionn}
 Photons interact with the active material in the EM calorimeter. They shower and leave deposits in there. The first step to photon reconstruction is the finding of clustering seed. A sliding window of $\delta \eta \times \delta \phi = 0.025 \times \0.0245$ is used to scan for a clustering seed with energy deposit above 2.5 GeV. Neighboring hits are added to the seed to form a cluster through the clustering algorithm~\cite{Lampl:1099735}. 
-These cluster are matched by tracks in the inner detector, these tracks are used for vertex construction. If no vertex or tracks are matched, they are unconverted photons, otherwise, they are considered converted photons. 
+These cluster are matched by tracks in the inner detector, these tracks are used for vertex construction. If no vertex or tracks are matched, they are unconverted photons, otherwise, they are considered converted photons. Converted photons are photons that originates from electrons. 
 
 %\begin{figure}[!htb]
 %    \begin{center}
@@ -325,7 +324,7 @@ These cluster are matched by tracks in the inner detector, these tracks are used
 
 \subsection{Photon Identification}
 Like muons, not all photons candidates are photons in the primary processes. Some came from non-prompt photons from decaying jets. Photon identification utilizes kinematic cuts from calorimeters variables to separate the prompt photons from the fake photons from jets~\cite{gammaCalibration2019}.
-There are two photon working points, the loose working point uses information from the shower shape in the calorimeter. The tight working point uses information from the calorimeter strips and has different requirements for uncoverted and converted photon for optimal classfication power~\cite{gammaCalibration2019}. 
+There are two photon working points, the loose working point uses information from the shower shape in the calorimeter. The tight working point uses information from the calorimeter strips and has different requirements for uncoverted and converted photon for optimal classfication power. Details can be found in~\cite{gammaCalibration2019}. 
 
 \subsection{Photon Isolation}
 Photon isolation is a strategy that is effective in identifying the prompt photons from the non-prompt photons that are produced in association with other product. The isolation is a cut on the transverse energy or transverse momeumtum for a certain $\delta R $ cone size around the photon candidate. The isolation variable for the calorimeter and tracker are calculated separately~\cite{gammaCalibration2019}.
@@ -354,5 +353,5 @@ Photon isolation is a strategy that is effective in identifying the prompt photo
 
 \subsection{Photon Calibration}
 Photons in ATLAS takes the following steps to be calibrated. 
-First, the photon energy is estimated from the deposits in the calorimeter by a multivariate regression algorithm on the detector material in simulation. Later, correction is then done on the energy scale in the different layers of the EM calorimeter. After that, geometric correction is done on the data to correct for the non-uniformity in the detector in the boundaries of the calorimeter modules. Lastly, an overall adjustment on the energy scale is done in the data~\cite{gammaCalibration2019}.
+First, the photon energy is estimated from the deposits in the calorimeter by a multivariate regression algorithm on the detector material in simulation. Later, correction is then done on the energy scale in the different layers of the EM calorimeter from Higgs to $\mu \mu$ data. After that, geometric correction is done on the data to correct for the non-uniformity in the detector in the boundaries of the calorimeter modules. Lastly, an overall adjustment on the energy scale is done in the data~\cite{gammaCalibration2019}.
 
