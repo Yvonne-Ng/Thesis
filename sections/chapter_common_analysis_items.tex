@@ -24,8 +24,7 @@ Charged particles leave trajectories in two distinct ATLAS sub-detector systems,
 which are particles that leaves minimal traces in all other parts of the detector. 
 
 \subsection{ID Tracks}
-To reconstruct a track from detector raw hit information, coincidence measurements in multiple layers are first used to find a track seed. Then, a Kalman-filter is used to fit the tracks~\cite{track}, irrelevant hits from pile-up~\footnote{Pile-ups are hits and tracks that result in noise in the target event and object reconstruction.} are removed through the filter rejection.  
-Figure~\ref{fig:track} shows a schematic diagram for a track.
+To reconstruct a track from detector raw hit information, coincidence measurements in multiple layers are first used to find a track seed. Then, a Kalman-filter is used to fit the tracks~\cite{track}, irrelevant hits from pile-up~\footnote{Pile-ups are hits and tracks that result in noise in the target event and object reconstruction.} are removed through the filter rejection. Figure~\ref{fig:track} shows a schematic diagram for a track.
 
 \begin{figure}[!htb]
     \begin{center}
@@ -246,16 +245,28 @@ The weight f in the above is obtained from MC simulation. $P_T^{Cor, CB}$ and $P
 \section{Jets}
 \label{sec:Jet}
 Colored charge particles are govern by the strong force under the SM. This includes quarks and gluons. Under the strong force, when the distance is up to a certain value in an energy scale, the potential of these color charges would increases with distance apart. The increased potential leads to extra quark and gluon formation. The newly formed quark and gluons that are generated experiences a similar effect, which lead to further spliting from the original primary seed particle. This effect is known as parton showering. 
-Showering lead to a cascade of energy deposits in the detector that does not look anything like the original particles. The jet algorithms aims to reverse reverse the process, it reconstructs for the physics properties of the the original primary quark/gluon from the resulting energy deposits. 
+Showering lead to a cascade of energy deposits in the detector that does not look anything like the original particles. The jet algorithms aims to reverse reverse the process, it reconstructs for the physics properties of the the original primary quark/gluon from the resulting energy deposits. Figure~\ref{fig:jetEvent} is a visualization of an ATLAS event with two high $p_{T}$ jets.
 
 The following is a schematic understanding of how jet finding is achieved. 
 
 $\bullet$ \textbf{Jet showering}
-Quark/gluon $\rightarrow$  Parton showering $\rightarrow$ detector energy deposit
+
+Quark/gluon formed $\rightarrow$  Parton Showering $\rightarrow$ Detector Energy Deposit
 
 $\bullet$ \textbf{Jet Reconstruction}
-Energy deposit on detector  $\rightarrow$  topo-cell clustering $\rightarrow$  topo-clusers $\rightarrow$  jet-finding algorithm $\rightarrow$ jet
 
+Energy Deposit on Detector  $\rightarrow$  Topo-cell Clustering $\rightarrow$  Topo-Clusers $\rightarrow$  Jet-Finding Algorithm $\rightarrow$ Jet
+
+
+\begin{figure}[!htb]
+    \begin{center}
+        \includegraphics[width=0.7\textwidth]{figures/common_ana/JetEvent}
+        \caption{        
+            An simulation ATLAS event containing two high $p_{T}$ jet event~\cite{jetEvent}.
+        }
+        \label{fig:jetEvent}
+    \end{center}
+\end{figure}
 
 % Why is there a topocell clustering algorithm before jet finding? Maybe it's due to the physics, each one looks like a potential quark/gluon candidate. 
 % 
@@ -263,7 +274,7 @@ Energy deposit on detector  $\rightarrow$  topo-cell clustering $\rightarrow$  t
 \label{Topocell clustering}
 This step clusters the lowest level calorimeter cells energy deposits into topological clusters. ATLAS uses a 3-D clustering algorithm. 
 
-First, a seed cell with a high signal-to-noise(S/N) ratio above a certain level is found. Then, cells neighboring the seed cells in the 3-D that satifies certain lower threshold level are collected along with the seed cell to the topocluster. Lastly, a final set of cells with S/N >0 that surround the S/N > 2 cells are added to the cluster. 
+First, a seed cell with a high signal-to-noise(S/N) ratio above a certain level is found. Then, cells neighboring the seed cells in the 3-D that satifies certain lower threshold level are collected along with the seed cell to the topocluster. Lastly, a final set of cells that surround the second set of collected cells are added to the cluster. 
 
 \subsection*{Jet Finding algorithm}
 \label{sec:JetFinding}
@@ -307,6 +318,16 @@ shown in Figure~\ref{fig:JetCalibration}.
 \section{Photon}
 \label{sec:Photon}
 Photons on ATLAS are reconstructed from clusters in the EM Calorimeter sometimes paired with tracks in the tracker. Photons and electrons shares a similar reconstruction algorithm. Like muons and jets, photons are first reconstructed, identified, isolated and lastly calibrated before being used for analysis. 
+
+\begin{figure}[!htb]
+    \begin{center}
+        \includegraphics[width=0.7\textwidth]{figures/common_ana/photonEvent}
+        \caption{        
+        An ATLAS event display that contain two photons~\cite{atlas}.
+        }
+        \label{fig:photonEvent}
+    \end{center}
+\end{figure}
 
 \subsection{Photon Reconstructionn}
 Photons interact with the active material in the EM calorimeter. They shower and leave deposits in there. The first step to photon reconstruction is the finding of clustering seed. A sliding window of $\delta \eta \times \delta \phi = 0.025 \times \0.0245$ is used to scan for a clustering seed with energy deposit above 2.5 GeV. Neighboring hits are added to the seed to form a cluster through the clustering algorithm~\cite{Lampl:1099735}. 
