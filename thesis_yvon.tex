@@ -13,6 +13,7 @@
 
 % A few common packages
 \usepackage{amsmath}
+
 \usepackage{amsthm}
 \usepackage{amssymb}
 \usepackage{array}
@@ -43,35 +44,17 @@
 \setlength\epigraphrule{0pt}
 
 \usepackage[sorting=none,hyperref,backend=biber,backref,backrefstyle=none]{biblatex}
+
 \bibliography{bib/intro.bib,
               bib/sm.bib,
               bib/dm.bib,
               bib/atlas.bib,
               bib/common_ana.bib,
               bib/analysismethod.bib,
-              bib/resolved.bib,
-              bib/ATLAS.bib,
-              bib/CMS.bib,
-              bib/ConfNotes.bib,
-              bib/PubNotes.bib,
-              bib/other.bib,
-              bib/dimuon.bib
+              bib/dijet.bib,
+              bib/dimuon.bib,
+              bib/topo.bib
           }
-%                bib/sm_final.bib,
-%                bib/chapter2.bib,
-%                bib/bsm.bib,
-%                bib/chapter3.bib,
-%                bib/simulation.bib,
-%                bib/nsw.bib,
-%                bib/common_ana.bib,
-%                bib/general.bib,
-%                bib/systematics.bib,
-%                bib/stats_hypo.bib,
-%                bib/stop2l.bib,
-%                bib/bbll.bib,
-%                bib/conclusion.bib,
-%                bib/previous_theses.bib
-%}
 
 \usepackage{tabularx}
 \usepackage{booktabs}
@@ -405,17 +388,19 @@
 
 % start START
 \setcounter{page}{0}
-\include{sections/chapter_Intro}
-\include{sections/chapter_SM}
-\include{sections/chapter_DarkMatter}
-\include{sections/chapter_ATLASDetector}
-\include{sections/chapter_common_analysis_items}
-\include{sections/chapter_analysismethod.tex}
-%\include{sections/chapter_NSW}
-%\include{sections/chapter_SearchForResolvedDijetISR} % include from paper 
-%\include{sections/chapter_SearchForBoostedDijetISR} % edit and add from int note
-\include{sections/chapter_SearchForDimuon}
-\include{sections/chapter_FutureResonanceFinding}
+%\include{sections/chapter_Intro}
+%\include{sections/chapter_SM}
+%\include{sections/chapter_DarkMatter}
+%\include{sections/chapter_ATLASDetector}
+%\include{sections/chapter_common_analysis_items}
+%\include{sections/chapter_analysismethod.tex} % extract from analysis method 
+%%%%\include{sections/chapter_NSW}
+%%%\include{sections/chapter_SearchForResolvedDijetISR} % include from paper 
+%%%%\include{sections/chapter_SearchForBoostedDijetISR} % edit and add from int note
+%\include{sections/chapter_dijet} % edit and add from int note
+%\include{sections/chapter_SearchForDimuon}
+%\include{sections/chapter_FutureResonanceFinding}
+\include{sections/chapter_topo}
 %\include{sections/chapter_Conclusion}
 
 %\include{sections/chapter1}
@@ -447,7 +432,7 @@
 \captionsetup[table]{list=no}
 \addcontentsline{toc}{chapter}{Bibliography}
 \printbibliography
-%\bibliographystyle{unsrt}
+%\bibliographystyle{plain}
 %\bibliography{bib/references.bib}
 % If you have an appendix, it should come after the references.
 %\include{appendix/appendix}
