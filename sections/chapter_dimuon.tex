@@ -3,32 +3,6 @@
 
 %Stick in the graphs?
 
-\section{Introduction}
-
-    % Why this is interesting  
-    Owing to its unprecedented high energy, the run I and early run II of ATLAS has long focused on the high mass resonances searches. This has left some gaps in the low mass region that are unexplored. In the two lepton final state, there has been an analysis after the Z boson peak since the beginning of Run 1, however the mass region below the Z mass peak has left a resonance region uncovered on ATLAS. Novel particles with an LHC scale observable coupling is predicted by many models, some of them are related to the dark matter models explored in Chapter~\ref{chapter:DM}.
-
-\begin{figure}[!htb]
-    \begin{center}
-        \includegraphics[width=0.75\textwidth]{figures/chapter_dimuon/dimuonStudies}        
-        \caption{
-        This cartoon illstrate the target signal region of the analysis and how it has not been covered by the previous high-mass dilepton analysis. }
-            \label{fig:dimuonstudies}
-    \end{center}
-\end{figure}
-   
-A similar study is explored in Chapter~\ref{chapter:dijetISR} in the two jet final state. Since ATLAS collide partons, there are fewer background on leptons than jet processes, this allows lower transverse momentum lepton events to be saved. Using two muons as the resonance final state items, even lower mass resonances can be searched for this study would explore dark matter related resonances in the 10 GeV-75 GeV range.
-
-This chapter presents strategies to search for very low mass dimuon resonances with Gaussian Process as the background estimation method. It utilizes data using proton--proton collision in ATLAS recorded at a center-of-mass energy of $\sqrt{s}=$ 13 ~\TeV up to 139 $fb^{-1}$ of integrated luminosity. The projected result is interesting to the theoretical community for the dark matter benchmark as well as many other models. The result of this study is complementary to the
-dilepton search done here with its exploration of a lower mass resonance region, and have comparable limits to the CM and LHCb results presented here.
-
-
-%\section{Historical searches}    
-%    Previous searches has been done directly in Tevatron experiment. Indirect constraints has been made in LEP as well. 
-%
-%    CMS results and tevatron results: 
-%    
-%    This study will be an independent finding from ATLAS and the first search done in this region.  
 
 
 \section{The Search Channels}
@@ -41,21 +15,23 @@ The two channel treatment is based on a pheno-study first done here\cite{2014}. 
         \includegraphics[width=0.75\textwidth]{figures/chapter_dimuon/turnon}
         \caption{
         This figure shows the trigger turn on curve in the inclusive dimuon channel at 45 GeV(Red) . Utilizing a minimal dimuon $P_{T}$ cut in the boosted channel made it possible to recover a smooth background in the lower mass region from 10-45 GeV(Green). Samples used here are MC16a ATLAS full simulation listed in section~\ref{table:MC}.
+        }
         \label{fig:turnon}
     \end{center}
 \end{figure}
 
 \section{Signal Theoretical Model}
 The analysis uses the dark matter LHC benchmark model and dark photon model outlined in Section~\ref{sec:LHCDM} of Chapter~\ref{chapter:DM}.
-Other models that are of interest and can be reinterpreted for this analysis includes the W', the quantum blackholes,and axion models. 
-Figure~\ref{fig:dimuonFeynman} and Figure~\ref{dimuonISRFeynmann} show the Feynmann diagram for the analysis.
+Other models that are of interest and can be reinterpreted for this analysis includes the W\', the quantum blackholes,and axion models. 
+Figure~\ref{fig:dimuonFeynman} and Figure~\ref{fig:dimuonISRFeynmann} show the Feynmann diagram for the analysis.
 
 \begin{figure}[!htb]
     \begin{center}
         \includegraphics[width=0.75\textwidth]{figures/chapter_dimuon/dimuonFeynman}
         \caption{
-            This figure shows the Feynmann diagram of the inclusive dimuon signal as the signal for the analysis. }
-            \label{fig:dimuonFeynmann}
+            This figure shows the Feynmann diagram of the inclusive dimuon signal as the signal for the analysis. 
+        }
+    \label{fig:dimuonFeynmann}
     \end{center}
 \end{figure}
 
@@ -108,15 +84,14 @@ Details on the ATLAS trigger system can be found in Chapter~\ref{chapter:ATLAS}.
 \label{tab:Data Trigger}
 \begin{tabular}{|l|l|l|l|l}
 \hline
-\textbf{Type}   & \textbf{Period}                                                         &\textbf{Trigger Chain} &\textbf{Level 1} &\textbf{\p_{T}^{cut offline}}\\ \hline
-Isolation Single Muon   & 2015                                       &HLT_mu26_iloose_L1MU15 & MU15 & 27 \\ 
-                        & 2016-2018                                  &HLT_mu26_ivarmedium    & MU20 & \\ \hline
-
-Non-Isolated Single Muon & 2015-2018                                       &HLT_mu50& MU20& 27 \hline
-Symmetric Dimuon & 2015 & HLT_2mu10 & 2MU10 & 15, 15 \\
-                 & 2015-2018 & HLT_2mu14 & 2MU10 & \\ \hline
-Assymetric Dimuon & 2015 & HLT_mu18_mu8noL1 & MU15 & 24, 10 \\
-                  & 2016-2018 & HLT_mu22_mu8noL1 & MU20 \\ \hline
+\textbf{Type}   & \textbf{Period}                                                         &\textbf{Trigger Chain} &\textbf{Level 1} &\textbf{$p_{T}^{\textrm{cut offline}}$}\\ \hline
+Isolation Single Muon   & 2015 & $HLT_mu26_iloose_L1MU15$ & MU15 & 27 \\ 
+                        & 2016-2018  & $HLT_mu26_ivarmedium$    & MU20 & \\ \hline
+Non-Isolated Single Muon & 2015-2018                                       &$HLT_mu50$& MU20& 27 \\ \hline
+Symmetric Dimuon & 2015 & $HLT_2mu10$ & 2MU10 & 15, 15 \\
+                 & 2015-2018 & $HLT_2mu14$ & 2MU10 & \\ \hline
+Assymetric Dimuon & 2015 & $HLT_mu18_mu8noL1$ & MU15 & 24, 10 \\
+                  & 2016-2018 & $HLT_mu22_mu8noL1$ & MU20 \\ \hline
 \end{tabular}
 \end{center}
 \end{table}
@@ -130,7 +105,7 @@ Assymetric Dimuon & 2015 & HLT_mu18_mu8noL1 & MU15 & 24, 10 \\
 \end{figure}
 
 \section{Data preparation}
-The final result of the strategies presented in this chapter are collected from proton-proton collision data during the ATLAS Run 2 period at a center-of-mass energy of $\sqrt{13} TeV$ from 2016-2018. The preliminary strategy of this chapter is generated from ATLAS full simulation Monte Carlo. Due the process's low statistics in the ATLAS full simulation, a full size Z $\rightarrow \mu \mu$ sample is created through a fast Sherpa and PYTHIA8 combination generation at the truth level, where $P_{T}$ smearing is applied for detector effect. Section~\ref{section:superfast} details the superfast event generation.
+The final result of the strategies presented in this chapter are collected from proton-proton collision data during the ATLAS Run 2 period at a center-of-mass energy of $\sqrt{13} TeV$ from 2016-2018. The preliminary strategy of this chapter is generated from ATLAS full simulation Monte Carlo. Due the process\'s low statistics in the ATLAS full simulation, a full size Z $\rightarrow \mu \mu$ sample is created through a fast Sherpa and PYTHIA8 combination generation at the truth level, where $P_{T}$ smearing is applied for detector effect. Section~\ref{section:superfast} details the superfast event generation.
 
 
 \subsection{Samples Used for the Analysis}
@@ -140,6 +115,7 @@ The following are the samples used for the analysis. The largest background cont
     \begin{center}
     \caption{
         The table shows the Monte Carlo background dataset used for the analysis. 
+    \label{table:MC}
     }
 \label{tab:MC samples}
 \begin{tabular}{|l|l|l|}
@@ -150,12 +126,12 @@ Z+jets $\tau \tau$ & 364128 - 364141 , 364210-364215                            
 $t\bar{t}$         & 410472                                                                &Sherpa\\ \hline
 Diboson            & 364253 - 364255 , 363355 - 363360 ; 363489 ; 364250 ; 364288 - 364290 &Sherpa\\ \hline
 Top decay          & 410644 - 410645 , 410658 - 410659 ; 410648 - 410649                   &Powheg+Pythia8\\ \hline
-W + jets \mu\nu    & 364156 - 364169                                                       &Sherpa\\ \hline
+$W + jets \mu\nu$  & 364156 - 364169                                                       &Sherpa\\ \hline
 $b\bar{b}$         & 363833                                                                &Pythia8b\\ \hline
 $c\bar{c}$         & 363834                                                                &Pythia8b\\ \hline
+
 \end{tabular}
 \end{center}
-\label{table:MC}
 \end{table}
 
 In addition to sources in this table, QCD fakes that may contribute to background events are estimated by same-signed dimuon pairs in data that satistfy all other event requirements. The rational is that in data all of the same-signed dimuon would all come from QCD contribution, and that the contribution amount would be equal to the opposite-signed contribution from QCD. Figure~\ref{} shows a background composition plot with the same signed contribution subtracted out. The fake QCD contribution makes up less than 1\% of all the events. After the application of the Fake estimation, the overall agreement between data and MC in controlled regions are within acceptable range, it shows that the MC is ready to be used for statistics strategy studies.
@@ -289,6 +265,7 @@ The Gaussian process background and signal kernels used for this particular anal
             \begin{equation}
             K(x_{i}, x_{j})=A_{2}\cdot exp(-(x-m)^{2}/(2\cdot\sigma_{2}^{2}))\cdot exp(-((x'-m)^{2}/(2\cdot\sigma_{2}^{2})))
             \end{equation}
+\end{itemize}
 
     Here, $A_{2}$ is the amplitude of the signal kernel, m is the value where the kernel peaked on, and $\sigma_{2}$ is the lengthscale of the signal kernel. 
 
@@ -331,11 +308,11 @@ Signals of different mass widths are generated from a Gaussian distribution, Poi
 
 The background error is defined by the generation of 10,000 bin-by-bin Poissonian toy from the original background MC spectrum, and refitting the toys by Gaussian Process background kernel estimation. A Gaussian fit is performed on the prediction of each bin, the resulting width of the Gaussian fit in each bin is defined to be the 1 $\sigma$ background estimation. 
 
-Starting with the smallest signal size and the smallest width, the bumphunter procedure detailed in section~\ref{} is ran on the signal injected background MC. The signal size injected increases, until the bumphunting procedure finds a window with bumphunter statistic p-value \<0.01 that a bumphunter window exclusion is triggered. The size of the signal injected right before the window exclusion triggering is the "just below"
-triggering signal size, and the signal size that triggers the window exclusion is known as the "just above" signal size. The "just below"
-window size is the largerst signal that the background estimation is not sensitive to; and the "just above" signal size is the smallest signal that the background estimation is sensitive to. When the background kernel lengthscale is chosen to be 4 GeV, the background model is sensitive to signal 3 $\sigma$ or above in background error. 
+Starting with the smallest signal size and the smallest width, the bumphunter procedure detailed in section~\ref{} is ran on the signal injected background MC. The signal size injected increases, until the bumphunting procedure finds a window with bumphunter statistic p-value $<$ 0.01 that a bumphunter window exclusion is triggered. The size of the signal injected right before the window exclusion triggering is the ``just below"
+triggering signal size, and the signal size that triggers the window exclusion is known as the ``just above" signal size. The "just below"
+window size is the largerst signal that the background estimation is not sensitive to; and the ``just above" signal size is the smallest signal that the background estimation is sensitive to. When the background kernel lengthscale is chosen to be 4 GeV, the background model is sensitive to signal 3 $\sigma$ or above in background error. 
 
-It's found that a minimum lengthscale of 4 GeV is needed for the background kernel for the background model to be sensitive to signal of 3$\sigma$ background error size and above in the 45-60 GeV range in the inclusive region. Most of the signal width used passed the test when this lengthscale is chosen. 
+It\'s found that a minimum lengthscale of 4 GeV is needed for the background kernel for the background model to be sensitive to signal of 3 $\sigma$ background error size and above in the 45-60 GeV range in the inclusive region. Most of the signal width used passed the test when this lengthscale is chosen. 
 
 \begin{figure}[!htb]
     \begin{center}
@@ -356,7 +333,7 @@ The fitting result shows that lengthscale chosen for Gaussian Process works well
         \includegraphics[width=0.75\textwidth]{figures/chapter_dimuon/NominalBH}        
         \includegraphics[width=0.75\textwidth]{figures/chapter_dimuon/NominalFit}        
         \caption{
-        These figure illustrates the nominal fit, along with the bumphunter test statistics and the observed value distribution. It's shown that the most discrepant window does not fall below the critical p-value of 0.01. Details on the bumphunting procedure can be found here. }
+        These figure illustrates the nominal fit, along with the bumphunter test statistics and the observed value distribution. It is shown that the most discrepant window does not fall below the critical p-value of 0.01. Details on the bumphunting procedure can be found here. }
             \label{fig:dimuonstudies}
     \end{center}
 \end{figure}
@@ -376,7 +353,7 @@ The fitting result shows that lengthscale chosen for Gaussian Process works well
 \textit{-``Test for signal extracted from the background estimation alone"}
 
 The spurious signal test is a test that defines the uncertainty relative to signal yield. 
-Using the different variation of background only MC spectrum, a signal plus background fit is performed, the signal extracted is compared against the background error defined in the last section. The spurious signal test is considered passed if the signal extracted versus background error ratio is \< 0.5.
+Using the different variation of background only MC spectrum, a signal plus background fit is performed, the signal extracted is compared against the background error defined in the last section. The spurious signal test is considered passed if the signal extracted versus background error ratio is $<$ 0.5.
 The spurious signal test results on the Gaussian process is shown here:
 Currently ongoing work on is being done to further reduce the spurious signal.
 
@@ -425,7 +402,7 @@ Preliminary limit setting based on Gaussian Process is still currently under tes
    \end{center}
 \end{figure}
 
-In alternative fit function limits calculated by approximation based on the fit function method is shown here, it's expected that the analysis will have comparible sensitivity to LHCb. 
+In alternative fit function limits calculated by approximation based on the fit function method is shown here, it is expected that the analysis will have comparible sensitivity to LHCb. 
 
 \begin{figure}[!htb]
    \begin{center}
