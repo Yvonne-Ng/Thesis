@@ -157,7 +157,7 @@ From the above foundation, a list of historic fit functions has been developed o
             \caption{
                 These figure shows that the Gaussian process fit is able to provide more flexibility than the standard ad hoc fit~\cite{frate2017modeling}.
             }
-            \label{signalinjection}
+            \label{fig:GaussianProcess}
         \end{center}
     \end{figure}
     \FloatBarrier
@@ -172,26 +172,37 @@ From the above foundation, a list of historic fit functions has been developed o
         \item \textbf{The Mean Function}
 
     \begin{equation}
-        \mu(x_{*}|y)  = \mu(x_{*})+ \sum(x_{*}, x)[\sum(x, x)+ \sigma^{2}(x)I]^{-1}(y-\mu(x))
+        \mu(x_{*}|y)  = \mu(x_{*})+ K(x_{*}, x)[K(x, x)+ \sigma^{2}(x)I]^{-1}(y-\mu(x))
     \end{equation}
-    Here, $\mu$ is the mean function prediction of of point $x_{*}$, given known data point x and y. $\sigma$ is the kernel variance at point x.
+    Here, $\mu$ is the mean function prediction of of point $x_{*}$, given known data point x and y, K is the kernel, and $\sigma$ is the white noise term.
 
-    \item \textbf{The covariance function}
+    \item \textbf{The Covariance Function}
     \begin{equation}
-        \sum(x_{*}, x_{*}') = \sum(x_{*}, x_{*}') - \sum(x_{*}, x')[\sum(x, x')]
-    \end{equation}
-    Here,  the covariance function is defined for $x_{*}$ and $x_{*}$, the data point where the predictions were made, x and x' where the input data points are given.
+        \sum(x_{*}, x_{*}') = K(x_{*}, x) - ((K(x_{*}, x')+\sigma^{2}I)^{-1)}[K(x, x')]
+    \end{equation}  
+    Here, the covariance is defined for $x_{*}$ and $x_{*}$, the data point where the predictions were made, x and x' where the input data points are given. K is the kernel of the Gaussian Process prediction.
 
     \end{itemize}
 
-    Here, x and y are input data to constrict the distribution, $x_{*}$ is the points where the posterior GP are evaluated from. 
+    Here, x and y are input data to constrict the distribution, $x_{*}$ is the points where the posterior GP are evaluated from, x' is the same points as x in a 2d matrix.
+
+    Signal and Background prediction 
+    \begin{equation}
+        \mu_{bkg}(x_{*}|y) = \mu_{\textrm{bkg kernel}}(x_{*}|y)+K_{\textrm{bkg kernel}}(x_{*}, x) \cdot K_{\textrm{sig+bkg kernel}}(x,x') \cdot( y(x)-\mu_{\textrm{bkg kernel}}(x_{*}|y) )
+    \end{equation}
+
+
+    \begin{equation}
+        \mu_{sig}(x_{*}|y) = K_{\textrm{sig kernel}}(x_{*}, x)\cdot K_{\textrm{sig+bkg kernel}}(x,x') \cdot ( y(x)-\mu_{\textrm{bkg kernel}}(x_{*}|y) )
+    \end{equation}
+
 
 \subsubsection{Gaussian Process: Covariance function}
 \label{sec:kernel}
 The covariance function/kernel describes how the joint distribution is related to each other in the Gaussian process. 
 It's possible to embed different information regarding the physics of the spectrum into the kernel. 
 In the dimuon analysis, it's found that the simple radial basis function and a white noise kernel are sufficient to describe the background spectrum, the signal is described by another radial basis function kernel of a particular mean value.
-The kernels are given as the following:
+The kernels are given as the following: 
 
     \begin{itemize}
         \item \textbf{Background Kernel}
@@ -226,29 +237,15 @@ The kernels are given as the following:
 
     \begin{equation}
         -logL = -\frac{1}{2} log |\sum| - (y-\mu(x) ) - \frac{n}{2}log(2\pi)
+    \label{eq:loglikelihood}
     \end{equation}
     
     In the dimuon analysis, the minimization is done through initialization of hyperparameter from first a grid search and then scalar conjugate gradient search, the different results are compared with each other for the optimized hyperparameter set.
 
     In this Gaussian process testing procedure, the hyperparameters are first found on a test fit on the MC/data, a minimum bound on the lengthscale hyperparameter is first found through a fit on different variations of the MC generated and the signal injected test.
 
-
-    \subsubsection{Gaussian Process: Limit Setting}
-
-    The Gaussian process is shown to be able to be incorporated within the Asimov method of frequentist limit setting in section~\ref{section:freq}. The Asimov limit is a frequentist limit calculation method that saves on computing resources. The limits are generated from a representative asimov dataset instead of a the full dataset of all values.
-    In the graph~\ref{fig:chi2}, the Likelihood ratio in Gaussian process is a proxy for the profile likelihood ratio used in the Asimov limit. It can be seen that it approximately follows the $\chi^{2}$ distribution, satisfying a requirement that follows from the Wald approximation that allows for the Asimov approximation of limits.
-    More details on the derivation and the use of asimov limit can be found in the following section~\ref{section:asimov}.
-
-    \begin{figure}[!htb]
-        \begin{center}
-            \includegraphics[width=0.75\textwidth]{figures/chapter_analysismethod/chi2}
-                \caption{
-                This figure shows the negative log of the $\Lambda$ which is an approximation of the measure of the profiled likelihood ratio defined in~\ref{eq:profilelikelihood}. The top part is the distribution for background only pseudoexperiments, whereas the bottom is the background + signal distribution. They show a reasonable agreement to the $\chi^{2}$ fit, a required condition for the Asimov approximation for a frequentist limit setting in
-            section~\cite{frate2017modelling}. }
-            \label{fig:chi2}
-        \end{center}
-    \end{figure}
-    \FloatBarrier
+\subsubsection{Gaussian Process: Background Fitting}
+In Gaussian Process, the background fitting's validity is tested by different methods. First, the signal injection test 
 
 \subsection{Signal Injection Test}
     \label{sec:signalInjection}
@@ -269,7 +266,7 @@ The kernels are given as the following:
         \caption{
             This diagram shows the bumphunter test statistics distribution, where the red arrow shows the observed value. 
         }
-        \label{fig:swift}
+        \label{fig:teststats}
     \end{center}
 \end{figure}
 \FloatBarrier
@@ -315,6 +312,26 @@ The kernels are given as the following:
     \end{center}
 \end{figure}
 \FloatBarrier
+
+
+\subsubsection{Gaussian Process: Background + Signal Fitting}
+
+    \subsubsection{Gaussian Process: Limit Setting}
+
+    The Gaussian process is shown to be able to be incorporated within the Asimov method of frequentist limit setting in section~\ref{sec:freq}. The Asimov limit is a frequentist limit calculation method that saves on computing resources. The limits are generated from a representative asimov dataset instead of a the full dataset of all values.
+    In the graph~\ref{fig:chi2}, the Likelihood ratio in Gaussian process is a proxy for the profile likelihood ratio used in the Asimov limit. It can be seen that it approximately follows the $\chi^{2}$ distribution, satisfying a requirement that follows from the Wald approximation that allows for the Asimov approximation of limits.
+    More details on the derivation and the use of asimov limit can be found in the following section~\ref{sec:asimov}.
+
+    \begin{figure}[!htb]
+        \begin{center}
+            \includegraphics[width=0.75\textwidth]{figures/chapter_analysismethod/chi2}
+                \caption{
+                This figure shows the negative log of the $\Lambda$ which is an approximation of the measure of the profiled likelihood ratio defined in~\ref{eq:profilelikelihood}. The top part is the distribution for background only pseudoexperiments, whereas the bottom is the background + signal distribution. They show a reasonable agreement to the $\chi^{2}$ fit, a required condition for the Asimov approximation for a frequentist limit setting in
+            section~\cite{frate2017modelling}. }
+            \label{fig:chi2}
+        \end{center}
+    \end{figure}
+    \FloatBarrier
 
 \section{Statistics Testing}
 \label{section:stats}
@@ -408,8 +425,8 @@ In a window defined from bin number m to n, the observed data and prediction can
 
 	\begin{equation}
     t=
-	\begin{cases} \sum_{n=0}^{d} \frac{b^{n}}{n!} e^{-b}%&\textrm{for $d < b$}
-    \sum_{n=d}^{\infinity} \frac{b^n}{n!}e^{-b}%&\textrm{for $b \leq d$}.
+	\begin{cases} \sum_{n=0}^{d} %\frac{b^{n}}{n!} e^{-b}%&\textrm{for $d < b$}
+    %\sum_{n=d}^{\infinity} \frac{b^n}{n!}e^{-b}%&\textrm{for $b \leq d$}.
     \end{cases}
     \end{equation}
 
@@ -443,7 +460,7 @@ In a window defined from bin number m to n, the observed data and prediction can
     % Look up the bumphunter fit. 
     The bumphunting procedure is a set of procedure defined to look for excesses from the bumphunter statistics defined above. The following is cited from this source\cite{Pachal:206032}.
 
-    1.  First a background model fit is performed, from the method illustrated from the fit method session~\ref{fitmethod}. The $\chi^{2}$ of the fit has to have a p-value $>$ 0.01. Otherwise, the fit will be revised or move to an alternative method.
+    1.  First a background model fit is performed, from the method illustrated from the fit method session~\ref{sec:backgroundest}. The $\chi^{2}$ of the fit has to have a p-value $>$ 0.01. Otherwise, the fit will be revised or move to an alternative method.
 
     2.  If the background fit passes the $\chi^{2}$ test, the bumphunting test statistics can be evaluated. In all the windows across the spectrum, Bumphunter test statistics and their p-values are calculated. If the overall bumphunter test statistics has a p-value above 0.01, stop, no excesses is found. Alternatively, if any one of the window goes below p< 0.01, the window most discrepant window (the window with the lowest p-value) is removed, and the fit is reperformed.
 
@@ -480,7 +497,8 @@ The Bayesian method is used for the dijetISR analysis and the frequentist method
 \subsection{Frequentist Limits}
 \label{sec:freq}
 In the frequentist sense, all events are considered indepedent events in possible worlds. The limit is a statement on where the observed data lies given all the other possible outcome given a hypothesis. 
-The following subsection describes the test statistics used for the limit setting in ~\ref{sec:freqTestStats}. It gives a formulation of the traditional frequentist calculation. In~\ref{sec:asymp} and ~\ref{sec:asimov} the Asimov approximation method used to approximate the frequentist limit from a representative dataset is described, which is the ATLAS standard on saving computing resources. The formulae for the limit calculation using this method is given in the end in~\ref{freq:limits}.
+The following subsection describes the test statistics used for the limit setting in ~\ref{sec:freqTestStats}. It gives a formulation of the traditional frequentist calculation. In~\ref{sec:asymp} and ~\ref{sec:asimov} the Asimov approximation method used to approximate the frequentist limit from a representative dataset is described, which is the ATLAS standard on saving computing resources. The formulae for the limit calculation using this method is given in the end
+in~\ref{sec:asimov}.
 
 \subsubsection{The Frequentist Limits: The Test Statistic}
 \label{sec:freqTestStats}
@@ -622,7 +640,7 @@ A proof is given as the following section, and the formulae used for upper limit
 From the definition, true values of parameters will result in a maximum likelihood and therefore the derivative of the ${L}$ will be equal to 0. 
 
 \begin{equation}
-\frac{\partial{L}}{\partial{\theta_{j}}} = \sum_{i=0}^{N}(\frac{n_{i}}{\nv_{i}}-1) \frac{\partial{\nv_{i}}}{\partial{\theta_{j}}}+ \sum_{i=0}^{N}(\frac{m_{i}}{u_{i}}-1) \frac{\partial{u_{i}}}{\partial{\theta_{j}}} =  0 , 
+%\frac{\partial{L}}{\partial{\theta_{j}}} %\sum_{i=0}^{N}(\frac{n_{i}}{\nv_{i}}-1) \frac{\partial{\nv_{i}}}{\partial{\theta_{j}}}+ \sum_{i=0}^{N}(\frac{m_{i}}{u_{i}}-1) \frac{\partial{u_{i}}}{\partial{\theta_{j}}} =  0 
 \end{equation}
 
 Here, n is the number of count in the bin in the signal region variable x, and N is the total number of bins, and m is the number of counts in the bin in the control region may help further constrain the background, M is the maximum number of bins. 
@@ -630,11 +648,11 @@ Here, n is the number of count in the bin in the signal region variable x, and N
 The maximal likelihood value for $n_{i,A}$ and $m_{i,A}$ is associated with their expectation value. 
 
 \begin{equation}
- n_{i,A} = E[n_{i}] = \nv_{i} = \mu's_{i}(\theta) + b_{i}(\theta)
+    %n_{i,A} = E[n_{i}] = \nv_{i} = \mu s_{i}(\theta) + b_{i}(\theta)
 \end{equation}
 
 \begin{equation}
-m_{i,A} = E[m,i] = u_{i}(\theta)
+    %m_{i,A} = E[m,i] = u_{i}(\theta)
 \end{equation}
 
 
@@ -643,7 +661,7 @@ The only missing part from the above estimation is $\sigma$ and it can be approx
 Since, 
 
 \begin{equation}
-    \lamda_{A}(\mu) = \frac{L_{A}(\mu, \hat{\hat{\theta}})}{L_{A}(\hat{\mu}, \hat{\theta})}
+    \lambda_{A}(\mu) = \frac{L_{A}(\mu, \hat{\hat{\theta}})}{L_{A}(\hat{\mu}, \hat{\theta})}
 = \frac{L_{A}{\mu, \hat{\hat{\theta}}}}{L_{A}(\mu', \theta)}
 \end{equation}
 
@@ -671,6 +689,7 @@ Following from the above, the test statistics, the upper limits, the discovery m
 
 \begin{equation}
     F(t_{\mu}| \mu) = 2\Phi(\sqrt{t_{\mu}})-1
+\label{eq:teststatistics}
 \end{equation}
 
 Here F is the distribution of the statistics, $t_\mu$ is the test statistics at the given $\mu$ value of the distribution. 
@@ -678,7 +697,7 @@ Here F is the distribution of the statistics, $t_\mu$ is the test statistics at 
 \item \textbf{The P-value of a Hypothesized $\mu$ for an Observed Value $t_\mu$}
 
 \begin{equation}
-p_\mu = 1-F(t_{\mu}| \mu})=2(1-\Phi(\sqrt(t_{\mu})))
+p_{\mu} = 1-F(t_{\mu}| \mu)=2(1-\Phi(\sqrt(t_{\mu})))
 \end{equation}
 
 
@@ -728,6 +747,19 @@ From this calculation, the limit calculation in the above~\ref{freq:limits} can 
 %\end{equation}
 
 From the above formulation, it can be shown that the limit can be caculated analytically following the generation of an Asimov dataset, thus saving a lot of computaion power from the full limit generation. 
+
+\subsubsection{The Frequentist Limits: The Gaussian Process Adaptation}
+
+In Gaussian Process, a few adaptation is made to the original Asimov frequentist approximation shown in the last section. First the test statistics is swap out:
+
+\begin{equation}
+    -ln(\Lambda), where \Lambda= 2ln(\frac{L_{\textrm{GP signal + bkg fit}}(\mu, \hat{\hat{\theta}})}{L_{\textrm{GP bkg fit}}(\hat{\mu}, \hat{\theta})})
+\end{equation}
+
+Here, $\ln(\Lambda)$ is the new test statisitics used for the limit setting L is the likelihood defined in Eq.~\ref{eq:loglikelihood}. The nominator is the likelihood with both the background and signal kernel, whereas the denominator is likelihood with just the background kernel. 
+
+Using this newly defined test statistics, Eq.~\ref{eq:teststatistics} does not hold, and the test statistics may not always follow the $\chi^{2}$ distribution in Figure~\ref{fig:chi2}. The test statistics either has to be cross checked or reweighted. When this requirement is satisfied, Gaussian Process and its test statistics can use the approximation listed out in the above section for Asimov limit setting.
+
 
 %\section{Systematics}
 %\section{Future Extensions}

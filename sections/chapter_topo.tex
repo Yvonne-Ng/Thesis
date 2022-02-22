@@ -1,6 +1,15 @@
+
 \chapter{Future Resonances: The Unexplored Landscape of Two-body Resonances}
 
 This chapter is heavily based on work previously published on~\ref{} in collaboration with Nathaniel Craig, Patrick Draper, Kyoungchul Kong and Daniel Whiteson.
+
+
+\newcommand{\none}{\emptyset}
+%\newcommand{\bnum}{\mathbf\num}
+%\newcommand{\bb}[1]{\mathbb{#1}}
+%\newcommand{\bnum}[1]{\mathbf{#1}}
+\newcommand{\bnum}[2]{(\mathbf{#1}, #2)}
+\newcommand{\fnum}[2]{[\mathbf{#1}, #2]}
 
 \section{Introduction}
 
@@ -50,19 +59,19 @@ Beyond proton decay, there are a variety of constraints on flavor violation, lep
 
 
 \begin{table*}
-\caption{ Existing two-body exclusive final state resonance searches at $\sqrt{s}=8$ TeV.  The \none\ symbol indicates no existing search at the LHC.}
+\caption{ Existing two-body exclusive final state resonance searches at $\sqrt{s}=8$ TeV.  The $\none$ symbol indicates no existing search at the LHC.}
 \begin{tabular}{lccccccccccc}
 \hline
 \hline
  & $e$\ \   & $\mu$\ \   & \ \  $\tau$\ \   & \ \  $\gamma$\ \   & \ \  $j$ \ \   & \ \  $b$\ \  & \ \ $t$ \ \ & \ \ $W$ \ \ & \ \ $Z$ \ \ & \ \ $h$ \ \   \\
 \hline
-$e$ & $\pm\mp$\cite{atlasdilepton8tev},$\pm\pm$\cite{atlassslep8tev} & $\pm\pm$\cite{atlassslep8tev,Khachatryan:2016ovq} $\pm\mp$\cite{Aad:2015pfa,Khachatryan:2016ovq}  & \cite{Aad:2015pfa} & \none  & \none & \none& \none& \none& \none& \none\\
-$\mu$ & & $\pm\mp$\cite{atlasdilepton8tev},$\pm\pm$\cite{atlassslep8tev} &   \cite{Aad:2015pfa}& \none & \none & \none & \none& \none& \none& \none\\
-$\tau$ & & & \cite{atlastautau8tev} & \none & \none & \none & \cite{Khachatryan:2015bsa}& \none& \none& \none\\
-$\gamma$ & & & & \cite{atlasdiphoton8tev} & \cite{cmsphotonjet8tev,atlasphotonjet8tev,Aad:2015ywd} & \none & \none & \cite{Aad:2014fha} & \cite{Aad:2014fha} & \none\\
-$j$ & & & & & \cite{atlasdijet8tev} & \cite{CMS-PAS-EXO-12-023} & \cite{Aad:2012em} & \cite{Khachatryan:2014hpa}  & \cite{Khachatryan:2014hpa}  & \none\\
-$b$  &  & & & &  & \cite{CMS-PAS-EXO-12-023} & \cite{Aad:2015typ} & \none & \none  & \none\\
-$t$ &  & & & & &  & \cite{Aad:2015fna} & \cite{Aad:2015voa} & \none  & \none\\
+$e$ & $\pm\mp$\cite{atlasdilepton8tev},$\pm\pm$\cite{atlassslep8tev} & $\pm\pm$\cite{atlassslep8tev,Khachatryan:2016ovq} $\pm\mp$\cite{Aad:2015pfa,Khachatryan:2016ovq}  & \cite{Aad:2015pfa} & $\none$  & $\none$ & $\none$& $\none$& $\none$& $\none$& $\none$\\
+$\mu$ & & $\pm\mp$\cite{atlasdilepton8tev},$\pm\pm$\cite{atlassslep8tev} &   \cite{Aad:2015pfa}& $\none$ & $\none$ & $\none$ & $\none$& $\none$& $\none$& $\none$\\
+$\tau$ & & & \cite{atlastautau8tev} & $\none$ & $\none$ & $\none$ & \cite{Khachatryan:2015bsa}& $\none$& $\none$& $\none$\\
+$\gamma$ & & & & \cite{atlasdiphoton8tev} & \cite{cmsphotonjet8tev,atlasphotonjet8tev,Aad:2015ywd} & $\none$ & $\none$ & \cite{Aad:2014fha} & \cite{Aad:2014fha} & $\none$\\
+$j$ & & & & & \cite{atlasdijet8tev} & \cite{CMS-PAS-EXO-12-023} & \cite{Aad:2012em} & \cite{Khachatryan:2014hpa}  & \cite{Khachatryan:2014hpa}  & $\none$\\
+$b$  &  & & & &  & \cite{CMS-PAS-EXO-12-023} & \cite{Aad:2015typ} & $\none$ & $\none$  & $\none$\\
+$t$ &  & & & & &  & \cite{Aad:2015fna} & \cite{Aad:2015voa} & $\none$  & $\none$\\
 $W$ &  & & & & &  &  & \cite{Aad:2015agg,Aad:2015owa,Aad:2015ufa,Khachatryan:2014gha} & \cite{Aad:2015owa,Aad:2015ufa,Khachatryan:2014xja,Aad:2015ipg} & \cite{Aad:2015yza,Khachatryan:2016yji,Khachatryan:2015bma} \\
 $Z$ &  & & & & &  & & & \cite{Aad:2015kna,Aad:2015owa,Khachatryan:2014gha} & \cite{Aad:2015yza,Khachatryan:2015lba,Khachatryan:2015ywa,Khachatryan:2015bma}  \\
 $h$ &  & & & &  &  & & & & \cite{Aad:2015xja,Khachatryan:2015yea, CMS-PAS-EXO-15-008, Khachatryan:2016cfa} \\
@@ -74,7 +83,10 @@ $h$ &  & & & &  &  & & & & \cite{Aad:2015xja,Khachatryan:2015yea, CMS-PAS-EXO-15
 \end{table*}
 
 \begin{table*}
-\caption{ Theory models motivating two-body final state resonance searches. Here $Z'$ and $W'$ denote additional gauge bosons, $\not \! \! R$ denotes R-parity violating decays of sparticles in supersymmetry, $H^{\pm \pm}$ denotes doubly-charged Higgs bosons, $H$ denotes additional neutral scalar or pseudoscalar Higgs bosons, $L^*$ and $Q^*$ denote excited fermions, $X_{KK}$ denote various Kaluza-Klein excitations of gravitons or Standard Model fields, $\rho$ denotes neutral or charged techni-rhos, $LQ$ denotes leptoquarks, $T'$, $B'$, $Q'$ denote vector-like top, bottom, and light-flavor quarks, and $\mathcal{Q}$ denotes quirks. See also \cite{KCKong}. }
+%\caption{ Theory models motivating two-body final state resonance searches. Here $Z'$ and $W'$ denote additional gauge bosons, $\not \! \! R$ denotes R-parity violating decays of sparticles in supersymmetry, $H^{\pm \pm}$ denotes doubly-charged Higgs bosons, $H$ denotes additional neutral scalar or pseudoscalar Higgs bosons, $L^*$ and $Q^*$ denote excited fermions, $X_{KK}$ denote various Kaluza-Klein excitations of gravitons or Standard Model fields, $\rho$ denotes neutral or
+%charged}
+%techni-rhos, $LQ$ denotes leptoquarks, $T'$, $B'$, $Q'$ denote vector-like top, bottom, and light-flavor quarks, and $\mathcal{Q}$ denotes quirks. See also ~\cite{KCKong}. }
+
 \begin{tabular}{lccccccccccc}
 \hline
 \hline
@@ -144,46 +156,46 @@ $h$ & & & & & & & & & $\bnum{1}{0}$  \\  \hline\hline
 \end{table*}
 
 
-\begin{table*}
-\caption{For each pair of Standard Model particles, three boxes indicate the existence of various possible production modes for the corresponding resonance. In the first box, a \protect\resone \, indicates the existence of a resonant production mode at the LHC via the tree-level decay couplings, loop-induced processes involving the decay coupling, or the inclusion of additional couplings to quarks or gluons allowed by the quantum numbers of the resonance.  In the second box, \protect\restwo \,, \protect\resthree \,, \protect\resfour \,, or \protect\resfive \, indicate the leading production mode in association with one, two, three, or four Standard Model particles using the same coupling for production and decay in a four-flavor scheme. In the third box, \protect\resp \, indicates the {\it unavoidable} existence of a pair production mode via Standard Model gauge bosons. This box is left empty if there is a possible choice of resonance quantum numbers that does not lead to a pair production mode. }
-\begin{center}
-\def\arraystretch{1.5}
-\begin{tabular}{c||c|c|c||c|c|c||c|c|c||c|c|c||c|c|c||c|c|c||c|c|c||c|c|c||c|c|c|} \hline
-
-& \multicolumn{3}{|c||}{$\ell$} & \multicolumn{3}{|c||}{$\gamma$} & \multicolumn{3}{|c||}{$q$} & \multicolumn{3}{|c||}{$g$} & \multicolumn{3}{|c||}{$b$} & \multicolumn{3}{|c||}{$t$} & \multicolumn{3}{|c||}{$W^+$} & \multicolumn{3}{|c||}{$Z$} & \multicolumn{3}{|c|}{$h$} \\ \hline
-
-$\ell$ &  & \resfive & \resp &  & \resfour  & \resp & \resone & \resthreea & \resp & & \resthreea & \resp & \resone & \resfour  & \resp &  \resone  &  \resfour  & \resp &  & \resfour  & &  & \resfour  & \resp &   & \resfour & \resp \\ \hline
-
-$\bar \ell$ &  \resone & \resfive &  &  & \resfour  & \resp & \resone & \resthreea & \resp & & \resthreea & \resp & \resone & \resfour  & \resp & &  \resfour  & \resp  &  & \resfour  & \resp &  & \resfour  & \resp &  & \resfour  & \resp \\ \hline
-
-$\gamma$ &  & \resfour & \resp & \resone & \resthree &  & \resone & \restwo & \resp & \resone & \restwo & \resp & \resone  & \resthree & \resp &  \resone  & \resthree & \resp   & \resone & \resthree & \resp & \resone & \resthree &  & \resone & \resthree &  \\ \hline 
-
-$ q $ &  \resone  &  \resthree  &  \resp   & \resone & \restwo & \resp &  \resone  &  \resone  &  \resp  &  \resone  &  \resone  &  \resp   &  \resone  &  \restwo  & \resp &  \resone  &  \restwo  & \resp  & \resone & \restwo & \resp & \resone & \restwo & \resp & \resone & \restwo & \resp   \\ \hline
-
-$\bar q$ &  \resone  &  \resthree  &  \resp  & \resone & \restwo & \resp &  \resone  &  \resone  &  \resp  &  \resone  &  \resone  &  \resp   &   \resone  &  \restwo  &  &  \resone  &  \restwo  &   &  \resone  &  \restwo  &  \resp  & \resone & \restwo & \resp & \resone & \restwo & \resp  \\ \hline
-
-$g$ &    &  \resthree  & \resp  & \resone & \restwo & \resp &  \resone  &  \resone  & \resp  &  \resone  &  \resone  &  &  \resone  &  \restwo  & \resp  &  \resone  &  \restwo  & \resp  &   \resone  &  \restwo  &  \resp  &   \resone  &  \restwo  &  \resp  & \resone & \restwo & \resp \\ \hline
-
-$b$ &  && & \resone  & \resthree & \resp &  \resone  &  \restwo  & \resp  & \resone  &  \restwo  & \resp &  \resone  &  \resthree  & \resp  &  \resone  &  \resthree  & \resp  & \resone & \resthree & \resp & \resone  & \resthree & \resp & \resone  & \resthree & \resp \\ \hline  
-
-$ \bar b$ & &&&&&  &  \resone  &  \restwo  &   &  \resone  &  \restwo  & \resp &  \resone  &  \resthree  &  &  \resone  &  \resthree  & \resp  &   & \resthree & \resp &  \resone  & \resthree & \resp  &  \resone  & \resthree & \resp   \\ \hline
-
-$t$ & &&&&&&&& & \resone  &  \restwo  & \resp &  \resone & \resthree & \resp & \resone & \resthree & \resp & &  \resthree  &  \resp & \resone  &  \resthree  & \resp & \resone   &  \resthree  & \resp \\ \hline
-
-$\bar t$ & &&&&&&&&&&& &  \resone  &   \resthree  & \resp  &  \resone  &  \resthree  &     &  \resone  &  \resthree  & \resp & \resone  &  \resthree  & \resp & \resone   &  \resthree  & \resp \\ \hline
-
-$W^+ $ & &&&&&&&&&&&&&& & &  \resthree  &  \resp &  & \resthree & \resp & \resone & \resthree & \resp & \resone & \resthree & \resp \\ \hline
-
-$W^-$ &  &&&&&&&&&&&&&&&&& & \resone & \resthree &  & \resone & \resthree & \resp & \resone & \resthree & \resp   \\ \hline
-
-$Z$ &  &&&&&&&&&&&&&&&&&&&& & \resone & \resthree &  & \resone & \resthree &   \\ \hline
-
-$h$ & &&&&&&&&&&&&&&&&&&&&&&& & \resone & \resthree &  \\ \hline
-
-\end{tabular}
-\end{center}
-\label{tab:modes}
-\end{table*}%
+%\begin{table*}
+%\caption{For each pair of Standard Model particles, three boxes indicate the existence of various possible production modes for the corresponding resonance. In the first box, a \protect\resone \, indicates the existence of a resonant production mode at the LHC via the tree-level decay couplings, loop-induced processes involving the decay coupling, or the inclusion of additional couplings to quarks or gluons allowed by the quantum numbers of the resonance.  In the second box, \protect\restwo \,, \protect\resthree \,, \protect\resfour \,, or \protect\resfive \, indicate the leading production mode in association with one, two, three, or four Standard Model particles using the same coupling for production and decay in a four-flavor scheme. In the third box, \protect\resp \, indicates the {\it unavoidable} existence of a pair production mode via Standard Model gauge bosons. This box is left empty if there is a possible choice of resonance quantum numbers that does not lead to a pair production mode. }
+%\begin{center}
+%\def\arraystretch{1.5}
+%\begin{tabular}{c||c|c|c||c|c|c||c|c|c||c|c|c||c|c|c||c|c|c||c|c|c||c|c|c||c|c|c|} \hline
+%
+%& \multicolumn{3}{|c||}{$\ell$} & \multicolumn{3}{|c||}{$\gamma$} & \multicolumn{3}{|c||}{$q$} & \multicolumn{3}{|c||}{$g$} & \multicolumn{3}{|c||}{$b$} & \multicolumn{3}{|c||}{$t$} & \multicolumn{3}{|c||}{$W^+$} & \multicolumn{3}{|c||}{$Z$} & \multicolumn{3}{|c|}{$h$} \\ \hline
+%
+%$\ell$ &  & \resfive & \resp &  & \resfour  & \resp & \resone & \resthreea & \resp & & \resthreea & \resp & \resone & \resfour  & \resp &  \resone  &  \resfour  & \resp &  & \resfour  & &  & \resfour  & \resp &   & \resfour & \resp \\ \hline
+%
+%$\bar \ell$ &  \resone & \resfive &  &  & \resfour  & \resp & \resone & \resthreea & \resp & & \resthreea & \resp & \resone & \resfour  & \resp & &  \resfour  & \resp  &  & \resfour  & \resp &  & \resfour  & \resp &  & \resfour  & \resp \\ \hline
+%
+%$\gamma$ &  & \resfour & \resp & \resone & \resthree &  & \resone & \restwo & \resp & \resone & \restwo & \resp & \resone  & \resthree & \resp &  \resone  & \resthree & \resp   & \resone & \resthree & \resp & \resone & \resthree &  & \resone & \resthree &  \\ \hline 
+%
+%$ q $ &  \resone  &  \resthree  &  \resp   & \resone & \restwo & \resp &  \resone  &  \resone  &  \resp  &  \resone  &  \resone  &  \resp   &  \resone  &  \restwo  & \resp &  \resone  &  \restwo  & \resp  & \resone & \restwo & \resp & \resone & \restwo & \resp & \resone & \restwo & \resp   \\ \hline
+%
+%$\bar q$ &  \resone  &  \resthree  &  \resp  & \resone & \restwo & \resp &  \resone  &  \resone  &  \resp  &  \resone  &  \resone  &  \resp   &   \resone  &  \restwo  &  &  \resone  &  \restwo  &   &  \resone  &  \restwo  &  \resp  & \resone & \restwo & \resp & \resone & \restwo & \resp  \\ \hline
+%
+%$g$ &    &  \resthree  & \resp  & \resone & \restwo & \resp &  \resone  &  \resone  & \resp  &  \resone  &  \resone  &  &  \resone  &  \restwo  & \resp  &  \resone  &  \restwo  & \resp  &   \resone  &  \restwo  &  \resp  &   \resone  &  \restwo  &  \resp  & \resone & \restwo & \resp \\ \hline
+%
+%$b$ &  && & \resone  & \resthree & \resp &  \resone  &  \restwo  & \resp  & \resone  &  \restwo  & \resp &  \resone  &  \resthree  & \resp  &  \resone  &  \resthree  & \resp  & \resone & \resthree & \resp & \resone  & \resthree & \resp & \resone  & \resthree & \resp \\ \hline  
+%
+%$ \bar b$ & &&&&&  &  \resone  &  \restwo  &   &  \resone  &  \restwo  & \resp &  \resone  &  \resthree  &  &  \resone  &  \resthree  & \resp  &   & \resthree & \resp &  \resone  & \resthree & \resp  &  \resone  & \resthree & \resp   \\ \hline
+%
+%$t$ & &&&&&&&& & \resone  &  \restwo  & \resp &  \resone & \resthree & \resp & \resone & \resthree & \resp & &  \resthree  &  \resp & \resone  &  \resthree  & \resp & \resone   &  \resthree  & \resp \\ \hline
+%
+%$\bar t$ & &&&&&&&&&&& &  \resone  &   \resthree  & \resp  &  \resone  &  \resthree  &     &  \resone  &  \resthree  & \resp & \resone  &  \resthree  & \resp & \resone   &  \resthree  & \resp \\ \hline
+%
+%$W^+ $ & &&&&&&&&&&&&&& & &  \resthree  &  \resp &  & \resthree & \resp & \resone & \resthree & \resp & \resone & \resthree & \resp \\ \hline
+%
+%$W^-$ &  &&&&&&&&&&&&&&&&& & \resone & \resthree &  & \resone & \resthree & \resp & \resone & \resthree & \resp   \\ \hline
+%
+%$Z$ &  &&&&&&&&&&&&&&&&&&&& & \resone & \resthree &  & \resone & \resthree &   \\ \hline
+%
+%$h$ & &&&&&&&&&&&&&&&&&&&&&&& & \resone & \resthree &  \\ \hline
+%
+%\end{tabular}
+%\end{center}
+%\label{tab:modes}
+%\end{table*}%
 
 
 
