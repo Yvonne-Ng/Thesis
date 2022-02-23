@@ -304,7 +304,19 @@ The Gaussian process background and signal kernels used for this particular anal
 
     Here, $A_{2}$ is the amplitude of the signal kernel, m is the value where the kernel peaked on, and $\sigma_{2}$ is the lengthscale of the signal kernel. 
 
-    Tests are done to ensure the background MC can be described by the background kernel. Pseudo experiment is drawn from each bin of the MC distribution, 
+\subsubsection{Test for the Background Kernel}
+Verification are done to ensure the background MC can be described by the background kernel. The procedure is described as the following: Toy distribution are created from drawing the Poissonian distribution in each bin. 10,000 new toy distributions are formed. Each are fitted with the Gaussian Process background kernel and test statistics defined in Section\ref{} are calculated for each fit. The test statistics of the original fit to the background MC is compared against the test statisitics of
+the toy distribution to calculated the p-value. Results in ~\Figure~\ref{nominalstats} that all three test statistics tested the p-value is above 0.01 and that the kernel captures features in background distribution well. 
+
+\begin{figure}[!htb]
+    \begin{center}
+        \includegraphics[width=0.75\textwidth]{figures/chapter_dimuon/dimuonStudies}        
+        \caption{
+        This cartoon illstrate the target signal region of the analysis and how it has not been covered by the previous high-mass dilepton analysis. }
+            \label{fig:dimuonstudies}
+    \end{center}
+\end{figure}
+
 
 \subsection{Hyperparameter Optimization}
 The detailed steps to the hyper-parameter optimization can be found in Chapter~\ref{chapter:analysismethod}.
