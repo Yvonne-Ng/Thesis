@@ -2,10 +2,10 @@
 \label{chapter:common_analysis_objects}
 
 %todo fill in the citations
-After the collisions and interactions in the LHC, final state particles leave their mark on various detector components as electronic signal that can provide information about track/energy deposits. These electronic signal are saved in hard disks. It takes various steps of reconstruction identification, cleaning as well as calibration before the raw electronic information becomes analysis-ready physics objects. The different particle signatures left on the detector can help
+After the collisions and interactions in the LHC, final state particles leave their mark on various detector components as electronic signal. These electronic signal are saved in hard disks and tapes. It takes various steps of reconstruction identification, cleaning and calibration before the raw electronic information becomes analysis-ready physics objects. The different particle signatures left on the detector can help
 with their identifications. Figure~\ref{fig:particleSignature} shows the different signature that different particles leave on the ATLAS detector.
 
-In this chapter, different analysis final state objects originated from different particles are covered. In Section~\ref{sec:Tracks}, detector tracks and primary vertices construction are covered. Detector tracks are the raw ingredients in muon reconstruction. It also plays a major role primary vertices correction for jets and photon. In Section~\ref{sec:Muon}, Section~\ref{sec:Jet} and Section~\ref{sec:Photon}, the formation of muons, jets and photons from detector signal
+In this chapter, different analysis final state objects are described. In Section~\ref{sec:Tracks}, detector tracks and vertex construction is covered. In Section~\ref{sec:Muon}, Section~\ref{sec:Jet} and Section~\ref{sec:Photon}, the formation of muons, jets and photons from detector signal
 through their reconstruction, identification, isolation as well as calibration are discussed in detail. 
 
 \begin{figure}[!htb]
@@ -18,27 +18,25 @@ through their reconstruction, identification, isolation as well as calibration a
     \end{center}
 \end{figure}
 
-\section{Tracks and the primary vertices}
+\section{Tracks and vertices}
 \label{sec:Tracks}
-Charged particles leave trajectories in two distinct ATLAS sub-detector systems, namely the inner detector(ID) and the muon system(MS). The ID is made up of the Pixel Detector, the Semiconductor Tracker(SCT), and the Transition Radiation Tracker(TRT). All charged particles leave tracks in the the ID. The MS is made up of Monitored Drift Tubes(MDTs), the Cathode Strip Chambers(CSC), Thin Gap Chambers(TGC), and the Resistive Plate Chambers(RPC). It's mainly used to track muons,
-which are particles that leaves minimal traces in all other parts of the detector. 
+Charged particles leave trajectories in two distinct ATLAS sub-detector systems, namely the inner detector(ID) and the muon system(MS). Details regarding the subdetector system can be found in Chapter~\ref{chapter:ATLAS}.
 
 \subsection{ID Tracks}
-To reconstruct a track from detector raw hit information, coincidence measurements in multiple layers are first used to find a track seed. Then, a Kalman-filter is used to fit the tracks~\cite{track}, irrelevant hits from pile-up~\footnote{Pile-ups are hits and tracks that result in noise in the target event and object reconstruction.} are removed through the filter rejection. Figure~\ref{fig:track} shows a schematic diagram for a track.
+To reconstruct a track from detector raw hit information, coincidence measurements in multiple layers are first used to find a track seed. Then, a Kalman-filter is used to fit the tracks~\cite{track}, irrelevant hits from pile-up~\footnote{Pile-ups are hits and tracks that result from multiple collisions other than the primary collision. } are removed through the filter. Figure~\ref{fig:track} shows a schematic diagram for a track.
 
 \begin{figure}[!htb]
     \begin{center}
         \includegraphics[width=0.3\textwidth]{figures/common_ana/Track}
         \caption{ 
-            Track reconstruction in ATLAS. Schematic view of how the parameters associated with track creation.
+        Schematic view of how the parameters associated with track creation in ATLAS.
         }
         \label{fig:track}
     \end{center}
 \end{figure}
 
-\subsection{Primary Vertices}
-Once tracks are formed in the inner detector, primary vertices can be constructed from the track directions and their intersection points. Primary vertices are the initial interaction points where further decay particles are formed. Vertexing picks out tracks and hits that are associated with a single interaction. It is helpful in discriminating event-of-interest tracks from pile-up tracks. Effective vertexing is of great importance to event reconstruction, especially in more up-to-date
-LHC runs, where the higher luminosity has resulted in additional in-time and out-of-time pile-ups.
+\subsection{Vertices}
+Once tracks are formed in the inner detector, primary vertices can be constructed from the track directions and their intersection points. Vertexing picks out tracks and hits that are associated with a single interaction. It is helpful in discriminating event-of-interest tracks from pile-up tracks. Effective vertexing is of great importance to event reconstruction, especially in more recent LHC runs, where the higher luminosity has resulted in additional in-time and out-of-time pile-ups.
 
 \begin{figure}[!htb]
     \begin{center}
@@ -49,11 +47,11 @@ LHC runs, where the higher luminosity has resulted in additional in-time and out
     \end{center}
 \end{figure}
 
-Vertexing is consist of a couple of different steps: First, a vertex seed is found by filtering the points where most interactions are found. Then, Tracks consistent with the chosen vertex seed are put into a group. After that, the vertex position and the associated error of the vertex is found by an adaptive vertex fitting algorithm~\cite{track}. Lastly, the unused tracks are used for the next vertex creation. The process then repeats until tracks are ran out. 
+Vertexing consists of a couple of different steps: First, a vertex seed is found by filtering the points where most interactions are found. Then, tracks consistent with the chosen vertex seed are put into a group. After that, the vertex position and the associated error of the vertex is found by an adaptive vertex fitting algorithm~\cite{track}. Lastly, the unused tracks are used for the next vertex creation. The process then repeats until no tracks remain. 
 
-Usually, a couple of primary vertices are formed in each bunch crossing. The vertex with the highest $P_{T}$ particles originated from it is considered the hard-primary vertex of the event, the others are considered the pile-up primary vertices. 
+The vertex with the highest $P_{T}$ particles originated from it is considered the hard-primary vertex of the event, the others are considered the pile-up primary vertices. Somtimes particles produced from the primary vertex decays further, the interaction points where the further decay occur are known as the secondary vertices.
 
-Particle formation from detector hit information in the following sections relies on the tracks and primary vertices reconstruction above.
+Particle formation from detector hit information in the following sections relies on the tracks and primary vertex reconstruction above.
 
 \section{Muons}
 \label{sec:Muon}

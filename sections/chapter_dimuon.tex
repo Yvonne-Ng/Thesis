@@ -3,18 +3,44 @@
 
 %Stick in the graphs?
 
+\section{Introduction}
+
+    % Why this is interesting  
+Owing to its unprecedented high energy, the Run 1 and early Run 2 of ATLAS has long focused on the high mass resonances searches that was not accessible to any other previous experiments. This approach has left the relatively low mass resonances that are competitive in sensitivity unexplored. In the resonance search that decays into two leptons in particular, the resonance mass region above Z boson peak has been searched for since the beginning of Run 1. However, the mass region below the Z mass peak remains uncovered to this date. Novel particles with an LHC scale observable coupling is predicted by many models, some of them are related to the dark matter models explored in Chapter~\ref{chapter:DM}.
+
+\begin{figure}[!htb]
+    \begin{center}
+        \includegraphics[width=0.75\textwidth]{figures/chapter_dimuon/dimuonStudies}        
+        \caption{
+        This cartoon illstrate the target signal region of the analysis and how it has not been covered by the previous high-mass dilepton analysis. }
+            \label{fig:dimuonstudies}
+    \end{center}
+\end{figure}
+   
+This study share many similar motivations as the analysis explored in Chapter~\ref{chapter:dijetISR}, where the dark matter mediator Z' is projected to decay into two jets. In this analysis, the Z' couples instead to leptons. Since ATLAS collide partons, there are fewer background on leptons than jet processes, this allows lower transverse momentum lepton events to be saved. Using two muons as the resonance final state items, even lower mass resonances can be searched for this study would
+explore dark matter related resonances down to 4 GeV. To avoid the quarkonium background between 4-10 GeV and the Z boson in 80 GeV, this analysis searches for resonances in the 10-75 GeV range.
+
+This chapter presents an on-going analysis conducted in ATLAS. The data preparation, trigger chain, event and object calibration that is completed and validated for the analysis is presented in Section~\ref{}. The full statistical strategies, which is currently that utilizes Gaussian Process as the background estimation method is covered in Section~\ref{}. All strategies are in place and ready for the analysis to be unblinded. The analysis utilizes data using proton--proton collision in ATLAS recorded at a center-of-mass energy of $\sqrt{s}=$ 13 ~\TeV up to 139 $fb^{-1}$ of integrated luminosity. The projected result is interesting to the theoretical community for the dark matter mediator reinterpretation as well as its statement possible for many other models, which include W\', quantum blackholes and axions. The result of this study is complementary to the dilepton search done here with its exploration of a lower mass resonance region, and have is projected to have limits to the CMS~\cite{} and LHCb~\cite{} results published.
+
+
+%\section{Historical searches}    
+%    Previous searches has been done directly in Tevatron experiment. Indirect constraints has been made in LEP as well. 
+%
+%    CMS results and tevatron results: 
+%   k
+%    This study will be an independent finding from ATLAS and the first search done in this region.  
 
 
 \section{The Search Channels}
-Two different search channels and is employed. In the 40-75 GeV region, the inclusive dimuon signal will be searched for. This is the inclusive channel of the analysis. In the 10-40 GeV of the analysis, a boosted channel will be used for the analysis. 
-In the lower mass range, the boosted channel strategy is employed n view of the trigger turn on feature near 30 GeV in the background resonance mass distribution (See Figure~\ref{fig:turnon}), a boosted dimuon signal with ISR is searched for. In this channel, a cut of dimuon $P_{T}>14 GeV$ is applied to both the signal and the background. This cut retains a signal efficiency of >90\% in the boosted channel and produces a smooth background. This strategy is effective in evading the effect of the trigger turn on and the background can be estimated with smooth background prediction procedures. 
-The two channel treatment is based on a pheno-study first done here\cite{2014}. Figure~\ref{fig:turnon} shows the background distribution of the MC in the boosted and the inclusive channel.
+In ATLAS, not all collision events are stored due to the limitation in processing bandwidth. Triggering is the processing and storage of selective events, more details are described in Chapter~\ref{chapter:ATLAS}. Triggering requires physical cuts in the event objects, sometimes this introduces features in the data that is not predicted in the physics. An example is the muon $P_{T}$ requirement in triggering produces a trigger turn-on curve seen in the inclusive histogram in Figure~\ref{fig:turnon}.
+Non-physical feature in background can lead to difficulty in background modelling. In view of this, two different search channels and is employed for the analysis for maximal sensitivity. In the 40-75 GeV region, the inclusive dimuon signal as shown in ~\ref{fig:dimuonFeynman} is searched for. In the 10-40 GeV of the analysis, a boosted ISR signal as shown in ~\ref{fig:dimuonISRFeynmann} is used for the analysis. They are the region highlighted in blue in Figure~\ref{fig:turnon}.In the boosted channel, an additional cut of dimuon $P_{T}_{dimuon}>14 GeV$ is applied to both the signal and the background. This cut produces a smooth background and retains a signal efficiency of >90\%. This strategy is effective in producing a background that can be modelled and maximizing sensitivity. 
+This two channel treatment is based on a pheno-study first done in this paper\cite{2014}. Changes has been made to accomodate the increase in the center-of-mass energy of the analysis. 
 
 \begin{figure}[!htb]
     \begin{center}
         \includegraphics[width=0.75\textwidth]{figures/chapter_dimuon/turnon}
         \caption{
-        This figure shows the trigger turn on curve in the inclusive dimuon channel at 45 GeV(Red) . Utilizing a minimal dimuon $P_{T}$ cut in the boosted channel made it possible to recover a smooth background in the lower mass region from 10-45 GeV(Green). Samples used here are MC16a ATLAS full simulation listed in section~\ref{table:MC}.
+        This figure shows the trigger turn on curve in the inclusive dimuon channel at 40 GeV(Red) . Utilizing a minimal dimuon $P_{T}$ cut in the boosted channel made it possible to recover a smooth background in the lower mass region from 10-45 GeV(Green). Samples used here are MC16a ATLAS full simulation listed in section~\ref{table:MC}.
         }
         \label{fig:turnon}
     \end{center}
@@ -22,8 +48,9 @@ The two channel treatment is based on a pheno-study first done here\cite{2014}. 
 
 \section{Signal Theoretical Model}
 The analysis uses the dark matter LHC benchmark model and dark photon model outlined in Section~\ref{sec:LHCDM} of Chapter~\ref{chapter:DM}.
-Other models that are of interest and can be reinterpreted for this analysis includes the W\', the quantum blackholes,and axion models. 
-Figure~\ref{fig:dimuonFeynman} and Figure~\ref{fig:dimuonISRFeynmann} show the Feynmann diagram for the analysis.
+Other models that are of interest and can be reinterpreted for this analysis includes the W\', the quantum blackholes,and axion models. Limit setting on generic Gaussian shape of various width will enable ease for reintepreation with tools like RECAST.
+Figure~\ref{fig:dimuonFeynman} and Figure~\ref{fig:dimuonISRFeynmann} show the Feynmann diagram of the signal used for the analysis 
+The signal are generated through ATLAS full simulation: the tree level event is generated through Madgraph5\_aMC@NLO~\cite{}; the parton showering is simulated through Pythia8~\cite{} and detector effect is added on through Geant4~\cite{}. More details on MC generation of ATLAS can be found in Chapter~\ref{chapter:common_analysis_items}.
 
 \begin{figure}[!htb]
     \begin{center}
@@ -74,7 +101,8 @@ Figure~\ref{fig:dimuonFeynman} and Figure~\ref{fig:dimuonISRFeynmann} show the F
 
 \subsection{Trigger Chain}
 \label{section:trigger}
-Details on the ATLAS trigger system can be found in Chapter~\ref{chapter:ATLAS}. The analysis takes the "OR" of the following three trigger chains to maximize the event numbers as well as signal sensitivity.
+Triggering is the selective storage and event for maximal processing efficiency. Details on the ATLAS triggering system can be found in Chapter~\ref{chapter:ATLAS}.
+Triggering streams each have different cuts and they are tailored for different purposes, using multiple trigger stream with careful re-weighting could maximize the total event number for analysis. In the dimuon analysis, three trigger streams are employed for this reason.
 
 \begin{table}[!htb]
     \begin{center}
@@ -105,11 +133,14 @@ Assymetric Dimuon & 2015 & $HLT_mu18_mu8noL1$ & MU15 & 24, 10 \\
 \end{figure}
 
 \section{Data preparation}
-The final result of the strategies presented in this chapter are collected from proton-proton collision data during the ATLAS Run 2 period at a center-of-mass energy of $\sqrt{13} TeV$ from 2016-2018. The preliminary strategy of this chapter is generated from ATLAS full simulation Monte Carlo. Due the process\'s low statistics in the ATLAS full simulation, a full size Z $\rightarrow \mu \mu$ sample is created through a fast Sherpa and PYTHIA8 combination generation at the truth level, where $P_{T}$ smearing is applied for detector effect. Section~\ref{section:superfast} details the superfast event generation.
+The final result of the strategies presented in this chapter are collected from proton-proton collision data during the ATLAS Run 2 period at a center-of-mass energy of $\sqrt{13} TeV$ from 2016-2018. The preliminary strategy of this chapter is generated from ATLAS full simulation Monte Carlo, besides the $Z > \mu \mu $ sample used. Due the process\'s low statistics in the ATLAS full simulation, a full size Z $\rightarrow \mu \mu$ sample is created through a fast Sherpa and PYTHIA8 combination generation at the truth level, where $P_{T}$ smearing is applied for detector effect. Section~\ref{section:superfast} details the superfast event generation.
 
+\subsection{Samples Used for the Analysis}j
+The following are the samples used for the analysis. The largest background contribution in this analysis came from $\Z > \mu\mu $ decay; the second largest contribution originates from $Z > \tau \tau$, other process including the t-channel $t\bar{t}$ , diboson decay as well as top decay also contribute a considerable amount to the background events.
 
-\subsection{Samples Used for the Analysis}
-The following are the samples used for the analysis. The largest background contribution in this analysis came from 
+\subsubsection{Superfast $Z > \mu\mu$  Samples}
+\label{section:superfast}
+Due to the low statistics in the primary background sample in  $Z \> \mu \mu$, fast generation relying on Pythia8 and a smearing function for the detector effect has been used to emulate the statistical fluctuation of the full dataset. Four different variation of the superfast statistics as been used, each uses a different pdf set for the generator tuning. The Nominal set uses the ATLAS A14 NNPDF2.3LO; the down variation and up variation uses the variation tune parameters Var3C listed here~\ref{ATL-PHYS-PUB-2014-021}; whereas the $\eta$ variation uses ATLAS A15 NNPDF2.3 along with QCD and QED NLO. More details on the fast simulation can be found here~\ref{}.
 
 \begin{table}[!htb]
     \begin{center}
@@ -136,7 +167,16 @@ $c\bar{c}$         & 363834                                                     
 
 In addition to sources in this table, QCD fakes that may contribute to background events are estimated by same-signed dimuon pairs in data that satistfy all other event requirements. The rational is that in data all of the same-signed dimuon would all come from QCD contribution, and that the contribution amount would be equal to the opposite-signed contribution from QCD. Figure~\ref{} shows a background composition plot with the same signed contribution subtracted out. The fake QCD contribution makes up less than 1\% of all the events. After the application of the Fake estimation, the overall agreement between data and MC in controlled regions are within acceptable range, it shows that the MC is ready to be used for statistics strategy studies.
 
-In the analysis, 2 muons of the \textbf{\textit{MEDIUM}} working point and the \textbf{\textit{FixedCutPFlowLoose}} isolation working point (Defined in Chapter~\ref{chapter:common_analysis_items}) are required for each of the events chosen. In addition, $|\eta|< 2.5$ is required for both muons. 
+In the analysis, studies was done and it was found that muons of the \textbf{MEDIUM} working point and the \textbf{FixedCutPFlowLoose} isolation working point (Defined in Chapter~\ref{chapter:common_analysis_items}) will provide the maximum signal sensitivity and muon performance. Two muons of at least 4 GeV in tranverse momentum are required for each event. In addition, $|\eta|< 2.5$ is required for both muons. An additional $P_{T}_{dimuon}> 14GeV$ cut is applied to events in the boosted channel.
+
+\begin{figure}[!htb]
+    \begin{center}
+        \includegraphics[width=0.75\textwidth]{figures/chapter_dimuon/superfast_leadingMuonPT}
+        \includegraphics[width=0.75\textwidth]{figures/chapter_dimuon/superfast_subleadingMuonPT}
+        \caption{
+        These plots shows the leading muon transverse momentum distribution and the subleading muon transverse momentum distribution with the super fast simulation.  }
+    \end{center}
+\end{figure}
 
 
 %\begin{table}[!htb]
@@ -199,21 +239,17 @@ In the analysis, 2 muons of the \textbf{\textit{MEDIUM}} working point and the \
 %    \end{center}
 %\end{figure}
 
-\subsubsection{Superfast Dimuon Samples}
-\label{section:superfast}
-Due to the low statistics in the primary background sample in  $Z \> \mu \mu$, fast generation relying on Pythia8 and a smearing function for the detector effect has been used to emulate the statistical fluctuation of the full dataset. Four different variation of the superfast statistics as been used, each uses a different pdf set for the generator tuning. The Nominal set uses the ATLAS A14 NNPDF2.3LO; the down variation and up variation uses the variation tune parameters Var3C listed
-here~\ref{ATL-PHYS-PUB-2014-021}; whereas the $\eta$ variation uses ATLAS A15 NNPDF2.3 along with QCD and QED NLO. More details on the fast simulation can be found here~\ref{}.
 
 \subsection{Dimuon Mass Spectrum Resolution}
-The mass spectrum resolution are done on the Powheg samples of Z > $\mu \mu
-$. A Gaussian distribution fit is performed on the resonance mass $m_{\mu\mu_{Truth}} - m_{\mu\mu{Reco}}$ quantity. From the fit, the width of the Gaussian is obtained~\ref{fig:fit}, and is shown to follow the following distribution in figure~\ref{fig:sigma}.
+To define the binning of the dimuon mass distribution in the signal region, the dimuon mass resolution is studied. The following study is done on the Z > $\mu \mu$. Detail on the procedure can be found in Chapter~\ref{chapter:common_analysis_items}.
+A Gaussian distribution fit is performed on the resonance mass $m_{\mu\mu_{Truth}} - m_{\mu\mu{Reco}}$ quantity. From the fit, the width of the Gaussian is obtained~\ref{fig:fit}, and is taken to be the detector resolution in the dimuon mass distribution. The bin-by-bin resolution result is shown in Figure~\ref{fig:sigma}.
     
 
 \begin{figure}[!htb]
     \begin{center}
         \includegraphics[width=0.75\textwidth]{figures/chapter_dimuon/fitError}        
         \caption{
-            A Gaussian distribution fit is made on the the difference between the truth dimuon resonance mass and the reconstructed dimuon resonance mass. }
+            A Gaussian distribution fit is made on the the difference between the truth dimuon resonance mass and the reconstructed dimuon resonance mass.    }
     \end{center}
 \end{figure}
    
@@ -227,7 +263,8 @@ $. A Gaussian distribution fit is performed on the resonance mass $m_{\mu\mu_{Tr
 
 
 \subsection{Binning Strategy}
-Using the resolution of the study from the last section and the mass distribution given in the theoretical signal section, the overall binning is chosen to be 0.25 GeV, it will allow for all signal searched for to be at least 2 bin wide. Signal that are at least two bin wide are significantly less prone to accidental "discoveries" due to statistical fluctuation.
+Using the resolution of the study from the last section and the mass distribution given in the theoretical signal section, the overall binning is chosen to be 0.25 GeV. Uniform binning simplified the fitting procedure considerably. The choice is also made out of consideration to ensure all signal searched for are at least 2 bin wide to reduce the probability of capturing a signal from statistical fluctuation only seen in one bin.
+
 %\subsubsection{MC/Data Comparison}
 %A detailed description on the MC/Data comparison test can be found here,\ref{sec:MCData}.  
 %The agreement is shown to be good between the prepared MC and data. It shows that the MC is ready to be used for the subsequent tests.
@@ -246,12 +283,10 @@ Using the resolution of the study from the last section and the mass distributio
 %\end{figure}
 
 \section{Background Fitting}
-As there is not enough fully simulated ATLAS MC for estimating the background nor are the shape of the MC template reliable to be scaled up for background estimation, the background fitting of the dimuon analysis relies on a data driven approach. The background fitting method of the analysis uses the Gaussian Process approach outlined in Chapter~\ref{chapter:analysismethod}. Details specific to the analysis is described here.
+As the fully simulated ATLAS MC for the background processes listed in table~\ref{table:MC} are neither reliable in shape or enough in count, the background fitting of the dimuon analysis relies on a data driven approach. Detail on data driven approaches for smooth background estimation is fully reviewd in Chapter~\ref{chapter:analysismethod}. The approach used by the dimuon analysis is the Gaussian Process approach outlined in Chapter~\ref{chapter:analysismethod}. Details specific to the analysis and results are detailed here.
 
 \subsection{The Kernel}
-In Gaussian Process, the mean function and the covariance function that describe the variance on the prediction can be determined by the kernel function along with the training data pointsu(See details in Chapter~\ref{}.)
-
-The Gaussian process background and signal kernels used for this particular analysis method is given here:
+The Gaussian process background and signal kernels used for this particular analysis method is given here~\ref{}. In Gaussian Process, the mean function prediction and the covariance function on the prediction variance are determined by the kernel function. (See details in Chapter~\ref{}.)
 
 \begin{itemize}
     \item \textbf{Background Kernel} \textit{-``Radial Basis Function + White Noise Kernel"}
@@ -268,6 +303,8 @@ The Gaussian process background and signal kernels used for this particular anal
 \end{itemize}
 
     Here, $A_{2}$ is the amplitude of the signal kernel, m is the value where the kernel peaked on, and $\sigma_{2}$ is the lengthscale of the signal kernel. 
+
+    Tests are done to ensure the background MC can be described by the background kernel. Pseudo experiment is drawn from each bin of the MC distribution, 
 
 \subsection{Hyperparameter Optimization}
 The detailed steps to the hyper-parameter optimization can be found in Chapter~\ref{chapter:analysismethod}.

@@ -422,8 +422,9 @@ In a window defined from bin number m to n, the observed data and prediction can
 
 	\begin{equation}
     t=
-	\begin{cases} \sum_{n=0}^{d} %\frac{b^{n}}{n!} e^{-b}%&\textrm{for $d < b$}
-    %\sum_{n=d}^{\infinity} \frac{b^n}{n!}e^{-b}%&\textrm{for $b \leq d$}.
+    \begin{cases} \sum_{n=0}^{d} \frac{b^{n}}{n!} e^{-b} &  \textrm{for $d < b$}
+    \\
+    \sum_{n=d}^{\infty} \frac{b^n}{n!} e^{-b} &  \textrm{for $b \leq d$}
     \end{cases}
     \end{equation}
 
@@ -431,9 +432,9 @@ In a window defined from bin number m to n, the observed data and prediction can
 
 	\begin{equation}
     t=
-	\begin{cases} 1-\gamma(d+1, b)%& \textrm{for $d < b$}
+    \begin{cases} 1-\gamma(d+1, b) &  \textrm{for $d < b$}
     \\
-    \gamma(d,b)%  & \textrm{for $b \leq d$}.
+    \gamma(d,b) &  \textrm{for $b \leq d$}.
     \end{cases}
     \end{equation}
     
@@ -637,7 +638,7 @@ A proof is given as the following section, and the formulae used for upper limit
 From the definition, true values of parameters will result in a maximum likelihood and therefore the derivative of the ${L}$ will be equal to 0. 
 
 \begin{equation}
-%\frac{\partial{L}}{\partial{\theta_{j}}} %\sum_{i=0}^{N}(\frac{n_{i}}{\nv_{i}}-1) \frac{\partial{\nv_{i}}}{\partial{\theta_{j}}}+ \sum_{i=0}^{N}(\frac{m_{i}}{u_{i}}-1) \frac{\partial{u_{i}}}{\partial{\theta_{j}}} =  0 
+\frac{\partial{L}}{\partial{\theta_{j}}} \sum_{i=0}^{N}(\frac{n_{i}}{\nu_{i}}-1) \frac{\partial{\nu_{i}}}{\partial{\theta_{j}}}+ \sum_{i=0}^{N}(\frac{m_{i}}{u_{i}}-1) \frac{\partial{u_{i}}}{\partial{\theta_{j}}} =  0 
 \end{equation}
 
 Here, n is the number of count in the bin in the signal region variable x, and N is the total number of bins, and m is the number of counts in the bin in the control region may help further constrain the background, M is the maximum number of bins. 
@@ -645,11 +646,11 @@ Here, n is the number of count in the bin in the signal region variable x, and N
 The maximal likelihood value for $n_{i,A}$ and $m_{i,A}$ is associated with their expectation value. 
 
 \begin{equation}
-    %n_{i,A} = E[n_{i}] = \nv_{i} = \mu s_{i}(\theta) + b_{i}(\theta)
+    n_{i,A} = E[n_{i}] = \nu_{i} = \mu s_{i}(\theta) + b_{i}(\theta)
 \end{equation}
 
 \begin{equation}
-    %m_{i,A} = E[m,i] = u_{i}(\theta)
+    m_{i,A} = E[m,i] = u_{i}(\theta)
 \end{equation}
 
 
@@ -706,7 +707,7 @@ Z_{\mu} = \Phi^{-1}(1-p_{\mu})  = \Phi^{-1}(2\Phi(\sqrt{t_{\mu}})-1)
 
 \end{itemize}
 
-From this calculation, the limit calculation in the above~\ref{freq:limits} can be utilized for an limit calculation. 
+From this calculation, the limit calculation in the above~\ref{sec:limits} can be utilized for an limit calculation. 
 
 %\subsection{The Search (discovery test)}
 %A hypothesis is said to be rejected if its p-value is below a certain threshold z value of alpha. This is the basis of the discovery test.
@@ -750,7 +751,7 @@ From the above formulation, it can be shown that the limit can be caculated anal
 In Gaussian Process, a few adaptation is made to the original Asimov frequentist approximation shown in the last section. First the test statistics is swap out:
 
 \begin{equation}
-    -ln(\Lambda), where \Lambda= 2ln(\frac{L_{\textrm{GP signal + bkg fit}}(\mu, \hat{\hat{\theta}})}{L_{\textrm{GP bkg fit}}(\hat{\mu}, \hat{\theta})})
+    -ln(\Lambda) \textrm{, where }\Lambda= 2ln(\frac{L_{\textrm{GP signal + bkg fit}}(\mu, \hat{\hat{\theta}})}{L_{\textrm{GP bkg fit}}(\hat{\mu}, \hat{\theta})})
 \end{equation}
 
 Here, $\ln(\Lambda)$ is the new test statisitics used for the limit setting L is the likelihood defined in Eq.~\ref{eq:loglikelihood}. The nominator is the likelihood with both the background and signal kernel, whereas the denominator is likelihood with just the background kernel. 
