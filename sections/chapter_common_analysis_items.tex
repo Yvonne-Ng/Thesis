@@ -55,8 +55,8 @@ Particle formation from detector hit information in the following sections relie
 
 \section{Muons}
 \label{sec:Muon}
-Muons in ATLAS are formed from both the tracks and primary vertex information described in the above section. Muon reconstruction mainly rely on ID and MS information, while information from the calorimeter is sometimes also used for low PT muons. There are four different muon reconstruction strategies, as different transverse momentum($P_{T}$) ranges and detector hit locations have different effect in the resulting muon signatures. From these four reconstruction strategies, four muon working
-points are derived. The working points summarizes major ways to produce optimal signal muon sensitivity for different analyses~\cite{Aad:2746302}.
+Muons in ATLAS are formed from both the tracks and primary vertex information described in the above section. Muon reconstruction mainly relies on ID and MS information, while information from the calorimeter is sometimes also used for low $P_{T}$ muons. There are four different muon reconstruction strategies, as different transverse momentum($P_{T}$) ranges and detector hit locations have different effect in the resulting muon signatures. From these four reconstruction strategies, four muon working
+points are derived~\cite{Aad:2746302}.
 
 \begin{figure}[!htb]
     \begin{center}
@@ -69,27 +69,27 @@ points are derived. The working points summarizes major ways to produce optimal 
 \end{figure}
 
 \subsection{Muon Reconstruction}
-Reconstruction of muon is generally done in the following way: tracks are found in one part of the detector through pattern finding of hits in the ID/MS chambers. At least two matching segments from different subdetector parts are needed to form a track candidate. From the track candidate formed, global $\chi^{2}$ fits are done to add in other hits and drop outliers. While the main strategy of muon reconstruction is quite similar, different reconstruction strateties are used for muons in
-different $P_{T}$ range and detector location to maximize reconstruction efficiencies. For details, see~\cite{muonReco2016}.
+Reconstruction of muons is performed in the following way: tracks are found in one part of the detector through pattern finding of hits in the ID/MS chambers. At least two matching segments from different subdetector parts are needed to form a track candidate. From the track candidate formed, global $\chi^{2}$ fits are done to add in other hits and drop outliers. While the main strategy of muon reconstruction is quite similar, different reconstruction strategies are used for muons in
+different $P_{T}$ ranges and detector locations to maximize reconstruction efficiencies~\cite{muonReco2016}.
 
 \begin{itemize}
 \item \textbf{Combined muon(CB)}
-    This strategy is optimal for the muons that are detected in both the ID and the MS. It applies for muons found in both the barrel and end-cap region of the detector. Tracks are each constructed from the ID and the MS. A global refit is done to remove outliers to improve the fit quality. This is mostly done by an outside-in approach where the tracks in MS are made to match the ones seen in the ID. Combined muons are also complemented by the inside-out muons: It looks for MS hits that can be associated with ID tracks and recovers muons that don't make it to the MS completely.
+    This strategy is optimal for the muons that are detected in both the ID and the MS. It applies for muons found in both the barrel and end-cap region of the detector. Tracks are each constructed from the ID and the MS. A global refit is done to remove outliers to improve the fit quality. This is first done by an outside-in approach where the tracks in MS are made to match the ones seen in the ID. Combined muons are also complemented by the inside-out muons: It looks for MS hits that can be associated with ID tracks and recovers muons that don't make it to the MS completely.
 
 \item \textbf{Segment-tagged muons(ST)}
-This method is used to identify lower $P_{T}$ muons that couldn't make it to multiple layers of the MS. If a track in the ID can be matched to at least one track segment in the MDT in the barrel or CSC in the end-cap, it will be selected as a segment-tagged muon. 
+This method is used to identify lower $P_{T}$ muons that didn't make it to multiple layers of the MS. If a track in the ID can be matched to at least one track segment in the MDT in the barrel or CSC in the end-cap, it will be selected as a segment-tagged muon. 
 
 \item \textbf{Calorimeter-tagged muon(CT)}
-This reconstruction method is used for even lower $P_{T}$ muons that could not make it to the MS at all. Muons between $15 GeV < P_{T} < 100GeV$ are formed from matching a track in ID with energy deposits in the calorimeter that matches the minimum-ionizing particle. This is optimized for barrel muons of $|\eta <0.1|$. 
+This reconstruction method is used for even lower $P_{T}$ muons that could not make it to the MS at all. Muons between $15 GeV < P_{T} < 100GeV$ are formed from matching a track in ID with energy deposits in the calorimeter that matches the minimum-ionizing particle. This is optimized for barrel muons of $|\eta| <0.1$. 
 
 \item \textbf{Extrapolated muon(ME)}
-    This reconstruction strategy is designed for muons that are very forward and are swamped under noise from pile-up. Muon tracks in the MS chamber with a loose compatibility to the originating IP are ME muons are accepted as ME muons. This strategy extends the acceptance of muons in the forward region from $2.5<|\eta|<2.7$, as there is no ID coverage where they cannot be reconstructed by the above other methods.
+    This reconstruction strategy is designed for muons that are very forward and are swamped under noise from pile-up. Muon tracks in the MS with a loose compatibility to the originating IP are accepted as ME muons. This strategy extends the acceptance of muons in the forward region from $2.5<|\eta|<2.7$, as there is no ID coverage where they cannot be reconstructed by the above other methods.
 \end{itemize}
 
 \subsection{Muon Identification}
-Muon identification is a set of selection criteria done on the candidate muons to cut out background from pions/kaon decays that would form muons that are not of interest to analyses. The identification increases the analysis signal sensitivity. In different analyses, depending on the signal type, different muon identification working points are used.
+Muon identification is a set of selection criteria applied to the candidate muons to cut out background from pion/kaon decays that would form muons that are not of interest to analyses. In different analyses, depending on the signal type, different muon identification working points are used.
 
-A couple of criteria are used for muon identification: $q/p_{significance}$, $\rho'$ and $\chi^{2}_{norm}$. They are defined as below~\cite{muonReco2016}:
+A couple of criteria are used for muon identification: $q/p_{significance}$, $\rho'$ and $\chi^{2}_{norm}$. They are defined as ~\cite{muonReco2016}:
 
 \subsubsection*{Discrimination Criteria}
 \begin{itemize}
@@ -99,7 +99,7 @@ A couple of criteria are used for muon identification: $q/p_{significance}$, $\r
     q/p_{significance} = |(q/p)^{ID} - (q/p)^{MS}|/\sqrt{\sigma^{MS}_{P_{T}} + \sigma^{ID}_{P_{T}}}
     \end{equation}
 
-This is the absolute value of the difference between the charges and the $P_{T}$ measurement divided by the sum of error in the $P_{T}$ measurement of both the ID and MS.
+    This is the absolute value of the difference between the charges and the $P_{T}$ measurement divided by the sum of error in the $P_{T}$ measurement of both the ID and MS. $q$ is the charge, and p is the momentum of the particle.
 
 \item \textbf{$\rho'$}
     \begin{equation}
@@ -148,7 +148,7 @@ The Low-$p_{T}$ working point includes all of the muons in the medium working po
 
 
 \subsection{Muon Isolation}
-After the reconstruction and identification of the muon candidates, a set of muons are formed. The next step is to pick out muon candidates of interest from muon isolation. On ATLAS, the leptons of interest to physics analyses came from the hard primary vertex decay of radially decaying particles. W, Z, Higgs bosons or other BSM particles such as the Z' are examples decays that concern analyzers. Muons formed this way are known as the "prompt muons", they are usually clean and do not have many
+After the reconstruction and identification of the muon candidates, a set of muons are formed. The next step is to pick out muon candidates of interest from muon isolation. In ATLAS, the leptons of interest to physics analyses came from the hard primary vertex decay of radially decaying particles. W, Z, Higgs bosons or other BSM particles such as the Z' are examples decays that concern analyzers. Muons formed this way are known as the "prompt muons", they are usually clean and do not have many
 associated neighboring hits. Less interesting muons came from the semileptonic decay from jet fragmentation, these muons decays are formed with lots of neighboring hits. From this difference, associated neighboring hits can be used as criteria to discriminate muons of interest from the muons not of interest. This step is called muon isolation. Signal sensitivity is cut down in the background and the search. Depending on the muon type, two different variables are used for muon isolation, one is the track-based isolation and other is calorimeter-based isolation.
 
 \subsubsection*{Isolation Parameters}
