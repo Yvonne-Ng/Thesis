@@ -33,7 +33,7 @@ This chapter presents an on-going analysis conducted in ATLAS. The data preparat
 
 \section{The Search Channels}
 In ATLAS, not all collision events are stored due to the limitation in processing bandwidth. Triggering is the processing and storage of selective events, more details are described in Chapter~\ref{chapter:ATLAS}. Triggering requires physical cuts in the event objects, sometimes this introduces features in the data that is not predicted in the physics. An example is the muon $P_{T}$ requirement in triggering produces a trigger turn-on curve seen in the inclusive histogram in Figure~\ref{fig:turnon}.
-Non-physical feature in background can lead to difficulty in background modelling. In view of this, two different search channels and is employed for the analysis for maximal sensitivity. In the 40-75 GeV region, the inclusive dimuon signal as shown in ~\ref{fig:dimuonFeynman} is searched for. In the 10-40 GeV of the analysis, a boosted ISR signal as shown in ~\ref{fig:dimuonISRFeynmann} is used for the analysis. They are the region highlighted in blue in Figure~\ref{fig:turnon}.In the boosted channel, an additional cut of dimuon $P_{T}_{dimuon}>14 GeV$ is applied to both the signal and the background. This cut produces a smooth background and retains a signal efficiency of >90\%. This strategy is effective in producing a background that can be modelled and maximizing sensitivity. 
+Non-physical feature in background can lead to difficulty in background modelling. In view of this, two different search channels are employed for the analysis for maximal sensitivity. In the 40-75 GeV region, the inclusive dimuon signal as shown in ~\ref{fig:dimuonFeynman} is searched for. In the 10-40 GeV of the analysis, a boosted ISR signal as shown in ~\ref{fig:dimuonISRFeynmann} is used for the analysis. They are the region highlighted in blue in Figure~\ref{fig:turnon}.In the boosted channel, an additional cut of dimuon $P_{T}>14 GeV$ is applied to both the signal and the background. This cut produces a smooth background and retains a signal efficiency of >90\%. This strategy is effective in producing a background that can be modelled and maximizing sensitivity. 
 This two channel treatment is based on a pheno-study first done in this paper\cite{2014}. Changes has been made to accomodate the increase in the center-of-mass energy of the analysis. 
 
 \begin{figure}[!htb]
@@ -136,10 +136,10 @@ Assymetric Dimuon & 2015 & $HLT_mu18_mu8noL1$ & MU15 & 24, 10 \\
 The final result of the strategies presented in this chapter are collected from proton-proton collision data during the ATLAS Run 2 period at a center-of-mass energy of $\sqrt{13} TeV$ from 2016-2018. The preliminary strategy of this chapter is generated from ATLAS full simulation Monte Carlo, besides the $Z > \mu \mu $ sample used. Due the process\'s low statistics in the ATLAS full simulation, a full size Z $\rightarrow \mu \mu$ sample is created through a fast Sherpa and PYTHIA8 combination generation at the truth level, where $P_{T}$ smearing is applied for detector effect. Section~\ref{section:superfast} details the superfast event generation.
 
 \subsection{Samples Used for the Analysis}j
-The following are the samples used for the analysis. The largest background contribution in this analysis came from $\Z > \mu\mu $ decay; the second largest contribution originates from $Z > \tau \tau$, other process including the t-channel $t\bar{t}$ , diboson decay as well as top decay also contribute a considerable amount to the background events.
+The following are the samples used for the analysis. The largest background contribution in this analysis came from $Z > \mu\mu $ decay; the second largest contribution originates from $Z > \tau \tau$, other process including the t-channel $t\bar{t}$ , diboson decay as well as top decay also contribute a considerable amount to the background events.
 
-\subsubsection{Superfast $Z > \mu\mu$  Samples}
-\label{section:superfast}
+\subsubsection{Fast Simulation $Z > \mu\mu$  Samples}
+\label{sec:fastsimulation}
 Due to the low statistics in the primary background sample in  $Z \> \mu \mu$, fast generation relying on Pythia8 and a smearing function for the detector effect has been used to emulate the statistical fluctuation of the full dataset. Four different variation of the superfast statistics as been used, each uses a different pdf set for the generator tuning. The Nominal set uses the ATLAS A14 NNPDF2.3LO; the down variation and up variation uses the variation tune parameters Var3C listed here~\ref{ATL-PHYS-PUB-2014-021}; whereas the $\eta$ variation uses ATLAS A15 NNPDF2.3 along with QCD and QED NLO. More details on the fast simulation can be found here~\ref{}.
 
 \begin{table}[!htb]
@@ -165,9 +165,18 @@ $c\bar{c}$         & 363834                                                     
 \end{center}
 \end{table}
 
-In addition to sources in this table, QCD fakes that may contribute to background events are estimated by same-signed dimuon pairs in data that satistfy all other event requirements. The rational is that in data all of the same-signed dimuon would all come from QCD contribution, and that the contribution amount would be equal to the opposite-signed contribution from QCD. Figure~\ref{} shows a background composition plot with the same signed contribution subtracted out. The fake QCD contribution makes up less than 1\% of all the events. After the application of the Fake estimation, the overall agreement between data and MC in controlled regions are within acceptable range, it shows that the MC is ready to be used for statistics strategy studies.
+In addition to sources in this table, QCD fakes that may contribute to background events are estimated by same-signed dimuon pairs in data that satistfy all other event requirements. The rational is that in data all of the same-signed dimuon would all come from QCD contribution, and that the contribution amount would be equal to the opposite-signed contribution from QCD. Figure~\ref{fig:samesigned} shows a background composition plot with the same signed contribution subtracted out. The fake QCD contribution makes up less than 1\% of all the events. After the application of the Fake estimation, the overall agreement between data and MC in controlled regions are within acceptable range, it shows that the MC is ready to be used for statistics strategy studies.
 
-In the analysis, studies was done and it was found that muons of the \textbf{MEDIUM} working point and the \textbf{FixedCutPFlowLoose} isolation working point (Defined in Chapter~\ref{chapter:common_analysis_items}) will provide the maximum signal sensitivity and muon performance. Two muons of at least 4 GeV in tranverse momentum are required for each event. In addition, $|\eta|< 2.5$ is required for both muons. An additional $P_{T}_{dimuon}> 14GeV$ cut is applied to events in the boosted channel.
+\begin{figure}[!htb]
+    \begin{center}
+        \includegraphics[width=0.75\textwidth]{figures/chapter_dimuon/samesigned}
+        \caption{
+        These plots shows the leading muon transverse momentum distribution and the subleading muon transverse momentum distribution with the super fast simulation.  }
+        \label{fig:samesigned}
+    \end{center}
+\end{figure}
+
+In the analysis, studies was done and it was found that muons of the \textbf{MEDIUM} working point and the \textbf{FixedCutPFlowLoose} isolation working point (Defined in Chapter~\ref{chapter:common_analysis_items}) will provide the maximum signal sensitivity and muon performance. Two muons of at least 4 GeV in tranverse momentum are required for each event. In addition, $|\eta|< 2.5$ is required for both muons. An additional $P_{T}> 14GeV$ cut is applied to events in the boosted channel.
 
 \begin{figure}[!htb]
     \begin{center}
@@ -299,6 +308,7 @@ The Gaussian process background and signal kernels used for this particular anal
 \item \textbf{Signal Kernel} \textit{- ``Exponential Center Kernel + White Noise Kernel "}
             \begin{equation}
             K(x_{i}, x_{j})=A_{2}\cdot exp(-(x-m)^{2}/(2\cdot\sigma_{2}^{2}))\cdot exp(-((x'-m)^{2}/(2\cdot\sigma_{2}^{2})))
+            \label{eq:signalkernel}
             \end{equation}
 \end{itemize}
 
@@ -306,7 +316,7 @@ The Gaussian process background and signal kernels used for this particular anal
 
 \subsubsection{Test for the Background Kernel}
 Verification are done to ensure the background MC can be described by the background kernel. The procedure is described as the following: Toy distribution are created from drawing the Poissonian distribution in each bin. 10,000 new toy distributions are formed. Each are fitted with the Gaussian Process background kernel and test statistics defined in Section\ref{} are calculated for each fit. The test statistics of the original fit to the background MC is compared against the test statisitics of
-the toy distribution to calculated the p-value. Results in ~\Figure~\ref{nominalstats} that all three test statistics tested the p-value is above 0.01 and that the kernel captures features in background distribution well. 
+the toy distribution to calculated the p-value. Results in Figure~\ref{nominalstats} that all three test statistics tested the p-value is above 0.01 and that the kernel captures features in background distribution well. 
 
 \begin{figure}[!htb]
     \begin{center}
@@ -319,13 +329,25 @@ the toy distribution to calculated the p-value. Results in ~\Figure~\ref{nominal
 
 
 \subsection{Hyperparameter Optimization}
-The detailed steps to the hyper-parameter optimization can be found in Chapter~\ref{chapter:analysismethod}.
+The detailed steps to the hyper-parameter optimization can be found in Chapter~\ref{chapter:analysismethod} in Section~\ref{sec:hyperparam}.
+The lower bound on the lengthscale of the background kernel and the signal kernel are finalized from the signal injection test result in Section~\ref{sec:signalinjection} and Section~\ref{sec:binnning} respectively. The other hyper-parameter are allow to float and is optimized for each fit performed. 
 
-As the lengthscale in both the background and signal kernel would lead to lost of sensitivity and overfitting of data, they are chosen through the signal injection test described in Section~\ref{sec:signalinjection} and the binning studies in Section~\ref{sec:binning} respectively. The other hyper-parameters are allow to float and are optimized through the scaled conjugate gradient algorithm.  
+In the dimuon analysis, the background kernel fits are performed on different variation of the fast simulation MC to ensure the selected hyper-parameters and lengthscale are flexible enough for the variation possibly present in the final data. Figure~\ref{fig:dimuonmass} shows fitting result in the inclusive region of the MC using the background kernel listed in ~\ref{sec:fastsimulation}. The result shows that the lengthscale lowerbound chosen is flexible enough against changes in the distribution fluctuation. 
 
-Background kernel fits are performed on different variation of the fast simulation MC to ensure the selected hyper-parameters are flexible enough for the variation in shape in MC. Figure~\ref{} shows fitting result in the inclusive region of the MC using the background kernel listed in ~\ref
-{}.
 % Insert pictures
+
+\begin{figure}[!htb]
+    \begin{center}
+        \includegraphics[width=0.75\textwidth]{figures/chapter_dimuon/nominal}        
+        \includegraphics[width=0.75\textwidth]{figures/chapter_dimuon/up}        
+        \includegraphics[width=0.75\textwidth]{figures/chapter_dimuon/down}        
+        \includegraphics[width=0.75\textwidth]{figures/chapter_dimuon/eta}        
+        \caption{
+        These figures illustrates the Gaussian process background kernel fit on the different variation of fast simulation detailed in Section~\ref{sec:fastsimulation}. The fit test statistics as well as the residual in the bottom panel shows that the background kernel is able to capture features in the background variation. 
+        }
+        \label{fig:dimuonmass}
+    \end{center}
+\end{figure}
 
 \subsection{Background and Signal Estimation}
 Studies found that the background estimation from the background kernel alone was not able to separate the background from the signal to a high efficiency, the final background and signal estimation are done through the following separation equations. Figure~\ref{fig:signalseparation} shows an example separation done by the method.
@@ -344,22 +366,26 @@ Studies found that the background estimation from the background kernel alone wa
 
 \end{itemize}
 
-%Insert Figure
+\begin{figure}[!htb]
+    \begin{center}
+        \includegraphics[width=0.75\textwidth]{figures/chapter_dimuon//BackgroundSeparated}        
+        \includegraphics[width=0.75\textwidth]{figures/chapter_dimuon/SignalSeparated}        
+        \caption{
+            These figures illustrates the background and the signal separated from the signal injected background MC. The signal reconstruction yield for this particular signal is up to 94\%.
+        }
+        \label{fig:dimuonmass}
+    \end{center}
+\end{figure}
 
-\subsection{Background Prediction Performance}
+
+\subsection{Background Prediction Performance Studies}
 The Gaussian Process background prediction went through testing suggested in the ATLAS smoothing recommendation document to ensure the smooth background procedure is valid for resonance searches. Two tests, the signal injection test and the spurious signal test are conducted to ensure the background estimation is sensitive to signal above a certain size and the background error is within acceptable range of the estimation. The following subsection shows the results using background prediction on ATLAS background MC.  
 
 \subsubsection{Signal injection test} 
-\textit{-``“Test for smallest signal the background estimation is sensitive to”}
-This section detailed the procedure to the signal injection test: 
 
-Signals of different mass widths are generated from a Gaussian distribution, Poissonian noise is thrown randomly on the distribution to create pseudo signal distribution. The mass widths are chosen to be 1\%, 3\% and 5\% respectively. Signal of different scale with correpsonding error is generated and is injected to the background MC distribution.
+\textit{-``Test for smallest signal the background estimation is sensitive to”}
 
-The background error is defined by the generation of 10,000 bin-by-bin Poissonian toy from the original background MC spectrum, and refitting the toys by Gaussian Process background kernel estimation. A Gaussian fit is performed on the prediction of each bin, the resulting width of the Gaussian fit in each bin is defined to be the 1 $\sigma$ background estimation. 
-
-Starting with the smallest signal size and the smallest width, the bumphunter procedure detailed in section~\ref{} is ran on the signal injected background MC. The signal size injected increases, until the bumphunting procedure finds a window with bumphunter statistic p-value $<$ 0.01 that a bumphunter window exclusion is triggered. The size of the signal injected right before the window exclusion triggering is the ``just below"
-triggering signal size, and the signal size that triggers the window exclusion is known as the ``just above" signal size. The "just below"
-window size is the largerst signal that the background estimation is not sensitive to; and the ``just above" signal size is the smallest signal that the background estimation is sensitive to. When the background kernel lengthscale is chosen to be 4 GeV, the background model is sensitive to signal 3 $\sigma$ or above in background error. 
+This section detailed the procedure to the signal injection test Section~\ref{sec:signalinjection}. Only results are presented here.
 
 It\'s found that a minimum lengthscale of 4 GeV is needed for the background kernel for the background model to be sensitive to signal of 3 $\sigma$ background error size and above in the 45-60 GeV range in the inclusive region. Most of the signal width used passed the test when this lengthscale is chosen. 
 
@@ -367,13 +393,13 @@ It\'s found that a minimum lengthscale of 4 GeV is needed for the background ker
     \begin{center}
         \includegraphics[width=0.75\textwidth]{figures/chapter_dimuon/signalInjection}        
         \caption{
-        This figure illustrate a signal injection test performed at the mass point  }
-            \label{fig:dimuonstudies}
+        This figure illustrate a signal injection test performed at the mass point 55GeV of 3\% mass width. In the first panael, the red line shows the background MC + signal injected divided by the background MC; the green and the red line is the fit ratio of the "just above" triggering background fit against the background MC and the "just below" trigger of the bumphunter fit against the background MC. The grey bands shows the width of the background error. Results shows that the the fit is sensitive to signal $<$ 3 $\sigma$ of the background error in this mass point and width. }
+    \label{fig:dimuonstudies}
     \end{center}
 \end{figure}
 
 \subsubsection{Background Modelling}
-Using the minimal lengthscale chosen for the background and allowing other hyperparameters to float, tests fits are performed on the nominal fit, and also done on the different statistical variation of the background, the 1 $\sigma$ up and 1 $\sigma$ down variation of the fast simulation Pythia, as well as the $\eta$ variation, defined in Section~\ref{}.
+Using the minimal lengthscale chosen for the background and allowing other hyperparameters to float, tests fits are performed on the nominal fit, and also done on the different statistical variation of the background, the 1 $\sigma$ up and 1 $\sigma$ down variation of the fast simulation Pythia, as well as the $\eta$ variation, defined in Section~\ref{sec:fastsimulation}.
 The fitting result shows that lengthscale chosen for Gaussian Process works well for all of these statistical variations. 
 
 \begin{figure}[!htb]
@@ -382,8 +408,9 @@ The fitting result shows that lengthscale chosen for Gaussian Process works well
         \includegraphics[width=0.75\textwidth]{figures/chapter_dimuon/NominalBH}        
         \includegraphics[width=0.75\textwidth]{figures/chapter_dimuon/NominalFit}        
         \caption{
-        These figure illustrates the nominal fit, along with the bumphunter test statistics and the observed value distribution. It is shown that the most discrepant window does not fall below the critical p-value of 0.01. Details on the bumphunting procedure can be found here. }
-            \label{fig:dimuonstudies}
+        These figure illustrates the nominal fit, along with the bumphunter test statistics and the observed value distribution. It is shown that the most discrepant window does not fall below the critical p-value of 0.01. Details on the bumphunting procedure can be found here. 
+        }
+        \label{fig:dimuonstudies}
     \end{center}
 \end{figure}
 
@@ -399,11 +426,10 @@ The fitting result shows that lengthscale chosen for Gaussian Process works well
 \end{figure}
 
 \subsection{Spurious signal test}
-\textit{-``Test for signal extracted from the background estimation alone"}
 
-The spurious signal test is a test that defines the uncertainty relative to signal yield. 
-Using the different variation of background only MC spectrum, a signal plus background fit is performed, the signal extracted is compared against the background error defined in the last section. The spurious signal test is considered passed if the signal extracted versus background error ratio is $<$ 0.5.
-The spurious signal test results on the Gaussian process is shown here:
+The spurious signal test is a test that defines the uncertainty relative to signal yield. Details are presented here in Section~\ref{sec:spurious}.
+The spurious signal test is considered passed if the signal extracted versus background error ratio is $<$ 0.5.
+The spurious signal test results on the Gaussian process is shown in Figure~\ref{fig:spurious}<++>:
 Currently ongoing work on is being done to further reduce the spurious signal.
 
 \begin{figure}[!htb]
@@ -411,54 +437,63 @@ Currently ongoing work on is being done to further reduce the spurious signal.
         \includegraphics[width=0.75\textwidth]{figures/chapter_dimuon/spurious}        
         \caption{
         This figure illustrate a spurious signal test result on the different background variation fits.}
-            \label{fig:dimuonstudies}
+        \label{fig:spurious}
     \end{center}
 \end{figure}
 
 \section{Statistics Testing}
-Details on the statistical test can be found here~\ref{}. During the time where the thesis was written, the data was not unblinded. Monte Carlo studies were done to ensure the procedure is in place. 
+Details on the statistical test can be found here~\ref{section:stats}. During the time where the thesis was written, the data was not unblinded. Monte Carlo studies were done to verfied the procedure. The following statistical tests has been presented in the CERN Statistical Forum.
 
 \section{The Search}
-The search aims to either accept or reject the null hypothesis. Details are listed in this Section~\ref{}.
+
+\textit{``The Rejection/Acceptance of the null hypothesis"}
+
+The search aims to either accept or reject the null hypothesis. Details are listed in this Section~\ref{sec:thesearch}.
 
 An example of the search done with just the background and no signal injected is shown in Figure~\ref{}. The test statistics, including 
 the loglikelihood, the $\chi^{2}$ and the bumphunter test statistics all have p-value below 0.01. No anomaly is found and the null hypothesis is accepted.
     
 \begin{figure}[!htb]
     \begin{center}
-        \includegraphics[width=0.75\textwidth]{figures/chapter_dimuon/signalinjected}
-        \includegraphics[width=0.75\textwidth]{figures/chapter_dimuon/signalinjected2}
+        \includegraphics[width=0.75\textwidth]{figures/chapter_dimuon/nominal_fixed}
+        \includegraphics[width=0.75\textwidth]{figures/chapter_dimuon/bumpHunterStatPlot}
+        \caption{
+        These figures illustrate a statistical test on background only MC, the p-value is observed to be way above the 0.01 cut off for anomaly. In  this case the null hypothesis is accepted.
+        }
+    \label{fig:dimuonstudies}
+    \end{center}
+\end{figure}
+
+An other example of the search done with the background plus signal injected in 50 GeV. The bumphunter test statistics have p-value below 0.01. The null hypothesis is rejected. In this scenario, there could be Beyond-the-Standard-Model signal present in the data.
+
+\begin{figure}[!htb]
+    \begin{center}
+        \includegraphics[width=0.75\textwidth]{figures/chapter_dimuon/SearchBump}
+        \includegraphics[width=0.75\textwidth]{figures/chapter_dimuon/bumpHunterStatPlot_bump}
         \caption{
         These figures illustrate a test done on signal injected at 55 GeV, and the window exclusion that picked out the signal injected in there.}
 %            \label{fig:dimuonstudies}
     \end{center}
 \end{figure}
 
-An other example of the search done with the background plus signal injected in 50 GeV. The bumphunter test statistics have p-value below 0.01. The null hypothesis is rejected. In this scenario, there could be Beyond-the-Standard-Model signal present in the data.
+The results shows that the statistic test of the search is in place for when the data is ready to be unblinded.
 
 \section{Limit Setting}
-The limit setting aims to find the upper limit for the signal strength at 95\% confidence level. In the dimuon analysis, the limit setting procedure is done through the Asimov approximation of the frequentist limits described in Chapter~\ref{}.
 
-Preliminary limit setting based on Gaussian Process is still currently under test. Currently, the Asimov limit based on fit function is sets a preliminary limit on the background MC as shown in Figure~\ref{}, the Gaussian Process based limit is on its way to be fully implemented. 
+\textit{Finding signal strength value where the alternative hypothesis is rejected to a 95\% confidence level}
 
-\begin{figure}[!htb]
-   \begin{center}
-       \includegraphics[width=0.75\textwidth]{figures/chapter_dimuon/limits}       
-       \caption{
-       This figure illustrate a spurious signal test result on the different background variation fits.
-       }
-    \label{fig:dimuonstudies}
-   \end{center}
-\end{figure}
+The limit setting aims to find the upper limit for the signal strength at 95\% confidence level. In the dimuon analysis, the limit setting procedure is done through the Asimov approximation of the frequentist limits described in ~\ref{sec:limits}.
 
-In alternative fit function limits calculated by approximation based on the fit function method is shown here, it is expected that the analysis will have comparible sensitivity to LHCb. 
+Preliminary limit setting based on Gaussian Process is still currently under test. Currently, the Asimov limit based on fit function is sets a preliminary limit on the background MC as shown in Figure~\ref{fig:limits}, the Gaussian Process based limit is on its way to be fully implemented. 
+
+In alternative fit function limits calculated by approximation based on the fit function method is shown here.
 
 \begin{figure}[!htb]
    \begin{center}
        \includegraphics[width=0.75\textwidth]{figures/chapter_dimuon/limits}
        \caption{
        This figure illustrate a spurious signal test result on the different background variation fits.}
-            \label{fig:dimuonstudies}
+        \label{fig:limits}
    \end{center}
 \end{figure}
 

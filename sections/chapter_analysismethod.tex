@@ -233,6 +233,9 @@ The kernels are given as the following:
     \end{itemize}
             Here, $A_{2}$ is the amplitude of the signal kernel, m is the value where the kernel peaked on, and $\sigma_{2}$ is the lengthscale of the signal kernel. 
     \subsubsection{Gaussian Process: Hyperparameter Optimization}
+    \label{sec:hyperparam}
+    The lengthscale($\sigma$) hyperparameter in both kernels(See Eq.~\ref{eq:backgroundkernel} and Eq.~\ref{eq:signalkernel}) is prone to overfitting when the chosen value is too small. This would lead to reduced signal sensitivity and the overfitting of statistical fluctuation. A lowerbound is set in these hyperparameters: The lower bound in the the background kernel lengthscale is determined by the signal injection test described in Section~\ref{}; the lower bound in the signal kernel lengthscale is chosen through the binning studies in Section~\ref{sec:binning} respectively. The other hyper-parameters are allow to float and are optimized through the scaled conjugate gradient algorithm.
+
     The kernels hyperparameter are optimized by minimizing the negative log marginal likelihood of the Gaussian Process:
 
     \begin{equation}
@@ -249,16 +252,30 @@ In Gaussian Process, the background fitting's validity is tested by different me
 
 \subsection{Signal Injection Test}
     \label{sec:signalInjection}
-    An increasing number of parameters in a fit or number of windows in SWiFT provide more flexibility in modelling the background accurately. However, the increased flexibility in background modelling often comes with the price of decreased signal sensitivity: the flexible background fits the signal away as part of the background. The signal injection test is a test that quantify the amount of signal sensitivity in the chosen background modelling. On ATLAS, it is required that the background modelling provide sensitivity to signals of at least 3 $\sigma$ of the background error, defined by the width of the Gaussian envelop on the fits done on the pseudo-experiments. In additional to quantifying signal sensitivity, in Gaussian process and the SWiFT background estimation, the signal injection test is used to constrain the lower bound of the lengthscale and SWiFT window, finding the hyperparameter or parameter that would return a background that provides the signal sensitivity. 
+    Increasing the number of parameters in a fit function, using smaller windows size in SWiFT, or using a background kernel lengthscale in Gaussian Process all increases flexibility in modelling the background. However, the increased flexibility in background modelling often comes with the price of decreased signal sensitivity. An overly flexible background estimation would fit the signal away as part of the background. 
+    Therefore a test to quantify the signal sensitivity capability of the background estimation is necessary. The test is called the signal injection test. On ATLAS, it is required that the background modelling provide sensitivity to signals of at least 3 $\sigma$ of the background error, defined by the width of the Gaussian envelop on the fits done on the pseudo-experiments. When a background estimation method passes such requirement, it has passed the signal injection test.
 
-    The procedure in this thesis uses bumphunting~\cite{choudalakis2011hypothesis} with each background fit.
+    In additional to quantifying signal sensitivity, in Gaussian process and the SWiFT background estimation, the signal injection test is used to constrain the lower bound of the lengthscale and SWiFT window size.
+    The parameter are restricted by to a lower bound that would return a background estimation that provides sensitivity to signals of at least 3 $\sigma$ in size.
+
+    The procedure in this thesis uses bumphunting with each background fit.
+
+    Signals of different mass widths are generated from a Gaussian distribution, Poissonian noise is thrown randomly on the distribution to create pseudo signal distribution. The mass widths are chosen to be 1\%, 3\% and 5\% respectively. Signal of different scale with correpsonding error is generated and is injected to the background MC distribution.
+
+    The background error is defined by the generation of 10,000 bin-by-bin Poissonian toy from the original background MC spectrum, and refitting the toys by Gaussian Process background kernel estimation. A Gaussian fit is performed on the prediction of each bin, the resulting width of the Gaussian fit in each bin is defined to be the 1 $\sigma$ background estimation. 
+
    For each chosen maximum lengthscale/SWiFT window, and different signal widths, the below is performed:
 
-   1. First a background fit is performed on the bacground MC, the bump-hunting is performed as described in the above section. If the overall bumphunter p-value is below the critical value for window exclusion, the next step is performed. Otherwise, another background fit is looked for.
+   1. First a background fit is performed on the bacground MC, the bump-hunting~\cite{choudalakis2011hypothesis} procedure is performed as described in the above section. If the overall bumphunter p-value is below the critical value for window exclusion, the next step is performed. Otherwise, the background fit strategy has to be reviewed. A different fit function or Gaussian Process kernel is needed.
 
    2. A small signal is injected in the background MC, a fit is reperformed, and the bumphunter window and overall p-value is calculated again. 
 
    3. An increasing signal size is injected into the spectrum, step2 is repeated, until a signal of size large enough to lead to a small enough p-value where window exclusion in the bumphunting procedure gets triggered. The signal size injected just before the window exclusion is the largest signal the search is not sensitive to. The minimal signal size injected that triggers the window exclusion is the smallest signal size that the search is sensitive to. 
+
+%Starting with the smallest signal size and the smallest width, the bumphunter procedure detailed in section~\ref{} is ran on the signal injected background MC. The signal size injected increases, until the bumphunting procedure finds a window with bumphunter statistic p-value $<$ 0.01 that a bumphunter window exclusion is triggered. The size of the signal injected right before the window exclusion triggering is the ``just below"
+%triggering signal size, and the signal size that triggers the window exclusion is known as the ``just above" signal size. The "just below"
+%window size is the largerst signal that the background estimation is not sensitive to; and the ``just above" signal size is the smallest signal that the background estimation is sensitive to. When the background kernel lengthscale is chosen to be 4 GeV, the background model is sensitive to signal 3 $\sigma$ or above in background error. 
+%
 
 \begin{figure}[!htb]
     \begin{center}
@@ -271,7 +288,7 @@ In Gaussian Process, the background fitting's validity is tested by different me
 \end{figure}
 \FloatBarrier
    
-   The background fit, or parametrically, the SWiFT window size/Gaussian process lengthscale, is said to have passed the test if the largest signal the search is not sensitive to is within 3 $\sigma$ of the background error bands. 
+   %The background fit, or parametrically, the SWiFT window size/Gaussian process lengthscale, is said to have passed the test if the largest signal the search is not sensitive to is within 3 $\sigma$ of the background error bands. 
 
    The smallest lengthscale value/SWiFT window size where the largest signal the search is not sensitive to stays in the error bands is the minimal SWiFT window/Gaussian Process fit value that can be used during unblinding. 
 
@@ -287,20 +304,28 @@ In Gaussian Process, the background fitting's validity is tested by different me
 \FloatBarrier
 
     \subsection{Spurious Signal Test} 
-    \label{spurious}
+
+    \label{sec:spurious}
+
+    \textit{-``Test for signal extracted from the background estimation alone"}
     To measure the amount of possible false signal that is captured by the background modelling method, the spurious signal test is done. The spurious signal test models the amount of signal that the background plus signal fit when no signal is present.  It's a statistically quantify the stability of the background estimation. It is also sometimes used as a measure of the background fit error.
 
-    A thousand independent background plus signal fit is performed on pseudo-experiments generated from the background MC. The spurious signal is defined as the following:
+The spurious signal test is a test that defines the uncertainty relative to signal yield. Using the different variation of background only MC spectrum, a signal plus background fit is performed, the signal extracted is compared against the background error defined in the last section. The spurious signal test is considered passed if the signal extracted versus background error ratio is $<$ 0.5.
+
+    The spurious signal is defined as the following:
     
     \begin{equation}
         S_{spur} = S_{fit} - S_{template}
     \end{equation}
 
     Here $S_{fit}$ comes from the signal fit component of the background + signal fit, $S_{template}$ changes with the kind of analysis being performed. It is set to be 0 for a search. 
-    The median of the 1000 pseudo experiment fit is taken to be the spurious signal value. 
-    In the figure below, a sample spurious signal fit is shown~\ref{spurioussignal}.
-    In general, the spurious signal has to stay within 50\% of the background error bands, defined as the error bands generated from the fitting of 10000 background MC pseudo experiment from the Poisson distribution with the background fit only.
-    If the background fit stays within the 50\% requirement, it passes the spurious signal test, otherwise, it doesn't. 
+
+    
+    \label{sec:spurious}
+    %The median of the 10000 pseudo experiment fit is taken to be the spurious signal value. 
+    %In the figure below, a sample spurious signal fit is shown~\ref{spurioussignal}.
+    %In general, the spurious signal has to stay within 50\% of the background error bands, defined as the error bands generated from the fitting of 10000 background MC pseudo experiment from the Poisson distribution with the background fit only.
+    %If the background fit stays within the 50\% requirement, it passes the spurious signal test.
 
 \begin{figure}[!htb]
     \begin{center}
@@ -356,19 +381,16 @@ There are two distinct statistics test that are done in a typical resonance sear
 %\end{itemize}
 
 \subsection{The Search}
+\label{sec:thesearch}
 
+\textit{``The Rejection/Acceptance of the null hypothesis"}
 
-\textit{Rejection of the null hypothesis}
-The statistical search test for excesses is called the search. This test is done on the null hypothesis, where it's defined to be the Standard Model prediction. If the given data return a value, as calculated from ~\ref{eq:significance} Z \> 5, the null hypothsis is rejected, something beyond the Standard Model is observed in the data to a statistically significant degree. The rejection test is also called the discovery test. For example, in the Higgs boson analysis of 2012, a significance of Z\> 5 was observed in the search. However, note that the rejection of the null hypothesis is a necessary condition but not a sufficient condition for discovery.
+The statistical search test for excesses is called the search. This test is done on the null hypothesis, where it's defined to be the Standard Model prediction. If the given data return a value, as calculated from ~\ref{eq:significance} Z $>$ 5, the null hypothsis is rejected, something beyond the Standard Model is observed in the data to a statistically significant degree. The rejection test is also called the discovery test. For example, in the Higgs boson analysis of 2012, a significance of Z
+$>$ 5 was observed in the search. However, note that the rejection of the null hypothesis is a necessary condition but not a sufficient condition for discovery.
 
 The search is done by in a frequentist manner through the Bumphunter method~\cite{choudalakis2011hypothesis} for both the dimuon and dijetISR analysis. This section will first go over the statistics principle behind resonance finding, then on the defined bumphunter test statistics, lastly on the bumphunting procedure. 
 
-
-
-
-
 \subsubsection{The Search: The Statistics Principles}
-
 The statistics of the Standard Model prediction given the observed measurenment in each bin can be described by a probability distribution. As each count is considered an independent event in a fixed data taking period and physical variable value. It's probability is given by the Poissonian probability distribution:
 
 \begin{equation}
@@ -473,6 +495,7 @@ In a window defined from bin number m to n, the observed data and prediction can
     3. In all other sceanrios, more tests needs to be done. The background model fit could be problematic and need further testing.  
 
 \section{The Limit Setting}
+\label{sec:limits}
 
 \textit{Finding signal strength value where the alternative hypothesis is rejected to a 95\% confidence level}
 
