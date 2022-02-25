@@ -1,18 +1,66 @@
-%\usepackage[subcaption]{\ATLASLATEXPATH atlaspackage}
-%\usepackage{\ATLASLATEXPATH atlasphysics}
-
 \chapter{Search for Resonances in the Resolved Dijet Final State with an Initial State Radiation}
 \label{chapter:dijetISR}
 
 This chapter is heavily based on work previously published~\ref{dijetISR2019}in collaboration with the ATLAS collaboration. 
+
 \section{Introduction}
-%% \label{sec:intro}
-%-------------------------------------------------------------------------------
+
+%\newcommand{\pT}{\ensuremath{p_{\text{T}}}\xspace}
+\newcommand{\pt}{\ensuremath{p_{\text{T}}}\xspace}
+\newcommand{\MGMCatNLOV}[1]{\textsc{MadGraph5}\_aMC@NLO~#1\xspace}
+\newcommand{\PYTHIA}{\textsc{Pythia}\xspace}
+
+%\newcommand{\pt}{\ensuremath(P_{T})}
+\newcommand{\ifb}{\ensuremath(ifb)}
+\newcommand{\ptmin}{\ensuremath{\pt^{\textrm{min}}}\xspace}
+\newcommand{\nphoton}{\ensuremath{n_{\gamma}}\xspace}
+\newcommand{\photonPt}{\ensuremath{E_{\textrm{T}}^{\gamma}}\xspace}
+\newcommand{\jetPt}{\ensuremath{p_{\textrm{T}}^{\textrm{jet}}}\xspace}
+\newcommand{\ntag}{\ensuremath{n_{\textrm{$b$-tag}}}\xspace}
+\newcommand{\mjj}{\ensuremath{m_{\textrm{jj}}}\xspace}
+\newcommand{\yStar}{\ensuremath{y^{\ast}}\xspace}
+\newcommand{\jetEta}{\ensuremath{\eta^{\textrm{jet}}}\xspace}
+
+\newcommand{\photonPtTrig}{\ensuremath{E_{\textrm{T, trig}}^{\gamma}}\xspace}
+\newcommand{\photonEta}{\ensuremath{\eta^{\gamma}}\xspace}
+\newcommand{\photonY}{\ensuremath{y^{\gamma}}\xspace}
+\newcommand{\photonPhi}{\ensuremath{\phi^{\gamma}}\xspace}
+\newcommand{\jetEt}{\ensuremath{E_{\textrm{T}}^{\textrm{jet}}}\xspace}
+
+\newcommand{\jetY}[1]{\ensuremath{y_{#1}^{\textrm{jet}}}\xspace}
+\newcommand{\jetPhi}{\ensuremath{\phi^{\textrm{jet}}}\xspace}
+\newcommand{\njet}{\ensuremath{n_{\textrm{jets}}}\xspace}
+\newcommand{\gq}{\ensuremath{g_{\textrm{q}}}\xspace}
+\newcommand{\Zprime}{\ensuremath{Z^{\prime}}\xspace}
+\newcommand{\lumiRange}{\ensuremath{76.6\textrm{--}79.8\,\ifb}\xspace}
+\newcommand{\btagged}{\ensuremath{b}-\textrm{tagged}}
+\newcommand{\btagging}{\ensuremath{b}-\textrm{tagging}}
+\newcommand{\BumpHunter}{BumpHunter\xspace}
+
+\newcommand{\MassRangeSingle}{\textcolor{red}{$169\,\GeV$\textrm{--}$300\,\GeV$}\xspace}
+\newcommand{\MassRangeCompound}{\textcolor{red}{$300\,\GeV$\textrm{--}$X\,\GeV$}\xspace}
+\newcommand{\ApproxMassRangeGamma}{\ensuremath{225~\GeV}\textrm{--}\ensuremath{1.1~\TeV}}
+\newcommand{\FitStartGamma}{169~\GeV}
+\newcommand{\FitStartJet}{303~\GeV}
+%\newcommand{\LikHpvalGamma}{XXX\xspace} %not found in COM
+\newcommand{\ChipvalGamma}{0.58\xspace}
+\newcommand{\BHintervalGamma}{861~\GeV\textrm{--}917~\GeV}%consistent with figure 38 text in COM is obsolete
+\newcommand{\BHpvalGamma}{0.67\xspace}%consistent with figure 38 text in COM is obsolete
+%\newcommand{\LikHpvalJet}{XXX\xspace} % not found in COM
+\newcommand{\ChipvalJet}{0.90\xspace} 
+\newcommand{\BHintervalJet}{482~\GeV\textrm{--}523~\GeV}
+\newcommand{\BHpvalJet}{0.6\xspace}
+
+\newcommand{\SignalAcceptanceForMassPointGamma}{22}
+\newcommand{\SignalAcceptanceForMassPointJet}{13} 
+
+\newcommand{\cutcomment}{In the single-photon case all jets pass the leading and subleading jet requirements, since only jets above $25\,\GeV$ are considered eligible for the analysis}
 
 \let\oldTeV\TeV
 \let\oldGeV\GeV
 \renewcommand{\TeV}{\oldTeV\xspace}
 \renewcommand{\GeV}{\oldGeV\xspace}
+
 
 % \newcommand{\ZprimeLimitStatement}{for masses $m_{\Zprime}$ of 250~\GeV and $\approx$400--550~\GeV, for couplings values of $\gq\sim 0.3$ and larger}
 %\newcommand{\PhotonGaussianLimitStatement}{from approximately 340~fb at a mean mass of 250~\GeV to approximately 6~fb at 1.2~\TeV}
@@ -56,25 +104,24 @@ This search probes masses above $225\,\GeV$, obtaining results complementary to 
 %% A complementary search, recording only partial event data in order to efficiently trigger on dijet events without requiring an ISR object, has been performed also focusing on light resonances with dijet masses of 425~\GeV--1.05~\TeV~in ATLAS~\cite{tla} and with dijet masses of 450~\GeV--1.6~\TeV~in CMS~\cite{Khachatryan:2016ecr}. Another recent complementary search for resonances with masses of 600~\GeV and above decaying to heavy-flavour jets is described in Ref.~\cite{lowMassDiB}.
 
 %-------------------------------------------------------------------------------
-\section{ATLAS detector}
-%% \label{sec:detector}
-%-------------------------------------------------------------------------------
-\newcommand{\AtlasCoordFootnote}{%
-ATLAS uses a right-handed coordinate system with its origin at the nominal interaction point (IP) in the centre of the detector and the $z$-axis along the beam pipe.
-The $x$-axis points from the IP to the centre of the LHC ring, and the $y$-axis points upwards.
-Cylindrical coordinates $(r,\phi)$ are used in the transverse plane, with $\phi$ being the azimuthal angle around the $z$-axis.
-The pseudorapidity is defined in terms of the polar angle $\theta$ as $\eta = -\ln \tan(\theta/2)$.
-It is equivalent to the rapidity for massless particles. 
-Transverse momentum and energy are defined as $\pt\equiv p \sin{\theta}$ and $\ET\equiv E \sin{\theta}$, respectively.
-Angular distance is measured in units of $\Delta R \equiv \sqrt{(\Delta\eta)^{2} + (\Delta\phi)^{2}}$.}
-
-The ATLAS experiment~\cite{PERF-2007-01,Capeans:1291633,CERN-LHCC-2012-009,Abbott:2018ikt} at the LHC is a multipurpose particle detector with a forward--backward symmetric cylindrical geometry\footnote{\AtlasCoordFootnote\xspace} with layers of tracking, calorimeter, and muon detectors over nearly the entire solid angle around the $pp$ collision point.
-The directions and energies of high transverse momentum particles are measured using tracking detectors, finely segmented hadronic and electromagnetic calorimeters, and a muon spectrometer, within axial and toroidal magnetic fields.
-The inner tracker consists of silicon pixel, silicon microstrip, and transition radiation tracking detectors, and reconstructs charged-particle tracks in $|\eta| < 2.5$.
-Lead/liquid-argon (LAr) sampling calorimeters provide electromagnetic (EM) energy measurements with high granularity.
-A steel/scintillator-tile hadronic calorimeter covers the central pseudorapidity range ($|\eta| < 1.7$).
-The endcap and forward regions are instrumented with LAr calorimeters for EM and hadronic energy measurements up to $|\eta| = 4.9$.
-The trigger system~\cite{TRIG-2016-01} consists of a first-level trigger implemented in hardware, using a subset of the detector information to reduce the accepted rate to 100 kHz, followed by a software-based trigger that reduces the rate of recorded events to about 1 kHz.
+%\section{ATLAS detector}
+%%% \label{sec:detector}
+%%-------------------------------------------------------------------------------
+%\newcommand{\AtlasCoordFootnote}{ATLAS uses a right-handed coordinate system with its origin at the nominal interaction point (IP) in the centre of the detector and the $z$-axis along the beam pipe.
+%The $x$-axis points from the IP to the centre of the LHC ring, and the $y$-axis points upwards.
+%Cylindrical coordinates $(r,\phi)$ are used in the transverse plane, with $\phi$ being the azimuthal angle around the $z$-axis.
+%The pseudorapidity is defined in terms of the polar angle $\theta$ as $\eta = -\ln \tan(\theta/2)$.
+%It is equivalent to the rapidity for massless particles. 
+%Transverse momentum and energy are defined as $\pt\equiv p \sin{\theta}$ and $\ET\equiv E \sin{\theta}$, respectively.
+%Angular distance is measured in units of $\Delta R \equiv \sqrt{(\Delta\eta)^{2} + (\Delta\phi)^{2}}$.}
+%
+%The ATLAS experiment~\cite{PERF-2007-01,Capeans:1291633,CERN-LHCC-2012-009,Abbott:2018ikt} at the LHC is a multipurpose particle detector with a forward--backward symmetric cylindrical geometry\footnote{\AtlasCoordFootnote\xspace} with layers of tracking, calorimeter, and muon detectors over nearly the entire solid angle around the $pp$ collision point.
+%The directions and energies of high transverse momentum particles are measured using tracking detectors, finely segmented hadronic and electromagnetic calorimeters, and a muon spectrometer, within axial and toroidal magnetic fields.
+%The inner tracker consists of silicon pixel, silicon microstrip, and transition radiation tracking detectors, and reconstructs charged-particle tracks in $|\eta| < 2.5$.
+%Lead/liquid-argon (LAr) sampling calorimeters provide electromagnetic (EM) energy measurements with high granularity.
+%A steel/scintillator-tile hadronic calorimeter covers the central pseudorapidity range ($|\eta| < 1.7$).
+%The endcap and forward regions are instrumented with LAr calorimeters for EM and hadronic energy measurements up to $|\eta| = 4.9$.
+%The trigger system~\cite{TRIG-2016-01} consists of a first-level trigger implemented in hardware, using a subset of the detector information to reduce the accepted rate to 100 kHz, followed by a software-based trigger that reduces the rate of recorded events to about 1 kHz.
 
 %-------------------------------------------------------------------------------
 \section{Data samples and event selection}
