@@ -13,7 +13,6 @@
 \section{Introduction}
 All three analyses presented in this thesis fall into the resonance search category, which are analyses that look for bumps like excesses on top of smooth backgrounds. The method is simple in its experimental signature~\ref{fig:bump} and theoretical calculation. Many particles have been discovered that way before, which include the W~\cite{Arnison:142059}, Z, and the Higgs boson. It is therefore believed that the method has great potential in making new future discoveries. This chapter describes the analysis methods used in performing the analyses covered in chapter~\ref{chapter:dijet} and ~\ref{chapter:dimuon}. 
 
-
 These analyses perform searches in the resonance mass variable, which numerically is the addition of the 4-vector of the two candidate final state particles, and reconstruct a resonance candidate. 
 
 \begin{figure}[!htb]
@@ -52,7 +51,7 @@ To prepare a mass spectrum, the data must be properly binned. The bins have to b
 
 The binning is done through the mass spectrum resolution finding of the target spectrum. The mass resolution is found through a width-to-mean($\frac{\mu}{sigma}$) Gaussian fit on the $m^{reco}/m^{truth}$ on the four-vector addition of the two candidate final state particles. The truth particles came from Pythia generation whereas the reconstructed value came from the GEANT4 detector reconstruction. A Gaussian fit is performed to find the mean ($\mu$) and the width($\sigma$).
 
-A uniform binning is chosen for the dimuon analysis, as it would make the background estimation more simplified. For the dijet analysis, to cope with the low statistics in the high mass region, variable bin size based on detector resolution is used. 
+%A uniform binning is chosen for the dimuon analysis, as it would make the background estimation more simplified. For the dijetISR analysis, to cope with the low statistics in the high mass region, variable bin size based on detector resolution is used. 
 
 \section{Background Modeling}
 \label{sec:backgroundest}
@@ -146,6 +145,7 @@ From the above foundation, a list of historic fit functions has been developed o
 \FloatBarrier
     
     \subsection{Gaussian Process} 
+    \label{sec:GP}
 
     Gaussian process background prediction is done through Bayesian inference. Unlike the above fit function based method, Gaussian Process predicts a \textit{class of functions} with its \textit{kernels} for added flexibility. The input prior distribution and output posterior distribution are both a collection of random variables that can be described by Gaussian distributions. The distributions are a joint-distribution where their correlation can be described by a covariance matrix or a kernel function. 
 
@@ -201,52 +201,56 @@ From the above foundation, a list of historic fit functions has been developed o
 \label{sec:kernel}
 The covariance function/kernel describes how the joint distribution is related to each other in the Gaussian process. 
 It's possible to embed different information regarding the physics of the spectrum into the kernel. 
-In the dimuon analysis, it's found that the simple radial basis function and a white noise kernel are sufficient to describe the background spectrum, the signal is described by another radial basis function kernel of a particular mean value.
-The kernels are given as the following: 
+Different kernels are used for different analysis background with different features. 
 
-    \begin{itemize}
-        \item \textbf{Background Kernel}
-
-            The background kernel is the addition of the Radial Basis kernel function plus the white noise kernel.
-            \begin{equation}
-                K_{bkg}(x, x') = A_{1} * exp(-\frac{||x-x'||}{2\sigma^{2}}) *+ K_{noise}
-            \end{equation}
-            Here, $A_{1}$ is the amplitude hyperparameter that describes the size of the kernel, $\sigma_{1}$ is the lengthscale parameter.
-            The noise kernel is a constant diagonal kernel:
-            
-
-			\begin{equation}
-            K_{noise}(x_{i}, x_{j}) =
-			\begin{cases} \text{noise level} & \text{if $x_{i}==x_{j}$,} \\
-			\\
-            0 & \text{otherwise.}
-			\end{cases}
-			\end{equation}
-
-        \item \textbf{Signal Kernel}
-
-            The signal kernel is a square centered exponetial kernel
-            \begin{equation}
-            K(x_{i}, x_{j})=A_{2}\cdot exp(-(x-m)^{2}/(2\cdot\sigma_{2}^{2}))\cdot exp(-((x'-m)^{2}/(2\cdot\sigma_{2}^{2}))) + K_{noise}
-            \end{equation}
-
-    \end{itemize}
-            Here, $A_{2}$ is the amplitude of the signal kernel, m is the value where the kernel peaked on, and $\sigma_{2}$ is the lengthscale of the signal kernel. 
-    \subsubsection{Gaussian Process: Hyperparameter Optimization}
-    \label{sec:hyperparam}
-    The lengthscale($\sigma$) hyperparameter in both kernels(See Eq.~\ref{eq:backgroundkernel} and Eq.~\ref{eq:signalkernel}) is prone to overfitting when the chosen value is too small. This would lead to reduced signal sensitivity and the overfitting of statistical fluctuation. A lowerbound is set in these hyperparameters: The lower bound in the the background kernel lengthscale is determined by the signal injection test described in Section~\ref{}; the lower bound in the signal kernel lengthscale is chosen through the binning studies in Section~\ref{sec:binning} respectively. The other hyper-parameters are allow to float and are optimized through the scaled conjugate gradient algorithm.
-
-    The kernels hyperparameter are optimized by minimizing the negative log marginal likelihood of the Gaussian Process:
-
-    \begin{equation}
-        -ln(L) = -\frac{1}{2} ln |\sum| - (y-\mu(x) ) - \frac{n}{2}ln(2\pi)
-    \label{eq:loglikelihood}
-    \end{equation}
-    
-    In the dimuon analysis, the minimization is done through initialization of hyperparameter from first a grid search and then scalar conjugate gradient search, the different results are compared with each other for the optimized hyperparameter set.
-
-    In this Gaussian process testing procedure, the hyperparameters are first found on a test fit on the MC/data, a minimum bound on the lengthscale hyperparameter is first found through a fit on different variations of the MC generated and the signal injected test.
-
+%t's found that the simple radial basis function and a white noise kernel are sufficient to describe the background spectrum, the signal is described by another radial basis function kernel of a particular mean value.
+%The kernels are given as the following: 
+%
+%    \begin{itemize}
+%        \item \textbf{Background Kernel}
+%
+%            The background kernel is the addition of the Radial Basis kernel function plus the white noise kernel.
+%            \begin{equation}
+%                K_{bkg}(x, x') = A_{1} * exp(-\frac{||x-x'||}{2\sigma^{2}}) *+ K_{noise}
+%                \label{eq:backgroundkernel}
+%            \end{equation}
+%            Here, $A_{1}$ is the amplitude hyperparameter that describes the size of the kernel, $\sigma_{1}$ is the lengthscale parameter.
+%            The noise kernel is a constant diagonal kernel:
+%            
+%
+%			\begin{equation}
+%            K_{noise}(x_{i}, x_{j}) =
+%			\begin{cases} \text{noise level} & \text{if $x_{i}==x_{j}$,} \\
+%			\\
+%            0 & \text{otherwise.}
+%			\end{cases}
+%			\end{equation}
+%
+%        \item \textbf{Signal Kernel}
+%
+%            The signal kernel is a square centered exponetial kernel
+%            \begin{equation}
+%            K(x_{i}, x_{j})=A_{2}\cdot exp(-(x-m)^{2}/(2\cdot\sigma_{2}^{2}))\cdot exp(-((x'-m)^{2}/(2\cdot\sigma_{2}^{2}))) + K_{noise}
+%            \label{eq:signalkernel}
+%            \end{equation}
+%
+%    \end{itemize}
+%            Here, $A_{2}$ is the amplitude of the signal kernel, m is the value where the kernel peaked on, and $\sigma_{2}$ is the lengthscale of the signal kernel. 
+%    \subsubsection{Gaussian Process: Hyperparameter Optimization}
+%    \label{sec:hyperparam}
+%    The lengthscale($\sigma$) hyperparameter in both kernels(See Eq.~\ref{eq:backgroundkernel} and Eq.~\ref{eq:signalkernel}) is prone to overfitting when the chosen value is too small. This would lead to reduced signal sensitivity and the overfitting of statistical fluctuation. A lowerbound is set in these hyperparameters: The lower bound in the the background kernel lengthscale is determined by the signal injection test described in Section~\ref{}; the lower bound in the signal kernel lengthscale is chosen through the binning studies in Section~\ref{sec:binning} respectively. The other hyper-parameters are allow to float and are optimized through the scaled conjugate gradient algorithm.
+%
+%    The kernels hyperparameter are optimized by minimizing the negative log marginal likelihood of the Gaussian Process:
+%
+%    \begin{equation}
+%        -ln(L) = -\frac{1}{2} ln |\sum| - (y-\mu(x) ) - \frac{n}{2}ln(2\pi)
+%    \label{eq:loglikelihood}
+%    \end{equation}
+%    
+%    In the dimuon analysis, the minimization is done through initialization of hyperparameter from first a grid search and then scalar conjugate gradient search, the different results are compared with each other for the optimized hyperparameter set.
+%
+%    In this Gaussian process testing procedure, the hyperparameters are first found on a test fit on the MC/data, a minimum bound on the lengthscale hyperparameter is first found through a fit on different variations of the MC generated and the signal injected test.
+%
 \subsubsection{Gaussian Process: Background Fitting}
 In Gaussian Process, the background fitting's validity is tested by different methods. First, the signal injection test 
 
