@@ -1,5 +1,5 @@
 \chapter{The Standard Analysis Method for Resonance Finding}
-\label{StandardAnalysisMethod}
+\label{chapter:analysismethod}
 
 \epigraph{\textit{But the truth can be re-found; most often it has already been written elsewhere.}}{--Jacques Lacan, Ecrits}
 
@@ -39,7 +39,7 @@ The detector effect is simulated by GEANT4~\cite{Agostinelli:602040}. The shower
 
 \section{Data Preparation}
 \label{sec:dataprep}
-The data of the analyses discussed in this chapter came from LHC proton-proton collision data, collected from the ATLAS detector and its triggering hardware and software discussed in chapter~\cite{chapter:ATLAS}. The data collected as energy deposit and tracks are analyzed and collected analysis objects as discussed in~\cite{chapter:common_analysis_objects}. After that, the dataset goes through several more steps in data preparation before getting analyzed for resonance finding in the chapter: the following is a short outline of how data are being prepared for the analyses.
+The data of the analyses discussed in this chapter came from LHC proton-proton collision data, collected from the ATLAS detector and its triggering hardware and software discussed in chapter~\cite{chapter:ATLAS}. The data collected as energy deposit and tracks are analyzed and collected analysis objects as discussed in~\cite{chapter:common_analysis_items}. After that, the dataset goes through several more steps in data preparation before getting analyzed for resonance finding in the chapter: the following is a short outline of how data are being prepared for the analyses.
 
 First trigger chains that contain target events are studied to maximize the size of the dataset being studied; after that, the data is processed with the optimal analysis object working points applied, then, event cuts are introduce to maximize the signal sensitivity while cutting down on the background; in addition, binning on the target spectrum(in the case of analyses in this thesis, the resonance mass spectrum) is found for optimal detector resolution and signal sensitivity, as discussed in
 Section~\ref{sec:binning}. A final check on that compares the data and MC is performed on control regions perpendicular to the signal region be done before the statistical analysis. An agreement up to a certain margin ensures both the previous steps in data preparation are likely done correctly and that the MC is close enough to data and can be used for different preparatory studies for the background estimation and binning strategies. After all the data preparation steps are done, a target signal spectrum is available to be analyzed statistically for resonances. 
@@ -236,26 +236,26 @@ Different kernels are used for different analysis background with different feat
 %
 %    \end{itemize}
 %            Here, $A_{2}$ is the amplitude of the signal kernel, m is the value where the kernel peaked on, and $\sigma_{2}$ is the lengthscale of the signal kernel. 
-%    \subsubsection{Gaussian Process: Hyperparameter Optimization}
-%    \label{sec:hyperparam}
-%    The lengthscale($\sigma$) hyperparameter in both kernels(See Eq.~\ref{eq:backgroundkernel} and Eq.~\ref{eq:signalkernel}) is prone to overfitting when the chosen value is too small. This would lead to reduced signal sensitivity and the overfitting of statistical fluctuation. A lowerbound is set in these hyperparameters: The lower bound in the the background kernel lengthscale is determined by the signal injection test described in Section~\ref{}; the lower bound in the signal kernel lengthscale is chosen through the binning studies in Section~\ref{sec:binning} respectively. The other hyper-parameters are allow to float and are optimized through the scaled conjugate gradient algorithm.
+    \subsubsection{Gaussian Process: Hyperparameter Optimization}
+    \label{sec:hyperparam}
+    The lengthscale($\sigma$) hyperparameter in both kernels(See Eq.~\ref{eq:backgroundkernel} and Eq.~\ref{eq:signalkernel}) is prone to overfitting when the chosen value is too small. This would lead to reduced signal sensitivity and the overfitting of statistical fluctuation. A lowerbound is set in these hyperparameters: The lower bound in the the background kernel lengthscale is determined by the signal injection test described in Section~\ref{}; the lower bound in the signal kernel lengthscale is chosen through the binning studies in Section~\ref{sec:binning} respectively. The other hyper-parameters are allow to float and are optimized through the scaled conjugate gradient algorithm.
 %
-%    The kernels hyperparameter are optimized by minimizing the negative log marginal likelihood of the Gaussian Process:
-%
-%    \begin{equation}
-%        -ln(L) = -\frac{1}{2} ln |\sum| - (y-\mu(x) ) - \frac{n}{2}ln(2\pi)
-%    \label{eq:loglikelihood}
-%    \end{equation}
-%    
-%    In the dimuon analysis, the minimization is done through initialization of hyperparameter from first a grid search and then scalar conjugate gradient search, the different results are compared with each other for the optimized hyperparameter set.
-%
-%    In this Gaussian process testing procedure, the hyperparameters are first found on a test fit on the MC/data, a minimum bound on the lengthscale hyperparameter is first found through a fit on different variations of the MC generated and the signal injected test.
+    The kernels hyperparameter are optimized by minimizing the negative log marginal likelihood of the Gaussian Process:
+
+    \begin{equation}
+        -ln(L) = -\frac{1}{2} ln |\sum| - (y-\mu(x) ) - \frac{n}{2}ln(2\pi)
+    \label{eq:loglikelihood}
+    \end{equation}
+    
+    In the dimuon analysis, the minimization is done through initialization of hyperparameter from first a grid search and then scalar conjugate gradient search, the different results are compared with each other for the optimized hyperparameter set.
+
+    In this Gaussian process testing procedure, the hyperparameters are first found on a test fit on the MC/data, a minimum bound on the lengthscale hyperparameter is first found through a fit on different variations of the MC generated and the signal injected test.
 %
 \subsubsection{Gaussian Process: Background Fitting}
 In Gaussian Process, the background fitting's validity is tested by different methods. First, the signal injection test 
 
 \subsection{Signal Injection Test}
-    \label{sec:signalInjection}
+\label{sec:signalInjection}
     Increasing the number of parameters in a fit function, using smaller windows size in SWiFT, or using a background kernel lengthscale in Gaussian Process all increases flexibility in modelling the background. However, the increased flexibility in background modelling often comes with the price of decreased signal sensitivity. An overly flexible background estimation would fit the signal away as part of the background. 
     Therefore a test to quantify the signal sensitivity capability of the background estimation is necessary. The test is called the signal injection test. On ATLAS, it is required that the background modelling provide sensitivity to signals of at least 3 $\sigma$ of the background error, defined by the width of the Gaussian envelop on the fits done on the pseudo-experiments. When a background estimation method passes such requirement, it has passed the signal injection test.
 
@@ -325,7 +325,6 @@ The spurious signal test is a test that defines the uncertainty relative to sign
     Here $S_{fit}$ comes from the signal fit component of the background + signal fit, $S_{template}$ changes with the kind of analysis being performed. It is set to be 0 for a search. 
 
     
-    \label{sec:spurious}
     %The median of the 10000 pseudo experiment fit is taken to be the spurious signal value. 
     %In the figure below, a sample spurious signal fit is shown~\ref{spurioussignal}.
     %In general, the spurious signal has to stay within 50\% of the background error bands, defined as the error bands generated from the fitting of 10000 background MC pseudo experiment from the Poisson distribution with the background fit only.
@@ -422,7 +421,7 @@ The test statistics is a function of the observable x, the p-value in~\ref{eq:te
     
 \begin{equation}
     p = P(T>=t_{0}| H_{0})
-\label{eq:p-valuetestStats}
+\label{eq:pvaluetestStats}
 \end{equation}
 
 Here, $H_0$ is the null hypothesis prediction, $t_0$ is the test statistics of the null hypothesis, and T is the observed test statistics.
@@ -560,7 +559,7 @@ To aid the optimization process, it's usually the negative log of the profiled l
 
 
 \subsubsection{The Frequentist Limits: The Limits Formulae}
-\label{sec:limits}
+\label{sec:freqlimits}
 
 From this test statistics, the p-value calculated from the different assumed signal strength and observed data can be found, the signal strength where the data can reject up to 95\% is called the observed limit, and the signal strength of median significance along with the fluctuation is called the expected limit. 
 
