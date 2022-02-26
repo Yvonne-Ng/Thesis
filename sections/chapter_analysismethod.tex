@@ -8,6 +8,7 @@
 %TODO Fit function + swift method
 %TODO Bayesian method for limit setting
 %TODO Add fig:bump
+% add to MC generation
 
 
 \section{Introduction}
@@ -27,7 +28,7 @@ These analyses perform searches in the resonance mass variable, which numericall
 \end{figure}
 \FloatBarrier
 
-The chapter below provides a recipe for a resonance finding analysis: Monte Carlo generation(MC) used to aid statistical procedure formulation.  are detailed in Section~\ref{sec:MC}. Proper data preparation required for both the data and the MC before statistical analysis is discussed in Section~\ref{sec:dataprep}. The background estimation method and their verification tests are given in Section~\ref{sec:backgroundest}. The search for resonances as excesses is quantified statistically. Two separate tests, one on excess finding, and the other one on signal strength upper limit setting are discussed Section~\ref{section:stats}. 
+The chapter below provides a recipe for a resonance finding analysis: Monte Carlo generation(MC) is used to aid statistical procedure formulation, its generations are detailed in Section~\ref{sec:MC}. Proper data preparation required for both the data and the MC before statistical analysis is discussed in Section~\ref{sec:dataprep}. The background estimation method and their verification tests are given in Section~\ref{sec:backgroundest}. The search for resonances as excesses is quantified statistically. Two separate tests, one on excess finding, and the other one on signal strength upper limit setting are discussed Section~\ref{section:stats}. 
 
 \section{Simulated Physics Events(Monte Carlo)}
 \label{sec:MC}
@@ -45,20 +46,20 @@ The detector effect is simulated by GEANT4~\cite{Agostinelli:602040}, in which s
 The data of the analyses discussed in this chapter came from LHC proton-proton collision data, collected from the ATLAS detector and its triggering hardware and software discussed in Chapter~\ref{chapter:ATLAS}. The data collected as energy deposits and tracks are analyzed and collected analysis objects as discussed in Chapter~\ref{chapter:common_analysis_items}. After that, the dataset goes through several more steps in data preparation before getting analyzed for resonance finding in the chapter: the following is a short outline of how data are being prepared for the analyses.
 
 First trigger chains that contain target events are studied to maximize the size of the dataset being studied. After that, the data is processed with the optimal analysis object working points applied, then, event cuts are introduced to maximize the signal sensitivity while reducing the background events. Later, binning on the target spectrum(in the case of analyses in this thesis, the resonance mass spectrum) is found for optimal detector resolution and signal sensitivity (Discussed in
-Section~\ref{sec:binning}). Finally, a cross-check that compares the data and MC is performed on control regions perpendicular to the signal region before the statistical analysis. An agreement up to a margin of Data/MC 20\% ensures both the previous steps in data preparation are executed correctly and that the MC is close enough to data and can be used for different preparatory studies for the background estimation and binning strategies. After all the data preparation steps are completed, a target signal spectrum is available to be analyzed statistically for resonances. 
+Section~\ref{sec:binning}). Finally, a cross-check that compares the data and MC is performed on control variable regions perpendicular to the signal region before the statistical analysis. An agreement up to a margin of Data/MC 20\% ensures both the previous steps in data preparation are executed correctly and that the MC is close enough to data and can be used for different preparatory studies for the background estimation and binning strategies. After all the data preparation steps are completed, a target signal spectrum is available to be analyzed statistically for resonances. 
 
 \subsection{Binning Strategy} 
 \label{sec:binning}
 
-To prepare a mass spectrum, the data must be properly binned. The bins have to be narrower than the width of the expected signal, as this would minimize the possibility of mistaking fluctuation as excess and improve characterization of the signal.
+To prepare a mass spectrum, the data must be properly binned. The bins are chosen to be narrower than the width of the expected signal, as this would lower the probability of mistaking fluctuation in a single bin as excess.
 
-The binning is optimized through the mass resolution of the target spectrum. The mass resolution is found through a width-to-mean($\frac{\mu}{\sigma}$) Gaussian fit on the $m^{reco}/m^{truth}$ on the four-vector addition of the two candidate final state particles. The truth particles came from Pythia generation whereas the reconstructed value came from the GEANT4 detector reconstruction. A Gaussian fit is performed to find the mean ($\mu$) and the width($\sigma$). 
+The binning is optimized through the mass resolution of the target spectrum. The mass resolution is found through a width-to-mean($\frac{\mu}{\sigma}$) Gaussian fit on the $m^{reco}/m^{truth}$ on the four-vector addition of the two candidate final state particles. The truth particles came from PYTHIA8~\cite{PYTHIA} generation whereas the reconstructed event came from the GEANT4~\cite{Agostinelli:602040} detector reconstruction of the truth events. A Gaussian fit is performed to find the mean ($\mu$) and the width($\sigma$). 
 
 %A uniform binning is chosen for the dimuon analysis, as it would make the background estimation more simplified. For the dijetISR analysis, to cope with the low statistics in the high mass region, variable bin size based on detector resolution is used. 
 
 \section{Background Modeling}
 \label{sec:backgroundest}
-After the dataset has been prepared, the spectrum is ready to be analyzed to search for resonances. In order to analyze statistically whether there is an excess of events beyond the Standard Model prediction, a reliable prediction of the Standard Model events in the signal region along with its statistical error is needed. The step to estimate background Standard Model events is known as background estimation.
+After the dataset has been prepared, the spectrum is ready to be analyzed to search for resonances. In order to analyze statistically whether there is an excess of events beyond the Standard Model prediction, a reliable prediction of the Standard Model events in the signal region along with its statistical error is needed. The step to estimate background Standard Model events is known as background modeling.
 Many considerations go into background modeling for analysis: accuracy, availability, size of the estimation error and ease of implementation. In ATLAS, the following methods are recommended for background modeling in order of descending preference:
     First, the background estimation can be found by the MC generation of the events when the simulation is reliable and inexpensive for data generation. Second, in cases where the MC generated is low in event count but reliable in shape, an alternative estimation could be executed by scaling up the template from MC. In the case of these resonance search analyses presented in this thesis, neither are there enough MC events nor are the shape of the MC event physically reliable. Thus, another class of methods of background estimation needs to be explored, all relying on the ``smoothness" feature of the background events. These include the fit function method, the expanded sliding window fit method(SWiFT) and the Gaussian Process method~\cite{frate2017modeling}.
     In the following section, the fit function method, the SWiFT method and the Gaussian Process method are discussed.
@@ -112,7 +113,7 @@ From the above foundation, a list of historic fit functions has been developed o
 \subsubsection{Cross-validation}
 K-fold cross validation is often used to ensure the fit function is chosen correctly. In the procedure, the original dataset is divided into k different equal event size subsets through a random draw from the original dataset. Each of these subsets is tested by the candidate fit function. By comparing the fit test statististic with the pseudo-experiment test statistics, a background fit p-value is found for each of the k subsets of data. The p-values are averaged for a statement on the background fit and the best background fit function is chosen.
 
-While the fit function is relatively easy to implement, it is highly restrictive for complicated background shapes since it is low in flexibility. The function is also ad hoc and generally doesn't include much information about the physics of the underlying spectrum~\cite{ATL-PHYS-PUB-2020-028}. When the increased luminosity of the LHC dataset leads to difficulties in fitting the background accurately, SWiFT and Gaussian Process are developed for the challenge. 
+While the fit function is relatively easy to implement, it is highly restrictive for complicated background shapes since it is low in flexibility~\cite{ATL-PHYS-PUB-2020-028}. When the increased luminosity of the LHC dataset leads to difficulties in fitting the background accurately, SWiFT and Gaussian Process are developed for the challenge. 
 
     \subsection{Sliding window fit(SWiFT)}
     When the simple fit function failed to model the data, SWiFT can increase the fit flexibility and the degree of freedom by fitting windows along the spectrum. The SWiFT window fitting procedure is summarized as below:
@@ -131,7 +132,7 @@ While the fit function is relatively easy to implement, it is highly restrictive
 
 \begin{figure}[!htb]
     \begin{center}
-        \includegraphics[width=0.3\textwidth]{figures/chapter_analysismethod/swift2}
+        \includegraphics[width=0.75\textwidth]{figures/chapter_analysismethod/swift2}
         \caption{
             This figure shows a doodle on the procedure of the sliding window fit. 
         }
@@ -155,13 +156,13 @@ While the fit function is relatively easy to implement, it is highly restrictive
     Gaussian process background prediction is performed through Bayesian inference. Unlike the above fit function-based method, Gaussian Process predicts a \textit{class of functions} with its \textit{kernels} for added flexibility. The input prior distribution and output posterior distribution are both a collection of random variables that can be described by Gaussian distributions. The distributions are a joint-distribution where their correlation can be described by a covariance
     matrix.
 
-    Gaussian process can naturally be applied to the background estimation of a spectrum since the bin event count in background and signal modeling are approximatedly a Gaussuain distribution in each bin: In the resonance spectrum background, the prediction in every bin is a Poisson distribution due to its counting experiment nature. Poissonian distributions can be approximately described as a Gaussian Distribution through the Central Limit Theorem~\ref{kwak2017central}. As the distribution between the points is smooth, the relationship between each of the neighboring bins can be described by a joint distribution where the correlation is a covariance matrix. The covariance matrix can embed physics knowledge regarding the detector resolution and object energy scale. The Gaussian process allows for more flexibility in the functions compared to the above two methods, as can be shown here in this covariance matrix diagram:
+    Gaussian process can naturally be applied to the background estimation of a spectrum since the bin event count in background and signal modeling are approximatedly a Gaussuain distribution in each bin: In the resonance spectrum background, the prediction in every bin is a Poisson distribution due to its counting experiment nature. Poissonian distributions can be approximately described as a Gaussian Distribution through the Central Limit Theorem~\cite{kwak2017central}. As the distribution between the points is smooth, the relationship between each of the neighboring bins can be described by a joint distribution where the correlation is a covariance matrix. The covariance matrix can embed physics knowledge regarding the detector resolution and object energy scale. The Gaussian process allows for more flexibility in the functions compared to the above two methods, as can be shown here in this covariance matrix diagram:
 
     \begin{figure}[!htb]
         \begin{center}
             \includegraphics[width=0.7\textwidth]{figures/chapter_analysismethod/GP}
             \caption{
-                These figure shows that the Gaussian process fit is able to provide more flexibility than the standard ad hoc fit~\cite{frate2017modeling}.
+                These figure shows that the Gaussian process fit is able to provide more flexibility than the standard fit function method. The Red line in the first panel shows results from the fit function method and the green line shows the extra flexibility gained by Gaussian Process~\cite{frate2017modeling}.
             }
             \label{fig:GaussianProcess}
         \end{center}
@@ -193,10 +194,10 @@ The Gaussian process background prediction method is a Bayesian method, where th
 
     Here, x and y are input data to constrict the distribution, $x_{*}$ is the points where the posterior GP are evaluated from, x' is the same points as x in a 2d matrix.
 
-\subsubsection{Gaussian Process: Covariance function}
+    \subsubsection{Gaussian Process: the Kernel}
 \label{sec:kernel}
 From Eq.~\ref{eq:covariance}, kernel is directly related to the covariance function in Gaussian Process. Kernel descibes how the relating neighboring points are related to one another. It is possible to embed different information regarding the physics of the spectrum into the kernel. 
-Different kernels are used for different analysis backgrounds with different features. A specific example to the dijet spectrum is demonstrated in ~\ref{frate2017modelling}.
+Different kernels are used for different analysis backgrounds with different features. A specific example to the dijet spectrum is demonstrated in ~\cite{frate2017modelling}.
 
 %t's found that the simple radial basis function and a white noise kernel are sufficient to describe the background spectrum, the signal is described by another radial basis function kernel of a particular mean value.
 %The kernels are given as the following: 
@@ -251,18 +252,19 @@ Following the ATLAS smooth background recommendation~\cite{ATL-PHYS-PUB-2020-028
 
 \subsubsection{Signal Injection Test}
 \label{sec:signalInjection}
+
     Increasing the number of parameters in a fit function, using smaller windows size in SWiFT, or using a background kernel lengthscale in the Gaussian Process all increases flexibility in modeling the background. However, the increased flexibility in background modeling often comes with the price of decreased signal sensitivity. An overly flexible background estimation would fit the signal away as part of the background. 
-    Therefore a test to quantifies the signal sensitivity capability of the background estimation is necessary. The test is called the signal injection test. On ATLAS, it is required that the background modeling provides sensitivity to signals of at least 3 $\sigma$ of the background error, defined by the width of the Gaussian envelope from the pseudoexperiment fits. The background estimation passes the signal injection test when it passes such requirement.
-
-    In addition to quantifying signal sensitivity, in Gaussian process and the SWiFT background estimation, the signal injection test is used to constrain the lower bound of the lengthscale and SWiFT window size. The window size or lengthscale value is restricted by to a lower bound that would return a background estimation that provides sensitivity to signals of at least 3 $\sigma$ in size.
-
-    The procedure in this thesis uses bumphunting with each background fit.
-
-    Signals of different mass widths are generated from a Gaussian distribution, Poissonian noise is thrown randomly on the distribution to create a pseudo signal distribution. The mass widths are chosen to be 1\%, 3\% and 5\% respectively. Signal of different scales with corresponding error is generated and is injected into the background MC distribution.
+    Therefore a test to quantifies the signal sensitivity capability of the background estimation is necessary. The test is called the signal injection test. On ATLAS, it is required that the background modeling provides sensitivity to signals of at least 3 $\sigma$ of the background error.
 
     The background error is defined by the generation of 10,000 bin-by-bin Poissonian toys from the original background MC spectrum, and by refitting the toys by Gaussian Process background kernel estimation. A Gaussian fit is performed on the prediction of each bin, the resulting width of the Gaussian fit in each bin is defined to be the 1 $\sigma$ background estimation. 
 
-   For each chosen maximum lengthscale/SWiFT window, and different signal widths, the below is performed:
+    %defined by the width of the Gaussian envelope from the pseudoexperiment fits. The background estimation passes the signal injection test when it passes such requirement.
+
+    In addition to quantifying signal sensitivity, the signal injection test is used to constrain the lower bound of the lengthscale in Gaussian Process and SWiFT window size. The window size or lengthscale value is restricted by to a lower bound that would return a background estimation that provides sensitivity to signals of at least 3 $\sigma$ background error in size.
+
+    Signals of different mass widths are generated from a Gaussian distribution, Poissonian noise is thrown randomly on the distribution to create a pseudo signal distribution. The mass widths are chosen to be 1\%, 3\% and 5\% respectively. Signal of different scales with corresponding error is generated and is injected into the background MC distribution.
+
+    For each chosen maximum lengthscale/SWiFT window, and different signal widths, the below is performed with the bumphunter.
 
    1. First a background fit is performed on the background MC distribution, the bump-hunting~\cite{choudalakis2011hypothesis} procedure is performed as described in the above section. If the overall bumphunter p-value are below the critical value for window exclusion, the next step is performed. Otherwise, the background fit strategy has to be reviewed. A different fit function or Gaussian Process kernel is needed.
 
@@ -276,16 +278,16 @@ Following the ATLAS smooth background recommendation~\cite{ATL-PHYS-PUB-2020-028
 %window size is the largerst signal that the background estimation is not sensitive to; and the ``just above" signal size is the smallest signal that the background estimation is sensitive to. When the background kernel lengthscale is chosen to be 4 GeV, the background model is sensitive to signal 3 $\sigma$ or above in background error. 
 %
 
-\begin{figure}[!htb]
-    \begin{center}
-        \includegraphics[width=0.75\textwidth]{figures/chapter_analysismethod/bumphunter}
-        \caption{
-            This diagram shows the bumphunter test statistics distribution, where the red arrow shows the observed value. 
-        }
-        \label{fig:teststats}
-    \end{center}
-\end{figure}
-\FloatBarrier
+%\begin{figure}[!htb]
+%    \begin{center}
+%        \includegraphics[width=0.75\textwidth]{figures/chapter_analysismethod/bumphunter}
+%        \caption{
+%            This diagram shows the bumphunter test statistics distribution, where the red arrow shows the observed value. 
+%        }
+%        \label{fig:teststats}
+%    \end{center}
+%\end{figure}
+%\FloatBarrier
    
    %The background fit, or parametrically, the SWiFT window size/Gaussian process lengthscale, is said to have passed the test if the largest signal the search is not sensitive to is within 3 $\sigma$ of the background error bands. 
 
@@ -303,10 +305,9 @@ Following the ATLAS smooth background recommendation~\cite{ATL-PHYS-PUB-2020-028
 \FloatBarrier
 
 \subsubsection{Spurious Signal Test} 
-
     \label{sec:spurious}
+    %\epigraph{\textit{-``Test for signal extracted from the background estimation alone"}}
 
-    \textit{-``Test for signal extracted from the background estimation alone"}
     To measure the amount of possible false signal in the background modeling method, the spurious signal test is performed. The spurious signal test models the amount of signal that the background plus signal fit when no signal is present.  It statistically quantifies the stability of the background estimation. It is also sometimes used as a measure of the background fit error.
 
 Using the different variations of background only MC spectrum, a signal plus background fit is performed, the signal extracted is compared against the background error defined in the last section. The spurious signal test is considered passed if the signal extracted versus the background error ratio is $<$ 0.5.
@@ -317,10 +318,7 @@ Using the different variations of background only MC spectrum, a signal plus bac
         S_{spur} = S_{fit} - S_{template}
     \end{equation}
 
-
-    Here $S_{fit}$ comes from the signal fit component of the background + signal fit, $S_{template}$ changes with the kind of analysis being performed. It is set to be 0 for a search. 
-
-    
+    Here $S_{fit}$ comes from the signal fit component of the background + signal fit, $S_{template}$ changes with the kind of analysis being performed. It is set to be 0 for a search.     
     %The median of the 10000 pseudo experiment fit is taken to be the spurious signal value. 
     %In the figure below, a sample spurious signal fit is shown~\ref{spurioussignal}.
     %In general, the spurious signal has to stay within 50\% of the background error bands, defined as the error bands generated from the fitting of 10000 background MC pseudo experiment from the Poisson distribution with the background fit only.
@@ -636,7 +634,8 @@ A detailed proof can be found in~\cite{2011}.
 \subsubsection{Frequentist Limit: The Asimov dataset}
 \label{sec:asimov}
 
-The finding of $\hat{\hat{\mu}}$ in the denominator in E~\ref{teststats} is CPU intensive, the dataset is large with many dimensions. The Asimov dataset reduces the calculation here by showing that $\hat{\hat{\mu}}$ can be approximated by $\mu'$, the expected value of the strength parameter. From this, CPU intensive calculation of the p-value, significance and thus the upper limit. Its fluctuation can be reduced to simple formulae that only look at the representative Asimov dataset. 
+The finding of $\hat{\hat{\mu}}$ in the denominator in E~\ref{teststats} is CPU intensive, the dataset is large with many dimensions. The Asimov dataset reduces the calculation here by showing that $\hat{\hat{\mu}}$ can be approximated by $\mu'$, the expected value of the strength parameter. From this, CPU intensive calculation of the p-value can be avoided. Significance and thus the upper limit and the observed limit fluctuation can be reduced to simple formulae that only
+require calculations from the representative Asimov dataset. 
 A proof is given in the following section, and the formulae used for the upper limit and expected limit calculation in this thesis are included in the end. 
 
 From the definition, true parameters values will result in the maximum likelihood and therefore the derivative of the ${L}$ will be equal to 0. 
@@ -744,26 +743,22 @@ From this calculation, the limit calculation in the above~\ref{sec:limits} can b
 %    \[ max[Z_{0}(\mu'+N\sigma) = med[Z|\mu'] -N, 0] \] 
 %\end{equation}
 
-From the above formulation, it is shown that the limit can be caculated analytically following the generation of an Asimov dataset, thus saving a lot of computation power from the full limit generation. 
-
 \subsubsection{Frequentist Limits: Gaussian Process Adaptations}
-
-    The Gaussian process is shown to be able to be incorporated within the Asimov method of frequentist limit setting in section~\ref{sec:freq}. The Asimov limit is a frequentist limit calculation method that saves on computing resources. The limits are generated from a representative asimov dataset instead of a full dataset of all values.
+    The Gaussian process is shown to be able to be incorporated within the Asimov method of frequentist limit setting~\cite{frate2017modelling}.
     In the Figure~\ref{fig:chi2}, the Likelihood ratio in the Gaussian process is a proxy for the profile likelihood ratio used in the Asimov limit. It can be seen that it approximately follows the $\chi^{2}$ distribution, satisfying a requirement that follows from the Wald approximation that allows for the Asimov approximation of limits.
-    More details on the derivation and the use of Alsimov limit can be found in the following section~\ref{sec:asimov}.
 
     \begin{figure}[!htb]
         \begin{center}
             \includegraphics[width=0.75\textwidth]{figures/chapter_analysismethod/chi2}
                 \caption{
-                This figure shows the negative log of the $\Lambda$ which is an approximation of the measure of the profiled likelihood ratio defined in~\ref{eq:profilelikelihood}. The top part is the distribution for background only pseudo-experiments, whereas the bottom is the background + signal distribution. They show a reasonable agreement to the $\chi^{2}$ fit, a required condition for the Asimov approximation for a frequentist limit setting in
-            section~\cite{frate2017modelling}. }
+                This figure shows the negative log of the $\Lambda$ which is an approximation of the measure of the profiled likelihood ratio defined in~\ref{eq:profilelikelihood}. The top part is the distribution for background only pseudo-experiments, whereas the bottom is the background + signal distribution. They show a reasonable agreement to the $\chi^{2}$ fit, a required condition for the Asimov approximation for a frequentist limit setting~\cite{frate2017modelling}. 
+            }
             \label{fig:chi2}
         \end{center}
     \end{figure}
     \FloatBarrier
 
-A new test statistic for Gaussian Process that is parametrized by the kernel hyper-parameters is used:
+    A new test statistic for Gaussian Process that is parametrized by the kernel hyper-parameters is used instead for limit setting:
 
 \begin{equation}
     -ln(\Lambda) \textrm{, where }\Lambda= 2ln(\frac{L_{\textrm{GP signal + bkg fit}}(\mu, \hat{\hat{\theta}})}{L_{\textrm{GP bkg fit}}(\hat{\mu}, \hat{\theta})})
@@ -771,10 +766,5 @@ A new test statistic for Gaussian Process that is parametrized by the kernel hyp
 
 Here, $\ln(\Lambda)$ is the new test statisitics used for the limit setting L is the likelihood defined in Eq.~\ref{eq:loglikelihood}. The numerator is the likelihood with both the background and signal kernel, whereas the denominator is likelihood with just the background kernel. 
 
-%Using this newly defined test statistic, Eq.~\ref{eq:teststatistics} does not hold, and the test statistic may not always follow the $\chi^{2}$ distribution in Figure~\ref{fig:chi2}. The test statistic either have to be cross-checked or reweighted. When this requirement is satisfied, Gaussian Process and its test statistic can use the approximation listed out in the above section for Asimov limit setting.
-
-
-%\section{Systematics}
-%\section{Future Extensions}
-
+With the above procedure in place, actual data from analysis is ready to be analyzed for resonance in the dijetISR and dimuon channels.
 
