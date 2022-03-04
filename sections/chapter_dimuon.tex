@@ -1,6 +1,11 @@
 \chapter{The Resonance Search on the Dimuon Signature}
 \label{chapter:dimuon}
 
+\epigraph{\textit{A truth is not something that is constructed in a garden of roses.” }}{― Alain Badiou, In Praise of Love}
+
+%\epigraph{\textit{The bud disappears in the bursting-forth of the blossom, and one might say that the former is refuted by the latter; similarly, when the fruit appears, the blossom is shown up in its turn as a false manifestation of the plant, and the fruit now emerges as the truth of it instead.
+%}}{--Georg Wilhelm Friedrich Hegel, Phenomenology of Spirit}
+
 \section{Introduction}
 
 Owing to its unprecedented high energy, the Run 1 and early Run 2 of ATLAS have long focused on the high mass resonances searches that were not accessible to any other previous experiments. This approach has left the relatively low mass resonances that are competitive in sensitivity unexplored. In the resonance search that decays into two leptons, in particular, the resonance mass region above the Z boson peak has been searched for since the beginning of Run
@@ -123,7 +128,7 @@ Assymetric Dimuon & 2015 & HLT\_mu18\_mu8noL1 & MU15 & 24, 10 \\
     \begin{center}
         \includegraphics[width=0.45\textwidth]{figures/chapter_dimuon/TriggerChain}        
         \caption{
-        This cartoon illstrate the trigger used for the different trigger region: A indicates HLT\_2mu14; B represents HLT\_mu22\_mu8noL1; C shows HLT\_mu26\_ivarmedium. }
+        This cartoon illustrates the trigger used for the different trigger region: A indicates HLT\_2mu14; B represents HLT\_mu22\_mu8noL1; C shows HLT\_mu26\_ivarmedium. }
     \end{center}
 \end{figure}
 \FloatBarrier
@@ -346,7 +351,7 @@ the toy distribution to calculated the p-value(See Eq.~\ref{eq:pvaluetestStats})
 
 
 \subsection{Hyperparameter Optimization}
-The detailed steps to the hyper-parameter optimization can be found in Section{sec:hyperparam} of Chapter~\ref{chapter:analysismethod}.
+The detailed steps to the hyper-parameter optimization can be found in Section~\ref{sec:hyperparam} of Chapter~\ref{chapter:analysismethod}.
 The lower bound on the lengthscale of the background kernel and the signal kernel are finalized from the signal injection test result in Section~\ref{sec:signalinjectionresult} and Section~\ref{sec:binningresult} respectively. The other hyper-parameters are allowed to float and is optimized for each fit performed. 
 
 In the dimuon analysis, the background kernel fits are performed on a different variation of the fast simulation MC to ensure the selected hyper-parameters and lengthscale are flexible enough for the variation possibly present in the final data. Figure~\ref{fig:dimuonmass} shows fitting results in the inclusive region of the MC using the background kernel listed in ~\ref{sec:fastsimulation}. The results show that the lengthscale lower-bound chosen is flexible enough against changes in the distribution fluctuation. 
@@ -457,9 +462,6 @@ Currently, ongoing work is being done to further reduce the spurious signal.
 Details on the statistical test can be found here~\ref{section:stats}. When the thesis is written, the data was not unblinded. Monte Carlo studies were done to verify the procedure. The following statistical tests have been presented in the CERN Statistical Forum.
 
 \section{The Search}
-
-\textit{``The Rejection/Acceptance of the null hypothesis"}
-
 The search aims to either accept or reject the null hypothesis. Details are listed in this Section~\ref{sec:thesearch}.
 
 An example of the search done with just the background and no signal injected is shown in Figure~\ref{fig:searchnull}. The test statistics, including 
@@ -495,9 +497,6 @@ Another example of the search done with the background plus signal injected in 5
 The results show that the statistic test of the search is in place for when the data is ready to being unblinded.
 
 \section{Limit Setting}
-
-\textit{``Finding signal strength value where the alternative hypothesis is rejected to a 95\% confidence level"}
-
 The limit setting aims to find the exclusion upper limit for the signal strength at a 95\% confidence level. In the dimuon analysis, the limit setting procedure is done through the Asimov approximation of the frequentist limits described in Section~\ref{sec:limits}.
 
 Preliminary limit setting based on Gaussian Process is still currently under test. In alternative fit function limits calculated by approximation based on the fit function method are shown here in Figure~\ref{fig:limits}.
@@ -512,7 +511,8 @@ Preliminary limit setting based on Gaussian Process is still currently under tes
 \end{figure}
 \FloatBarrier
 
-\section{Future Work}
+\section{Conclusion and Future Work}
+As pe 2022-2-27, a presentation of the above result was discussed at the ATLAS statistics forum and it was recommended that the analysis be redone with all the hyper-parameters fixed from the fitting of different variation of fast simulations. Another outstanding item would be fully incorporate the Gaussian Process method into the frequentist statistics framework. 
 The analysis is on its way to completing the final strategies and to being unblinded on data soon.
 
 %Adding the Gaussian process limit to the background

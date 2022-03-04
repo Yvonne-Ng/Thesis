@@ -1,5 +1,8 @@
-
 \chapter{Future Resonances: The Unexplored Landscape of Two-body Resonances}
+\label{chapter:topo}
+
+
+\epigraph{\textit{The possible ranks higher than the actual.}}{--Martin Heidegger}
 
 This chapter is heavily based on work previously published on~\cite{craig2016unexplored} in collaboration with Nathaniel Craig, Patrick Draper, Kyoungchul Kong and Daniel Whiteson.
 
@@ -19,7 +22,7 @@ The theoretical arguments for new resonances mostly consist of simple generic ex
 
 The typical difficulty facing searches without specific theoretical motivation is the large number of possible observables, which incurs a very large trials factor and greatly reduces the discovery sensitivity.  Here, rather than relying on theoretical guidance, we propose to restrict the vast space of possible theories into those that align well with experimental strengths.    We are interested in covering the intermediate ground between the very specific and the very general search programs, by focusing on well-defined topologies independent of specific theory considerations. This broadens the search program beyond favored theories, but not so much so as to compromise discovery potential.  Given that the data exist and resonances are fairly easy to discover, we argue that the two-particle spectra are worth directly examining. In many cases, there are indirect constraints on such resonances from other experiments or subjective theoretical arguments, but there is no real substitute for a direct search.
 
-In this paper, we lay out the details of the implementation of such a search program and survey the existing experimental and theoretical landscape for exclusive $n=2$-body resonances, leaving $n=3+$ (as well as inclusive $n=2$ final states) for future work.  We find that the majority of 2-body resonances have some indirect theoretical constraints but have received almost no experimental attention, leaving most of the landscape unexplored and a large potential for unanticipated discovery. 
+In this chapter, we lay out the details of the implementation of such a search program and survey the existing experimental and theoretical landscape for exclusive $n=2$-body resonances, leaving $n=3+$ (as well as inclusive $n=2$ final states) for future work.  We find that the majority of 2-body resonances have some indirect theoretical constraints but have received almost no experimental attention, leaving most of the landscape unexplored and a large potential for unanticipated discovery. 
 
 \section{Scope \& experimental searches}
 
@@ -57,8 +60,7 @@ Apart from gauge invariance and Lorentz invariance, less robust constraints may 
 
 Beyond proton decay, there are a variety of constraints on flavor violation, lepton number violation, and other types of baryon number violation, but in practice even strong constraints may be avoided by appropriate symmetries, textures, or fortuitous cancellations (as in e.g.~maximal flavor violation \cite{BarShalom:2007pw} or diquark-type interactions \cite{Giudice:2011ak}). In these cases there is no substitute for a direct search. 
 
-
-\begin{table*}
+\begin{table}[!htb]
 \caption{ Existing two-body exclusive final state resonance searches at $\sqrt{s}=8$ TeV.  The $\none$ symbol indicates no existing search at the LHC.
 \label{tab:res}
 }
@@ -84,16 +86,16 @@ $h$ &  & & & &  &  & & & & \cite{Aad:2015xja,Khachatryan:2015yea, CMS-PAS-EXO-15
 \hline
 \end{tabular}
 \end{adjustbox}
-\end{table*}
+\end{table}
 
-\begin{table*}
+
+\begin{table}[!htb]
 %\caption{ Theory models motivating two-body final state resonance searches. Here $Z'$ and $W'$ denote additional gauge bosons, $\not \! \! R$ denotes R-parity violating decays of sparticles in supersymmetry, $H^{\pm \pm}$ denotes doubly-charged Higgs bosons, $H$ denotes additional neutral scalar or pseudoscalar Higgs bosons, $L^*$ and $Q^*$ denote excited fermions, $X_{KK}$ denote various Kaluza-Klein excitations of gravitons or Standard Model fields, $\rho$ denotes neutral or
-%charged}
-%techni-rhos, $LQ$ denotes leptoquarks, $T'$, $B'$, $Q'$ denote vector-like top, bottom, and light-flavor quarks, and $\mathcal{Q}$ denotes quirks. See also ~\cite{KCKong}. }
-
+%charged techni-rhos, $LQ$ denotes leptoquarks, $T'$, $B'$, $Q'$ denote vector-like top, bottom, and light-flavor quarks, and $\mathcal{Q}$ denotes quirks. See also ~\cite{KCKong}. }
+\caption{}
+\label{tab:restheory}
 \begin{adjustbox}{width=1\textwidth}
 \begin{tabular}{lccccccccccc}
-
 \hline
 \hline
  & $e$\ \   & $\mu$\ \   & \ \  $\tau$\ \   & \ \  $\gamma$\ \   & \ \  $j$ \ \   & \ \  $b$\ \  & \ \ $t$ \ \ & \ \ $W$ \ \ & \ \ $Z$ \ \ & \ \ $h$ \ \   \\
@@ -112,9 +114,8 @@ $h$ &  &  &  &  &  &  &  &  &  & $H, G_{KK}$ \\
 \hline
 \hline
 \end{tabular}
-\label{tab:restheory}
 \end{adjustbox}
-\end{table*}
+\end{table}
 
 
 
@@ -222,13 +223,5 @@ The data from the LHC are extraordinarily valuable, in that its collection requi
 Here we have argued that in addition to the usual stable of theoretically-motivated searches, a set of experimentally-motivated searches should be conducted.  We propose a set of exclusive 2-body resonance searches, which naturally limits the number of final states and are well matched to experimental capabilities. This is in contrast to the strategy of general searches, which attempt to satisfy a broad set of theory motivations, but do not focus on experimental strengths and suffer a very large trials factor.
 
 The final states with matched objects have been examined, though there remain openings at low- and high-mass regions. More significantly, we find that many of the mismatched pair final states have had no attention, despite the existence of theoretical models and the absence of strong theoretical constraints. \\
-
-
-\section*{Acknowledgements}
-
-We thank Mohammad Abdullah, Jahred Adelman, and Tim Tait for useful conversations. This research was supported in part by the National Science Foundation under Grant No. NSF PHY11-25915 and the US Department of Energy under the grant DE-SC0014129 and DE-FG02-12ER41809; the authors are grateful to the Kavli Institute For Theoretical Physics, where some of this work was done.
-
-%\bibliographystyle{plain}
-%\bibliography{topo}
 
 

@@ -34,7 +34,11 @@
 \usepackage{lineno}
 \usepackage{nicefrac}
 \usepackage{fdsymbol}
+%\usepackage{xeCJK}
 
+
+%\setCJKmainfont{MingLiU}
+%\setCJKsansfont{Microsoft JhengHei}
 %\linenumbers
 
 % plainpages=false fixes the "duplicate ignored" error with page counters
@@ -46,6 +50,7 @@
 
 
 \usepackage[sorting=none,hyperref,backend=biber,backref,backrefstyle=none]{biblatex}
+
 \bibliography{bib/intro.bib,
               bib/sm.bib,
               bib/dm.bib,
@@ -55,7 +60,8 @@
               bib/dijet.bib,
               bib/dimuon.bib,
               bib/topo_v1_rebuild.bib,
-              bib/problematic.bib
+              bib/problematic.bib,
+              bib/conclusion.bib
           }
 
 \usepackage{tabularx}
@@ -403,7 +409,7 @@
 \include{sections/chapter_dimuon}
 \include{sections/chapter_topo}
 %\include{sections/chapter_FutureResonanceFinding}
-%\include{sections/chapter_Conclusion}
+\include{sections/chapter_Conclusion}
 
 %\include{sections/chapter1}
 %\include{sections/chapter2}

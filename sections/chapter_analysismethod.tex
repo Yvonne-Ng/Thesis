@@ -2,7 +2,6 @@
 \label{chapter:analysismethod}
 
 \epigraph{\textit{But the truth can be re-found; most often it has already been written elsewhere.}}{--Jacques Lacan, Ecrits}
-
 %TODO Adding Monte Carlo methods \\Edited
 %TODO Gaussian process motivation
 %TODO Fit function + swift method
@@ -12,7 +11,7 @@
 
 
 \section{Introduction}
-All three analyses presented in this thesis fall into the resonance search category, which are analyses that look for bumps like excesses on top of smooth backgrounds. The method is simple in its experimental signature~\ref{fig:bump} and theoretical calculation. Many particles have been discovered in this way before, which include the W~\cite{Arnison:142059}, Z~\cite{hollik1984composite}, and the Higgs boson. The method has great potential in making new future discoveries. This chapter describes
+Both analyses presented in this thesis fall into the resonance search category, which are analyses that look for bumps like excesses on top of smooth backgrounds. The method is simple in its experimental signature~\ref{fig:bump} and theoretical calculation. Many particles have been discovered in this way before, which include the W~\cite{Arnison:142059}, Z~\cite{hollik1984composite}, and the Higgs boson. The method has great potential in making new future discoveries. This chapter describes
 the analysis methods used in performing the analyses covered in Chapter~\ref{chapter:dijetISR} and Chapter~\ref{chapter:dimuon}. 
 
 These analyses perform searches in the resonance mass variable, which numerically is the addition of the 4-vector of the two candidate final state particles, and the invariant mass of this candidate is the search variable.
@@ -81,7 +80,7 @@ A class of fit functions are used to describe the distribution of the resonance 
 
     \item \textbf{Exponentials}
         \begin{equation}
-            f(m) = a_{0}exp^{-b_{0}m} +a_{1}e^{-b_{1}m}+...
+            f(m) = a_{0}e^{-b_{0}m} +a_{1}e^{-b_{1}m}+...
         \end{equation}
     \end{itemize}
 
@@ -89,23 +88,23 @@ From the above foundation, a list of historic fit functions has been developed o
     %TODO cite 
 
     \begin{equation}
-        \frac{p_{0}}{m^{p_{1}}}exp-(p_{2}m+p_{3}m^{2})
+        f(m)=\frac{p_{0}}{m^{p_{1}}}e^{-(p_{2}m+p_{3}m^{2})}
     \end{equation}See~\cite{UA2:1990gao} for details.
 
     \begin{equation}
-        \frac{p_{0}}{m^{p_{1}}}(1-\frac{m}{\sqrt{s}})p_{2}
+        f(m)=\frac{p_{0}}{m^{p_{1}}}(1-\frac{m}{\sqrt{s}})p_{2}
     \end{equation}See~\cite{1995} for details.
 
     \begin{equation}
-        \frac{p_{0}}{m^{p_{1}}}(1-\frac{m}{\sqrt{s}}+)p_{2}
+        f(m)=\frac{p_{0}}{m^{p_{1}}}(1-\frac{m}{\sqrt{s}}+)p_{2}
     \end{equation}See~\cite{b582dc2d9c234174bfe2adbc9729bf42} for details.
 
     \begin{equation}
-        p_{0}(1-x)^p_{1}x^{p_{2}+p_{3}ln(x)}
+        f(m)=p_{0}(1-x)^p_{1}x^{p_{2}+p_{3}ln(x)}
     \end{equation}See~\cite{2009} for details.
 
     \begin{equation}
-        (1-x)^{p_{0}}x^{p1+p2ln(x)}
+        f(m)=(1-x)^{p_{0}}x^{p1+p2ln(x)}
     \end{equation}See~\cite{2014} for details.
 
     In these fit functions, m is the resonance mass, p is the paramters, and x is defined to be $\frac{m}{\sqrt{s}}$.
@@ -197,7 +196,7 @@ The Gaussian process background prediction method is a Bayesian method, where th
     \subsubsection{Gaussian Process: the Kernel}
 \label{sec:kernel}
 From Eq.~\ref{eq:covariance}, kernel is directly related to the covariance function in Gaussian Process. Kernel descibes how the relating neighboring points are related to one another. It is possible to embed different information regarding the physics of the spectrum into the kernel. 
-Different kernels are used for different analysis backgrounds with different features. A specific example to the dijet spectrum is demonstrated in ~\cite{frate2017modelling}.
+Different kernels are used for different analysis backgrounds with different features. A specific example to the dijet spectrum is demonstrated in ~\cite{frate2017modeling}.
 
 %t's found that the simple radial basis function and a white noise kernel are sufficient to describe the background spectrum, the signal is described by another radial basis function kernel of a particular mean value.
 %The kernels are given as the following: 
@@ -442,7 +441,7 @@ In a window defined from bin number m to n, the observed data and prediction can
     
 
 
-    Equation~\ref{eq:p-valuetestStats} can be used to evaluate the p-value of the observed value. T is calculated directly given the observed $x$ in the window, and $T_{0}$ is given by generating Poisonian fluctuation from the fit background model. T is compared against the psuedoexperiment value of the test statistics, and p is found that way for each window. 
+    Equation~\ref{eq:pvaluetestStats} can be used to evaluate the p-value of the observed value. T is calculated directly given the observed $x$ in the window, and $T_{0}$ is given by generating Poisonian fluctuation from the fit background model. T is compared against the psuedoexperiment value of the test statistics, and p is found that way for each window. 
 
     In each Bumphunter scan, the p-value of the bumphunter test statistic is evaluated for windows sized from two-bin wide to half the spectrum.
 
@@ -452,7 +451,7 @@ In a window defined from bin number m to n, the observed data and prediction can
         t_{0} = - ln (t_{min}) 
     \end{equation}
 
-    Significance Z and the p-value can be calculated from this test statistic in Eq.~\ref{eq:p-valuetestStats} and thereby provide an overall bumphunting deviation from the Standard Model. If the p-value is lower than 0.01, the null hypothesis is rejected, otherwise, it's accepted.
+    Significance Z and the p-value can be calculated from this test statistic in Eq.~\ref{eq:pvaluetestStats} and thereby provide an overall bumphunting deviation from the Standard Model. If the p-value is lower than 0.01, the null hypothesis is rejected, otherwise, it's accepted.
 
     %In addition to the bumphunter test statistics, there is the tailhunter, KS, Jeffreys and no sidebands bumphunter that can also be chosen for different signals searched for in other physics analyses. More information can be found in the Bumphunter paper\cite{choudalakis2011hypothesis}.
 
@@ -744,14 +743,14 @@ From this calculation, the limit calculation in the above~\ref{sec:limits} can b
 %\end{equation}
 
 \subsubsection{Frequentist Limits: Gaussian Process Adaptations}
-    The Gaussian process is shown to be able to be incorporated within the Asimov method of frequentist limit setting~\cite{frate2017modelling}.
+    The Gaussian process is shown to be able to be incorporated within the Asimov method of frequentist limit setting~\cite{frate2017modeling}.
     In the Figure~\ref{fig:chi2}, the Likelihood ratio in the Gaussian process is a proxy for the profile likelihood ratio used in the Asimov limit. It can be seen that it approximately follows the $\chi^{2}$ distribution, satisfying a requirement that follows from the Wald approximation that allows for the Asimov approximation of limits.
 
     \begin{figure}[!htb]
         \begin{center}
             \includegraphics[width=0.75\textwidth]{figures/chapter_analysismethod/chi2}
                 \caption{
-                This figure shows the negative log of the $\Lambda$ which is an approximation of the measure of the profiled likelihood ratio defined in~\ref{eq:profilelikelihood}. The top part is the distribution for background only pseudo-experiments, whereas the bottom is the background + signal distribution. They show a reasonable agreement to the $\chi^{2}$ fit, a required condition for the Asimov approximation for a frequentist limit setting~\cite{frate2017modelling}. 
+                This figure shows the negative log of the $\Lambda$ which is an approximation of the measure of the profiled likelihood ratio defined in~\ref{eq:profilelikelihood}. The top part is the distribution for background only pseudo-experiments, whereas the bottom is the background + signal distribution. They show a reasonable agreement to the $\chi^{2}$ fit, a required condition for the Asimov approximation for a frequentist limit setting~\cite{frate2017modeling}. 
             }
             \label{fig:chi2}
         \end{center}
