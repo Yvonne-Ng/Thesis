@@ -90,7 +90,7 @@ This method is used to identify lower $P_{T}$ muons that does not make it to mul
 \end{itemize}
 
 \subsection{Muon Identification}
-Muon identification is a set of selection criteria applied to the candidate muons to cut out muons from pion/kaon decays that would form muons that are not of interest to analyses. In different analyses, depending on the signal type, several muon identification working points are used.
+In ATLAS, the muon of interest are the muons that comes from the hard primary vertex decay. Muons formed this way are known as "prompt muons". "Non-Prompt" muons came from the semileptonic decay from jet fragmentations. Muon identification is a set of selection criteria applied to the candidate muons to cut out ``non-prompted" muons from light hadron decays that would result in in-flight detector production of muons. In different analyses, depending on the signal type, several muon identification working points are used.
 
 A couple of criteria are used for muon identification: $q/p_{\textrm{significance}}$, $\rho'$ and $\chi^{2}_{\textrm{norm}}$. They are defined as ~\cite{muonReco2016}:
 
@@ -102,18 +102,18 @@ A couple of criteria are used for muon identification: $q/p_{\textrm{significanc
     q/p_{\textrm{significance}} = |(q/p)^{ID} - (q/p)^{MS}|/\sqrt{\sigma^{MS}_{P_{T}} + \sigma^{ID}_{P_{T}}}
     \end{equation}
 
-    This is the absolute value of the difference between the charges and the $P_{T}$ measurement divided by the sum of error in the $P_{T}$ measurement of both the ID and MS. $q$ is the charge, and p is the momentum of the particle.
+    This is the absolute value of the difference between the charges and the $P_{T}$ measurement divided by the sum of error in the $P_{T}$ measurement of both the ID and MS. $q$ is the charge, and p is the momentum of the particle. It is expected that the value is smaller for prompt muon as the particle will have similar $q/p$ ratio in both the ID and the MS if muon was created in the primary vertices rather than jet fragmentation later on. 
 
 \item \textbf{$\rho'$}
     \begin{equation}
         \rho' = |P_{T}^{MS} - P_{T}^{ID}| / P_{T}^{\textrm{Combined}}
     \end{equation}
 
-This is the absolute value of the difference between the $P_{T}$ of the MS and the ID divided by the combined $P_{T}$ of the muon candidate.
+This is the absolute value of the difference between the $P_{T}$ of the MS and the ID divided by the combined $P_{T}$ of the muon candidate. A smaller value indicate a better match between the ID muon and the MS muon candidate.
 
 \item \textbf{$\chi_{\textrm{norm}}^{2}$}
 
-    This is the $\chi^{2}$ of the fit from the combined muon track from both the ID and MS.
+    This is the $\chi^{2}$ of the fit from the combined muon track from both the ID and MS. A smaller value shows that the ID and MS muon track candidates have the same direction and is therefore more likely to originate from a ``prompt muon".
 
 \end{itemize}
 
@@ -152,18 +152,17 @@ The Low-$p_{T}$ working point includes all of the muons in the medium working po
 
 
 \subsection{Muon Isolation}
-After the reconstruction and identification of the muon candidates, a set of muons are formed. The next step is to pick out muon candidates of interest from muon isolation. In ATLAS, the leptons of interest to physics analyses came from the hard primary vertex decay of radially decaying particles. $W$, $Z$, Higgs bosons or other BSM particles such as the $Z'$ are examples decays that concern analyzers. Muons formed this way are known as the "prompt muons", they are usually clean and do not have many
-associated neighboring hits. Less interesting muons came from the semileptonic decay from jet fragmentation, these muons decays are formed with lots of neighboring hits. From this difference, associated neighboring hits can be used as criteria to discriminate muons of interest from the muons not of interest. This step is called muon isolation. Signal sensitivity is cut down in the background and the search. Depending on the muon type, two different variables are used for muon isolation, one is the track-based isolation and other is calorimeter-based isolation.
+Following identification, muon isolation is performed. Other ``non-prompt" muons that resulted from heavy hadron decay before reaching the inner detector. They would not have been cut out from the identification step. Since in comparison, ``prompt muons" usually result in back-to-back isolated higher-$P_{T}$ muons, the relatively high associated neighboring hits from ``non-prompt" heavy flavor muons can be used as criteria for discrimination. The step performed is known as muon isolation. Depending on the muon energy, two different variables are used for muon isolation. One is the track-based isolation and other is calorimeter-based isolation.
 
-\subsubsection*{Isolation Parameters}
+\subsubsection*{Isolation Variables}
 The parameters used in the isolation criteria are defined as the following:
 \begin{itemize}
-    \item  $P_{T}^{varcone\:size}$ \newline
+    \item  $P_{T}^{\textrm{varcone\:size}}$ \newline
         The track-based isolation variable, $P_{T}^{varcone\:size}$ are the sum of the $P_{T}$ of all the tracks in a variable-sized cone. The variable-sized cone(varcone) is defined as below.
 
     
 \begin{equation}
-    \delta R = min(\frac{10}{P^{\mu}_{T}[\textrm{GeV}]}, \delta R_{max}) 
+    \delta R = min(\frac{10}{P^{\mu}_{T}[\textrm{GeV}]}, \delta R_{\textrm{varcone\:size}}) 
  \end{equation}
 
 The term is $P_{T}$ dependent, the larger the $P_{T}$, the smaller the cone. 
@@ -171,8 +170,47 @@ The term is $P_{T}$ dependent, the larger the $P_{T}$, the smaller the cone.
         A calorimeter based parameter $E^{\textrm{topocone\:size}}_T$ is defined as the sum of the energy deposit in a $\delta R$ size topo cone. 
 
 \end{itemize}
+Different working points are developed for balancing ``non-prompt" rejection, ``prompt" acceptance and the isolation performance when in close proximity to other objects. The working points are defined with respect to different variables. Details can be found in~\cite{muon2021}.
 
-The isolation criteria using track-based variables is the variable that is related to the transverse momentum of the muon. Studies are done on data Monte Carlo to get the best cut-off point. The different working points are listed below in Figure~\ref{fig:isolationWP}.
+\begin{table}[htbp]
+\centering
+\caption{Definitions of the muon isolation Working points~\cite{muon2021}. }
+\begin{adjustbox}{width=1\textwidth}
+\begin{tabular}{|c|c|c|}
+\hline
+Isolation WP & Definition & Track \pT requirement \\
+\hline
+\emph{PflowLoose}* & $(\ptvarcone[30] +0.4\cdot \pflowiso[20]) < 0.16 \cdot \pT^{\mu}$  & \multirow{2}{*}{$\pT>500$ \MeV} \\
+\emph{PflowTight}* & $(\ptvarcone[30] +0.4\cdot \pflowiso[20]) < 0.045 \cdot \pT^{\mu}$ & \\
+\hline
+\emph{Loose}* & $\ptvarcone[30] < 0.15 \cdot \pT^{\mu}$, $\topoetcone[20] < 0.3 \cdot \pT^{\mu}$  & \multirow{2}{*}{$\pT>1$ \GeV} \\
+\emph{Tight}* & $\ptvarcone[30] < 0.04 \cdot \pT^{\mu}$, $\topoetcone[20] < 0.15 \cdot \pT^{\mu}$ & \\
+\hline
+\emph{HighPtTrackOnly} & $\ptcone[20] < 1.25$ \GeV & \multirow{2}{*}{$\pT>1$ \GeV} \\
+\emph{TightTrackOnly}* & $\ptvarcone[30] < 0.06 \cdot \pT^{\mu}$ &  \\
+\hline
+\multirow{2}{*}{\emph{PLBDTLoose (PLBDTTight)}} & $\ptvarcone[30] < \max(1.8~\GeV,0.15 \cdot \pT^{\mu})$               & \multirow{2}{*}{$\pT>1$ \GeV} \\
+& BDT cut to mimic \textit{TightTrackOnly} (\textit{Tight}) efficiency & \\
+\hline
+\end{tabular}
+\label{tab:iso_wp_def}
+
+\end{adjustbox}
+\end{table}
+
+%\begin{table}[!htb]
+%\begin{tabular}{lllll}
+%\begin{adjustbox}{width=1\textwidth}
+%\textbf{Isolation Working Point}                                                  & \textbf{Definition} & \textbf{Track PT requirement}   \\ \hline
+%\begin{tabular}[c]{@{}l@{}}PFlowLoose\\ PFlowTight\end{tabular}          & $(P_{T}^{\textrm{varcone30}} +0.4 E^{\textrm{netflow20}}_{T}) < 0.16 \cdot P^{\mu}_{T}$ \\ $P_T^{\textrm{varcone30}} + 0.4 E^{\textrm{netflow20}}_{T}) < 0.045 \cdot P^{\mu}_{T} $          &  $P_{T} >500$ MeV                      \\ \hline
+%\begin{tabular}[c]{@{}l@{}}Loose\\ Tight\end{tabular}                    & $(P_{T}^{\textrm{varcone30}} < 0.15 \cdot P_{T}^{\mu}, E^{topocone20}_{T}<0.3 \cdot P_{T}^{\mu}$ \\ $(P_{T}^{\textrm{varcone30}} < 0.04 \cdot P_{T}^{\mu}, E^{topocone20}_{T}<0.15 \cdot P_{T}^{\mu}$        &  $P_{T} >$ 1 \\ $P_{T} >$ 1 GeV                      \\ \hline
+%\begin{tabular}[c]{@{}l@{}}HighPtTrackOnly\\ TightTrackOnly\end{tabular} &  $P_{T}^{\textrm{cone20}} <$ 1.25 GeV \\ $P_{T}^{varcone30} <0.06 \cdot P_{T}^{\mu}$        &  $P_{T} >1$ GeV                     \\ \hline
+%PLBDTLoose (PLBDTTight)                                                  &  $P_{T}^{\textrm{cone30}} < 0.06 \cdot P_{T}^{\mu}$  $(P_{T}^{\textrm{varcone30}} < max(1.8 \textrm{GeV}, 0.15 \cdot P_{T}^{\mu} \\ BDT cut to mimic TightTrackOnly(Tight) efficiency      &  $P_{T} >1$ GeV                    
+%\end{tabular}
+%\end{adjustbox}
+%\end{table}
+
+%The isolation variable cut is often chosen related to the transverse momentum of the muon. For example, in the particle-flow based isolation variable, $P_{T}^{\textrm{varcone 30}}$ is chosen for $P_{T}^{\mu}< 50 GeV and $P_{T}^{\textrm{varcone 30}} is chosen for muons with $P_{T}^{\mu}> 50 GeV$. This provides better efficiency than a single selection. Below in Figure~\ref{fig:isolationWP}.
 
 %\begin{figure}[!htb]
 %    \begin{center}
@@ -196,7 +234,7 @@ The isolation criteria using track-based variables is the variable that is relat
     \end{center}
 \end{figure}
 
-Different isolation working points are used for optimal sensitivity. 
+Different isolation working points are defined. 
 
 
 \subsection{Muon Calibration}
@@ -346,11 +384,12 @@ These cluster are matched by tracks in the inner detector, these tracks are used
 %\end{figure}
 
 \subsection{Photon Identification}
-Like muons, not all photons candidates are photons in the primary processes. Some came from non-prompt photons from decaying jets. Photon identification utilizes kinematic cuts from calorimeters variables to separate the prompt photons from the fake photons from jets~\cite{gammaCalibration2019}.
+Like muons, not all photons candidates are photons in the primary processes. Some came from ``non-prompt" photons from decaying jets. Photon identification utilizes kinematic cuts from calorimeters variables to separate the prompt photons from the fake photons from jets~\cite{gammaCalibration2019}.
+
 There are two photon working points, the loose working point uses information from the shower shape in the calorimeter. The tight working point uses information from the calorimeter strips and has different requirements for uncoverted and converted photon for optimal classfication power. Details can be found in~\cite{gammaCalibration2019}. 
 
 \subsection{Photon Isolation}
-Photon isolation is a strategy that is effective in identifying the prompt photons from the non-prompt photons that are produced in association with other product. The isolation is a cut on the transverse energy or transverse momeumtum for a certain $\delta R $ cone size around the photon candidate. The isolation variable for the calorimeter and tracker are calculated separately~\cite{gammaCalibration2019}.
+Photon isolation is a strategy that is effective in identifying the prompt photons from the ``non-prompt" photons that are produced in association with other product. The isolation is a cut on the transverse energy or transverse momeumtum for a certain $\delta R $ cone size around the photon candidate. The isolation variable for the calorimeter and tracker are calculated separately~\cite{gammaCalibration2019}.
 
 %\begin{itemize}
 %
