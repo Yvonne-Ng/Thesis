@@ -238,22 +238,22 @@ Different isolation working points are defined.
 
 
 \subsection{Muon Calibration}
-Given the difference between imperfect Monte Carlo generation and data, a calibration factor is derived from comparing the MC to data using some known physics process $J/\Psi$ to $\mu \mu$ and $Z$ to $\mu \mu$. The calibration is done on the $P_{T}$ of the muon. 
-The calibration is dependent on the detector angle, and the formula is summarized as below, where the constants are derived from the data and simulation of the samples.
+The Monte Carlo simulation is often imperfect in its parton showering and detector simulation. The imperfection results in difference in data and MC given the same underlying process. This makes understanding the tree level process from the data represent difficult. Given this, a calibration factor is derived from comparing the MC to data using some known physics process $J/\Psi$ to $\mu \mu$ and $Z$ to $\mu \mu$. The calibration is done on the $P_{T}$ of the muon. 
+The calibration is dependent on the detector angle, and the formula for $P_{T}$ correction is summarized as below, where the constants are derived from the data and the simulated samples.
 
 %In data there is always margin for calibration error, and monte carlo is also not necessarily accurately describing the experimental environment. To match data result to the actual physics process that happened, transverse momentum correction done on both the MS tracks muons and the ID track on the MC result as follows: 
 
 \begin{equation}
-    P_{T}^{\textrm{Cor,Det}} = \frac{P^{\textrm{MC, Det}}_{T} + \sum_{n=0}^{1} S_{n}^{\textrm{Det}}{\eta, \phi}(P_{T}^\textrm{{MC, Det}})^n}{1+\sum_{m=0}^{2}\delta r_{m}^{\textrm{Det}}(\eta, \phi)(P_{T}^{\textrm{MC, Det}})^(m-1) g_{m}}
+    P_{T}^{\textrm{Cor,Det}} = \frac{P^{\textrm{MC, Det}}_{T} + \sum_{n=0}^{N} S_{n}^{\textrm{Det}}{\eta, \phi}(P_{T}^\textrm{{MC, Det}})^n}{1+\sum_{m=0}^{2}\delta r_{m}^{\textrm{Det}}(\eta, \phi)(P_{T}^{\textrm{MC, Det}})^(m-1) g_{m}}
 \label{eq:muoncalib}
 \end{equation}
 
-Here $P_{T}^{\textrm{MC, Det}}$ is the uncorrected transverse momentum, $g_m$ is a unit Gausssian distribution, $\delta r^{\textrm{Det}}_{m}(\eta, \phi)$ and $s_{n}^{\textrm{Det}}(\eta, \phi)$ are the momentum resolution smearing and scale correction resolution. 
+Here $P_{T}^{\textrm{MC, Det}}$ is the uncorrected transverse momentum, $g_m$ is a unit Gausssian distribution, $\delta r^{\textrm{Det}}_{m}(\eta, \phi)$ and $s_{n}^{\textrm{Det}}(\eta, \phi)$ are the momentum resolution smearing and scale correction resolution. Det in the equation is short for "Detector, which could be ID or MS.
 
 The correction is then applied to the combined muon in the following way:
 
 \begin{equation}
-    P_{T}^{\textrm{Cor, CB}} = f *P_{T}^{\textrm{Cor, ID}}+ (1-f) \cdot P_{T}^{\textrm{Cor, MS}}
+    P_{T}^{\textrm{Cor, CB}} = f \cdot P_{T}^{\textrm{Cor, ID}}+ (1-f) \cdot P_{T}^{\textrm{Cor, MS}}
 \label{eq:muoncalibfactor}
 \end{equation}
 
@@ -284,8 +284,8 @@ The weight f in the above is obtained from MC simulation. $P_T^{\textrm{Cor, CB}
 
 \section{Jets}
 \label{sec:Jet}
-Colored charge particles are govern by the strong force under the SM. This includes quarks and gluons. Under the strong force, when the distance is up to a certain value in an energy scale, the potential of these color charges would increases with distance apart. The increased potential leads to extra quark and gluon formation. The newly formed quark and gluons that are generated experiences a similar effect, which lead to further spliting from the original primary seed particle. This effect is known as parton showering. 
-Showering lead to a cascade of energy deposits in the detector that does not look anything like the original particles. The jet algorithms aims to reverse reverse the process, it reconstructs for the physics properties of the the original primary quark/gluon from the resulting energy deposits. Figure~\ref{fig:jetEvent} is a visualization of an ATLAS event with two high $p_{T}$ jets.
+Colored charge particles interact under fthe strong force under the SM. This includes quarks and gluons. Under the strong force, when the distance is up to a certain value (energy scale dependent), the energy potential of these color charges increases with their distance apart from each other. The increased potential leads to extra quark and gluon formation under color confinement. This effect is known as parton showering. 
+Showering lead to a cascade of energy deposits in the detector. The jet algorithms aims to reverse the process, it reconstructs the physics properties of the the original primary quark/gluon from the resulting energy deposits. Figure~\ref{fig:jetEvent} is a visualization of an ATLAS event with two high $p_{T}$ jets.
 
 The following is a schematic understanding of how jet finding is achieved. 
 
@@ -312,21 +312,21 @@ Energy Deposit on Detector  $\rightarrow$  Topo-cell Clustering $\rightarrow$  T
 % 
 \subsection*{Topo-cell clustering}
 \label{Topocell clustering}
-This step clusters the lowest level calorimeter cells energy deposits into topological clusters. ATLAS uses a 3-D clustering algorithm. 
+This step clusters the lowest level calorimeter cells energy deposits into ``topological clusters", which are cluster of cell deposit with high signal-to-noise (S/N) ratio collected from proximity in the detector. ATLAS uses a 3-D clustering algorithm and it's described as the foolowing:
 
-First, a seed cell with a high signal-to-noise(S/N) ratio above a certain level is found. Then, cells neighboring the seed cells in the 3-D that satifies certain lower threshold level are collected along with the seed cell to the topocluster. Lastly, a final set of cells that surround the second set of collected cells are added to the cluster. 
+First, a seed cell with a high S/N ratio above a 4 is found. Then, cells neighboring the seed cells in the in 3 dimensions above S/N 2 are collected along with the seed cell to the topocluster. Lastly, a final set of cells that surround the second set of collected cells above S/N 0  are added to the cluster. 
 
 \subsection*{Jet Finding algorithm}
 \label{sec:JetFinding}
 % Add the C/A clustering algorithm
 % Add the KT algorithm
 
-Jet finding algorithm aims to merge the topoclusters from the previous step to form jets. An important feature for a jet finding algorithm is that it needs to be infra-red and collinear(IRC) safe. In an IRC safe algotihm, soft and small angle radiation addition to the jet will not change the constituent or calculation of the jet. This requirement avoids the divergence in probability calculations that would lead to infinities when jet splitting happens.
+Jet finding algorithm aims to identify all the deposits that can be traced back to the original hadronic particle. An important feature for a jet finding algorithm is that it needs to be infra-red and collinear(IRC) safe. In an IRC safe algorithm, soft and small angle radiation that showers from the jet will not change the kinematics of the jet. This requirement avoids the divergence in probability calculations that would lead to infinities when jet splitting happens.
 
 All of the main ATLAS jet finding algorithms make use of the following quantities:
 
 \begin{equation}
-    d_{ij} = min(k_{ti}^{2p}, k_{tj}^{2p}) \frac{\Delta^{2}}{R^{2}}
+    d_{ij} = min(k_{ti}^{2p}, k_{tj}^{2p}) \frac{\Delta_{ij}^{2}}{R^{2}}
     \label{sec:topo}
 \end{equation}
 
@@ -337,19 +337,19 @@ All of the main ATLAS jet finding algorithms make use of the following quantitie
 Here, $\Delta_{ij}^{2} = (y_{i}- y_{j})^2 + (\phi_{i} - \phi_{j})$, $k_{ti}
 $, $y_{i}$, and $\phi_{i}$ are the transverse momentum, rapidity and azimuth angle of particle i. p is a parameter on the energy scale~\cite{HEP2008}. $d_{ij}$ and $d_{iB}$ quantity are the distance between particle i and j and distance between i and B respectively. 
 
-The algorithm clusters the topoclusters with the smallest distance together~\ref{sec:topo}, until no clusters are left. p is taken to be -1 for the anti-KT jet finding algorithm; 1 for the KT algorithm and 0 for C/A. 
+The algorithm clusters the topoclusters with the smallest distance together~\ref{sec:topo}, until no topoclusters are left. p is taken to be -1 for the anti-KT jet finding algorithm; 1 for the KT algorithm and 0 for C/A. 
 
-The current ATLAS standard jet finding algorithm is the Anti-KT algorithm.
+The current ATLAS standard jet finding algorithm is the Anti-KT algorithm. One reason was that it's an IRC safe algorithm.
 
 \subsection{Jet calibration}
-After jets are formed, they need to be calibrated to reflect the direction, momentum and energy of the originated quarks or gluons. The jets are required to be calibrated. In ATLAS, jets energy is measured out in both the EM calorimeter and the hadronic calorimeter, the topoclusters are calibrated to the EM scale, but not the hardronic scale. Jet energy correction needs to be perfored before the object can be used for analysis. The jet calibration takes the following steps as
+After jets are formed, they need to be calibrated to reflect the direction, momentum and energy of the originated quarks or gluons. The jets are required to be calibrated. In ATLAS, jets energy is measured out in both the EM calorimeter and the hadronic calorimeter. The topoclusters are calibrated to the EM calorimeter scale, but not to the hadronic calorimeter. Jet energy correction needs to be performed before the object can be used for analysis to remove pile up and correct for direction. The jet calibration takes the following steps as
 shown in Figure~\ref{fig:JetCalibration}.
 
 \begin{figure}[!htb]
     \begin{center}
         \includegraphics[width=1.1\textwidth]{figures/common_ana/JetCalibration}
         \caption{        
-            The steps of calibration the jet object under take before analyzable objects\cite{Mehlhase:2770815}.
+            The steps of calibration the jet object go through before analyzable objects\cite{Mehlhase:2770815}.
         }
         \label{fig:JetCalibration}
     \end{center}
@@ -357,20 +357,20 @@ shown in Figure~\ref{fig:JetCalibration}.
 
 \section{Photon}
 \label{sec:Photon}
-Photons on ATLAS are reconstructed from clusters in the EM Calorimeter sometimes paired with tracks in the tracker. Photons and electrons shares a similar reconstruction algorithm. Like muons and jets, photons are first reconstructed, identified, isolated and lastly calibrated before being used for analysis. 
+Photons in ATLAS are reconstructed from clusters in the EM Calorimeter sometimes paired with tracks in the tracker. Photons and electrons shares a similar reconstruction algorithm. Like muons and jets, photons are first reconstructed, identified, isolated and lastly calibrated before being used for analysis. 
 
 \begin{figure}[!htb]
     \begin{center}
         \includegraphics[width=0.7\textwidth]{figures/common_ana/photonEvent}
         \caption{        
-        An ATLAS event display that contain two photons~\cite{atlas}.
+        An ATLAS event display that contain two photons~\cite{atlastwophoton}.
         }
         \label{fig:photonEvent}
     \end{center}
 \end{figure}
 
 \subsection{Photon Reconstructionn}
-Photons interact with the active material in the EM calorimeter. They shower and leave deposits in there. The first step to photon reconstruction is the finding of clustering seed. A sliding window of $\delta \eta \times \delta \phi = 0.025 \times 0.0245$ is used to scan for a clustering seed with energy deposit above 2.5 GeV. Neighboring hits are added to the seed to form a cluster through the clustering algorithm~\cite{Lampl:1099735}. 
+Photons interact with the EM calorimeter. They shower and leave deposits in the active material. The first step to photon reconstruction is the finding of a seed cell for clustering. A sliding window of $\delta \eta \times \delta \phi = 0.025 \times 0.0245$ is used to scan for a clustering seed with energy deposit above 2.5 GeV. Neighboring hits are added to the seed to form a cluster through the clustering algorithm~\cite{Lampl:1099735}. 
 These cluster are matched by tracks in the inner detector, these tracks are used for vertex construction. If no vertex or tracks are matched, they are unconverted photons, otherwise, they are considered converted photons. Converted photons are photons that originates from electrons. 
 
 %\begin{figure}[!htb]
@@ -384,12 +384,12 @@ These cluster are matched by tracks in the inner detector, these tracks are used
 %\end{figure}
 
 \subsection{Photon Identification}
-Like muons, not all photons candidates are photons in the primary processes. Some came from ``non-prompt" photons from decaying jets. Photon identification utilizes kinematic cuts from calorimeters variables to separate the prompt photons from the fake photons from jets~\cite{gammaCalibration2019}.
+Like muons, not all photons candidates are photons generated from the primary vertex. ``Prompt" photons, that came the primary process are of interest in the analysis (dijetISR) worked on. A main source of``non-prompt" photons on ATLAS came from jets decay. Photon identification are mainly placed on shower shapes in the calorimeters~\cite{gammaCalibration2019}.
 
-There are two photon working points, the loose working point uses information from the shower shape in the calorimeter. The tight working point uses information from the calorimeter strips and has different requirements for uncoverted and converted photon for optimal classfication power. Details can be found in~\cite{gammaCalibration2019}. 
+There are two photon working points, the loose working point uses information from the the calorimeter. The tight working point uses information from the calorimeter strips and has different requirements for uncoverted and converted photon for optimal classfication power. Details can be found in~\cite{gammaCalibration2019}. 
 
 \subsection{Photon Isolation}
-Photon isolation is a strategy that is effective in identifying the prompt photons from the ``non-prompt" photons that are produced in association with other product. The isolation is a cut on the transverse energy or transverse momeumtum for a certain $\delta R $ cone size around the photon candidate. The isolation variable for the calorimeter and tracker are calculated separately~\cite{gammaCalibration2019}.
+Photon isolation is a strategy that is effective in identifying the prompt photons from the ``non-prompt" photons that are produced along other objects. The isolation is a cut on the energy or transverse momentum in $\delta R $ cone size around the photon candidate. The isolation variable for the calorimeter and tracker are calculated separately~\cite{gammaCalibration2019}.
 
 %\begin{itemize}
 %
@@ -414,6 +414,6 @@ Photon isolation is a strategy that is effective in identifying the prompt photo
 %\end{itemize}
 
 \subsection{Photon Calibration}
-Photons in ATLAS takes the following steps to be calibrated. 
-First, the photon energy is estimated from the deposits in the calorimeter by a multivariate regression algorithm on the detector material in simulation. Later, correction is then done on the energy scale in the different layers of the EM calorimeter from Higgs to $\mu \mu$ data. After that, geometric correction is done on the data to correct for the non-uniformity in the detector in the boundaries of the calorimeter modules. Lastly, an overall adjustment on the energy scale is done in the data~\cite{gammaCalibration2019}.
+Photons in ATLAS takes the following steps to be calibrated to correct the estimation of energy deposited in the calorimeter, to correct for the relative energy scale in the different layers of the EM calorimeter, correct for the non-uniformities in the calorimeter response affecting the data and to provide an overall adjustment~\cite{gammaCalibration2019}.
+First, the photon energy is estimated from the deposits in the calorimeter by a multivariate regression algorithm trained on simulated events on data. Later, correction is then done on the energy scale in the different layers of the EM calorimeter from Higgs to $\mu \mu$ data, the correction on the calorimeter layers are then applied to the photons calibrated. After that, geometric correction is done on the data to correct for the non-uniformity in the detector in the boundaries of the calorimeter modules. Lastly, an overall adjustment on the energy scale is done in the data~\cite{gammaCalibration2019}.
 
