@@ -122,13 +122,15 @@ While the fit function is relatively easy to implement, it is highly restrictive
 
     2. The SWiFT fit will start with the maximum sized window, which is the number of bins of the entire spectrum minus one. The window scan starts from the lowest mass region along the spectrum. A fit is performed in the window. This estimates the spectrum up to the middle point of the window.
 
-    3. The window moves up by one bin along the resonance mass spectrum. Another fit is performed. The prediction up to the middle of the window(in one bin) is added to the prediction in step 2. 
+    3. The window moves up by one bin along the resonance mass spectrum. Another fit is performed. The prediction up to the middle of the window is added to the prediction in step 2. 
 
-    4. Step 3 is repeated, until the end of the spectrum is reached. The final fit is checked against the threshold p-value of the $\chi^{2}$. If the fit $\chi^{2}$ is above the designated threshold, the background estimation ends. Otherwise, the window size is further reduced by one bin, and step 2 and 3 are repeated until either a fit above the test statistic threshold is found or the minimum window size is reached. The minimum window size is defined by the signal injection test discussed
+    4. Step 3 is repeated, until the end of the spectrum is reached. The final fit is checked against the threshold p-value of the $\chi^{2}$. If the fit $\chi^{2}$ is below the designated threshold, the background estimation ends. Otherwise, the window size is further reduced by one bin, and step 2 and 3 are repeated until either a fit above the test statistic threshold is found or the minimum window size is reached. The minimum window size is defined by the signal injection test discussed
     below in Section~\ref{sec:signalInjection}.
 
     Figure~\ref{fig:swift} here shows a doodle on the sliding window method.
-    While the SWiFT can provide extra flexibility to the fit, it is also prone to becoming too flexible where the signal could be fitted away along with the background. A carefully designed unblinding procedure is used. Figure~\ref{fig:unblinding} shows a sample unblinding procedure, as used in the dijetISR resolved analysis in presented in Chapter~\ref{chapter:dijetISR}.
+    While the SWiFT can provide extra flexibility to the fit, it is also prone to becoming too flexible the signal in data will be estimated as part of the background. To provide the most accurate background prediction while balancing signal sensitivity, SWiFT always aims to use the largest window possible that can still accurately describe the background. 
+
+As the SWiFT window size is not selected until the data is unblinded, a carefully designed unblinding procedure is required. Figure~\ref{fig:unblinding} shows a sample unblinding procedure, as used in the dijetISR resolved analysis in presented in Chapter~\ref{chapter:dijetISR}.
 
 \begin{figure}[!htb]
     \begin{center}
@@ -153,16 +155,16 @@ While the fit function is relatively easy to implement, it is highly restrictive
     \subsection{Gaussian Process} 
     \label{sec:GP}
 
-    Gaussian process background prediction is performed through Bayesian inference. Unlike the above fit function-based method, Gaussian Process predicts a \textit{class of functions} with its \textit{kernels} for added flexibility. The input prior distribution and output posterior distribution are both a collection of random variables that can be described by Gaussian distributions. The distributions are a joint-distribution where their correlation can be described by a covariance
-    matrix.
+    Gaussian process background prediction is performed through Bayesian inference. The former estimation of the prior Gaussian joint probability distribution form more constricted posterior distribution with the added information from data. Unlike the above fit function-based method, Gaussian Process predicts an infinite number of functional forms, constrained by a kernel, which defines the bin-to-bin covariance.
 
-    Gaussian process can naturally be applied to the background estimation of a spectrum since the bin event count in background and signal modeling are approximatedly a Gaussuain distribution in each bin: In the resonance spectrum background, the prediction in every bin is a Poisson distribution due to its counting experiment nature. Poissonian distributions can be approximately described as a Gaussian Distribution through the Central Limit Theorem~\cite{kwak2017central}. As the distribution between the points is smooth, the relationship between each of the neighboring bins can be described by a joint distribution where the correlation is a covariance matrix. The covariance matrix can embed physics knowledge regarding the detector resolution and object energy scale. The Gaussian process allows for more flexibility in the functions compared to the above two methods, as can be shown here in this covariance matrix diagram:
+
+    Gaussian process can naturally be applied to the background estimation of a spectrum since the bin event count in background and signal modeling are approximatedly a Gaussian distribution in each bin: In the resonance spectrum background, the prediction in every bin is a Poisson distribution due to its counting experiment nature. Poissonian distributions can be approximately described as a Gaussian Distribution through the Central Limit Theorem~\cite{kwak2017central}. As the distribution between the points is smooth, the relationship between each of the neighboring bins can be described by a joint distribution where the correlation is a covariance matrix. The covariance matrix can embed physics knowledge regarding the detector resolution and object energy scale. The Gaussian process allows for more flexibility in the functions compared to the above two methods, as can be shown here in this covariance matrix diagram:
 
     \begin{figure}[!htb]
         \begin{center}
             \includegraphics[width=0.7\textwidth]{figures/chapter_analysismethod/GP}
             \caption{
-                These figure shows that the Gaussian process fit is able to provide more flexibility than the standard fit function method. The Red line in the first panel shows results from the fit function method and the green line shows the extra flexibility gained by Gaussian Process~\cite{frate2017modeling}.
+                These figure shows that the Gaussian process fit is able to provide more flexibility than the standard fit function method. The Red line in the first panel shows results from the fit function method and the green line shows the extra flexibility gained by Gaussian Process. The second pane shows that the possible value of the fit functions are relatively constricted (in red) compared to the Gaussian Process prediction (green) when the prediction are sampled at point $X_{A}$ and $X_{B}$. The black line shows the covariance matrix. The third pane shows the Covariant matrix of the kernel, where $X_{A}$ and $X_{B}$ are labeled. ~\cite{frate2017modeling}.
             }
             \label{fig:GaussianProcess}
         \end{center}
@@ -172,7 +174,9 @@ While the fit function is relatively easy to implement, it is highly restrictive
 
 \subsubsection{Gaussian Process: Regression}
 
-The Gaussian process background prediction method is a Bayesian method, where the prior distributions can be ``updated" by binning information. From Bayesian inference, a new prediction can be formed from the posterior. It can be shown that the mean and covariance can be given by the following formulae:
+The Gaussian process background prediction method is a Bayesian method that predicts the posterior probability distribution. The mean function of this posterior probability distribution is the backgrdoun estimation prediction from GP, and the covariance matrix from it is the GP prediction error.
+
+%where the prior distributions can be ``updated" by binning information. From Bayesian inference, a new prediction can be formed from the posterior. It can be shown that the mean and covariance can be given by the following formulae:
 
     \begin{itemize}
 
@@ -181,7 +185,7 @@ The Gaussian process background prediction method is a Bayesian method, where th
     \begin{equation}
         \mu(x_{*}|y)  = \mu(x_{*})+ K(x_{*}, x)[K(x, x)+ \sigma^{2}(x)I]^{-1}(y-\mu(x))
     \end{equation}
-    Here, $\mu$ is the mean function prediction of of point $x_{*}$, given known data point x and y, K is the kernel, and $\sigma$ is the white noise term.
+    Here, $\mu(x_{*}| y} $ is the mean function posterior prediction of of point $x_{*}$, given known data point x and y, K is the kernel, $I$ is the diagonal matrix, $\sigma$ is the white noise term in each bin. $\mu(x_{*})$ is the prior probability distribution. x is a vector of the input mass point, and x' are the same points in a 2d matrix.
 
     \item \textbf{The Covariance Function}
     \begin{equation}
@@ -196,56 +200,62 @@ The Gaussian process background prediction method is a Bayesian method, where th
 
     \subsubsection{Gaussian Process: the Kernel}
 \label{sec:kernel}
-From Eq.~\ref{eq:covariance}, kernel is directly related to the covariance function in Gaussian Process. Kernel descibes how the relating neighboring points are related to one another. It is possible to embed different information regarding the physics of the spectrum into the kernel. 
-Different kernels are used for different analysis backgrounds with different features. A specific example to the dijet spectrum is demonstrated in ~\cite{frate2017modeling}.
+From Eq.~\ref{eq:covariance}, kernel is directly related to the covariance function in Gaussian Process. Kernel descibes how the relating neighboring points are related to one another. 
+Various kernels are used for different analysis backgrounds with distinct features. A specific example to the dijet spectrum is demonstrated in ~\cite{frate2017modeling}.
 
 %t's found that the simple radial basis function and a white noise kernel are sufficient to describe the background spectrum, the signal is described by another radial basis function kernel of a particular mean value.
 %The kernels are given as the following: 
+An other more general example is given as below.
 %
-%    \begin{itemize}
-%        \item \textbf{Background Kernel}
-%
-%            The background kernel is the addition of the Radial Basis kernel function plus the white noise kernel.
-%            \begin{equation}
-%                K_{bkg}(x, x') = A_{1} * exp(-\frac{||x-x'||}{2\sigma^{2}}) *+ K_{noise}
-%                \label{eq:backgroundkernel}
-%            \end{equation}
-%            Here, $A_{1}$ is the amplitude hyperparameter that describes the size of the kernel, $\sigma_{1}$ is the lengthscale parameter.
-%            The noise kernel is a constant diagonal kernel:
-%            
-%
-%			\begin{equation}
-%            K_{noise}(x_{i}, x_{j}) =
-%			\begin{cases} \text{noise level} & \text{if $x_{i}==x_{j}$,} \\
-%			\\
-%            0 & \text{otherwise.}
-%			\end{cases}
-%			\end{equation}
-%
-%        \item \textbf{Signal Kernel}
-%
-%            The signal kernel is a square centered exponetial kernel
-%            \begin{equation}
-%            K(x_{i}, x_{j})=A_{2}\cdot exp(-(x-m)^{2}/(2\cdot\sigma_{2}^{2}))\cdot exp(-((x'-m)^{2}/(2\cdot\sigma_{2}^{2}))) + K_{noise}
-%            \label{eq:signalkernel}
-%            \end{equation}
-%
-%    \end{itemize}
-%            Here, $A_{2}$ is the amplitude of the signal kernel, m is the value where the kernel peaked on, and $\sigma_{2}$ is the lengthscale of the signal kernel. 
+    \begin{itemize}
+        \item \textbf{Background Kernel}
+
+            The background kernel is the addition of the Radial Basis kernel function plus the white noise kernel.
+            \begin{equation}
+                K_{bkg}(x, x') = A_{1} * exp(-\frac{||x-x'||}{2\sigma^{2}}) *+ K_{noise}
+                \label{eq:backgroundkernel}
+            \end{equation}
+            Here, $A_{1}$ is the amplitude hyperparameter that describes the size of the kernel, $\sigma_{1}$ is the lengthscale parameter.
+            The noise kernel is a constant diagonal kernel:
+            
+
+			\begin{equation}
+            K_{noise}(x_{i}, x_{j}) =
+			\begin{cases} \text{noise level} & \text{if $x_{i}==x_{j}$,} \\
+			\\
+            0 & \text{otherwise.}
+			\end{cases}
+			\end{equation}
+
+        \item \textbf{Signal Kernel}
+
+            The signal kernel is a square centered exponetial kernel
+            \begin{equation}
+            K(x_{i}, x_{j})=A_{2}\cdot exp(-(x-m)^{2}/(2\cdot\sigma_{2}^{2}))\cdot exp(-((x'-m)^{2}/(2\cdot\sigma_{2}^{2}))) + K_{noise}
+            \label{eq:signalkernel}
+            \end{equation}
+
+    \end{itemize}
+            Here, $A_{2}$ is the amplitude of the signal kernel, m is the value where the kernel peaked on, and $\sigma_{2}$ is the lengthscale of the signal kernel. 
+
+	Of all the hyperparameters, lengthscale(\sigma) is given special attention as its value descirbes how much neighboring points affect prediction at any given point. Its special treatment is described in the following sections.
+
     \subsubsection{Gaussian Process: Hyperparameter Optimization}
     \label{sec:hyperparam}
     %The lengthscale($\sigma$) hyperparameter in both kernels(See Eq.~\ref{eq:backgroundkernel} and Eq.~\ref{eq:signalkernel}) is prone to overfitting when the chosen value is too small. This would lead to reduced signal sensitivity and the overfitting of statistical fluctuation. A lower bound is set in these hyperparameters: The lower bound in the background kernel lengthscale is determined by the signal injection test described in Section~\ref{}; the lower bound in the signal kernel lengthscale
     %is chosen through the binning studies in Section~\ref{sec:binning} respectively. 
-    Kernels are paramtetrized by hyper-parameters. In fitting of a mass spectrum and its signal. The kernel hyperparameters are allowed to float and the final values are optimized through the scaled conjugate gradient algorithm, which minimizes the negative log marginal likelihood of the Gaussian Process:
+    Kernels are parametetrized by hyper-parameters. Hyperparameters are higher level parameters that controls and aid the learning of the process through input of data. %In fitting of a mass spectrum and its signal. The kernel hyperparameters are allowed to float and the final values are optimized through the scaled conjugate gradient algorithm, which minimizes the negative log marginal likelihood of the Gaussian Process:
+
+
+	The lengthscale hyperparameter, with its special nature, has a lower bound set on it through the signal injection test described in Section~\ref{sec:signalinjection}. The minimization of the hyperparameters is performed through a scalar conjugate gradient search. To avoid reaching a local minimum, the initial values of the hyperparameters are chosen through a grid before the minimization. The minimized hyperparameter are compared to the other sets. The set of value with the overall lowest negative log likelihood is chosen to be the optimal hyper-parameters.
 
     \begin{equation}
         -\ln(L) = -\frac{1}{2} ln |\sum| - (y-\mu(x) ) - \frac{n}{2}\ln(2\pi)
     \label{eq:loglikelihood}
     \end{equation}
     
-    In the dimuon analysis, the minimization is performed through initialization of hyperparameter from first, a grid search and then scalar conjugate gradient search, the different results are compared with each other for the optimized hyperparameter set.
 
-    In this Gaussian process testing procedure, the hyperparameters are first found on a test fit on the MC/data, a minimum bound on the lengthscale hyperparameter is first found through a fit on different variations of the MC generated and the signal injected test.
+    In this Gaussian process testing procedure, the hyperparameters are first found on a test fit on the variation of MC, the fixed hyperparameters are then applied to data.
 %
 \subsection{Background Fitting Tests}
 Following the ATLAS smooth background recommendation~\cite{ATL-PHYS-PUB-2020-028}, the following tests are performed to ensure the validity of the background estimation for resonance searches.
@@ -254,7 +264,7 @@ Following the ATLAS smooth background recommendation~\cite{ATL-PHYS-PUB-2020-028
 \label{sec:signalInjection}
 
     Increasing the number of parameters in a fit function, using smaller windows size in SWiFT, or using a background kernel lengthscale in the Gaussian Process all increases flexibility in modeling the background. However, the increased flexibility in background modeling often comes with the price of decreased signal sensitivity. An overly flexible background estimation would fit the signal away as part of the background. 
-    Therefore a test to quantifies the signal sensitivity capability of the background estimation is necessary. The test is called the signal injection test. On ATLAS, it is required that the background modeling provides sensitivity to signals of at least 3 $\sigma$ of the background error.
+    Therefore a test to quantifies the signal sensitivity of the background estimation is necessary. The test is called the signal injection test. On ATLAS, it is required that the background modeling provides sensitivity to signals of at least 3 $\sigma$ of the background error.
 
     The background error is defined by the generation of 10,000 bin-by-bin Poissonian toys from the original background MC spectrum, and by refitting the toys by Gaussian Process background kernel estimation. A Gaussian fit is performed on the prediction of each bin, the resulting width of the Gaussian fit in each bin is defined to be the 1 $\sigma$ background estimation. 
 
@@ -262,7 +272,7 @@ Following the ATLAS smooth background recommendation~\cite{ATL-PHYS-PUB-2020-028
 
     In addition to quantifying signal sensitivity, the signal injection test is used to constrain the lower bound of the lengthscale in Gaussian Process and SWiFT window size. The window size or lengthscale value is restricted by to a lower bound that would return a background estimation that provides sensitivity to signals of at least 3 $\sigma$ background error in size.
 
-    Signals of different mass widths are generated from a Gaussian distribution, Poissonian noise is thrown randomly on the distribution to create a pseudo signal distribution. The mass widths are chosen to be 1\%, 3\% and 5\% respectively. Signal of different scales with corresponding error is generated and is injected into the background MC distribution.
+    Signals of different mass widths are generated from a Gaussian distribution. Poissonian noise is thrown randomly on the distribution to create a pseudo signal distribution. The mass widths are chosen to be 1\%, 3\% and 5\% respectively. Signal of different scales with corresponding error is generated and is injected into the background MC distribution.
 
     For each chosen maximum lengthscale/SWiFT window, and different signal widths, the below is performed with the bumphunter.
 
@@ -297,7 +307,7 @@ Following the ATLAS smooth background recommendation~\cite{ATL-PHYS-PUB-2020-028
     \begin{center}
         \includegraphics[width=0.7\textwidth]{figures/chapter_analysismethod/SignalInjectionTest}
         \caption{
-            This figure shows a doodle on the procedure of the signal injection test. An increasingly large signal is injected to the background MC spectrum until the window exclusion procedure of bumphunter is triggered.
+            This figure shows a doodle of the procedure of the signal injection test. An increasingly large signal is injected to the background MC spectrum until the window exclusion procedure of bumphunter is triggered.
         }
         \label{signalinjection}
     \end{center}
