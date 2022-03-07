@@ -118,13 +118,13 @@ While the fit function is relatively easy to implement, it is highly restrictive
     \subsection{Sliding window fit(SWiFT)}
     When the simple fit function failed to model the data, SWiFT can increase the fit flexibility and the degree of freedom by fitting multiple narrower windows rather than the entire spectrum. The SWiFT window fitting procedure is summarized as below:
     
-    1. A global fit is performed in the overall spectrum. Only when the overall $\chi^{2}$ p-value goes below the fit threshold, SWiFT is attempted. Otherwise, the procedure ends in this step and a global fit method will be used. 
+    1. A global fit is performed in the overall spectrum. Only when the overall $\chi^{2}$ p-value is below the fit threshold, SWiFT is attempted. Otherwise, the procedure ends in this step and a global fit method will be used. 
 
     2. The SWiFT fit will start with the maximum sized window, which is the number of bins of the entire spectrum minus one. The window scan starts from the lowest mass region along the spectrum. A fit is performed in the window. This estimates the spectrum up to the middle point of the window.
 
     3. The window moves up by one bin along the resonance mass spectrum. Another fit is performed. The prediction up to the middle of the window(in one bin) is added to the prediction in step 2. 
 
-    4. Step 3 is repeated, until the end of the spectrum is reached. The final fit is checked against the threshold p-value of the $\chi^{2}$. If the fit $\chi^{2}$ is above the designated threshold, the background estimation ends. Otherwise, the window size is further reduced by one bin, and step 2 and 3 are repeated until either a fit above the test statistics threshold is found or the minimum window size is reached. The minimum window size is defined by the signal injection test discussed
+    4. Step 3 is repeated, until the end of the spectrum is reached. The final fit is checked against the threshold p-value of the $\chi^{2}$. If the fit $\chi^{2}$ is above the designated threshold, the background estimation ends. Otherwise, the window size is further reduced by one bin, and step 2 and 3 are repeated until either a fit above the test statistic threshold is found or the minimum window size is reached. The minimum window size is defined by the signal injection test discussed
     below in Section~\ref{sec:signalInjection}.
 
     Figure~\ref{fig:swift} here shows a doodle on the sliding window method.
@@ -348,7 +348,7 @@ The statistics testing on a hypothesis can be presented as a test on the signifi
  \label{eq:significance}
 \end{equation}
 
-Here, p is numeric probability representation of the agreement between the data and the model given a hypothesis. $\Phi$ is its conversion of the p-value into quantile of a cumulative Gaussian distribution. This formula is central to all statistical hypothesis testing performed. From here on, Z will be referred to as the significance and p will be referred to as the p-value with regards to the experimental hypothesis. 
+Here, p is numeric probability representation of the agreement between the data and the model given a hypothesis. $\Phi$ is its conversion of the p-value into quantile of a cumulative Gaussian distribution. From here on, Z will be referred to as the significance and p will be referred to as the p-value.
 
 There are two distinct statistics tests in a typical resonance search analysis. Each test is compared to a threshold value of Z. The two tests will be referred to as ``the search" and the ``limit setting". Details are described in the following sections.
 
@@ -364,48 +364,49 @@ There are two distinct statistics tests in a typical resonance search analysis. 
 
 \subsection{The Search}
 \label{sec:thesearch}
-\epigraph{\textit{-``The Rejection/Acceptance of the null hypothesis"}}
+%\epigraph{\textit{-``The Rejection/Acceptance of the null hypothesis"}}
 
-The statistical search test for excesses is called the search. This test is implemented on the null hypothesis, where it is defined to be the Standard Model prediction. From comparing the data test statistics value to psuedoexperiement, if the significance Z $>$ 5, the null hypothesis is rejected. Something beyond the Standard Model is observed in the data to a statistically significant degree, otherwise, the Standard Model prediction is accepted. In the Higgs boson analysis of 2012, a significance of Z $>$ 5 was observed in the search.
+The search aims to look for model independent statistical excesses present in data. This test is implemented in comparison to the null hypothesis, where it is defined to be the Standard Model prediction. The search is implemented in a frequentist manner through the Bumphunter method~\cite{choudalakis2011hypothesis}. This section describes the statistics principle behind this test and details the bumphunting procedure. 
 
-The search is implemented in a frequentist manner through the Bumphunter method~\cite{choudalakis2011hypothesis}. This section describes the statistics principle behind resonance finding, defines bumphunter test statistics, and details the bumphunting procedure. 
+%From comparing the data test statistics value to pseudoexperiement, if the significance Z $>$ 5, the null hypothesis is rejected. Something beyond the Standard Model is observed in the data to a statistically significant degree, otherwise, the Standard Model prediction is accepted. In the Higgs boson analysis of 2012, a significance of Z $>$ 5 was observed in the search.
+
 
 \subsubsection{The Search: The Statistics Principles}
-The observed measurement in each bin can be described by a probability distribution. As each bin is considered an independent event in a fixed data-taking period and physical variable value. The probability distribution takes the Poissonian probability distribution form:
+The probability of having made a measurement in each bin can be described by a probability distribution. As each bin is considered an independent event in a fixed data-taking period and physical variable value. The probability distribution takes the Poissonian probability distribution form:
 
 \begin{equation}
- P(x|\lambda) = \frac{\lambda^{k}e^{-\lambda}}{k!} 
+ P(x=k|\lambda) = \frac{\lambda^{k}e^{-\lambda}}{k!} 
  \label{eq:Poissonian}
 \end{equation}
 
-Here, $\lambda$ is the expected value of the measured quantity $x$, $k$ is the number of occurrences, e is the Euler's number  
+Here, $\lambda$ is the expected value of the measured quantity $x$, $k$ is the number of occurrences, e is Euler's number.
 
-The test is implemented in a frequentist manner. It compares the observation outcome x with a fixed critical value $\alpha$ of a probability distribution generated from pseudo-experiment. 
-The value used to reject or accept the null hypothesis is a probability quantity called the p-value. Statistically, it is known to be a false-discovery probability. 
-    If the observation compared with the distribution outcome is smaller than the critical p-value, the null hypothesis is rejected. The rejection criteria can be shown in the following mathematical form:
+The test is implemented in a frequentist manner. It compares the observation outcome x with a fixed critical value $\alpha$ of a probability distribution generated from pseudo-experiment. The value used to reject or accept the null hypothesis is quantity called the p-value. Statistically, it is known to be a false-discovery probability(See Eq.~\ref{eq:test}). If the observation compared with the pseudo-experiment distribution is smaller than the critical p-value, the null hypothesis is rejected. The rejection criteria can be shown in the following mathematical form:
 
 \begin{equation}
     P(x \ni w|H_0)<= \alpha 
     \label{eq:test}
 \end{equation}
 
-Here, $H_0$ is the prediction from the null hypothesis, and alpha is the critical value below which the null hypothesis will be rejected. The value is usually taken to be 0.01 for the bumphunter experiment. It corresponds to a Z significance of 5 and a probability of 1\%. $x$ is the observed value out of the full population $w$.  
+Here, $H_0$ is the prediction from the null hypothesis, and alpha is the critical value below which the null hypothesis will be rejected. The value is usually taken to be 0.01 for the bumphunter experiment. It corresponds to a probability of 1\%. $x$ is the observed value out of all possible outcome $w$.  
 
 \subsubsection{The Search: Test Statistics}
 \label{teststatistics}
 
-The ``test statistics" is a function of the observable $x$, the p-value in~\ref{eq:test} can be rewritten as:
+The test statistic is a function of the observable $x$, the p-value in~\ref{eq:test} can be rewritten as:
     
 \begin{equation}
     p = P(T>=t_{0}| H_{0})
 \label{eq:pvaluetestStats}
 \end{equation}
 
-Here, $H_0$ is the null hypothesis prediction, $t_0$ is the test statistic of the null hypothesis, and T is the observed test statistic.
+Here, $H_0$ is the null hypothesis, $t_0$ is the test statistic of the null hypothesis, and T is the observed test statistic.
 
+Equation~\ref{eq:pvaluetestStats} evaluate the p-value of the observed value. T is a function of the observed $x$ in the window. It's the probability of the observed test statistics obtaining a value at least as extreme as $t_{0}$. A small p-value refects a poor agreeement between the observed T value and the hypotheis $H_{0}$.
 
-If the test is concerned with how well the data fits the model alone, the test statistic can be chosen to be either the $\chi^{2}$ test or the log-likelihood of the Poissonian distribution. These quantities can be directly derived from the Poissonian probability in Eq.~\ref{eq:Poissonian}. They provide information about the overall fit. As the search specifically looks to quantify the deviation between the data and the prediction as a bump, they are not the optimal choice for the test. 
-The bumphunter test statistics, which is defined in a window of neighboring bins, is used instead to best describe the kind of deviation expected in excesses seen in neighboring bins. 
+Various test statistics are available to quantify the level of agreement between an observation and a hypothesis. If the test is concerned with overall agreement between data and the model, the $\chi^{2}$ test or the log-likelihood of the Poissonian distribution are fitting candidates.
+
+The bumphunter test statistics instead quantifies localized excesses, the test statistics is defined in a window and calculated for the bins within. It is a more powerful test for the kind of deviation expected in resonance hunting.
 
 In a window defined from bin number m to n, the observed data and prediction can be given as the following: 
     \begin{equation}
@@ -420,69 +421,66 @@ In a window defined from bin number m to n, the observed data and prediction can
     Here d is the total number of events in the window observed, where $d_i$ is the count in each of the bins from m to n. 
     Here b is the total number of events in the window predicted, where $b_i$ is the event count in each of the bins from m to n.
     
-    Assuming the observed counts in each bin follow a Poisonian distribution, the test statistic is:
+    Assuming the observed counts in each bin follow a Poissonian distribution, the test statistic is:
 
-	\begin{equation}
-    t=
+\begin{equation}
+    t^{\textrm{BH}}=
     \begin{cases} \sum_{n=0}^{d} \frac{b^{n}}{n!} e^{-b} &  \textrm{for $d < b$}
     \\
     \sum_{n=d}^{\infty} \frac{b^n}{n!} e^{-b} &  \textrm{for $b \leq d$}
     \end{cases}
-    \end{equation}
+\end{equation}
 
     The above expression can be represented by the Gamma function($\gamma$): 
 
-	\begin{equation}
-    t=
+\begin{equation}
+    t^{\textrm{BH}}=
     \begin{cases} 1-\gamma(d+1, b) &  \textrm{for $d < b$}
     \\
     \gamma(d,b) &  \textrm{for $b \leq d$}.
     \end{cases}
-    \end{equation}
+\end{equation}
     
 
+    The p-value of the bumphunter test statistic is evaluated for every windows from two-bin wide to half the spectrum($t^{\textrm{BH}}$). The overall bumphunter test statistic is defined by the to be the log of the smallest p-value calculated from the smallest p-value window, and can be represented as the following($t^{\textrm{BH}}_{0}$):
 
-    Equation~\ref{eq:pvaluetestStats} can be used to evaluate the p-value of the observed value. T is calculated directly given the observed $x$ in the window, and $T_{0}$ is given by generating Poisonian fluctuation from the fit background model. T is compared against the psuedoexperiment value of the test statistics, and p is found that way for each window. 
+%    \begin{equation}
+%        t_{0}^{\textrm{BH}} = - \ln(t_^{\textrm{BH}}_{\textrm{min}}) 
+%    \end{equation}
 
-    In each Bumphunter scan, the p-value of the bumphunter test statistic is evaluated for windows sized from two-bin wide to half the spectrum.
-
-    The overall bumphunter test statistic is defined by the to be the log of the smallest p-value calculated from the most deviant window, and can be represented as the following:
-
-    \begin{equation}
-        t_{0} = - ln (t_{min}) 
-    \end{equation}
-
-    Significance Z and the p-value can be calculated from this test statistic in Eq.~\ref{eq:pvaluetestStats} and thereby provide an overall bumphunting deviation from the Standard Model. If the p-value is lower than 0.01, the null hypothesis is rejected, otherwise, it's accepted.
+    Significance Z and the p-value can be calculated from this test statistic in Eq.~\ref{eq:pvaluetestStats} and thereby provide an overall bumphunting hypothesis could have generated data this unlikely or more. If the p-value is lower than 0.01. %the null hypothesis is rejected, otherwise, it is accepted.
 
     %In addition to the bumphunter test statistics, there is the tailhunter, KS, Jeffreys and no sidebands bumphunter that can also be chosen for different signals searched for in other physics analyses. More information can be found in the Bumphunter paper\cite{choudalakis2011hypothesis}.
 
     \subsubsection{The Search: The Bumphunting Procedure}
     % Look up the bumphunter fit. 
-    The bumphunting procedure is a set of procedure defined to look for excesses from the bumphunter statistics defined above~\cite{Pachal:2063032}.
+    The bumphunting procedure is defined to look for excesses as defined by the bumphunter statistics~\cite{Pachal:2063032}.
 
     1.  First a background model fit is performed. (See Section~\ref{sec:backgroundest}). The $\chi^{2}$ of the fit is verified to have a p-value $>$ 0.01. Otherwise, the fit will be revised or moved to an alternative method.
 
-    2.  If the background fit passes the $\chi^{2}$ test, the bumphunting test can begin. In all the windows across the spectrum, bumphunter test statistic and their p-values are calculated. If the overall bumphunter test statistic has a p-value above 0.01, stop, no excess is found. Alternatively, if any one of the windows goes below $p< 0$.01, the window most discrepant window (the window with the lowest p-value) is removed, and the fit is reperformed.
+    2.  If the background fit passes the $\chi^{2}$ test, the bumphunting test can begin. In all defined windows, bumphunter test statistic and their p-values are calculated. If the overall bumphunter test statistic has a p-value above 0.01, stop, no excess is found. Alternatively, if any one of the windows has  $p< 0.01$, the window most discrepant window (the window with the lowest p-value) is removed, and the fit is reperformed. If the new fit with the window removed has a p-value above 0.01, it shows the discrepancy is completely contained in the window removed.
 
-    3. If another overall bumphunter statistics p-value is found to be less than 0.01, the most discrepant window is removed. A background fit is reperformed without the window. The bumphunter statistics and the pvalue is recalculated for the window sets, if all found bumphunter p-value is above 0.01. An excess is likely ``discovered" in the removed window. Otherwise, if the p-value is still below 0.01, add the most discrepant window in the new scan to the removed window and the fit is reperformed yet again. Step 3 is repeated until either the p-value of the fit outside the window goes above 0.01, or no additional window could be added to the exclusion. 
+    3. After reperforming the fit with the window removed, if an overall bumphunter statistics p-value is found to be over 0.01, Stop. A local discrepancy may have been discovered in the removed window. Otherwise, if the newly discovered most discrepant window is adjacent to the window removed, it demonstrates that the signal peak may still be outside of the window, one more bin of window exclusion will be added to the removed window. If the newly discovered most discrepant window is not adjacent to the window removed, one bin of each side is added to the original removed window. The fit is re-performed with the new window removed. This step is repeated until either the p-value of the fit with the removed window has a p-value above 0.01, or no additional window could be added to the exclusion because all bins has been added to the removal window.
 
     Summarizing from the above, three end results are possible in the search test:
 
-    1. If no window is excluded and the fit has a bumphunter p-value statistics above 0.01, the null hypothesis is accepted. No excess is found. 
+    1. If no window is excluded and the fit has a bumphunter p-value statistics above 0.01. No excess is found. 
 
-    2. If there is one excluded window and a background fit with a bumphunter statistics p-value of above 0.01, the null hypothesis is rejected. An excess is seen. 
+    2. If there is one excluded window and a background fit with a bumphunter statistics p-value of above 0.01. An excess up to a certain significane is quoted.
 
     3. In all other scenarios, more tests are required. The background model fit could be problematic and need further testing.  
 
 \section{Limit Setting}
 \label{sec:limits}
 
-\epigraph{\textit{Finding signal strength value where the alternative hypothesis is rejected to a 95\% confidence level}}
+%\epigraph{\textit{Finding signal strength value where the alternative hypothesis is rejected to a 95\% confidence level}}
 
-If no excess is found in the search, limit setting is performed.Statistically, the upper limit setting is the finding of the signal strength where the alternative hypothesis is rejected at a 95\% confidence level. The signal strength can also be represented as a cross-section or cross-section in fiducial volume for reinterpretation for different models. 
-The limit setting results consist of a 95\% confidence upper limit line and an expected limit of median significance along with a 3 $\sigma$ and 5 $\sigma$ significance band. It is possible to compare the observed 95\% upper limit against the expected limit. The comparison between the bands and the upper limit line can be seen as a discovery test, as if no beyond the Standard Model excess is seen, the upper limit line would stay between the 5 $\sigma$s error band in the expected limit. 
+Statistically, the upper limit setting is the finding of the signal strength where the alternative hypothesis is rejected at a 95\% confidence level. The signal strength can also be represented as a cross-section or cross-section in fiducial volume for reinterpretation for different models. 
+The limit setting results consist of a 95\% confidence upper limit bound on signal strength over the resonance masses and an expected limit of median significance along with statistical uncertainties with the null hypothesis. 
+%It is possible to compare the observed 95\% upper limit against the expected limit. The comparison between the bands and the upper limit line can be seen as a discovery test, as if no beyond the Standard Model excess is seen, the upper limit line would stay between the 5 $\sigma$s error band in the expected limit. 
 
-The limit setting can be performed in two different ways, the Bayesian statistical way and the frequentist way. While the interpretation and implication of the results made with the different methods are different, the results produced are interchangeable and can be compared across different analyses. 
+The limit setting can be performed in two different ways, the Bayesian statistical way and the frequentist way. While the interpretation and implication of the results made with the different methods are different, the results produced are designed to be comparable across different analyses. 
+
 The Bayesian method is used for the dijetISR analysis(Chapter~\ref{chapter:dijetISR}) and the frequentist method is used for the dimuon analysis(Chapter~\ref{chapter:dimuon}). A description of the dimuon frequentist limit is given as below. 
 %The 95\% confidence level corresponds to a critical p-value of 0.05 or a Z value of 1.64.
 
@@ -497,22 +495,22 @@ The Bayesian method is used for the dijetISR analysis(Chapter~\ref{chapter:dijet
 
 \subsection{Frequentist Limits}
 \label{sec:freq}
-From a frequentist's interpretation, all events are considered independent. The limit is a statement on where the observed data lies given all the other possible outcomes given a hypothesis. 
+The limit is a statement on where the observed data lies given all the other possible outcomes given a hypothesis. The 95\% CL upper limit is result of a procedure which if run in hypothetical similar experiments would include (exclude) the true value 95\% (5\%) of the time.
 
-The following subsection describes the test statistics used for the limit setting. A formulation of the traditional frequentist calculation. The Asimov approximation method used to approximate the frequentist limit from a representative dataset is described, which is the ATLAS standard on saving computing resources. The formulae for the limit calculation using this method is given, adaptation with the Gaussian Process is also discussed. 
+The following subsection describes the test statistics used for the limit setting. A formulation of the traditional frequentist calculation is presented. The Asimov approximation method used to approximate the frequentist limit from a representative dataset is described, which is the ATLAS standard, and it saves computing resources. The formulae for the limit calculation using this method are given. Adaptation with the Gaussian Process is also discussed. 
 
 \subsubsection{Frequentist Limits: The Test Statistic}
 \label{sec:freqTestStats}
 
-The probability distribution of the observable $x$ histogram can be given as a Poissonian distribution. The predicted model on $x$ can be described by the signal strength parameter along other nuisance parameters. Extracting only the parameter-dependent part of the Poissonian probability distribution function, a likelihood function is obtained:
+The probability distribution of the observable $x$ in each bin of the histogram can be given by a Poissonian probability distribution. This probability distribution is a function of many parameters, including the signal strength, and other systematic uncertainty parameters, for example, the variation in luminsoity. As these variable are not the target parameter where limit is set, they are known as the nuissance paramters. From the Poissonian distribution, its likelihood function can be parameterized as such, with thepredicted signal event and background events made explicit:
 
 \begin{equation}
-    L(\mu, \theta) =  \prod_{i=0}^{N} \frac{(\mu s_{j} + b_{j})^{n_j}}{n_{j}!}e^{-\mu s_j + b_j} \prod_{k=1}^{M}\frac{u_{k}}
-{m_{k}!} e^{-u_{k}}
+    L(\mu, \theta) =  \prod_{i=0}^{N} \frac{(\mu \cdot s_{j} + b_{j})^{n_j}}{n_{j}!}e^{(-\mu \cot s_j + b_j)} \prod_{k=1}^{M}\frac{u_{k}}
+{m_{k}!} e^{(-u_{k})}
 \label{eq:likelihood}
 \end{equation}
 
-Here, $L$ is the likelihood product from the target distribution multiplied by the constraint distribution, $\mu$ is the signal strength, $s_j$ is the number of expected signal events in bin, $b_j$ is the number of expected background events in bin, $n_j$ is the number of observed events in each bin; N is the total number of bins. The likelihood is also affected terms in other distributions, these
+Here, $L$ is the likelihood product from the target distribution multiplied by systematic parameter distributions, $\mu$ is the signal strength, $s_j$ is the number of expected signal events in the jth bin, $b_j$ is the number of expected background events in the jth  bin, $n_j$ is the number of observed events in each bin; N is the total number of bins. The likelihood is also affected terms in other distributions, these
 are not the target distribution and can be accounted for as the nuisance parameters, which
 include: here $u_k$ is the predicted value by the model, and $m_{k}$ is the observed value. 
 
@@ -569,7 +567,7 @@ Note that the calculation of the denominator in~\ref{eq:likelihood} is CPU-inten
 \label{sec:asymp}
 
 
-From the Wald theorem, the test statistics can be approximated: 
+From the Wald theorem, the test statistic can be approximated: 
 
 \begin{equation}
 -2\ln(\lambda(\mu))= \frac{(\mu- \hat{\mu})^{2}}{\sigma^{2}} +O(1/\sqrt{N})
@@ -578,7 +576,7 @@ From the Wald theorem, the test statistics can be approximated:
 
 Here, $\mu$ is the observed value, whereas the $\hat{\mu}$ is the expected strength that would maximize the likelihood, $\sigma$ is the expected spread in the distribution. 
 
-If the terms in O are neglected, it follows that the test statistics will then asymtotically follow a non-central chi-square distribution: 
+If the terms in O are neglected, it follows that the test statistic will then asymtotically follow a non-central chi-square distribution: 
 
 \begin{equation}
     f(q_{\mu}) = \frac{1}{2\sqrt{q_{\mu}}} \frac{1}{\sqrt{2\pi}} [exp(-\frac{1}{2}(\sqrt{q_{\mu}}+ \sqrt{\Lambda})+ exp(-\frac{1}{2}(\sqrt{q_{\mu}-\sqrt{\Lambda}})^{2})]
@@ -679,7 +677,7 @@ $\sigma_{A}$ can therefore be approximated:
 
 When there is no signal, $\mu'$ is taken to be zero. 
 
-Following from the above, the test statistics, the upper limits, the discovery median significance can all be found through substituting $\hat{\mu}$ as $\mu'$ by the Asimov method. As these result derives directly from the above, only the results are quoted here. 
+Following from the above, the test statistic, the upper limits, the discovery median significance can all be found through substituting $\hat{\mu}$ as $\mu'$ by the Asimov method. As these result derives directly from the above, only the results are quoted here. 
 
 \begin{itemize}
     \item \textbf{The Test Statistics Distribution}
@@ -689,7 +687,7 @@ Following from the above, the test statistics, the upper limits, the discovery m
 \label{eq:teststatistics}
 \end{equation}
 
-Here F is the distribution of the statistics, $t_\mu$ is the test statistics at the given $\mu$ value of the distribution. 
+Here F is the distribution of the statistics, $t_\mu$ is the test statistic at the given $\mu$ value of the distribution. 
 
 \item \textbf{The P-value of a Hypothesized $\mu$ for an Observed Value $t_\mu$}
 
@@ -745,7 +743,7 @@ From this calculation, the limit calculation in the above~\ref{sec:limits} can b
 
 \subsubsection{Frequentist Limits: Gaussian Process Adaptations}
     The Gaussian process is shown to be able to be incorporated within the Asimov method of frequentist limit setting~\cite{frate2017modeling}.
-    In the Figure~\ref{fig:chi2}, the Likelihood ratio in the Gaussian process is a proxy for the profile likelihood ratio used in the Asimov limit. It can be seen that it approximately follows the $\chi^{2}$ distribution, satisfying a requirement that follows from the Wald approximation that allows for the Asimov approximation of limits.
+    In the Figure~\ref{fig:chi2}, the likelihood ratio in the Gaussian process is a proxy for the profile likelihood ratio used in the Asimov limit. It can be seen that it approximately follows the $\chi^{2}$ distribution, satisfying a requirement that follows from the Wald approximation that allows for the Asimov approximation of limits.
 
     \begin{figure}[!htb]
         \begin{center}
