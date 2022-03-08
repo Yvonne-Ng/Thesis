@@ -192,7 +192,7 @@ In the analysis, studies were done and it was found that muons of the \textbf{ME
         \caption{
         These plots shows the leading muon transverse momentum distribution and the subleading muon transverse momentum distribution with the super fast simulation.  The MC samples here include Z $> \mu\mu$, Z $> \tau\tau$, $ t \bar{t}$, Diboson, top quark decay and $b\bar{b}$ and $c\bar{c}$. the bottom pane shows the data to MC ratio. }
     \end{center}
-\label{fig:mcdata}
+\label{fig:datamc}
 \end{figure}
 \FloatBarrier
 
@@ -315,20 +315,20 @@ Section~\ref{sec:GP} of Chapter~\ref{chapter:analysismethod}. Only details speci
 
 \subsection{The Kernel}
 In Gaussian Process, the mean function prediction and the covariance function on the prediction variance are determined by the kernel function.
-The Gaussian Process background and signal kernels used for this particular analysis method are given in Eq.~\ref{eq:backgroundkernel} and Eq.~\ref{eq:signalkernel}. 
+The Gaussian Process background and signal kernels used for this particular analysis method are given in Eq.~\ref{eq:backgroundkernel1} and Eq.~\ref{eq:signalkernel1}. 
 
 \begin{itemize}
     \item \textbf{Background Kernel} \textit{-``Radial Basis Function + White Noise Kernel"}
         \begin{equation}
                 K_{bkg}(x, x') = A_{1} * exp(-\frac{||x-x'||}{2\sigma_{1}^{2}}) 
-        \label{eq:backgroundkernel}
+        \label{eq:backgroundkernel1}
         \end{equation}
 
     Here, $A_{1}$ is the amplitude hyperparameter that describes the size of the kernel, $\sigma_{1}$ is the lengthscale parameter.
 \item \textbf{Signal Kernel} \textit{- ``Exponential Center Kernel + White Noise Kernel "}
             \begin{equation}
             K(x_{i}, x_{j})=A_{2}\cdot exp(-(x-m)^{2}/(2\cdot\sigma_{2}^{2}))\cdot exp(-((x'-m)^{2}/(2\cdot\sigma_{2}^{2})))
-            \label{eq:signalkernel}
+            \label{eq:signalkernel1}
             \end{equation}
 \end{itemize}
 
@@ -512,6 +512,7 @@ Preliminary limit setting based on Gaussian Process is still currently under tes
        \includegraphics[width=0.75\textwidth]{figures/chapter_dimuon/limits}
        \caption{
        This figure illustrate limits from the background MC.
+	}
         \label{fig:limits}
    \end{center}
 \end{figure}
