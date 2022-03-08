@@ -8,7 +8,7 @@
 
 \section{Introduction}
 
-Owing to its unprecedented high energy, the Run 1 and early Run 2 of ATLAS have long focused on the high mass resonances searches that were not accessible to any other previous experiments. This approach has left the relatively low mass resonances that are competitive in sensitivity unexplored. In the resonance search that decays into two leptons, in particular, the resonance mass region above the Z boson peak has been searched for since the beginning of Run
+Owing to its unprecedented high energy, the Run 1 and early Run 2 of ATLAS have long focused on the high mass resonances searches that were not accessible to any other previous experiments. This approach has left the relatively low mass resonances that are competitive in sensitivity unexplored. In the resonance search for particle which decays into two leptons, in particular, the resonance mass region above the Z boson peak has been searched since the beginning of Run
 1~\cite{Aaboud:2273892}~\cite{Dilepton2019}. However, the mass region below the Z mass peak remains uncovered to this date. Novel particles with an LHC scale observable coupling are predicted by different theoretical models, some of them are related to the dark matter models explored in Chapter~\ref{chapter:DM}.
 
 \begin{figure}[!htb]
@@ -21,23 +21,22 @@ Owing to its unprecedented high energy, the Run 1 and early Run 2 of ATLAS have 
 \end{figure}
 \FloatBarrier
    
-This study shares many similar motivations as the analysis presented in Chapter~\ref{chapter:dijetISR}, in which the dark matter mediator $Z^\prime$ is projected to decay into two jets. In this analysis, the $Z^\prime$ couples to leptons. Since ATLAS collide protons, there are fewer background events on leptons than jet processes, this allows lower transverse momentum lepton events to be saved. Using two muons as the resonance final state items, even lower mass resonances
-down to as low as 4 GeV can be searched for. To avoid the quarkonium background between 4-10 GeV and the Z boson in 80 GeV, this analysis searches for resonances in the 10-68 GeV range.
+This study shares many similar motivations as the analysis presented in Chapter~\ref{chapter:dijetISR}, in which the dark matter mediator $Z^\prime$ is projected to decay into two jets. In this analysis, the $Z^\prime$ also couples to leptons. Since ATLAS collides protons, there are fewer background events which produce lepton than those which produce jets, allowing ATLAS to retain events with leptons above a lower transverse momentum threshold. To avoid the quarkonium background between 4-10 GeV and the Z boson in 80 GeV, this analysis searches for resonances in the 10-68 GeV range.
 
-This chapter presents an ongoing analysis of ATLAS. Most of the strategies have been finalized and the analysis is on its way to being unblinded. The data preparation, trigger chain, event, and object calibration that is completed and validated for the analysis is presented in Section~\ref{sec:dataprep}. The full statistical strategies, which utilize Gaussian Process as the background estimation method, are covered in Section~\ref{sec:GPresults}. The analysis utilizes data using proton--proton collision in ATLAS
-recorded at a center-of-mass energy of $\sqrt{s}=$ 13 $TeV$ up to 139 $fb^{-1}$ of integrated luminosity. The projected result is interesting to the theoretical community for the dark matter mediator reinterpretation as well as its statement possible for many other models, which include quantum blackholes~\cite{QBH2008} and Z*~\cite{ZStar2008}. The result of this study is complementary to the higher mass dilepton search done and is projected to have competitive limits comparable to the CMS~\cite{CMS-PAS-EXO-19-018} and LHCb~\cite{Aaij:2722971} results published.
+This chapter presents an ongoing analysis of ATLAS. Most of the strategies have been finalized and the analysis is on its way to being unblinded. The data preparation, trigger chain, event, and object calibration that is completed and validated for the analysis is presented in Section~\ref{sec:dataprep}. The full statistical strategies, which utilize Gaussian Process as the background estimation method, are covered in Section~\ref{sec:GPresults}. The analysis utilizes data from the proton--proton collision in ATLAS
+recorded at a center-of-mass energy of $\sqrt{s}=$ 13 TeV up to 139 $\textrm{fb}^{-1}$ of integrated luminosity. The projected result is interesting to the theoretical community for the dark matter mediator reinterpretation as well as its constraint on signatures of many other possible models, which include quantum blackholes~\cite{QBH2008} and Z*~\cite{ZStar2008}. The result of this study is complementary to the higher mass dilepton search and is assumed to have limits comparable to the CMS~\cite{CMS-PAS-EXO-19-018} and LHCb~\cite{Aaij:2722971} results. This work also references previous studies done in~\cite{2014}.
 
 \section{The Search Channels}
-In the LHC, not all collision events are stored due to the limitation in processing bandwidth. Triggering is the processing and storage of selective events (More details are described in Chapter~\ref{chapter:ATLAS}). Triggering introduces physical cuts in the events that sometimes create features in the data that are not predicted in physics. An example is the muon $P_{T}$ requirement in triggering produces a trigger turn-on curve seen in the inclusive histogram in Figure~\ref{fig:turnon}.
-Non-physical features in the background can lead to difficulty in background modeling. Given this, in the dimuon analysis, two different search channels are employed. In the 40-68 GeV region, the inclusive dimuon signal as shown in ~\ref{fig:dimuonFeynmann} is searched for. In the 10-40 GeV of the analysis, a boosted ISR signal as shown in ~\ref{fig:dimuonISRFeynmann} is hunted. Figure~\ref{fig:turnon} feature the background distributions of these two search range highlighted in blue. In the
-boosted channel, an additional cut of dimuon $P_{T}>14 GeV$ is applied to both the signal and the background. This cut produces a smooth background and retains a signal efficiency of above$ 90\%$ using the ISR signal. This strategy is effective in producing a background that can be modeled and maximizing the search sensitivity. 
-This two-channel treatment is based on a pheno-study first done in this paper\cite{2014}. Changes have been made to accommodate the increase in the center-of-mass energy of the analysis. 
+In the LHC, not all collision events are stored due to the limitation in processing bandwidth. Triggering is the processing and storage of selective events (See Chapter~\ref{chapter:ATLAS} for more details). Triggering introduces distortions in the distributions of the kinematic quantities. An example is the muon $P_{T}$ requirement in triggering, which produces a trigger turn-on feature in the search region as seen in the red inclusive histogram in Figure~\ref{fig:turnon}.
+Non-physical features in the background can lead to difficulty in background modeling. Given this, in the dimuon analysis, two different search channels are employed. In the 40-68 GeV region, the inclusive dimuon signal as shown in ~\ref{fig:dimuonFeynmann} is searched for. In the 10-40 GeV of the analysis, an initial state radiation(ISR) signal as shown in ~\ref{fig:dimuonISRFeynmann} is hunted. Figure~\ref{fig:turnon} feature the background distributions of these two search range highlighted in blue. In the
+boosted channel, an additional cut of dimuon $P_{T}>14 GeV$ is applied to the dataset. This cut produces a smooth background and retains a signal efficiency of above $90\%$ using the ISR signal. This strategy is effective in producing a background that can be modeled and maximizing the search sensitivity. 
+This two-channel treatment was first proposed in Ref~\cite{2014}. Changes have been made to accommodate the increase in the center-of-mass energy of the analysis. 
 
 \begin{figure}[!htb]
     \begin{center}
         \includegraphics[width=0.75\textwidth]{figures/chapter_dimuon/turnon}
         \caption{
-        This figure shows the trigger turn on curve in the inclusive dimuon channel at 40 GeV(Red) . Utilizing a minimal dimuon $P_{T}$ cut in the boosted channel made it possible to recover a smooth background in the lower mass region from 10-45 GeV(Green). Samples used here are MC16a ATLAS full simulation listed in section~\ref{table:MC}.
+        This figure shows feature from trigger turn on in the inclusive dimuon channel that results in a bump in 35 GeV(Red) . Utilizing a minimal dimuon $P_{T}$ cut in the boosted channel made it possible to recover a smooth background in the lower mass region from 10-45 GeV(Green). Samples used here are MC16a ATLAS full simulation listed in section~\ref{table:MC}.
         }
         \label{fig:turnon}
     \end{center}
@@ -46,15 +45,15 @@ This two-channel treatment is based on a pheno-study first done in this paper\ci
 
 \section{Signal Theoretical Model}
 The analysis uses the dark matter LHC benchmark model and dark photon model outlined in Section~\ref{sec:LHCDM} of Chapter~\ref{chapter:DM}.
-Limit setting on generic Gaussian shapes of various width will enable ease for reinterpreations for other models.
-Figure~\ref{fig:dimuonFeynmann} and Figure~\ref{fig:dimuonISRFeynmann} show the Feynmann diagram of the signal used for the analysis 
-The signal MC is generated through ATLAS full simulation: the tree level event is generated through Madgraph5\_aMC@NLO~\cite{MG2014}; the parton showering is simulated through Pythia8~\cite{PYTHIA2008} and detector effect is added on through Geant4~\cite{agostinelli2003geant4}. More details on the MC generation of ATLAS can be found in Chapter~\ref{chapter:common_analysis_items}.
+Limit setting on generic Gaussian shapes of various width will enable reinterpreations for other models.
+Figure~\ref{fig:dimuonFeynmann} and Figure~\ref{fig:dimuonISRFeynmann} show the Feynman diagrams of the signal used for the analysis.
+The signal MC is generated through ATLAS full simulation: the tree level event is generated through Madgraph5\_aMC@NLO~\cite{MG2014}; the parton showering is simulated through Pythia8~\cite{PYTHIA2008} and detector effect is modelled with Geant4~\cite{agostinelli2003geant4}. More details on the MC generation of ATLAS can be found in Chapter~\ref{chapter:common_analysis_items}.
 
 \begin{figure}[!htb]
     \begin{center}
         \includegraphics[width=0.45\textwidth]{figures/chapter_dimuon/dimuonFeynman}
         \caption{
-            This figure shows the Feynmann diagram of the inclusive dimuon signal as the signal for the analysis. 
+            This figure shows the Feynman diagram of the inclusive dimuon signal as the signal for the analysis. 
         }
     \label{fig:dimuonFeynmann}
     \end{center}
@@ -65,7 +64,7 @@ The signal MC is generated through ATLAS full simulation: the tree level event i
     \begin{center}
         \includegraphics[width=0.45\textwidth]{figures/chapter_dimuon/dimuonISRFeynmann}
         \caption{
-        This figure shows the Feynmann diagram of the dimuon ISR signal for the boosted channel of the analysis. }
+        This figure shows the Feynman diagram of the dimuon ISR signal for the boosted channel of the analysis. }
             \label{fig:dimuonISRFeynmann}
     \end{center}
 \end{figure}
@@ -101,8 +100,8 @@ The signal MC is generated through ATLAS full simulation: the tree level event i
 
 \subsection{Trigger Chain}
 \label{section:trigger}
-Triggering is the selective storage and event for maximal processing efficiency. Details on the ATLAS triggering system can be found in Chapter~\ref{chapter:ATLAS}.
-Triggering streams each have different cuts and they are tailored for different purposes, using multiple trigger streams with careful re-weighting could maximize the total event number for analysis. In the dimuon analysis, three trigger streams are employed for this reason.
+Triggering is the selective storage of events due to limiting processing and storage bandwidth. Details on the ATLAS triggering system can be found in Chapter~\ref{chapter:ATLAS}.
+Triggering streams each have different cuts and they are tailored for different purposes, using multiple trigger streams with careful re-weighting could maximize the signal trigger efficiency through the use of multiple streams. In the dimuon analysis, three trigger streams are employed for this reason.
 
 \begin{table}[!htb]
     \begin{center}

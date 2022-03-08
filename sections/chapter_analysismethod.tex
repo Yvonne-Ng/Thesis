@@ -14,7 +14,7 @@
 Both analyses presented in this thesis fall into the resonance search category, which are analyses that look for bumps like excesses on top of smooth backgrounds. The method is simple in its experimental signature, as can be seen in Figure~\ref{fig:bump} and theoretical calculation. Many particles have been discovered in this way before, which include the $J/\Psi$~\cite{PhysRevLett.33.1406}~\cite{PhysRevLett.33.1404}, the $\upsilon$~\cite{Herb:1977ek}, the $W$~\cite{Arnison:142059}, $Z$~\cite{hollik1984composite}, and the Higgs boson. The method has great potential in making new future discoveries. This chapter describes
 the analysis methods used in performing the analyses covered in Chapter~\ref{chapter:dijetISR} and Chapter~\ref{chapter:dimuon}. 
 
-These analyses perform searches in the resonance mass variable, which numerically is the addition of the 4-vector of the two candidate final state particles. The binned invariant mass of this candidate is the search variable.
+These analyses perform searches in the resonance mass variable, which is the addition of the 4-vector of the two candidate final state particles. The binned invariant mass of this candidate is the search variable.
 
 \begin{figure}[!htb]
     \begin{center}
@@ -185,7 +185,7 @@ The Gaussian process background prediction method is a Bayesian method that pred
     \begin{equation}
         \mu(x_{*}|y)  = \mu(x_{*})+ K(x_{*}, x)[K(x, x)+ \sigma^{2}(x)I]^{-1}(y-\mu(x))
     \end{equation}
-    Here, $\mu(x_{*}| y} $ is the mean function posterior prediction of of point $x_{*}$, given known data point x and y, K is the kernel, $I$ is the diagonal matrix, $\sigma$ is the white noise term in each bin. $\mu(x_{*})$ is the prior probability distribution. x is a vector of the input mass point, and x' are the same points in a 2d matrix.
+    Here, $\mu(x_{*}| y) $ is the mean function posterior prediction of of point $x_{*}$, given known data point x and y, K is the kernel, $I$ is the diagonal matrix, $\sigma$ is the white noise term in each bin. $\mu(x_{*})$ is the prior probability distribution mean. x is a vector of the input mass point, and x' are the same points in a 2d matrix.
 
     \item \textbf{The Covariance Function}
     \begin{equation}
@@ -238,7 +238,7 @@ An other more general example is given as below.
     \end{itemize}
             Here, $A_{2}$ is the amplitude of the signal kernel, m is the value where the kernel peaked on, and $\sigma_{2}$ is the lengthscale of the signal kernel. 
 
-	Of all the hyperparameters, lengthscale(\sigma) is given special attention as its value descirbes how much neighboring points affect prediction at any given point. Its special treatment is described in the following sections.
+	Of all the hyperparameters, lengthscale($\sigma$) is given special attention as its value descirbes how much neighboring points affect prediction at any given point. Its special treatment is described in the following sections.
 
     \subsubsection{Gaussian Process: Hyperparameter Optimization}
     \label{sec:hyperparam}
@@ -509,13 +509,13 @@ The limit is a statement on where the observed data lies given all the other pos
 
 The following subsection describes the test statistics used for the limit setting. A formulation of the traditional frequentist calculation is presented. The Asimov approximation method used to approximate the frequentist limit from a representative dataset is described, which is the ATLAS standard, and it saves computing resources. The formulae for the limit calculation using this method are given. Adaptation with the Gaussian Process is also discussed. 
 
-\subsubsection{Frequentist Limits: The Test Statistic}
+\subsubsection{Frequentist Limits: The Test Statistics}
 \label{sec:freqTestStats}
 
 The probability distribution of the observable $x$ in each bin of the histogram can be given by a Poissonian probability distribution. This probability distribution is a function of many parameters, including the signal strength, and other systematic uncertainty parameters, for example, the variation in luminsoity. As these variable are not the target parameter where limit is set, they are known as the nuissance paramters. From the Poissonian distribution, its likelihood function can be parameterized as such, with thepredicted signal event and background events made explicit:
 
 \begin{equation}
-    L(\mu, \theta) =  \prod_{i=0}^{N} \frac{(\mu \cdot s_{j} + b_{j})^{n_j}}{n_{j}!}e^{(-\mu \cot s_j + b_j)} \prod_{k=1}^{M}\frac{u_{k}}
+    L(\mu, \theta) =  \prod_{i=0}^{N} \frac{(\mu \cdot s_{j} + b_{j})^{n_j}}{n_{j}!}e^{(-\mu \cdot s_j + b_j)} \prod_{k=1}^{M}\frac{u_{k}}
 {m_{k}!} e^{(-u_{k})}
 \label{eq:likelihood}
 \end{equation}
@@ -524,20 +524,20 @@ Here, $L$ is the likelihood product from the target distribution multiplied by s
 are not the target distribution and can be accounted for as the nuisance parameters, which
 include: here $u_k$ is the predicted value by the model, and $m_{k}$ is the observed value. 
 
-When the likelihood function is maximized, the most optimal value of all the parameters is obtained. However, since in limit setting, the only parameter we are interested in learning about is the signal strength, the influence from the unknown true value of the nuisance parameters can be taken into account or eliminated. A ``profiled likelihood" function is constructed to achieve this. This quantity, when maximized, gives the overall most likely signal strength prediction while taking into account fluctuations in the other nuisance parameters. 
+The most probable value of the parameters are those that maximize the likelihood function. However, since in limit setting, the only parameter we are interested in learning about is the signal strength, the influence from the unknown true value of the nuisance parameters can be taken into account or eliminated. A ``profiled likelihood" function is constructed to achieve this. This quantity, when maximized, gives the overall most likely signal strength prediction while taking into account fluctuations in the other nuisance parameters. 
 
 \begin{equation}
 \lambda(\mu) = \frac{L(\mu, \hat{\hat{\theta}})}{L(\hat{\mu}, \hat{\theta})}
 \label{eq:profilelikelihood}
 \end{equation}
 
-Here, the denominator is the maximized unconditional likelihood function, where $\hat{\mu}$ and $\hat{\theta}$ are the parameter values that would maximize the unconditional likelihood function; the numerator is the conditional likelihood function.
+Here, $\hat{\hat{\mu}}$ is the $\theta$ that maximizes L for $\mu$ specified. the denominator is the maximized unconditional likelihood function, where $\hat{\mu}$ and $\hat{\theta}$ are the parameter values that would maximize the unconditional likelihood function regardless of specific $\mu$ values.
 
 %To aid the optimization process and also to reflect the nature of the excess search experiment that neglects negative signal event value, the test statistics defined as the following, the negative log taken on the likelihood ratio aid the optimization computing procedure.
 To aid the optimization process, it is usually the negative log of the profiled likelihood that is used for the limits calculation:
 
 \begin{equation}
-    q_{\mu} = -2 ln \frac{L(\mu, \hat{\hat{\theta}})}{L(\hat{\mu}, \hat{\theta})}
+    q_{\mu} = -2 \ln \frac{L(\mu, \hat{\hat{\theta}})}{L(\hat{\mu}, \hat{\theta})}
 \label{teststats}
 \end{equation}
 
@@ -545,7 +545,7 @@ To aid the optimization process, it is usually the negative log of the profiled 
 \subsubsection{The Frequentist Limits: The Limits Formulae}
 \label{sec:freqlimits}
 
-From this test statistics, the p-value calculated from different assumed signal strength assumptions and observed data can be found. The signal strength where the data can reject the signal hypothesis up to 95\% confidence is called the observed limit, and the signal strength of median significance along with the fluctuation is called the expected limit. 
+From this test statistics, certain assumed signal strength $\mu$ in the nominator returns a 95\% confidence in the rejection, this is calculated for different signal mass points and is called the observed limit. The signal strength of median significance along with the fluctuation is called the expected limit. 
 
 \begin{itemize}
 
@@ -555,12 +555,18 @@ From this test statistics, the p-value calculated from different assumed signal 
 \mu_{up/lo} = \hat{\mu} +- \sigma\Phi^{-1}(1-\alpha/2)
 \end{equation}
 
+here, $\mu$ is the signal strength, up/lo is the upper or the lower 5\% confidence limit. 
+
 \item \textbf{The Expected Median Limit}
 \begin{equation}
     \mathrm{med}[\mu_{up}|\mu'] = \mu' + \sigma\Phi^{-1}(1-\alpha) 
 \end{equation}
+here, $\mu'$ is the expected signal strength.
 
-\item \textbf{The Error Band}
+
+here, $\mathrm{med}$ is the  median of the observed limits.
+
+\item \textbf{The Expected Limits Significance}
 \begin{equation}
     \mathrm{band}_{N\sigma} = \mu' + \sigma(\Phi(1-\alpha)+-N)
 \end{equation}
@@ -586,7 +592,7 @@ From the Wald theorem, the test statistic can be approximated:
 
 Here, $\mu$ is the observed value, whereas the $\hat{\mu}$ is the expected strength that would maximize the likelihood, $\sigma$ is the expected spread in the distribution. 
 
-If the terms in O are neglected, it follows that the test statistic will then asymtotically follow a non-central chi-square distribution: 
+If the terms in O are neglected, the test statistic will then asymtotically follow a non-central chi-square distribution, derivation is in~\cite{2011}: 
 
 \begin{equation}
     f(q_{\mu}) = \frac{1}{2\sqrt{q_{\mu}}} \frac{1}{\sqrt{2\pi}} [exp(-\frac{1}{2}(\sqrt{q_{\mu}}+ \sqrt{\Lambda})+ exp(-\frac{1}{2}(\sqrt{q_{\mu}-\sqrt{\Lambda}})^{2})]
@@ -598,7 +604,7 @@ Here, $\Lambda$ is the non-centrality term, it can be shown that it can be estim
     \label{eq:Lambda}
 \end{equation}
 
-A detailed proof can be found in~\cite{2011}. 
+Where $\lambda_{A}$ is the likelihood calculated from the asymtotic distribution. A detailed proof can be found in~\cite{2011}. 
 
 %\[ \lambda_{A}(\mu) = \frac{L_{A}(\mu, \hat{\hat{\theta}})}{L_{A}(\hat{\mu}, \hat{\theta})} \]
 
@@ -642,52 +648,56 @@ A detailed proof can be found in~\cite{2011}.
 \subsubsection{Frequentist Limit: The Asimov dataset}
 \label{sec:asimov}
 
-The finding of $\hat{\hat{\mu}}$ in the denominator in E~\ref{teststats} is CPU intensive, the dataset is large with many dimensions. The Asimov dataset reduces the calculation here by showing that $\hat{\hat{\mu}}$ can be approximated by $\mu'$, the expected value of the strength parameter. From this, CPU intensive calculation of the p-value can be avoided. Significance and thus the upper limit and the observed limit fluctuation can be reduced to simple formulae that only
+The finding of $\hat{\mu}$ in the denominator in ~\ref{teststats} is CPU intensive. The dataset is large with many dimensions. The Asimov dataset reduces the calculation here by showing that $\hat{\mu}$ can be approximated by $\mu'$, the expected value of the strength parameter. From this, CPU intensive calculation of the p-value can be avoided. Significance and thus the upper limit and the observed limit fluctuation can be reduced to simple formulae that only
 require calculations from the representative Asimov dataset. 
 A proof is given in the following section, and the formulae used for the upper limit and expected limit calculation in this thesis are included in the end. 
 
-From the definition, true parameters values will result in the maximum likelihood and therefore the derivative of the ${L}$ will be equal to 0. 
+%From the definition, true parameters values will result in the maximum likelihood and therefore the derivative of the ${L}$ will be equal to 0. 
+%
+%\begin{equation}
+%\frac{\partial{L}}{\partial{\theta_{j}}} \sum_{i=0}^{N}(\frac{n_{i}}{\nu_{i}}-1) \frac{\partial{\nu_{i}}}{\partial{\theta_{j}}}+ \sum_{i=0}^{N}(\frac{m_{i}}{u_{i}}-1) \frac{\partial{u_{i}}}{\partial{\theta_{j}}} =  0 
+%\end{equation}
+%
+%Here, $n_i$ is the number of events in the bin i in the signal region, and N is the total number of bins, and m is the number of events in bins in the control region may help further constrain the background, M is the maximum number of bins. $\nu$ is the expected event number and $u_{i}$ is the expected number of events in bin i. 
+%
+%The maximal likelihood value for $n_{i,A}$ and $m_{i,A}$ in the Asimov distribution is associated with their expectation value. 
+%
+%\begin{equation}
+%    n_{i,A} = E[n_{i}] = \nu_{i} = \mu s_{i}(\theta) + b_{i}(\theta)
+%\end{equation}
+%
+%\begin{equation}
+%    m_{i,A} = E[m,i] = u_{i}(\theta)
+%\end{equation}
+%
+%The optimal parameters $\theta$ can be estimated through large-size Monte Carlo generation. And it is called the Asimov dataset.
+%The only missing part from the above estimation is $\sigma$, which can be approximated as the following: 
+%Since, 
+%
+%\begin{equation}
+%    \lambda_{A}(\mu) = \frac{L_{A}(\mu, \hat{\hat{\theta}})}{L_{A}(\hat{\mu}, \hat{\theta})}
+%= \frac{L_{A}{\mu, \hat{\hat{\theta}}}}{L_{A}(\mu', \theta)}
+%\end{equation}
+%
+%
+%From Eq.~\ref{eq:wald} and Eq.~\ref{eq:Lambda}:
+%\begin{equation}
+%2\ln(\lambda_{A}(\mu)) \approx \frac{(\mu-\mu')^{2}}{\sigma^{2}}=\Lambda
+%\end{equation}
+%
+%$\sigma_{A}$ can therefore be approximated:
+%
+%\begin{equation}
+%    \sigma_{A}^{2} = \frac{(\mu-\mu')^{2}}{q_{\mu,A}}
+%\end{equation}
+%
+%When there is no signal, $\mu'$ is taken to be zero. 
 
-\begin{equation}
-\frac{\partial{L}}{\partial{\theta_{j}}} \sum_{i=0}^{N}(\frac{n_{i}}{\nu_{i}}-1) \frac{\partial{\nu_{i}}}{\partial{\theta_{j}}}+ \sum_{i=0}^{N}(\frac{m_{i}}{u_{i}}-1) \frac{\partial{u_{i}}}{\partial{\theta_{j}}} =  0 
-\end{equation}
-
-Here, n is the number of events in the bin in the signal region, and N is the total number of bins, and m is the number of events in bins in the control region may help further constrain the background, M is the maximum number of bins. 
-
-The maximal likelihood value for $n_{i,A}$ and $m_{i,A}$ in the Asimov distribution is associated with their expectation value. 
-
-\begin{equation}
-    n_{i,A} = E[n_{i}] = \nu_{i} = \mu s_{i}(\theta) + b_{i}(\theta)
-\end{equation}
-
-\begin{equation}
-    m_{i,A} = E[m,i] = u_{i}(\theta)
-\end{equation}
-
-The optimal parameters $\theta$ can be estimated through large-size Monte Carlo generation. And it is called the Asimov dataset.
-The only missing part from the above estimation is $\sigma$, which can be approximated as the following: 
-Since, 
-
-\begin{equation}
-    \lambda_{A}(\mu) = \frac{L_{A}(\mu, \hat{\hat{\theta}})}{L_{A}(\hat{\mu}, \hat{\theta})}
-= \frac{L_{A}{\mu, \hat{\hat{\theta}}}}{L_{A}(\mu', \theta)}
-\end{equation}
+%Following from the above, the test statistic, the upper limits, the discovery median significance can all be found through substituting $\hat{\mu}$ as $\mu'$ by the Asimov method. Below are additional results derived from the above, but quoted without derivation.
 
 
-From Eq.~\ref{eq:wald} and Eq.~\ref{eq:Lambda}:
-\begin{equation}
-2\ln(\lambda_{A}(\mu)) \approx \frac{(\mu-\mu')^{2}}{\sigma^{2}}=\Lambda
-\end{equation}
-
-$\sigma_{A}$ can therefore be approximated:
-
-\begin{equation}
-    \sigma_{A}^{2} = \frac{(\mu-\mu')^{2}}{q_{\mu,A}}
-\end{equation}
-
-When there is no signal, $\mu'$ is taken to be zero. 
-
-Following from the above, the test statistic, the upper limits, the discovery median significance can all be found through substituting $\hat{\mu}$ as $\mu'$ by the Asimov method. As these result derives directly from the above, only the results are quoted here. 
+%As these result derives directly from the above, only the results are quoted here. 
+Below are the results quoted from~\cite{2011}, a detailed derivation can be found there. 
 
 \begin{itemize}
     \item \textbf{The Test Statistics Distribution}
@@ -714,7 +724,7 @@ Z_{\mu} = \Phi^{-1}(1-p_{\mu})  = \Phi^{-1}(2\Phi(\sqrt{t_{\mu}})-1)
 
 \end{itemize}
 
-From this calculation, the limit calculation in the above~\ref{sec:limits} can be utilized for a limit calculation. 
+From this calculation, the limit calculation in the above Section~\ref{sec:limits} can be utilized for a limit calculation. 
 
 %\subsection{The Search (discovery test)}
 %A hypothesis is said to be rejected if its p-value is below a certain threshold z value of alpha. This is the basis of the discovery test.
@@ -752,14 +762,14 @@ From this calculation, the limit calculation in the above~\ref{sec:limits} can b
 %\end{equation}
 
 \subsubsection{Frequentist Limits: Gaussian Process Adaptations}
-    The Gaussian process is shown to be able to be incorporated within the Asimov method of frequentist limit setting~\cite{frate2017modeling}.
-    In the Figure~\ref{fig:chi2}, the likelihood ratio in the Gaussian process is a proxy for the profile likelihood ratio used in the Asimov limit. It can be seen that it approximately follows the $\chi^{2}$ distribution, satisfying a requirement that follows from the Wald approximation that allows for the Asimov approximation of limits.
+    The Gaussian process has been  shown to be able to be incorporated within the Asimov method of frequentist limit setting~\cite{frate2017modeling}.
+    In Figure~\ref{fig:chi2}, the likelihood ratio in the Gaussian process~\ref{eq:gplikelihood} is a proxy for the profile likelihood ratio used in the Asimov limit. The likelihood came from the ~\ref{eq:loglikelihood} in the Gaussian Process section above.  It can be seen that it approximately follows the $\chi^{2}$ distribution, satisfying a requirement that follows from the Wald approximation that allows for the Asimov approximation of limits.
 
     \begin{figure}[!htb]
         \begin{center}
             \includegraphics[width=0.75\textwidth]{figures/chapter_analysismethod/chi2}
                 \caption{
-                This figure shows the negative log of the $\Lambda$ which is an approximation of the measure of the profiled likelihood ratio defined in~\ref{eq:profilelikelihood}. The top part is the distribution for background only pseudo-experiments, whereas the bottom is the background + signal distribution. They show a reasonable agreement to the $\chi^{2}$ fit, a required condition for the Asimov approximation for a frequentist limit setting~\cite{frate2017modeling}. 
+                This figure shows the negative log of the $\Lambda$ which is an approximation of the measure of the profiled likelihood ratio defined in~\ref{eq:profilelikelihood}. The top part is the distribution for background only pseudo-experiments, whereas the bottom is the background and signal distribution. They show a reasonable agreement to the $\chi^{2}$ fit, a required condition for the Asimov approximation for a frequentist limit setting~\cite{frate2017modeling}. 
             }
             \label{fig:chi2}
         \end{center}
@@ -769,7 +779,8 @@ From this calculation, the limit calculation in the above~\ref{sec:limits} can b
     A new test statistic for Gaussian Process that is parametrized by the kernel hyper-parameters is used instead for limit setting:
 
 \begin{equation}
-    -ln(\Lambda) \textrm{, where }\Lambda= 2ln(\frac{L_{\textrm{GP signal + bkg fit}}(\mu, \hat{\hat{\theta}})}{L_{\textrm{GP bkg fit}}(\hat{\mu}, \hat{\theta})})
+    -ln(\Lambda) \textrm{, where }\Lambda= \frac{L_{\textrm{GP signal + bkg fit}}(\mu, \hat{\hat{\theta}})}{L_{\textrm{GP bkg fit}}(\hat{\mu}, \hat{\theta})})
+\label{eq:gplikelihood}
 \end{equation}
 
 Here, $\ln(\Lambda)$ is the new test statisitics used for the limit setting L is the likelihood defined in Eq.~\ref{eq:loglikelihood}. The numerator is the likelihood with both the background and signal kernel, whereas the denominator is likelihood with just the background kernel. 
