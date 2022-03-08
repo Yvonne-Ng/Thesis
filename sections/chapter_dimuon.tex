@@ -111,10 +111,10 @@ Triggering streams each have different cuts and they are tailored for different 
 \label{tab:Data Trigger}
 \begin{tabular}{|l|l|l|l|l}
 \hline
-\textbf{Type}   & \textbf{Period}                                                         &\textbf{Trigger Chain} &\textbf{Level 1} &\textbf{$p_{T}^{\textrm{cut offline}}$}\\ \hline
+\textbf{Type}   & \textbf{Period}                                                         &\textbf{Trigger Chain} &\textbf{Level 1} &\textbf{$p_{T}^{\textrm{cut offline}}$ (GeV)}\\ \hline
 Isolation Single Muon   & 2015 & HLT\_mu26\_iloose\_L1mu15 & MU15 & 27 \\ 
                         & 2016-2018  & HLT\_mu26\_ivarmedium    & MU20 & \\ \hline
-Non-Isolated Single Muon & 2015-2018                                       &$HLT_mu50$& MU20& 27 \\ \hline
+Non-Isolated Single Muon & 2015-2018                                       &$HLT\_mu50$& MU20& 27 \\ \hline
 Symmetric Dimuon & 2015 & HLT\_2mu10 & 2MU10 & 15, 15 \\
                  & 2015-2018 & HLT\_2mu14 & 2MU10 & \\ \hline
 Assymetric Dimuon & 2015 & HLT\_mu18\_mu8noL1 & MU15 & 24, 10 \\
@@ -134,15 +134,14 @@ Assymetric Dimuon & 2015 & HLT\_mu18\_mu8noL1 & MU15 & 24, 10 \\
 
 \section{Data preparation}
 The final result of the strategies presented in this chapter is collected from proton-proton collision data during the ATLAS Run 2 period at a center-of-mass energy of $\sqrt{13}$ TeV from 2016-2018. The preliminary strategy of this chapter is generated from ATLAS full simulation Monte Carlo, besides the $Z > \mu \mu $ sample used. Due to the process\'s low statistics in the ATLAS full simulation, a full-size $Z > \mu \mu$ sample is created through a fast Sherpa and PYTHIA8 combination
-generation. Section~\ref{sec:fastsimulation} details the superfast event generation.
+generation. Section~\ref{sec:fastsimulation} details the superfast event generation. The MC are used for signal sensitivity test, the binning studies as well as the finalizing the background Gaussian Process hyper-parameters in this analysis. 
 
 \subsection{Samples Used for the Analysis}
 The following are the samples used for the analysis. The largest background contribution in this analysis is the $Z > \mu\mu $ process; the second-largest contribution originates from $Z > \tau \tau$. Other processes, including the t-channel $t\bar{t}$ decay, diboson decay as well as top decay contribute a considerable amount to the background events.
 
 \subsubsection{Fast Simulation $Z > \mu\mu$  Samples}
 \label{sec:fastsimulation}
-Due to the low statistics in the primary background sample in  $Z \> \mu \mu$, fast generation relying on Pythia8 and a smearing function for the detector effect has been used to emulate the statistical fluctuation of the full dataset. Four different variations of the superfast statistics as been used, each using a different pdf set for the generator tuning. The Nominal set uses the ATLAS A14 NNPDF2.3LO; the down variation and up variation uses the variation tune parameters Var3C listed
-here~\cite{ATL-PHYS-PUB-2014-021}; whereas the $\eta$ variation uses ATLAS A15 NNPDF2.3 along with QCD and QED NLO. After the event generation at the truth level, $P_{T}$ smearing is applied to imitate the detector effect. More details on the fast simulation can be found here~\cite{Artoni:2703492}.
+Due to the low statistics in the primary background sample in  $Z \> \mu \mu$, fast generation relying on Pythia8 and a smearing function for the detector effect has been used to emulate imperfect resolution of the detector. Four of the superfast statistics as been used, each using a different pdf set for the generator tuning. The nominal set uses the ATLAS A14 NNPDF2.3LO; the down variation and up variation uses the variation tune parameters Var3C described in Ref~\cite{ATL-PHYS-PUB-2014-021}; whereas the $\eta$ variation uses ATLAS A15 NNPDF2.3 along with QCD and QED NLO. After the event generation at the truth level, $P_{T}$ smearing is applied to imitate the detector effect. More details on the fast simulation are given in Ref~\cite{Artoni:2703492}.
 
 \begin{table}[!htb]
     \begin{center}
@@ -154,42 +153,44 @@ here~\cite{ATL-PHYS-PUB-2014-021}; whereas the $\eta$ variation uses ATLAS A15 N
 \begin{tabular}{|l|l|l|}
 \hline
 \textbf{MC Type}   & \textbf{DSID}                                                         &\textbf{Generator Used}\\ \hline
-Z+ jets $\mu\mu$   & 364100 - 364113 , 364198-364203                                       &Fast Simulation through PYTHIA\\ \hline
-Z+jets $\tau \tau$ & 364128 - 364141 , 364210-364215                                       &Sherpa\\ \hline
+Z $> \mu\mu$   & 364100 - 364113 , 364198-364203                                       &Fast Simulation through PYTHIA\\ \hline
+Z $> \tau \tau$ & 364128 - 364141 , 364210-364215                                       &Sherpa\\ \hline
 $t\bar{t}$         & 410472                                                                &Sherpa\\ \hline
 Diboson            & 364253 - 364255 , 363355 - 363360 ; &Sherpa \\
 & 363489 ; 364250 ; 364288 - 364290 & \\ \hline
 Top decay          & 410644 - 410645 , 410658 - 410659 ;                   &Powheg+Pythia8\\ 
 &410648 - 410649 & \\ \hline
-$W + jets \mu\nu$  & 364156 - 364169                                                       &Sherpa\\ \hline
+$W \textrm{+ jets} \mu\nu$  & 364156 - 364169                                                       &Sherpa\\ \hline
 $b\bar{b}$         & 363833                                                                &Pythia8b\\ \hline
 $c\bar{c}$         & 363834                                                                &Pythia8b\\ \hline
 \end{tabular}
 \end{center}
 \end{table}
 
-In addition to sources in this table, QCD fakes that contribute to the background events are estimated by same-signed dimuon pairs in the data. Since the only source of same-signed dimuon events in the data all originates from QCD fake contribution, the event count would be approximately equal to the opposite-signed contribution of fakes from QCD. Figure~\ref{fig:samesigned} shows a background composition plot with the same signed contribution subtracted out. The fake QCD contribution makes up less
-than 1\% of all the events. After the application of the Fake estimation, the overall agreement between data and MC in controlled regions is within an acceptable range. The MC is ready to be used for statistics strategy studies.
+%In addition to sources in this table, there are also "fakes" that get misidentifies as muons that can contribute to the background. 
+%
+%QCD fakes that contribute to the background events are estimated by same-signed dimuon pairs in the data. Since the only source of same-signed dimuon events in the data all originates from QCD fake contribution, the event count would be approximately equal to the opposite-signed contribution of fakes from QCD. Figure~\ref{fig:samesigned} shows a background composition plot with the same signed contribution subtracted out. The fake QCD contribution makes up less
+%than 1\% of all the events. After the application of the Fake estimation, the overall agreement between data and MC in controlled regions is within an acceptable range. The MC is ready to be used for statistics strategy studies.
+%
+%\begin{figure}[!htb]
+%    \begin{center}
+%        \includegraphics[width=0.85\textwidth]{figures/chapter_dimuon/samesigned}
+%        \caption{
+%        These plots shows the leading muon transverse momentum distribution and the subleading muon transverse momentum distribution with the super fast simulation.  
+%        }
+%        \label{fig:samesigned}
+%    \end{center}
+%\end{figure}
+%\FloatBarrier
 
-\begin{figure}[!htb]
-    \begin{center}
-        \includegraphics[width=0.85\textwidth]{figures/chapter_dimuon/samesigned}
-        \caption{
-        These plots shows the leading muon transverse momentum distribution and the subleading muon transverse momentum distribution with the super fast simulation.  
-        }
-        \label{fig:samesigned}
-    \end{center}
-\end{figure}
-\FloatBarrier
-
-In the analysis, studies were done and it was found that muons of the \textbf{MEDIUM} working point and the \textbf{FixedCutPFlowLoose} isolation working point (Defined in Chapter~\ref{chapter:common_analysis_items}) will provide the maximal muon performance and signal sensitivity. Two muons of at least 4 GeV in transverse momentum and $|\eta|<2.5$ are required for each event. An additional $P_{T}> 14GeV$ cut is applied to events in the boosted channel.
+In the analysis, studies were done and it was found that muons of the \textbf{MEDIUM} working point and the \textbf{FixedCutPFlowLoose} isolation working point (Defined in Chapter~\ref{chapter:common_analysis_items}) will provide the maximal muon performance and signal sensitivity. Two muons of at least 4 GeV in transverse momentum and $|\eta|<2.5$ are required for each event. An additional $P_{T}>$ 14GeV cut is applied to events in the boosted channel.
 
 \begin{figure}[!htb]
     \begin{center}
         \includegraphics[width=0.45\textwidth]{figures/chapter_dimuon/superfast_leadingMuonPT}
         \includegraphics[width=0.45\textwidth]{figures/chapter_dimuon/superfast_subleadingMuonPT}
         \caption{
-        These plots shows the leading muon transverse momentum distribution and the subleading muon transverse momentum distribution with the super fast simulation.  }
+        These plots shows the leading muon transverse momentum distribution and the subleading muon transverse momentum distribution with the super fast simulation.  The MC samples here include Z $> \mu\mu$, Z $> \tau\tau$, $ t \bar{t}$, Diboson, top quark decay and $b\bar{b}$ and $c\bar{c}$. the bottom pane shows the data to MC ratio. }
     \end{center}
 \end{figure}
 \FloatBarrier
@@ -257,15 +258,17 @@ In the analysis, studies were done and it was found that muons of the \textbf{ME
 
 
 \subsection{Dimuon Mass Spectrum Resolution}
-To define the binning of the dimuon mass distribution in the signal region, the dimuon mass resolution is studied. The following study is done on the Z > $\mu \mu$. Detail on the procedure can be found in Chapter~\ref{chapter:analysismethod} in Section~\ref{sec:binning}.
+To define the binning of the dimuon mass distribution in the signal region, the dimuon mass resolution is studied. The following study is done on the Z $> \mu \mu$. Details on the procedure can be found in Chapter~\ref{chapter:analysismethod} in Section~\ref{sec:binning}.
 
 A Gaussian distribution fit is performed on the resonance mass $m_{\mu\mu_{Truth}} - m_{\mu\mu{Reco}}$ quantity. From the fit, the width of the Gaussian is obtained, as shown in Figure~\ref{fig:fit}. It is taken to be the detector resolution in the dimuon mass distribution. The bin-by-bin resolution result is shown in Figure~\ref{fig:sigma}.    
 
 \begin{figure}[!htb]
     \begin{center}
         \includegraphics[width=0.45\textwidth]{figures/chapter_dimuon/fitError}        
-        \caption{
-            A Gaussian distribution fit is made on the difference between the truth dimuon resonance mass and the reconstructed dimuon resonance mass.    }
+        \caption
+	{
+	    Fit of a Gaussian pdf to the distribution of the difference between the true and reconstructed dimuon resonance mass. 
+	}
         \label{fig:fit}
     \end{center}
 \end{figure}
