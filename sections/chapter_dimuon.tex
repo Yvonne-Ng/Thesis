@@ -449,7 +449,7 @@ The fitting result shows that lengthscale chosen for Gaussian Process works well
 
 \subsection{Spurious signal test}
 
-The spurious signal test is a test that defines the uncertainty relative to signal yield. Details are presented here in Section~\ref{sec:spurious}.
+The spurious signal test is a test that defines the background estimation uncertainty relative to signal yield. Details are presented in Section~\ref{sec:spurious}.
 The spurious signal test is considered passed if the signal extracted versus the background error ratio is $<$ 0.5.
 The spurious signal test results on the Gaussian Process are shown in Figure~\ref{fig:spurious}:
 Currently, ongoing work is being done to further reduce the spurious signal.
@@ -465,12 +465,12 @@ Currently, ongoing work is being done to further reduce the spurious signal.
 \FloatBarrier
 
 \section{Statistics Testing}
-Details on the statistical test can be found here~\ref{section:stats}. When the thesis is written, the data was not unblinded. Monte Carlo studies were done to verify the procedure. The following statistical tests have been presented in the CERN Statistical Forum.
+Details on the statistical test can be found here~\ref{section:stats}. As of the writing of this thesis, the data have not yet been unblinded. Monte Carlo studies were done to verify the procedure. 
 
 \section{The Search}
 The search aims to either accept or reject the null hypothesis. Details are listed in this Section~\ref{sec:thesearch}.
 
-An example of the search done with just the background and no signal injected is shown in Figure~\ref{fig:searchnull}. The test statistics, including 
+An example of the search is done with just the background and no signal injected is shown in Figure~\ref{fig:searchnull}. The test statistics, including 
 the loglikelihood, the $\chi^{2}$ ,and the bumphunter test statistics all have p-value below 0.01. No anomaly is found and the null hypothesis is accepted.
     
 \begin{figure}[!htb]
@@ -487,39 +487,39 @@ the loglikelihood, the $\chi^{2}$ ,and the bumphunter test statistics all have p
 \end{figure}
 \FloatBarrier
 
-Another example of the search done with the background plus signal injected in 50 GeV. The bumphunter test statistics have p-value below 0.01. The fit result is presented in Figure~\ref{fig:searchbump}The null hypothesis is rejected. In this scenario, there could be a Beyond-the-Standard-Model signal present in the data.
+Another example of the search done with the background with a toy signal of a Gaussian shape that peaks at 50 GeV. The bumphunter test statistics have p-value below 0.01. The fit result is presented in Figure~\ref{fig:searchbump}. The null hypothesis is rejected.
 
 \begin{figure}[!htb]
     \begin{center}
         \includegraphics[width=0.45\textwidth]{figures/chapter_dimuon/SearchBump}
         \includegraphics[width=0.45\textwidth]{figures/chapter_dimuon/bumpHunterStatPlot_bump}
         \caption{
-        These figures illustrate a test done on signal injected at 55 GeV, and the window exclusion that picked out the signal injected in there.}
+        These figures illustrate a test done on signal injected at 50 GeV, and the window exclusion that picked out the signal injected in there.}
         \label{fig:searchbump}
     \end{center}
 \end{figure}
 \FloatBarrier
 
-The results show that the statistic test of the search is in place for when the data is ready to being unblinded.
+These demonstrations indicate that the statistical pipeline is functioning and ready to be applied to collision data.
 
 \section{Limit Setting}
 The limit setting aims to find the exclusion upper limit for the signal strength at a 95\% confidence level. In the dimuon analysis, the limit setting procedure is done through the Asimov approximation of the frequentist limits described in Section~\ref{sec:limits}.
 
-Preliminary limit setting based on Gaussian Process is still currently under test. In alternative fit function limits calculated by approximation based on the fit function method are shown here in Figure~\ref{fig:limits}.
+Preliminary limit setting based on Gaussian Process is still currently under test. A limits calculated by approximation based on the fit function method on background only MC are shown here in Figure~\ref{fig:limits}.
 
 \begin{figure}[!htb]
    \begin{center}
        \includegraphics[width=0.75\textwidth]{figures/chapter_dimuon/limits}
        \caption{
-       This figure illustrate a spurious signal test result on the different background variation fits.}
+       This figure illustrate limits from the background MC.
         \label{fig:limits}
    \end{center}
 \end{figure}
 \FloatBarrier
 
 \section{Conclusion and Future Work}
-As pe 2022-2-27, a presentation of the above result was discussed at the ATLAS statistics forum and it was recommended that the analysis be redone with all the hyper-parameters fixed from the fitting of different variation of fast simulations. Another outstanding item would be fully incorporate the Gaussian Process method into the frequentist statistics framework. 
-The analysis is on its way to completing the final strategies and to being unblinded on data soon.
+As per 2022-2-27, a presentation of the above result was discussed at the ATLAS statistics forum and it was recommended that the analysis be redone with all the hyper-parameters fixed from the fitting of different variation of fast simulations. Another outstanding item would be implementation of the  Gaussian Process test statistics into the frequentist statistics framework. 
+These items are under way.
 
 %Adding the Gaussian process limit to the background
 
