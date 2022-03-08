@@ -192,6 +192,7 @@ In the analysis, studies were done and it was found that muons of the \textbf{ME
         \caption{
         These plots shows the leading muon transverse momentum distribution and the subleading muon transverse momentum distribution with the super fast simulation.  The MC samples here include Z $> \mu\mu$, Z $> \tau\tau$, $ t \bar{t}$, Diboson, top quark decay and $b\bar{b}$ and $c\bar{c}$. the bottom pane shows the data to MC ratio. }
     \end{center}
+\label{fig:mcdata}
 \end{figure}
 \FloatBarrier
 
@@ -260,7 +261,7 @@ In the analysis, studies were done and it was found that muons of the \textbf{ME
 \subsection{Dimuon Mass Spectrum Resolution}
 To define the binning of the dimuon mass distribution in the signal region, the dimuon mass resolution is studied. The following study is done on the Z $> \mu \mu$. Details on the procedure can be found in Chapter~\ref{chapter:analysismethod} in Section~\ref{sec:binning}.
 
-A Gaussian distribution fit is performed on the resonance mass $m_{\mu\mu_{Truth}} - m_{\mu\mu{Reco}}$ quantity. From the fit, the width of the Gaussian is obtained, as shown in Figure~\ref{fig:fit}. It is taken to be the detector resolution in the dimuon mass distribution. The bin-by-bin resolution result is shown in Figure~\ref{fig:sigma}.    
+Fit of a Gaussian pdf to the distributio of the difference between the true and reconstructed dimuon resonance mass ($m_{\mu\mu_{Truth}} - m_{\mu\mu{Reco}}$) is performed. From the fit, the width of the Gaussian is obtained, as shown in Figure~\ref{fig:fit}. It is taken to be the detector resolution in the dimuon mass distribution. The bin-by-bin resolution result is shown in Figure~\ref{fig:sigma}.    
 
 \begin{figure}[!htb]
     \begin{center}
@@ -287,7 +288,7 @@ A Gaussian distribution fit is performed on the resonance mass $m_{\mu\mu_{Truth
 
 \subsection{Binning Strategy}
 \label{sec:binningresult}
-Using the resolution of the study from the last section and the mass distribution given in the theoretical signal section, the overall binning is chosen to be 0.25 GeV. Uniform binning simplified the fitting procedure considerably. The choice is also made out of consideration to ensure all signals searched for are at least 2 bins wide to reduce the probability of capturing a signal from statistical fluctuation only seen in one bin.
+Using the resolution of the study from the last section and the mass distribution given in the theoretical signal section, the overall binning is chosen to be 0.25 GeV, close to the resolution at the center of the spectrum. Uniform binning simplified the fitting procedure considerably. The choice is also made out of consideration to ensure most of the signals searched for are at least 2 bins wide to reduce the probability of capturing a signal from statistical fluctuation only seen in one bin.
 
 %\subsubsection{MC/Data Comparison}
 %A detailed description on the MC/Data comparison test can be found here,\ref{sec:MCData}.  
@@ -309,17 +310,17 @@ Using the resolution of the study from the last section and the mass distributio
 \section{Background Fitting with Gaussian Process}
 \label{sec:GPresults}
 
-As the fully simulated ATLAS MC for the background processes listed in table~\ref{table:MC} is neither reliable in shape nor enough in the count, the background fitting of the dimuon analysis relies on a data-driven approach. Detail on data-driven approaches for smooth background estimation is fully reviewed in Section~\ref{sec:backgroundest} of Chapter~\ref{chapter:analysismethod}. The approach used by the dimuon analysis is the Gaussian Process approach outlined in
+As the fully simulated ATLAS MC for the background processes listed in table~\ref{table:MC} is neither reliable in shape nor enough in the count. This is due to imperfect shower and hadronization process modelling in the simulation. The effect can be seen in the data/mc comparison in Figure~\ref{fig:datamc}.  The background fitting of the dimuon analysis therefore relies on a data-driven approach. Details on data-driven approaches for smooth background estimation is presented in Section~\ref{sec:backgroundest} of Chapter~\ref{chapter:analysismethod}. The approach used by the dimuon analysis is the Gaussian Process approach outlined in
 Section~\ref{sec:GP} of Chapter~\ref{chapter:analysismethod}. Only details specific to the analysis and results are described here.
 
 \subsection{The Kernel}
 In Gaussian Process, the mean function prediction and the covariance function on the prediction variance are determined by the kernel function.
-The Gaussian process background and signal kernels used for this particular analysis method are given in Eq.~\ref{eq:backgroundkernel} and Eq.~\ref{eq:signalkernel}. 
+The Gaussian Process background and signal kernels used for this particular analysis method are given in Eq.~\ref{eq:backgroundkernel} and Eq.~\ref{eq:signalkernel}. 
 
 \begin{itemize}
     \item \textbf{Background Kernel} \textit{-``Radial Basis Function + White Noise Kernel"}
         \begin{equation}
-                K_{bkg}(x, x') = A_{1} * exp(-\frac{||x-x'||}{2\sigma^{2}}) 
+                K_{bkg}(x, x') = A_{1} * exp(-\frac{||x-x'||}{2\sigma_{1}^{2}}) 
         \label{eq:backgroundkernel}
         \end{equation}
 
@@ -331,12 +332,13 @@ The Gaussian process background and signal kernels used for this particular anal
             \end{equation}
 \end{itemize}
 
-    Here, $A_{2}$ is the amplitude of the signal kernel, m is the value where the kernel peaked on, and $\sigma_{2}$ is the lengthscale of the signal kernel. 
+    Here, $A_{2}$ is the amplitude of the signal kernel, m is the mass location of the signal peak, and $\sigma_{2}$ is the lengthscale of the signal kernel. 
 
 \subsubsection{Test for the Background Kernel}
-Verification tests are done to ensure the background MC can be described by the background kernel. The procedure is described as the following: 
 
-Toy distributions are created from drawing the Poissonian distribution in each bin. 10,000 new toy distributions are formed. Each is fitted with the Gaussian Process background kernel and test statistics defined in Section\ref{teststatistics} are calculated for each fit. The test statistics of the original fit to the background MC is compared against the test statistics of
+Although there are noticeable difference between the data and MC, it is believed that the MC along with its different tune variation could still give a good general understandning of what the data shape may look like at unblinding. Verification tests are done to ensure the background MC can be described by the background kernel. The procedure is described as the following: 
+
+To ensure the fit is not biased by the statistical fluctuation, the fit on the spectrum is compared to the fits in the toy distributions. Toy distributions are created from drawing the Poissonian distribution in each bin. 10,000 new toy distributions are formed. Each is fitted with the Gaussian Process background kernel and test statistics defined in Section\ref{teststatistics} are calculated for each fit. The test statistics of the original fit to the background MC is compared against the test statistics of
 the toy distribution to calculated the p-value(See Eq.~\ref{eq:pvaluetestStats}). Results in Figure~\ref{fig:nominalstats} that all three test statistics tested the p-value is above 0.01 and that the kernel captures features in background distribution well. 
 
 \begin{figure}[!htb]
@@ -345,7 +347,7 @@ the toy distribution to calculated the p-value(See Eq.~\ref{eq:pvaluetestStats})
         \includegraphics[width=0.30\textwidth]{figures/chapter_dimuon/chi2StatPlot}        
         \includegraphics[width=0.30\textwidth]{figures/chapter_dimuon/logLStatPlot}        
         \caption{
-        These plots illustrates the test statistics of the nominal fit compared against the pseudoexperiment test statistics distribution. }
+        These plots illustrate the test statistics of the fit on MC compared against the fit on the pseudoexperiment from MC. }
         \label{fig:nominalstats}
     \end{center}
 \end{figure}
@@ -354,9 +356,9 @@ the toy distribution to calculated the p-value(See Eq.~\ref{eq:pvaluetestStats})
 
 \subsection{Hyperparameter Optimization}
 The detailed steps to the hyper-parameter optimization can be found in Section~\ref{sec:hyperparam} of Chapter~\ref{chapter:analysismethod}.
-The lower bound on the lengthscale of the background kernel and the signal kernel are finalized from the signal injection test result in Section~\ref{sec:signalinjectionresult} and Section~\ref{sec:binningresult} respectively. The other hyper-parameters are allowed to float and is optimized for each fit performed. 
+The lower bound on the lengthscale of the background kernel and the signal kernel are finalized from the signal injection test result in Section~\ref{sec:signalinjectionresult} and Section~\ref{sec:binningresult} respectively. The other hyper-parameters are allowed to float and are optimized with the scaled conjugate gradient algorithm. 
 
-In the dimuon analysis, the background kernel fits are performed on a different variation of the fast simulation MC to ensure the selected hyper-parameters and lengthscale are flexible enough for the variation possibly present in the final data. Figure~\ref{fig:dimuonmass} shows fitting results in the inclusive region of the MC using the background kernel listed in ~\ref{sec:fastsimulation}. The results show that the lengthscale lower-bound chosen is flexible enough against changes in the distribution fluctuation. 
+In the dimuon analysis, the background kernel fits are performed on several distinct variation of the fast simulation MC(See Section~\ref{sec:fastsimulation} to ensure the selected hyper-parameters and lengthscale are flexible enough for the variation possibly present in the final data. Figure~\ref{fig:dimuonmass} shows fitting results in the inclusive region of the MC using the background kernel listed in ~\ref{sec:fastsimulation}. The results show that the lengthscale lower-bound chosen is flexible enough against changes in the distribution fluctuation. 
 
 % Insert pictures
 
@@ -367,7 +369,7 @@ In the dimuon analysis, the background kernel fits are performed on a different 
         \includegraphics[width=0.45\textwidth]{figures/chapter_dimuon/down}        
         \includegraphics[width=0.45\textwidth]{figures/chapter_dimuon/eta}        
         \caption{
-        These figures illustrates the Gaussian process background kernel fit on the different variation of fast simulation detailed in Section~\ref{sec:fastsimulation}. The fit test statistics as well as the residual in the bottom panel shows that the background kernel is able to capture features in the background variation. 
+        These figures illustrates the Gaussian Process background kernel fit on the different variation of fast simulation detailed in Section~\ref{sec:fastsimulation}. The fit test statistics as well as the residual in the bottom panel shows that the background kernel is able to capture features in the background variation. 
         }
         \label{fig:dimuonmass}
     \end{center}
@@ -375,7 +377,7 @@ In the dimuon analysis, the background kernel fits are performed on a different 
 \FloatBarrier
 
 \subsection{Background and Signal Estimation}
-Studies found that the background estimation from the background kernel alone was not able to separate the background from the signal to high efficiency, the final background and signal estimation are done through the following separation equations. Figure~\ref{fig:signalseparation} shows an example separation done by the method.
+Background estimation from the background kernel alone was not able to separate the background from the signal to high efficiency. The final background and signal estimation are done through the following separation equations. Figure~\ref{fig:signalseparation} shows an example separation done by the method.
 
 \begin{itemize}
     \item \textbf{Background Prediction}
@@ -389,6 +391,8 @@ Studies found that the background estimation from the background kernel alone wa
         \mu_{sig}(x_{*}|y) = K_{\textrm{sig kernel}}(x_{*}, x)\cdot K_{\textrm{sig+bkg kernel}}(x,x') \cdot ( y(x)-\mu_{\textrm{bkg kernel}}(x_{*}|y) )
     \end{equation}
 
+    Here, $\mu(x_{*}| y) $ is the mean function posterior prediction of of point $x_{*}$, given known data point x and y, K is the kernel. $\mu(x_{*})$ is the prior probability distribution mean. x is a vector of the input mass point, and x' are the same points in a 2d matrix.
+
 \end{itemize}
 
 \begin{figure}[!htb]
@@ -396,7 +400,7 @@ Studies found that the background estimation from the background kernel alone wa
         \includegraphics[width=0.45\textwidth]{figures/chapter_dimuon//BackgroundSeparated}        
         \includegraphics[width=0.45\textwidth]{figures/chapter_dimuon/SignalSeparated}        
         \caption{
-            These figures illustrates the background and the signal separated from the signal injected background MC. The signal reconstruction yield for this particular signal is up to 94\%.
+            These figures shows the background estimation and the signal estimation separated a sample MC generated from a Gaussian signal injected into the background. The signal reconstruction yield for this particular signal is up to 94\%.
         }
         \label{fig:signalseparation}
     \end{center}
@@ -405,29 +409,29 @@ Studies found that the background estimation from the background kernel alone wa
 
 
 \subsection{Background Prediction Performance Studies}
-The Gaussian Process background prediction went through testing suggested in the ATLAS smoothing recommendation document to ensure the smooth background procedure is valid for resonance searches. Two tests, the signal injection test and the spurious signal test are conducted to ensure the background estimation is sensitive to signals above a certain size and the background error is within an acceptable range of the estimation. The following subsection shows the results using background prediction on ATLAS background MC.  
+The Gaussian Process background prediction went through testing suggested in the ATLAS smoothing recommendation document~\cite{ATL-PHYS-PUB-2020-028}. to ensure the smooth background procedure is valid for resonance searches. Two tests, the signal injection test and the spurious signal test are conducted to ensure the background estimation is sensitive to signals above a certain size in comparison to the backgroud error. The following subsections show the results of these tests.
 
 \subsubsection{Signal injection test} 
 \label{sec:signalinjectionresult}
 
 %\textit{-``Test for smallest signal the background estimation is sensitive to”}
 
-Details of the procedure of the signal injection test can be found in Section~\ref{sec:signalInjection}. Only results are presented here.
+Details of the procedure of the signal injection test can be found in Ref~\ref{ATL-PHYS-PUB-2020-028}. Only results are presented here.
 
-It is found that a minimum lengthscale of 4 GeV is needed for the background kernel for the background model to be sensitive to signal of 3 $\sigma$ background error size and above in the 45-68 GeV range in the inclusive region. Most of the signal width used passed the test when this lengthscale is chosen. 
+It is found that a minimum lengthscale of 4 GeV is needed for the background kernel for the background model to be sensitive to signal of 3 $\sigma$ background error size and above in the 45-68 GeV range in the inclusive region. %Most of the signal width used passed the test when this lengthscale is chosen. 
 
 \begin{figure}[!htb]
     \begin{center}
         \includegraphics[width=0.75\textwidth]{figures/chapter_dimuon/signalInjection}        
         \caption{
-        This figure illustrate a signal injection test performed at the mass point 55GeV of 3\% mass width. In the first panael, the red line shows the background MC + signal injected divided by the background MC; the green and the red line is the fit ratio of the "just above" triggering background fit against the background MC and the "just below" trigger of the bumphunter fit against the background MC. The grey bands shows the width of the background error. Results shows that the the fit is sensitive to signal $<$ 3 $\sigma$ of the background error in this mass point and width. }
+        This figure illustrate a signal injection test performed with a resonance mass point 55GeV of 3\% mass width. In the first panel. the red line shows the background MC + signal injected divided by the background MC; the green and the blue line are the fit ratio of the "just above" bumphunter triggering. The "just below" trigger of the bumphunter fit against the background MC. The grey bands shows the width of the background error. Results shows that the the fit is sensitive to signal $<$ 3 $\sigma$ of the background error in this mass point and width, passing the signal injection test. }
     \label{fig:signalinjection}
     \end{center}
 \end{figure}
 \FloatBarrier
 
 \subsubsection{Background Modelling}
-Using the minimal lengthscale chosen for the background and allowing other hyperparameters to float, tests fits are performed on the nominal fit, and also done on the different statistical variation of the background, the 1 $\sigma$ up and 1 $\sigma$ down variation of the fast simulation Pythia, as well as the $\eta$ variation, defined in Section~\ref{sec:fastsimulation}.
+Using the minimal lengthscale chosen for the background and allowing other hyperparameters to float, tests fits are performed on the nominal background MC set, and also done on the different statistical variation of the background, the 1 $\sigma$ up and 1 $\sigma$ down variation of the fast simulation Pythia, as well as the $\eta$ variation, defined in Section~\ref{sec:fastsimulation}.
 The fitting result shows that lengthscale chosen for Gaussian Process works well for all of these statistical variations. 
 
 \begin{figure}[!htb]
@@ -447,7 +451,7 @@ The fitting result shows that lengthscale chosen for Gaussian Process works well
 
 The spurious signal test is a test that defines the uncertainty relative to signal yield. Details are presented here in Section~\ref{sec:spurious}.
 The spurious signal test is considered passed if the signal extracted versus the background error ratio is $<$ 0.5.
-The spurious signal test results on the Gaussian process are shown in Figure~\ref{fig:spurious}:
+The spurious signal test results on the Gaussian Process are shown in Figure~\ref{fig:spurious}:
 Currently, ongoing work is being done to further reduce the spurious signal.
 
 \begin{figure}[!htb]
