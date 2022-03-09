@@ -153,11 +153,9 @@ The SWiFT window size is not selected until the data is unblinded, to aid the us
     \subsection{Gaussian Process} 
     \label{sec:GP}
 
-    Gaussian process background prediction is performed through Bayesian inference. The prior Gaussian joint probability distribution form more constricted posterior distribution with the added information from data. Unlike the above fit function-based method, Gaussian Process predicts an infinite number of functional forms, constrained by a kernel, which defines the bin-to-bin covariance.
+    Gaussian process background prediction is performed through Bayesian inference. A Gaussian Process is a ``collection of random variables, any finite number of which have a joint Gaussian distribution"~\cite{rasmussen2003gaussian}. Unlike the above fit function-based method, Gaussian Process predicts an infinite number of functional forms, constrained by a kernel(See Section~\ref{sec:kernel}), which defines the bin-to-bin covariance.
 
-
-
-    Gaussian process can naturally be applied to the background estimation of a spectrum since the bin event count in background and signal modeling are approximatedly a Gaussian distribution in each bin: In the resonance spectrum background, the prediction in every bin is a Poisson distribution due to its counting experiment nature. Poissonian distributions can be approximately described as a Gaussian Distribution through the Central Limit Theorem~\cite{kwak2017central}. As the distribution between the points is smooth, the relationship between each of the neighboring bins can be described by a joint distribution where the correlation is a covariance matrix. The Gaussian process allows for more flexibility in the functions compared to the above two methods, as can be shown here in this covariance matrix diagram:
+    Gaussian process can naturally be applied to the background estimation of a spectrum since the bin event count the resonance mass distribution are approximatedly a Gaussian distribution in each bin: the prediction in every bin is a Poisson distribution due to its counting experiment nature. Poissonian distributions can be approximately described as a Gaussian Distribution through the Central Limit Theorem~\cite{kwak2017central}. The Gaussian process allows for more flexibility in the functions compared to the above two methods, as can be shown here in this covariance matrix diagram:
 
     \begin{figure}[!htb]
         \begin{center}
@@ -173,7 +171,7 @@ The SWiFT window size is not selected until the data is unblinded, to aid the us
 
 \subsubsection{Gaussian Process: Regression}
 
-The Gaussian process background prediction method is a Bayesian method that predicts the posterior probability distribution. The mean function of this posterior probability distribution is the backgrdoun estimation prediction from GP, and the covariance matrix from it is the GP prediction error.
+The Gaussian process background prediction method is a Bayesian method that predicts the posterior probability distribution. The mean function of this posterior probability distribution is the background estimation prediction, and the covariance matrix from it is the GP prediction uncertainty.
 
 %where the prior distributions can be ``updated" by binning information. From Bayesian inference, a new prediction can be formed from the posterior. It can be shown that the mean and covariance can be given by the following formulae:
 
@@ -199,8 +197,7 @@ The Gaussian process background prediction method is a Bayesian method that pred
 
     \subsubsection{Gaussian Process: the Kernel}
 \label{sec:kernel}
-From Eq.~\ref{eq:covariance}, kernel is directly related to the covariance function in Gaussian Process. Kernel descibes how the relating neighboring points are related to one another. 
-Various kernels are used for different analysis backgrounds with distinct features. A specific example to the dijet spectrum is demonstrated in ~\cite{frate2017modeling}.
+From Eq.~\ref{eq:covariance}, kernel is directly related to the covariance function in Gaussian Process. Various kernels are used for different analysis backgrounds with distinct features. A specific example to the dijet spectrum is demonstrated in ~\cite{frate2017modeling}.
 
 %t's found that the simple radial basis function and a white noise kernel are sufficient to describe the background spectrum, the signal is described by another radial basis function kernel of a particular mean value.
 %The kernels are given as the following: 
@@ -237,13 +234,13 @@ An other more general example is given as below.
     \end{itemize}
             Here, $A_{2}$ is the amplitude of the signal kernel, m is the value where the kernel peaked on, and $\sigma_{2}$ is the lengthscale of the signal kernel. 
 
-	Of all the hyperparameters, lengthscale($\sigma$) is given special attention as its value descirbes how much neighboring points affect prediction at any given point. Its special treatment is described in the following sections.
+	Of all the hyperparameters, lengthscale($\sigma$) is given special attention as its value descirbes how much neighboring points affect prediction at any given point. It is prone to take on a low value and overfit the data being predicted. Its special treatment is described in the following sections.
 
     \subsubsection{Gaussian Process: Hyperparameter Optimization}
     \label{sec:hyperparam}
     %The lengthscale($\sigma$) hyperparameter in both kernels(See Eq.~\ref{eq:backgroundkernel} and Eq.~\ref{eq:signalkernel}) is prone to overfitting when the chosen value is too small. This would lead to reduced signal sensitivity and the overfitting of statistical fluctuation. A lower bound is set in these hyperparameters: The lower bound in the background kernel lengthscale is determined by the signal injection test described in Section~\ref{}; the lower bound in the signal kernel lengthscale
     %is chosen through the binning studies in Section~\ref{sec:binning} respectively. 
-    Kernels are parametetrized by hyperparameters. Hyperparameters are higher level parameters that controls and aid the learning of the process through input of data. The lengthscale hyperparameter, with its special nature, has a lower bound, found through the signal injection test described in Section~\ref{sec:signalinjection}. Other hyperparameters are not bounded. The minimization of the hyperparameters is performed through a scalar conjugate gradient search. To avoid reaching a local minimum, the initial values of the hyperparameters are chosen through a grid before the minimization. The minimized hyperparameter are compared to the other sets. The set of value with the overall lowest negative log likelihood is chosen to be the optimal hyperparameters.
+    Kernels are parametetrized by hyperparameters. Hyperparameters are higher level parameters that controls and aid the learning of the process through input of data. The lengthscale hyperparameter, with its special nature, has a lower bound, found through the signal injection test described in Section~\ref{sec:signalinjection}. Other hyperparameters are not bounded. The minimization of the hyperparameters is performed through a scalar conjugate gradient search. To avoid reaching a local minimum, the initial values of the hyperparameters are chosen through a grid. The minimized hyperparameter are compared to the other sets with different initial values. The set of hyperparameters with the overall lowest negative log likelihood is chosen to be the optimal hyperparameters.
 %In fitting of a mass spectrum and its signal. The kernel hyperparameters are allowed to float and the final values are optimized through the scaled conjugate gradient algorithm, which minimizes the negative log marginal likelihood of the Gaussian Process:
 
     \begin{equation}
@@ -393,7 +390,7 @@ The test is implemented in a frequentist manner. It compares the observation out
     \label{eq:test}
 \end{equation}
 
-Here, $H_0$ is the null hypothesis, and alpha is the critical value below which an excess will be quoted. The value is usually taken to be 0.01 for the bumphunter experiment. It corresponds to a probability of 1\%. $x$ is the observed value. $w$ is all possible outcomes. 
+Here, $H_0$ is the null hypothesis, and $\alpha$ is the critical value below which an excess will be quoted. The value is usually taken to be 0.01 for the bumphunter experiment. It corresponds to a probability of 1\%. $x$ is the observed value. $w$ is all possible outcomes. 
 
 \subsubsection{The Search: Test Statistics}
 \label{teststatistics}
@@ -447,10 +444,10 @@ In a window defined from bin number m to n, the observed data and prediction can
 \end{equation}
     
 
-    The $p$-value of the bumphunter test statistic is evaluated for every windows from two-bin wide to half the spectrum($t^{\textrm{BH}}$). The overall bumphunter test statistic is defined by the to be the log of the smallest $p$-value calculated from the smallest $p$-value window, and can be represented as the following($t^{\textrm{BH}}_{min}$):
+    The $p$-value of the bumphunter test statistic is evaluated for every windows from two-bin wide to half the spectrum($t^{\textrm{BH}}$). The overall bumphunter test statistic is defined by the to be the log of the smallest $p$-value calculated from the smallest $p$-value window, and can be represented as the following($t_{min}^{\textrm{BH}}$):
 
     \begin{equation}
-        t_{min}^{\textrm{BH}} = - \ln(t_^{\textrm{BH}}_{\textrm{min}}) 
+        t_{min}^{\textrm{BH}} = - \ln(t^{\textrm{BH}}_{\textrm{min}}) 
     \end{equation}
 
     Significance Z and the $p$-value can be calculated from this test statistic in Eq.~\ref{eq:pvaluetestStats} and thereby provide the probability that the SM hypothesis could have generated data this unlikely or more. %the null hypothesis is rejected, otherwise, it is accepted.
