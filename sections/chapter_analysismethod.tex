@@ -43,8 +43,7 @@ The detector effect is simulated by GEANT4~\cite{Agostinelli:602040}.
 \label{sec:dataprep}
 The data of the analyses discussed in this chapter came from collision data, collected from the ATLAS detector and its triggering hardware and software discussed in Chapter~\ref{chapter:ATLAS}. The data collected as energy deposits and tracks are analyzed and collected analysis objects as discussed in Chapter~\ref{chapter:common_analysis_items}. After that, the dataset goes through several more steps in data preparation before getting analyzed for resonance finding in the chapter: the following is a short outline of how data are being prepared for the analyses.
 
-First trigger chains addition is studied, balancing both events collected and signal sensitivity of the dataset studied. After that, the data is processed with the optimal analysis object working points applied, then, event cuts are introduced to maximize the signal sensitivity while reducing the background events. Later, binning on the target spectrum(in the case of analyses in this thesis, the resonance mass spectrum) is selected, balancing factors of optimal detector resolution and signal sensitivity(discussed in
-Section~\ref{sec:binning}). Finally, a cross-check that compares the data and MC is performed variable regions other than the targetted spectrum. An a agreement between MC and data ensures both the previous steps in data preparation are executed correctly and the MC modelling is close enough to data descriptions. After all the data preparation steps are completed, a target signal spectrum is available to be analyzed statistically for resonances. 
+First trigger chains addition is studied, balancing both events collected and signal sensitivity of the dataset studied. After that, the data is processed with the optimal analysis object working points applied, then, event cuts are introduced to maximize the signal sensitivity while reducing the background events. The information from the detector is constrained by detector resolution, a binned approach is taken. The binning is selected based on studies on the detector resolution, balancing optimal signal sensitivity. Details is described in Section~\ref{sec:binning}). Finally, a cross-check that compares the data and MC is performed variable regions other than the targetted spectrum. An a agreement between MC and data ensures both the previous steps in data preparation are executed correctly and the MC modelling is close enough to data descriptions. After all the data preparation steps are completed, a target signal spectrum is available to be analyzed statistically for resonances. 
 
 \subsection{Binning Strategy} 
 \label{sec:binning}
@@ -257,96 +256,96 @@ An other more general example is given as below.
 
     In this Gaussian process testing procedure, the hyperparameters are first found on a test fit on the variation of MC, the fixed hyperparameters are then applied to data.
 %
-\subsection{Background Fitting Tests}
-Following the ATLAS smooth background recommendation~\cite{ATL-PHYS-PUB-2020-028}, the following tests are performed to ensure the validity of the background estimation for resonance searches.
+%\subsection{Background Fitting Tests}
+%Following the ATLAS smooth background recommendation~\cite{ATL-PHYS-PUB-2020-028}, the following tests are performed to ensure the validity of the background estimation for resonance searches.
 
-\subsubsection{Signal Injection Test}
-\label{sec:signalInjection}
-
-    Increasing the number of parameters in a fit function, using smaller windows size in SWiFT, or using a background kernel lengthscale in the Gaussian Process all increases flexibility in modeling the background. However, the increased flexibility in background modeling often comes with the price of decreased signal sensitivity. An overly flexible background estimation would fit the signal away as part of the background. 
-    Therefore a test to quantifies the signal sensitivity of the background estimation is necessary. The test is called the signal injection test. On ATLAS, it is required that the background modeling provides sensitivity to signals of at least 3 $\sigma$ of the background error.
-
-    The background error is defined by the generation of 10,000 bin-by-bin Poissonian toys from the original background MC spectrum, and by refitting the toys by Gaussian Process background kernel estimation. A Gaussian fit is performed on the prediction of each bin, the resulting width of the Gaussian fit in each bin is defined to be the 1 $\sigma$ background estimation. 
-
-    %defined by the width of the Gaussian envelope from the pseudoexperiment fits. The background estimation passes the signal injection test when it passes such requirement.
-
-    In addition to quantifying signal sensitivity, the signal injection test is used to constrain the lower bound of the lengthscale in Gaussian Process and SWiFT window size. The window size or lengthscale value is restricted by to a lower bound that would return a background estimation that provides sensitivity to signals of at least 3 $\sigma$ background error in size.
-
-    Signals of different mass widths are generated from a Gaussian distribution. Poissonian noise is thrown randomly on the distribution to create a pseudo signal distribution. The mass widths are chosen to be 1\%, 3\% and 5\% respectively. Signal of different scales with corresponding error is generated and is injected into the background MC distribution.
-
-    For each chosen maximum lengthscale/SWiFT window, and different signal widths, the below is performed with the bumphunter.
-
-   1. First a background fit is performed on the background MC distribution, the bump-hunting~\cite{choudalakis2011hypothesis} procedure is performed as described in the above section. If the overall bumphunter p-value are below the critical value for window exclusion, the next step is performed. Otherwise, the background fit strategy has to be reviewed. A different fit function or Gaussian Process kernel is needed.
-
-   2. A small signal is injected in the background MC distribution, a fit is reperformed, and the bumphunter window and overall p-value is calculated again. 
-
-   3. An increasing signal size is injected into the spectrum and step2 is repeated until a signal of size large enough to lead to a small enough bumphunter statistic p-value.(The test statistic is defined in Section~\ref{teststatistics}) When the p-value is below 0.01, window exclusion in the bumphunting procedure is triggered. The signal size injected just before the window exclusion is the largest signal the search is not sensitive to. The minimal signal size injected that triggers the window exclusion is the smallest signal size that the search is sensitive to. 
-
-
-%Starting with the smallest signal size and the smallest width, the bumphunter procedure detailed in section~\ref{} is ran on the signal injected background MC. The signal size injected increases, until the bumphunting procedure finds a window with bumphunter statistic p-value $<$ 0.01 that a bumphunter window exclusion is triggered. The size of the signal injected right before the window exclusion triggering is the ``just below"
-%triggering signal size, and the signal size that triggers the window exclusion is known as the ``just above" signal size. The "just below"
-%window size is the largerst signal that the background estimation is not sensitive to; and the ``just above" signal size is the smallest signal that the background estimation is sensitive to. When the background kernel lengthscale is chosen to be 4 GeV, the background model is sensitive to signal 3 $\sigma$ or above in background error. 
+%\subsubsection{Signal Injection Test}
+%\label{sec:signalInjection}
 %
-
+%    Increasing the number of parameters in a fit function, using smaller windows size in SWiFT, or using a background kernel lengthscale in the Gaussian Process all increases flexibility in modeling the background. However, the increased flexibility in background modeling often comes with the price of decreased signal sensitivity. An overly flexible background estimation would fit the signal away as part of the background. 
+%    Therefore a test to quantifies the signal sensitivity of the background estimation is necessary. The test is called the signal injection test. On ATLAS, it is required that the background modeling provides sensitivity to signals of at least 3 $\sigma$ of the background error.
+%
+%    The background error is defined by the generation of 10,000 bin-by-bin Poissonian toys from the original background MC spectrum, and by refitting the toys by Gaussian Process background kernel estimation. A Gaussian fit is performed on the prediction of each bin, the resulting width of the Gaussian fit in each bin is defined to be the 1 $\sigma$ background estimation. 
+%
+%    %defined by the width of the Gaussian envelope from the pseudoexperiment fits. The background estimation passes the signal injection test when it passes such requirement.
+%
+%    In addition to quantifying signal sensitivity, the signal injection test is used to constrain the lower bound of the lengthscale in Gaussian Process and SWiFT window size. The window size or lengthscale value is restricted by to a lower bound that would return a background estimation that provides sensitivity to signals of at least 3 $\sigma$ background error in size.
+%
+%    Signals of different mass widths are generated from a Gaussian distribution. Poissonian noise is thrown randomly on the distribution to create a pseudo signal distribution. The mass widths are chosen to be 1\%, 3\% and 5\% respectively. Signal of different scales with corresponding error is generated and is injected into the background MC distribution.
+%
+%    For each chosen maximum lengthscale/SWiFT window, and different signal widths, the below is performed with the bumphunter.
+%
+%   1. First a background fit is performed on the background MC distribution, the bump-hunting~\cite{choudalakis2011hypothesis} procedure is performed as described in the above section. If the overall bumphunter p-value are below the critical value for window exclusion, the next step is performed. Otherwise, the background fit strategy has to be reviewed. A different fit function or Gaussian Process kernel is needed.
+%
+%   2. A small signal is injected in the background MC distribution, a fit is reperformed, and the bumphunter window and overall p-value is calculated again. 
+%
+%   3. An increasing signal size is injected into the spectrum and step2 is repeated until a signal of size large enough to lead to a small enough bumphunter statistic p-value.(The test statistic is defined in Section~\ref{teststatistics}) When the p-value is below 0.01, window exclusion in the bumphunting procedure is triggered. The signal size injected just before the window exclusion is the largest signal the search is not sensitive to. The minimal signal size injected that triggers the window exclusion is the smallest signal size that the search is sensitive to. 
+%
+%
+%%Starting with the smallest signal size and the smallest width, the bumphunter procedure detailed in section~\ref{} is ran on the signal injected background MC. The signal size injected increases, until the bumphunting procedure finds a window with bumphunter statistic p-value $<$ 0.01 that a bumphunter window exclusion is triggered. The size of the signal injected right before the window exclusion triggering is the ``just below"
+%%triggering signal size, and the signal size that triggers the window exclusion is known as the ``just above" signal size. The "just below"
+%%window size is the largerst signal that the background estimation is not sensitive to; and the ``just above" signal size is the smallest signal that the background estimation is sensitive to. When the background kernel lengthscale is chosen to be 4 GeV, the background model is sensitive to signal 3 $\sigma$ or above in background error. 
+%%
+%
+%%\begin{figure}[!htb]
+%%    \begin{center}
+%%        \includegraphics[width=0.75\textwidth]{figures/chapter_analysismethod/bumphunter}
+%%        \caption{
+%%            This diagram shows the bumphunter test statistics distribution, where the red arrow shows the observed value. 
+%%        }
+%%        \label{fig:teststats}
+%%    \end{center}
+%%\end{figure}
+%%\FloatBarrier
+%   
+%   %The background fit, or parametrically, the SWiFT window size/Gaussian process lengthscale, is said to have passed the test if the largest signal the search is not sensitive to is within 3 $\sigma$ of the background error bands. 
+%
+%   %The smallest lengthscale value/SWiFT window size where the largest signal the search is not sensitive to stays in the error bands is the minimal SWiFT window/Gaussian Process fit value that can be used during unblinding. 
+%
 %\begin{figure}[!htb]
 %    \begin{center}
-%        \includegraphics[width=0.75\textwidth]{figures/chapter_analysismethod/bumphunter}
+%        \includegraphics[width=0.7\textwidth]{figures/chapter_analysismethod/SignalInjectionTest}
 %        \caption{
-%            This diagram shows the bumphunter test statistics distribution, where the red arrow shows the observed value. 
+%            This figure shows a doodle of the procedure of the signal injection test. An increasingly large signal is injected to the background MC spectrum until the window exclusion procedure of bumphunter is triggered.
 %        }
-%        \label{fig:teststats}
+%        \label{signalinjection}
 %    \end{center}
 %\end{figure}
 %\FloatBarrier
-   
-   %The background fit, or parametrically, the SWiFT window size/Gaussian process lengthscale, is said to have passed the test if the largest signal the search is not sensitive to is within 3 $\sigma$ of the background error bands. 
-
-   %The smallest lengthscale value/SWiFT window size where the largest signal the search is not sensitive to stays in the error bands is the minimal SWiFT window/Gaussian Process fit value that can be used during unblinding. 
-
-\begin{figure}[!htb]
-    \begin{center}
-        \includegraphics[width=0.7\textwidth]{figures/chapter_analysismethod/SignalInjectionTest}
-        \caption{
-            This figure shows a doodle of the procedure of the signal injection test. An increasingly large signal is injected to the background MC spectrum until the window exclusion procedure of bumphunter is triggered.
-        }
-        \label{signalinjection}
-    \end{center}
-\end{figure}
-\FloatBarrier
-
-\subsubsection{Spurious Signal Test} 
-    \label{sec:spurious}
-    %\epigraph{\textit{-``Test for signal extracted from the background estimation alone"}}
-
-    To measure the amount of possible false signal in the background modeling method, the spurious signal test is performed. The spurious signal test models the amount of signal that the background plus signal fit when no signal is present.  It statistically quantifies the stability of the background estimation. It is also sometimes used as a measure of the background fit error.
-
-Using the different variations of background only MC spectrum, a signal plus background fit is performed, the signal extracted is compared against the background error defined in the last section. The spurious signal test is considered passed if the signal extracted versus the background error ratio is $<$ 0.5.
-
-    The spurious signal is defined as the following:
-    
-    \begin{equation}
-        S_{spur} = S_{fit} - S_{template}
-    \end{equation}
-
-    Here $S_{fit}$ comes from the signal fit component of the background + signal fit, $S_{template}$ changes with the kind of analysis being performed. It is set to be 0 for a search.     
-    %The median of the 10000 pseudo experiment fit is taken to be the spurious signal value. 
-    %In the figure below, a sample spurious signal fit is shown~\ref{spurioussignal}.
-    %In general, the spurious signal has to stay within 50\% of the background error bands, defined as the error bands generated from the fitting of 10000 background MC pseudo experiment from the Poisson distribution with the background fit only.
-    %If the background fit stays within the 50\% requirement, it passes the spurious signal test.
-
-\begin{figure}[!htb]
-    \begin{center}
-        \includegraphics[width=0.75\textwidth]{figures/chapter_analysismethod/Spurious}
-        \caption{
-            This figure shows the example results of a spurious signal test. Here, the error $\sigma$ is defined as $\sigma_{tot} = \sqrt{\sigma^{2}_{fit}+ S_{spur}^{2}}$ ~\cite{ATL-PHYS-PUB-2020-028}.
-        }
-        \label{spurioussignal}
-    \end{center}
-\end{figure}
-\FloatBarrier
-
-After the data preparation steps and tests performed on background estimation. The mass spectrum and estimation are both ready for statistical testing for possible resonances. 
-
+%
+%\subsubsection{Spurious Signal Test} 
+%    \label{sec:spurious}
+%    %\epigraph{\textit{-``Test for signal extracted from the background estimation alone"}}
+%
+%    To measure the amount of possible false signal in the background modeling method, the spurious signal test is performed. The spurious signal test models the amount of signal that the background plus signal fit when no signal is present.  It statistically quantifies the stability of the background estimation. It is also sometimes used as a measure of the background fit error.
+%
+%Using the different variations of background only MC spectrum, a signal plus background fit is performed, the signal extracted is compared against the background error defined in the last section. The spurious signal test is considered passed if the signal extracted versus the background error ratio is $<$ 0.5.
+%
+%    The spurious signal is defined as the following:
+%    
+%    \begin{equation}
+%        S_{spur} = S_{fit} - S_{template}
+%    \end{equation}
+%
+%    Here $S_{fit}$ comes from the signal fit component of the background + signal fit, $S_{template}$ changes with the kind of analysis being performed. It is set to be 0 for a search.     
+%    %The median of the 10000 pseudo experiment fit is taken to be the spurious signal value. 
+%    %In the figure below, a sample spurious signal fit is shown~\ref{spurioussignal}.
+%    %In general, the spurious signal has to stay within 50\% of the background error bands, defined as the error bands generated from the fitting of 10000 background MC pseudo experiment from the Poisson distribution with the background fit only.
+%    %If the background fit stays within the 50\% requirement, it passes the spurious signal test.
+%
+%\begin{figure}[!htb]
+%    \begin{center}
+%        \includegraphics[width=0.75\textwidth]{figures/chapter_analysismethod/Spurious}
+%        \caption{
+%            This figure shows the example results of a spurious signal test. Here, the error $\sigma$ is defined as $\sigma_{tot} = \sqrt{\sigma^{2}_{fit}+ S_{spur}^{2}}$ ~\cite{ATL-PHYS-PUB-2020-028}.
+%        }
+%        \label{spurioussignal}
+%    \end{center}
+%\end{figure}
+%\FloatBarrier
+%
+%After the data preparation steps and tests performed on background estimation. The mass spectrum and estimation are both ready for statistical testing for possible resonances. 
+%
 \section{Statistics Testing}
 \label{section:stats}
 Statistical testing is the quantification of the significance of any observed excess and the signal sensitivity exclusion presented in the data.
@@ -485,8 +484,9 @@ In a window defined from bin number m to n, the observed data and prediction can
 
 %\epigraph{\textit{Finding signal strength value where the alternative hypothesis is rejected to a 95\% confidence level}}
 
-Statistically, the upper limit setting is the finding of the signal strength where the alternative hypothesis is rejected at a 95\% confidence level. The signal strength can also be represented as a cross-section or cross-section in fiducial volume for reinterpretation for different models. 
-The limit setting results consist of a 95\% confidence upper limit bound on signal strength over the resonance masses and an expected limit of median significance along with statistical uncertainties with the null hypothesis. 
+
+%The signal strength can also be represented as a cross-section or cross-section in fiducial volume for reinterpretation for different models. 
+%The limit setting results consist of a 95\% confidence upper limit bound on signal strength over the resonance masses and an expected limit of median significance along with statistical uncertainties with the null hypothesis. 
 %It is possible to compare the observed 95\% upper limit against the expected limit. The comparison between the bands and the upper limit line can be seen as a discovery test, as if no beyond the Standard Model excess is seen, the upper limit line would stay between the 5 $\sigma$s error band in the expected limit. 
 
 The limit setting can be performed in two different ways, the Bayesian statistical way and the frequentist way. While the interpretation and implication of the results made with the different methods are different, the results produced are designed to be comparable across different analyses. 
@@ -505,14 +505,18 @@ The Bayesian method is used for the dijetISR analysis(Chapter~\ref{chapter:dijet
 
 \subsection{Frequentist Limits}
 \label{sec:freq}
-The limit is a statement on where the observed data lies given all the other possible outcomes given a hypothesis. The 95\% CL upper limit is result of a procedure which if run in hypothetical similar experiments would include (exclude) the true value 95\% (5\%) of the time.
+%The coverage probability is the fraction of interval in an ensemble such that the true parameter is contained. Confidence intervals are constructed to have a coverage probability greater than or equal to the given confidence level. 
+%The limit is a statement on where the observed data lies given all the other possible outcomes given a hypothesis. The frequentist limit state that given an ensemble of identical experiments, the true value of the signal strength should be under the observed limit 95\% of the time. 
+%The 95\% CL upper limit is result of a procedure which if run in hypothetical similar experiments would include (exclude) the true value 95\% (5\%) of the time.
+
+%The confidence interval of a frequentist limit is obtained by a finding a coverage probability that include the true value 95\% of the time. The unit chosen for this procedure is signal strength over the signal mass points. 
 
 The following subsection describes the test statistics used for the limit setting. A formulation of the traditional frequentist calculation is presented. The Asimov approximation method used to approximate the frequentist limit from a representative dataset is described, which is the ATLAS standard, and it saves computing resources. The formulae for the limit calculation using this method are given. Adaptation with the Gaussian Process is also discussed. 
 
 \subsubsection{Frequentist Limits: The Test Statistics}
 \label{sec:freqTestStats}
 
-The probability distribution of the observable $x$ in each bin of the histogram can be given by a Poissonian probability distribution. This probability distribution is a function of many parameters, including the signal strength, and other systematic uncertainty parameters, for example, the variation in luminsoity. As these variable are not the target parameter where limit is set, they are known as the nuissance paramters. From the Poissonian distribution, its likelihood function can be parameterized as such, with thepredicted signal event and background events made explicit:
+The probability distribution of the observable $x$ in each bin of the histogram can be given by a Poissonian probability distribution. This probability distribution is a function of many parameters, including the signal strength, and other systematic uncertainty parameters, for example, the variation in luminsoity. As these variable are not the target parameter where limit is set, they are known as the nuissance paramters. From the Poissonian distribution, its likelihood function can be parameterized as such, with the predicted signal event and background events made explicit:
 
 \begin{equation}
     L(\mu, \theta) =  \prod_{i=0}^{N} \frac{(\mu \cdot s_{j} + b_{j})^{n_j}}{n_{j}!}e^{(-\mu \cdot s_j + b_j)} \prod_{k=1}^{M}\frac{u_{k}}
@@ -524,7 +528,7 @@ Here, $L$ is the likelihood product from the target distribution multiplied by s
 are not the target distribution and can be accounted for as the nuisance parameters, which
 include: here $u_k$ is the predicted value by the model, and $m_{k}$ is the observed value. 
 
-The most probable value of the parameters are those that maximize the likelihood function. However, since in limit setting, the only parameter we are interested in learning about is the signal strength, the influence from the unknown true value of the nuisance parameters can be taken into account or eliminated. A ``profiled likelihood" function is constructed to achieve this. This quantity, when maximized, gives the overall most likely signal strength prediction while taking into account fluctuations in the other nuisance parameters. 
+The most probable value of the parameters are those that maximize the likelihood function. However, since in limit setting, the only parameter we are interested in learning about is the signal strength, the influence from the unknown true value of the nuisance parameters can be taken into account or eliminated. As optimizing the true likelihood is often computationally expensive, a ``profiled likelihood" function is constructed. This quantity, when maximized, gives the same effect as maximizing the true likelihood. 
 
 \begin{equation}
 \lambda(\mu) = \frac{L(\mu, \hat{\hat{\theta}})}{L(\hat{\mu}, \hat{\theta})}
@@ -545,7 +549,8 @@ To aid the optimization process, it is usually the negative log of the profiled 
 \subsubsection{The Frequentist Limits: The Limits Formulae}
 \label{sec:freqlimits}
 
-From this test statistics, certain assumed signal strength $\mu$ in the nominator returns a 95\% confidence in the rejection, this is calculated for different signal mass points and is called the observed limit. The signal strength of median significance along with the fluctuation is called the expected limit. 
+%From this test statistics, certain assumed signal strength $\mu$ in the nominator returns a 95\% confidence in the rejection, this is calculated for different signal mass points and is called the observed limit. The signal strength of median significance along with the fluctuation is called the expected limit. 
+The formulae for the limits calculation is given below:
 
 \begin{itemize}
 

@@ -4,8 +4,8 @@
 \epigraph{\textit{First, you crack an egg into a small bowl.}}{--Unnamed Cookbook}
 
 %todo fill in the citations
-After the collisions and interactions in the LHC, final state particles leave their mark on various detector components as electronic signals. These electronic signals are saved in hard disks and tapes. It takes various steps of reconstruction identification, cleaning and calibration before the raw electronic information becomes analysis-ready physics objects. The different particle signatures left on the detector can help
-with their identifications. Figure~\ref{fig:particleSignature} shows the different signatures that different particles leave on the ATLAS detector.
+After the collisions and interactions in the LHC, final state particles leave their mark on various detector components as electronic signals. These electronic signals are saved in hard disks and tapes. It takes various steps of reconstruction identification, cleaning and calibration before the raw electronic information becomes analysis-ready physics objects. The different interactions particles have on various detector components create different distinct signatures for their identifications.
+Figure~\ref{fig:particleSignature} shows the different signatures that different particles leave on the ATLAS detector.
 
 In this chapter, various analysis final state objects are described. In Section~\ref{sec:Tracks}, detector tracks and vertex construction is covered. In Section~\ref{sec:Muon}, Section~\ref{sec:Jet} and Section~\ref{sec:Photon}, the formation of muons, jets and photons from detector signal
 through their reconstruction, identification, isolation as well as calibration are discussed in detail. 
@@ -65,7 +65,7 @@ working points, which are muons set in events chosen with pre-defined criteria, 
     \begin{center}
         \includegraphics[width=0.5\textwidth]{figures/common_ana/Muon}
         \caption{        
-            Visualization of a four muon event in the ATLAS detector\cite{ATLAS:1697053}. The four muons are visualized as blue tracks that travel from the primary interaction point through the inner dectector, the calorimeter and the muon system to beyond the detector.
+            Visualization of a four muons event in the ATLAS detector\cite{ATLAS:1697053}. The four muons are visualized as blue tracks that travel from the primary interaction point through the inner dectector, the calorimeter and the muon system to beyond the detector.
         }
         \label{fig:muon}
     \end{center}
@@ -80,7 +80,7 @@ different $P_{T}$ ranges and detector locations to maximize reconstruction effic
     This strategy is optimal for the muons that are detected in both the ID and the MS. It applies for muons found in both the barrel and end-cap region of the detector. Tracks are constructed from each of the ID and the MS. A global refit is done to remove outliers to improve the fit quality. This is first done by an outside-in approach where the tracks in MS are matched with tracks in the ID. Combined muons are also complemented by the inside-out muons: It looks for MS hits that can be associated with ID tracks and recovers muons that don't make it to the MS completely.
 
 \item \textbf{Segment-tagged muons(ST)}
-This method is used to identify lower $P_{T}$ muons that does not make it to multiple layers of the MS. If a track in the ID can be matched to at least one track segment in the MDT in the barrel or CSC in the end-cap, it will be selected as a segment-tagged muon. 
+This method is used to identify lower $P_{T}$ muons that do not travel to the MS. If a track in the ID can be matched to at least one track segment in the MDT in the barrel or CSC in the end-cap, it will be selected as a segment-tagged muon. 
 
 \item \textbf{Calorimeter-tagged muon(CT)}
     This reconstruction method is used for even lower $P_{T}$ muons that do not have enough energy reach the MS. Muons between 15 GeV $< P_{T} < $ 100GeV are formed from matching a track in ID with energy deposits in the calorimeter that match the minimum-ionizing particle. This is optimized for barrel muons of $|\eta| <0.1$. 
@@ -102,7 +102,7 @@ A couple of criteria are used for muon identification: $q/p_{\textrm{significanc
     q/p_{\textrm{significance}} = |(q/p)^{ID} - (q/p)^{MS}|/\sqrt{\sigma^{MS}_{P_{T}} + \sigma^{ID}_{P_{T}}}
     \end{equation}
 
-    This is the absolute value of the difference between the charges and the $P_{T}$ measurement divided by the sum of error in the $P_{T}$ measurement of both the ID and MS. $q$ is the charge, and p is the momentum of the particle. It is expected that the value is smaller for prompt muon as the particle will have similar $q/p$ ratio in both the ID and the MS if muon was created in the primary vertices rather than jet fragmentation later on. 
+    This is the absolute value of the difference between the charges and the $P_{T}$ measurement divided by the sum of error in the $P_{T}$ measurement of both the ID and MS. $q$ is the charge, and p is the momentum of the particle. It is expected that the value is smaller for prompt muons as the particle will have similar $q/p$ ratio in both the ID and the MS if muon was created in the primary vertices rather than jet fragmentation later on. 
 
 \item \textbf{$\rho'$}
     \begin{equation}
@@ -244,11 +244,11 @@ The calibration is dependent on the detector angle, and the formula for $P_{T}$ 
 %In data there is always margin for calibration error, and monte carlo is also not necessarily accurately describing the experimental environment. To match data result to the actual physics process that happened, transverse momentum correction done on both the MS tracks muons and the ID track on the MC result as follows: 
 
 \begin{equation}
-    P_{T}^{\textrm{Cor,Det}} = \frac{P^{\textrm{MC, Det}}_{T} + \sum_{n=0}^{N} S_{n}^{\textrm{Det}}{\eta, \phi}(P_{T}^\textrm{{MC, Det}})^n}{1+\sum_{m=0}^{2}\delta r_{m}^{\textrm{Det}}(\eta, \phi)(P_{T}^{\textrm{MC, Det}})^(m-1) g_{m}}
+    P_{T}^{\textrm{Cor,Det}} = \frac{P^{\textrm{MC, Det}}_{T} + \sum_{n=0}^{1} S_{n}^{\textrm{Det}}{\eta, \phi}(P_{T}^\textrm{{MC, Det}})^n}{1+\sum_{m=0}^{2}\delta r_{m}^{\textrm{Det}}(\eta, \phi)(P_{T}^({\textrm{MC, Det}})^{(m-1)} g_{m}}
 \label{eq:muoncalib}
 \end{equation}
 
-Here $P_{T}^{\textrm{MC, Det}}$ is the uncorrected transverse momentum, $g_m$ is a unit Gausssian distribution, $\delta r^{\textrm{Det}}_{m}(\eta, \phi)$ and $s_{n}^{\textrm{Det}}(\eta, \phi)$ are the momentum resolution smearing and scale correction resolution. Det in the equation is short for "Detector, which could be ID or MS.
+Here $P_{T}^{\textrm{MC, Det}}$ is the uncorrected transverse momentum, $g_m$ is a unit Gausssian distribution, $\delta r^{\textrm{Det}}_{m}(\eta, \phi)$ and $S_{n}^{\textrm{Det}}(\eta, \phi)$ are the momentum resolution smearing and scale correction resolution. Det in the equation is short for "Detector, which could be ID or MS. The $S^{Det}_{1}$ term corrects for inaccuraty in the description of the magnetic field, whereas the $S^{Det}_{0}$ corrects for the inaccuracy in the simulation of energy loss in the calorimeter.
 
 The correction is then applied to the combined muon in the following way:
 
@@ -295,7 +295,7 @@ Quark/gluon formed $\rightarrow$  Parton Showering $\rightarrow$ Hadronization $
 
 $\bullet$ \textbf{Jet Reconstruction}
 
-Energy Deposit on Detector  $\rightarrow$  Topo-cell Clustering $\rightarrow$  Topo-Clusers $\rightarrow$  Jet-Finding Algorithm $\rightarrow$ Jet
+Energy Deposit on Detector  $\rightarrow$  Topo-cell Clustering $\rightarrow$  Topo-Clusters $\rightarrow$  Jet-Finding Algorithm $\rightarrow$ Jet
 
 
 \begin{figure}[!htb]
@@ -312,7 +312,7 @@ Energy Deposit on Detector  $\rightarrow$  Topo-cell Clustering $\rightarrow$  T
 % 
 \subsection*{Topo-cell clustering}
 \label{Topocell clustering}
-This step clusters the lowest level calorimeter cells energy deposits into ``topological clusters", which are cluster of cell deposit with high signal-to-noise (S/N) ratio collected from proximity in the detector. ATLAS uses a 3-D clustering algorithm and it's described as the foolowing:
+This step clusters the lowest level calorimeter cells energy deposits into ``topological clusters", which are cluster of cell deposit with high signal-to-noise (S/N) ratio collected from proximity in the detector. ATLAS uses a 3-D clustering algorithm and it is described as the foolowing:
 
 First, a seed cell with a high S/N ratio above a 4 is found. Then, cells neighboring the seed cells in the in 3 dimensions above S/N 2 are collected along with the seed cell to the topocluster. Lastly, a final set of cells that surround the second set of collected cells above S/N 0  are added to the cluster. 
 
@@ -334,22 +334,22 @@ All of the main ATLAS jet finding algorithms make use of the following quantitie
     d_{iB} = k^{2p}_{ti}
 \end{equation}
 
-Here, $\Delta_{ij}^{2} = (y_{i}- y_{j})^2 + (\phi_{i} - \phi_{j})$, $k_{ti}
-$, $y_{i}$, and $\phi_{i}$ are the transverse momentum, rapidity and azimuth angle of particle i. p is a parameter on the energy scale~\cite{HEP2008}. $d_{ij}$ and $d_{iB}$ quantity are the distance between particle i and j and distance between i and B respectively. 
+Here, B is the beam, R is the angular distance, $\Delta_{ij}^{2} = (y_{i}- y_{j})^2 + (\phi_{i} - \phi_{j})$, $k_{ti}
+$, $y_{i}$, and $\phi_{i}$ are the transverse momentum, rapidity and azimuth angle of particle i. p is a parameter on the energy scale~\cite{HEP2008}. $d_{ij}$ and $d_{iB}$ are the distance between particle i and j and distance between i and B respectively. 
 
-The algorithm clusters the topoclusters with the smallest distance together~\ref{sec:topo}, until no topoclusters are left. p is taken to be -1 for the anti-KT jet finding algorithm; 1 for the KT algorithm and 0 for C/A. 
+The algorithm clusters the topoclusters with the smallest distance together~\ref{sec:topo}, until no topoclusters are left. p is taken to be -1 for the anti-KT jet finding algorithm; 1 for the KT algorithm and 0 for C/A(in addition, in C/A, $d_{iB} =1$). The Anti-KT algorithm chooses to merge high transverse momentum objects with one another, and the KT algorithm merges low transverse momentum with one another. The C/A algorithm only weights on distance.
 
-The current ATLAS standard jet finding algorithm is the Anti-KT algorithm. One reason was that it's an IRC safe algorithm.
+The current ATLAS standard jet finding algorithm is the Anti-KT algorithm. It is  an IRC safe algorithm. The algorithm is also not susceptible to underlying events and pile-up as the other two. 
 
-\subsection{Jet calibration}
-After jets are formed, they need to be calibrated to reflect the direction, momentum and energy of the originated quarks or gluons. The jets are required to be calibrated. In ATLAS, jets energy is measured out in both the EM calorimeter and the hadronic calorimeter. The topoclusters are calibrated to the EM calorimeter scale, but not to the hadronic calorimeter. Jet energy correction needs to be performed before the object can be used for analysis to remove pile up and correct for direction. The jet calibration takes the following steps as
-shown in Figure~\ref{fig:JetCalibration}.
+\subsection{Jet calibration} 
+
+After jets are formed, they need to be calibrated to reflect the direction, momentum and energy of the originated quarks or gluons. The jets are required to be calibrated. In ATLAS, jets energy is measured out in both the EM calorimeter and the hadronic calorimeter. The jet finding algorithm operates in the EM scale(as distance in the strong force is energy scale dependent). Jet energy correction needs to be performed before the object can be used for analysis to remove pile up and correct for direction. The jet calibration takes the following steps as shown in Figure~\ref{fig:JetCalibration}.
 
 \begin{figure}[!htb]
     \begin{center}
         \includegraphics[width=1.1\textwidth]{figures/common_ana/JetCalibration}
         \caption{        
-            The steps of calibration the jet object go through before analyzable objects\cite{Mehlhase:2770815}.
+            The steps of calibration performed on the jet objects.\cite{Mehlhase:2770815}. The Jet area is the area of the jet in angular distance for pile-up correction, $\mu$ is the interaction rate per bunchcross and $N_PV$ is the number of primary vertices. The paritcle level scale is the measurement obtained with both the tracker and the calorimeter, energy leakage is the out of cone deposit in the detector that belongs to the original quark/gluon.
         }
         \label{fig:JetCalibration}
     \end{center}
