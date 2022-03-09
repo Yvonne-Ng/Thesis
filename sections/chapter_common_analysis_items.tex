@@ -234,8 +234,6 @@ Isolation WP & Definition & Track \pT requirement \\
     \end{center}
 \end{figure}
 
-Different isolation working points are defined. 
-
 
 \subsection{Muon Calibration}
 The Monte Carlo simulation is often imperfect in its parton showering and detector simulation. The imperfection results in difference in data and MC given the same underlying process. This makes understanding the tree level process from the data represent difficult. Given this, a calibration factor is derived from comparing the MC to data using some known physics process $J/\Psi$ to $\mu \mu$ and $Z$ to $\mu \mu$. The calibration is done on the $P_{T}$ of the muon. 
@@ -371,7 +369,7 @@ Photons in ATLAS are reconstructed from clusters in the EM Calorimeter sometimes
 
 \subsection{Photon Reconstructionn}
 Photons interact with the EM calorimeter. They shower and leave deposits in the active material. The first step to photon reconstruction is the finding of a seed cell for clustering. A sliding window of $\delta \eta \times \delta \phi = 0.025 \times 0.0245$ is used to scan for a clustering seed with energy deposit above 2.5 GeV. Neighboring hits are added to the seed to form a cluster through the clustering algorithm~\cite{Lampl:1099735}. 
-These cluster are matched by tracks in the inner detector, these tracks are used for vertex construction. If no vertex or tracks are matched, they are unconverted photons, otherwise, they are considered converted photons. Converted photons are photons that originates from electrons. 
+These cluster are matched by tracks in the inner detector. These tracks are used for vertex construction. If no vertex or tracks are matched, they are unconverted photons, otherwise, they are considered converted photons. Converted photons are photons that originates from electrons. 
 
 %\begin{figure}[!htb]
 %    \begin{center}
