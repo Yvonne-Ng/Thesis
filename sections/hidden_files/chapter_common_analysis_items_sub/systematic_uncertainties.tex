@@ -1,0 +1,341 @@
+\section{Systematic Uncertainties}
+\label{sec:common_systematics}
+
+There are many sources of systematic uncertainty (`systematics') that affect the results of the analyses
+to be presented in Chapters~\ref{chap:search_stop} and \ref{chap:search_hh}.
+The considered sources of systematic uncertainty are listed in Table~\ref{tab:syst_summary}.
+There are uncertainties related to the overall event (e.g. the uncertainty
+on the luminosity measurement), on the reconstruction and identification of
+the physics objects described in Section~\ref{chap:objects}, and in the MC
+simulation of both the SM background and signal processes.
+Brief descriptions of the sources of systematic uncertainty
+appearing in Table~\ref{tab:syst_summary} are given in Sections~\ref{sec:syst_experimental}-\ref{sec:syst_sig_modelling}.
+
+\input{tables/systematics/tab_syst_summary}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% EXPERIMENTAL UNCERTAINTIES
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Experimental Uncertainties}
+\label{sec:syst_experimental}
+
+\subsubsection{Event-wide Uncertainties}
+Event-wide (process-independent) uncertainties affecting the overall normalisation of the processes
+relate to both the luminosity and pileup measurements.
+The uncertainty on the integrated luminosity used to normalise all MC simulated
+processes is derived following the methodology described in Ref.~\cite{LumiUncert}.
+For the 2015+2016 (full Run 2) dataset, relevant to the analysis described in Chapter~\ref{chap:search_stop} (\ref{chap:search_hh}),
+this uncertainty was found to be 2.1\% (1.7\%).
+The uncertainty on the luminosity measurement does not affect processes whose
+SR normalisation is constrained by data in dedicated CRs.
+
+An uncertainty is considered on re-weighting the pileup distributions in the
+MC simulation.
+The re-weighting is applied in order to correct for the differences in the actual pile-up
+distributions observed in data and those assumed at the time of producing the MC simulation (Section~\ref{sec:pileup_sim}).
+
+\subsubsection{Jet Uncertainties}
+The systematic uncertainties on reconstructed jet objects are related to the jet energy
+resolution (JER), jet energy scale (JES), and JVT.
+There are many sources of uncertainties related to the JES and JER, each related to a specific
+part of the JES and JER calibration measurements, as described in Section~\ref{sec:jet_calib}.
+They arise from the techniques and corrections derived in MC, including statistical, detector,
+modelling effects, jet flavor compositions, pileup corrections, and $\eta$-dependence effects.
+The effects of the JES and JER uncertainties are among the more dominant sources of uncertainty
+on the final analysis results in both analyses to be presented.
+Given the complexity of the JES and JER calibrations, there are nearly 100 components associated with their uncertainties
+that must be incorporated into an analysis' measurement uncertainty.
+In general, the leading uncertainty in searches such as those to be presented in the current thesis
+is statistical in nature --- related to the limited statistics in data and in the MC simulation used
+for the final SR predictions ---  and not related to the systematic uncertainties.
+For this reason, the searches described in Chapters~\ref{chap:search_stop} and \ref{chap:search_hh}
+used a reduced set of JES and JER uncertainties that are derived following a Principal Component Analysis (PCA)
+designed to capture only the dominant components --- and their correlations --- of the total set of JES and JER uncertainty components
+that are relevant to the phase space being probed by the analyses.
+In the analysis presented in Chapter~\ref{chap:search_stop} (\ref{chap:search_hh}), this uncertainty reduction
+process leads to only 4 (34) separate components of the combined JES and JER systematic uncertainty.
+
+\subsubsection{Flavor Tagging Uncertainties}
+There are uncertainties in the jet flavor tagging efficiencies, as well as in
+the measured mis-tagging efficiencies associated with $c$- and light jets.
+They are a mixture of statistical, experimental, and modelling uncertainties
+incurred during the flavor tagging calibration procedures.
+The uncertainties enter into the analyses through their impact on the scale-factors,
+described in Section~\ref{sec:ftag_calib},
+that are applied in the analysis.
+Given the importance of $b$-tagged jets in the final states of the signal processes
+in the analyses described in Chapters~\ref{chap:search_stop} and \ref{chap:search_hh},
+these uncertainties have non-negligible impact on the analyses' results.
+
+\subsubsection{Lepton Uncertainties}
+Uncertainties on the measurement of leptons correspond to the electron and muon reconstruction,
+identification, trigger, and isolation efficiencies in a manner similar to the flavor tagging
+in that systematic variations incurred in the associated scale-factor measurements are applied
+in the analysis.
+Additional uncertainties related to the lepton kinematics due to the resolution and scale of the
+electron (muon) energy (momentum) measurement are considered.
+The muon momentum measurement uncertainties are derived for both the ID and MS measurement
+of the combined muons used in the analyses.
+
+\subsubsection{Missing Transverse Momentum, \met}
+Systematic variations of the \met are coherently incurred as a result of the
+systematic variations, described above, being applied to the objects provided as input to the \met calculation:
+the leptons and jets.
+Additional uncertainties related to the scale and resolution of the soft-term of the \met calculation
+are also considered.
+Given that the analyses considered in Chapters~\ref{chap:search_stop} and \ref{chap:search_hh}
+are characterised by real sources of \met, the soft-term component plays a small role in the magnitude
+of the \met and therefore its uncertainties have negligible impact on the analyses.
+Generally, the \met uncertainties are sub-dominant.
+
+\subsubsection{Fake Lepton Estimate}
+
+As will be seen in Chapters~\ref{chap:search_stop} and \ref{chap:search_hh}, the overall contribution
+of the fake background processes to the analyses to be presented in this thesis is very small.
+As a result, the systematic uncertainties related to this background are almost always negligible
+in impact on the analyses' final results.
+However, given the subtle nature of these data-driven estimates, we describe the methods by which
+systematic uncertainties are derived for them.
+They are as follows:
+
+\begin{description}
+    \item{Matrix Method (Section~\ref{sec:matrix_method}):} There are three primary sources of systematic
+        uncertainty ascribed to the fake estimate derived from the Matrix Method in the analysis described
+        in Chapter~\ref{chap:search_stop}.
+        The first is related to the limited statistics in the region(s) used for the determination of the
+        fake efficiencies, $\varepsilon_r$ and $\varepsilon_f$.
+        The second is related to the `prompt subtraction': the evaluation of the portion of real events contaminating the
+        regions in which the fake efficiencies are derived, which is evaluated using the MC simulation.       
+        The component of real lepton sources is varied by $\pm 30$\% and the impact on the resulting
+        fake efficiencies is propagated to to the final analysis. 
+        The third component is related to the compositional differences of the background sources leading
+        to fake leptons in the region in which the fake efficiencies are derived and in the regions (SRs)
+        in which the fake estimate is applied.
+        To assess the systematic related to compositional differences, alternative regions in which the leading
+        components of the fake backgrounds (e.g. the heavy flavor component) are varied are defined and the impact on the measured fake efficiencies
+        is used to define an uncertainty.
+    \item{Same-sign Extrapolation Method (Section~\ref{sec:same_sign_extrap}):} As with the Matrix Method,
+        there are three primary sources of uncertainty prescribed to the fake background estimate derived using
+        the Same-sign Extrapolation Method. The first, as with the Matrix Method, is related to the prompt subtraction
+        in which the rate of contamination of prompt processes is varied.
+        In the analysis described in Chapter~\ref{chap:search_hh}, the real contamination in the same-sign
+        regions is varied by $\pm 50$\%, and the impact on the final fake background estimate is used to quantify
+        an uncertainty.
+        Following the studies in Refs.~\cite{TOPQ-2015-09,TOPQ-2017-05}, an additional uncertainty (on top of the statistical component) on the
+        extrapolation from the SS to the OS regions is included by varying the $f^{SS \rightarrow OS}$ factors
+        by $\pm 20$\% and assessing the impact on the final fake background prediction.
+        The statistical uncertainty related to the extrapolation over the $d_{hh}$ discriminant,
+        described in Chapter~\ref{chap:search_hh}, is applied as an additional uncertainty on this fake background estimate.
+        Uncertainties related to the composition of fakes in the SS and OS regions are found to be small,
+        and are covered by the extrapolation factor uncertainties already described.
+\end{description}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% TRANSFER FACTOR METHOD
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{The Transfer Factor Method}
+\label{sec:transfer_factor}
+
+For estimating the impact of modelling uncertainties on the SM backgrounds, described in Section~\ref{sec:syst_bkg_modelling},  that
+have dedicated CRs to constrain their overall normalisation in the SRs,
+the so-called Transfer Factor (TF) Method is used.
+Since the purpose of the CRs is to constrain the process' normalisation using
+the observed data, we do not want the systematic variations to directly
+impact the processes' normalisations within the SRs.
+Instead, the impact of the systematic variations is assessed via their effect
+on the SM processes' acceptance in the CRs and SRs.
+If a given systematic variation for a given SM process affects the process
+in a coherent manner across both the CR and SR, then the resulting affect of the systematic variation
+on the analysis should be reduced.
+This will nearly be guaranteed if the phase spaces being probed by the CR and SR
+are similar.
+The more dissimilar the phase space being probed by the CR and SR, the larger
+the expected impact of a given systematic variation due to the larger kinematic
+extrapolation required.
+This can conceptually be seen by considering Equation~\ref{eq:cr_tf}:
+\begin{align}
+    N_{p}^{\text{SR}} &= \mu_p \times N_{p,\,\text{MC}}^{\text{SR}} \nonumber \\
+        &= \left( \frac{N_{p, \text{data}}^{\text{CR}}}{N_{p,\,\text{MC}}^{\text{CR}}} \right) \times N_{p,\,\text{MC}}^{\text{SR}} \nonumber \\
+        &= N_{p, \text{data}}^{\text{CR}} \times \left( \frac{ N_{p,\,\text{MC}}^{\text{SR}}  }{ N_{p,\,\text{MC}}^{\text{CR}} } \right) \label{eq:cr_tf} \\
+        &= N_{p, \text{data}}^{\text{CR}} \times \underbrace{\tau_p}_{\substack{\text{Transfer} \\ \text{ Factor}}} \nonumber,
+\end{align}
+where `$p$' is the process for which the CR and normalisation factor are defined, $\mu_p$
+is the CR-derived normalisation factor (c.f. Equation~\ref{eq:mu_fac}),
+$N_{p, \text{data}}^{\text{CR}}$ is the observed data in the CR with the MC simulation
+for all processes that are not process $p$ subtracted, and $N_{p,\,\text{MC}}^{\text{SR}}$
+is the MC-based SR prediction of process $p$.
+The quantity $\tau_p$ is the process' TF that extrapolates the observed data in the CR
+to the SR.
+It can be seen that if the MC simulation response for a given process for a given systematic variation is the same
+across both the CR and SR, that the TF will be unchanged as a result of the systematic
+variation and therefore the predicted contribution of this process in the SR will
+be unaffected by the systematic uncertainty.
+If kinematics differ across the CR and SR, the acceptance for a given process may vary
+in going from the CR and SR (or vice versa) and therefore such a cancellation is not likely to
+occur due to the larger extrapolation required.
+
+It can be seen, then, that for processes whose SR normalisation is derived in dedicated CRs,
+that the TF appearing in Equation~\ref{eq:cr_tf} quantifies the impact of acceptance
+variations between the CR and SR.
+Systematic variations of the SM backgrounds with dedicated CRs, then, are quantified
+by their impact on the resulting TF values.
+This is contrary to assessing their impact by measuring the change in a process' SR prediction
+by simply comparing the SR predictions before and after a given systematic variation is applied.
+The uncertainties ascribed to SM processes via the TF Method are computed as follows,
+\begin{align}
+    \Delta \tau = \frac{ \lvert \tau_{\,\text{nominal}} - \tau_{\,\text{variation}} \rvert} { \tau_{\,\text{nominal}} },
+    \label{eq:tf_uncert}
+\end{align}
+where $\tau_{\,\text{nominal}}$ ($\tau_{\,\text{variation}}$) is the TF computed
+using the nominal (systematically varied) prediction of the process.
+The quantity $\Delta \tau$ is then taken as a fractional uncertainty on the corresponding
+process' SR predicted yield.
+
+Sources of uncertainty stated as following the TF approach in Table~\ref{tab:syst_summary} are
+quantified following Equation~\ref{eq:tf_uncert}.
+The others are assessed simply by taking the impact of the variation on the process'
+predicted yields in each of the regions appearing in the analyses.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% BACKGROUND MODELLING
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Background Modelling Uncertainties}
+\label{sec:syst_bkg_modelling}
+
+Uncertainties in the modelling of specific processes, SM or otherwise, are typically
+assessed by comparing the nominal MC simulation for the processes in question to
+that of an MC simulation with certain theoretical or phenomenological parameters varied.
+In this way, one can assess the impact of the underlying assumptions made
+in the MC simulation on the analyses' final results.
+
+\subsubsection{Top-quark Pair and Single-top $Wt$ Production}
+The production of SM top-quark pairs, \ttbar, is by far the most dominant SM background
+in both of the analyses described in Chapters~\ref{chap:search_stop} and \ref{chap:search_hh}.
+Some of the largest uncertainties in both analyses described therein are related to the modelling
+of the \ttbar~process.
+The process in which a single top-quark is produced in association with a $W$-boson plays a large
+role in the analysis presented in Chapter~\ref{chap:search_hh}.
+The MC simulation of these two processes is done using the same MC generation steps and, as a result,
+the methods by which their systematic evaluation is performed are the same.
+Here we describe the systematic variations used in the analyses for both of these processes.
+
+Variation of the hard-scatter generation is performed by comparing the \ttbar~and \wt~samples produced
+using \textsc{Powheg} for the matrix element generation to that using \textsc{aMC@NLO}, but keeping
+the showering and fragmentation model the same in both (\textsc{Pythia8}).
+The effects of the choice of fragmentation and hadronization model is assessed by comparing
+the use of \textsc{Pythia8}, used in the nominal \ttbar~and \wt~predictions, to that of \textsc{Herwig}, all the while
+keeping \textsc{Powheg} for the hard-scatter generation in both cases.
+The description of the ISR and FSR provided by the hard-scatter generation is ascribed an
+uncertainty by varying the underlying parameters that describe the characteristic energy
+scales at which additional radiation (beyond that described by the matrix-element hard-scatter)
+is produced.
+In \textsc{Powheg}, this is controlled primarily by the \texttt{hdamp} parameter, and to assess
+the impact of this parameter's value on the analyses it is varied up and down by a factor of 2 relative
+to the nominal scenario.
+The impact of the choice of PDF used in the hard-scatter generation is assessed by varying the
+choice of PDF from the nominal, which is that of the NNPDF collaboration~\cite{Ball:2014uwa},
+to that of the MMHT~\cite{Harland-Lang:2014zoa}, CT14~\cite{Lai:2010vv}, and PDF4LHC~\cite{Butterworth:2015oua} PDF sets and taking
+the envelope of the variations.
+The PDF error set, comprised of 100 separate components and provided by the NNPDF collaboration, is used to assign an additional uncertainty
+on the nominal PDF used.
+To assess the impact of the finite order in QCD at which the MC simulation is taken, and
+sensitivity to missing higher-order terms, the factorization and renormalization scales,
+$\mu_F$ and $\mu_R$, are varied in all pairings possible in which either is varied by a factor of two
+up or down.
+The resulting \textit{scale uncertainties} are derived by taking the envelope of the resulting variations.
+
+Only in the analysis presented in Chapter~\ref{chap:search_hh} is the uncertainty related
+to the theoretical prediction of the \ttbar~and \wt~processes taken into account.
+The former is taken to be $\pm 5.82\%$ and the latter $\pm 5.32$\%~\cite{Czakon:2013goa,ATLAS-CONF-2013-102,Kidonakis:2010ux}.
+The analysis described in Chapter~\ref{chap:search_hh} considers the sum of the \ttbar~and \wt~processes
+as a single background and constrains the normalisation of their sum using a dedicated CR.
+The uncertainties on these processes' cross-section, therefore, are taken into account to allow
+for the \textit{composition} of the combined estimate ($\ttbar+\wt$), as opposed to its normalisation, to vary within the theoretical uncertainties.
+
+An additional uncertainty, considered in both analyses presented in the current thesis, is related
+to the non-trivial quantum interference between the NLO predictions of the \ttbar~and $\wt+b$~processes relevant
+to both analyses.
+This uncertainty is assessed by comparing the estimates of the \wt~process simulated
+under the so-called Diagram Removal (DR) and Diagram Subtraction (DS) schemes that
+are used in the NLO calculation of the single-top \wt~process.
+The DR and DS schemes, and their comparison as a means of assessing a systematic uncertainty
+as just described, are fully described in Refs.~\cite{Frixione:2008yi,ATL-PHYS-PUB-2016-004}.
+This \textit{interference uncertainty} is negligible in the analysis presented in Chapter~\ref{chap:search_stop},
+given the relatively small contamination of the \wt~process.
+However, it is an important uncertainty in the analysis presented in Chapter~\ref{chap:search_hh}.
+In this latter analysis, the \wt~background contributes at a rate equal to that of the \ttbar~process, making
+the assessment of their interference a subtle one that will be described in Chapter~\ref{chap:search_hh}.
+
+\subsubsection{$Z$-boson Production in Association with Heavy-Flavor Jets}
+
+Processes involving the production of a SM $Z$-boson in association with
+two or more heavy-flavor jets are important for the analysis presented in Chapter~\ref{chap:search_hh}.
+These processes are referred to simply as `\zhf'.
+
+The PDF and scale uncertainties on the \zhf~process are computed in exactly the
+same fashion as for the \ttbar~and \wt~processes described in the previous section.
+Additional uncertainties on the parton shower merging scales are assessed by varying
+the CKKW merging scales~\cite{Lonnblad:2012ix} used by the \textsc{Sherpa} MC generator
+used for the \zhf~simulation.
+To assess the impact of different MC hard-scatter generation and fragmentation models, the 
+nominal sample produced using \textsc{Sherpa} is compared to a \zhf~simulation produced using
+\textsc{Madgraph+aMC@NLO} for the hard-scatter generation.
+This last source of uncertainty is important for the analysis described in Chapter~\ref{chap:search_hh}
+and amounts to an uncertainty of $\pm 15$\% on the \zhf~background estimate in the analysis' SRs.
+The other sources of uncertainty on the \zhf~background are minor in comparison.
+
+\subsubsection{Diboson Production}
+
+The SM production of boson pairs --- diboson production (`$VV$') --- plays an important role only in the
+analysis described in Chapter~\ref{chap:search_stop}.
+The nominal $VV$ background estimate is simulated using the \textsc{Sherpa} MC generator.
+Uncertainties arising as a result of variations in the factorization and renormalization scales,
+PDF variations, and uncertainties in the CKKW merging scales are considered.
+The methods by which these uncertainties are quantified are described above.
+These systematic uncertainties amount to about a $\pm 9$\% uncertainty in the SR prediction
+in the analysis described in Chapter~\ref{chap:search_stop}, but are generally smaller than
+the modelling uncertainties on the \ttbar~background process.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% SIGNAL MODELLING
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Signal Modelling Uncertainties}
+\label{sec:syst_sig_modelling}
+
+Uncertainties on the signal modelling are assessed in both analyses presented in Chapters~\ref{chap:search_stop}
+and \ref{chap:search_hh}.
+The methods by which the uncertainties arising due to variations in the $\mu_F$ and $\mu_R$ scales, as
+well as due to variations in the PDF choice, are assessed in exactly the same manner
+as for the SM backgrounds described in Section~\ref{sec:syst_bkg_modelling}.
+In both searches, these uncertainties on the signal are negligible.
+For the analysis described in Chapter~\ref{chap:search_stop}, the uncertainties
+arising as a result of varying the fragmentation model are found to be negligible for the
+phase space probed by the SUSY parameter space, described by the masses of the supersymmetric
+top-quark and LSP, in which that search is performed.
+In the analysis described in Chapter~\ref{chap:search_hh}, uncertainties arising as a result of
+the choice in fragmentation model are assessed by varying the choice of parton shower generator
+from the nominal \textsc{Herwig} to an alternative description provided by \textsc{Pythia}
+and have little impact on the analysis' final result.
+The uncertainties on the theoretical cross-sections on the signal models appearing in the two analyses
+are generally small and are found to not have a large impact on either of the analyses' final results.
+

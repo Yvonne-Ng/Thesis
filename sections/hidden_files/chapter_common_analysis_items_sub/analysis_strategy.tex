@@ -1,0 +1,381 @@
+\section{General Analysis Strategy}
+\label{sec:gen_strategy}
+
+In this section the analysis strategy used in the searches for new physics
+to be presented in Chapters~\ref{chap:search_stop} and \ref{chap:search_hh}
+will be given.
+The general analysis workflow for designing an analysis is outlined in the following
+sub-sections.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% SIGNAL PHENO
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Target the Signal}
+\label{sec:sig_pheno}
+
+The search for a particular source of new physics, such as a particular model of SUSY (Chapter~\ref{chap:bsm}),
+begins first with the thorough understanding of the signatures that the new physics model
+will leave in the ATLAS detector.
+This generally requires a strict definition of the \textit{final state} of the
+new physics model that one wishes to look for; for example, deciding to search for
+evidence of SUSY via the production of the SUSY partners to the SM top-quark
+in final states having exactly two leptons (electrons or muons) instead of
+exactly zero or exactly one lepton, as in Chapter~\ref{chap:search_stop}.\footnote{Performing
+searches for new physics by the partitioning of specific new physics models
+by their resulting final states allows for separate, independent dedicated analyses to be carried out
+for each possible final state with the idea that each one will be more sensitive
+to the presence of the new physics in their respective final state than would be
+a single analysis attempting to target all possible final states of the new physics production.
+The results of the independent analyses' searches can be statistically combined once they are finished,
+leading to enhanced sensitivities to the new physics scenario in question that is more or less independent
+of the final state.}
+Once a new physics model has been chosen, along with its final state, there is a well-defined
+\textit{signal} to be looked for in the data recorded by the ATLAS detector.
+The production and decay of the sought-for signal is then simulated via MC methods in the exact
+same manner as for the SM processes, as described in Chapter~\ref{chap:simulation}.
+In physics analyses, the physics processes not inclusive of the sought-for signal processes
+are referred to as the \textit{background} processes.
+
+The simulation of the signal process allows one to study the kinematics of the signal in detail, in order
+to get an overall feel for what phase space the signal inhabits.
+Knowledge of both the signal final state and its kinematics therein informs the analyst
+about the specific SM background processes that are likely to be relevant to the analysis.
+For example, if the sought-for signal decays to two leptons with opposite electric charge
+that are of the same flavor (both leptons are electrons or both are muons, for example)
+it is very likely that the SM processes inclusive of $Z$-boson production will be relevant,
+since this is one of the main $Z$-boson decay final states, as opposed to the production of a single $W$-boson
+whose decay does not lead directly to final states with two leptons.
+Knowledge of the dominant SM background processes, then, allows
+one to determine how the phenomenology and kinematics of the signal differ
+with respect to those of the relevant backgrounds by comparing the simulated events
+of each.
+The aim of this is to be able to define a basis of kinematic observables that allows
+for the discrimination between the signal and background.
+From such a basis of observables, one can define regions of phase space in which
+the signal-to-background ratio is large, such that the likelihood of observing
+the presence of the signal is (ideally) maximal.
+Such regions of increased signal purity\footnote{The `purity' of a process is defined
+as the fraction of a given process in a region of phase space, relative to the sum
+of all processes (inclusive of the process in question).} are referred
+to as \textit{signal regions} (SR).
+As an example, take the case where there is a single discriminating variable in our
+basis of useful kinematic observables.
+One would apply a selection on this observable in such a way that $pp$ collision events
+satisfying this selection are likely to be enhanced in signal events.
+This is one-dimensional SR case is illustrated in Figure~\ref{fig:sr_search_v}.
+
+\begin{figure}[!htb]
+    \begin{center}
+        \includegraphics[width=0.65\textwidth]{figures/common_ana/sr_search_vPDF}
+        \caption{
+            Signal region concept illustrated in the case of a one-dimensional selection
+            made on a discriminating kinematic observable.
+            The dominant SM background (red) is characterised by typically small values
+            of the discriminating variable whereas the signal (blue) has values that extend
+            beyond that of the background.
+            The signal region in this case is defined by requiring $pp$ collision events
+            to have values of the discriminating variable that are larger than
+            the value indicated by the dashed vertical line, where the signal purity is
+            enhanced.
+            The $y$-axis represents the probability distribution of the background and signal
+            processes, not their absolute yield for a given range of the quantity on the $x$-axis.
+        }
+        \label{fig:sr_search_v}
+    \end{center}
+\end{figure}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% GATHER THE DATA
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\FloatBarrier
+\subsection{Define the Trigger Strategy}
+\label{sec:gather_data}
+
+Once an analysis understands the final state and its kinematics that it will be searching for,
+the strategy for gathering the $pp$ collision data consistent with that final state must be defined.
+This requires that the analysis make a choice about which triggers to use for recording
+the collision events in ATLAS, a process referred to as defining the analysis' \textit{trigger strategy}.
+The analyses to be presented in Chapters~\ref{chap:search_stop} and \ref{chap:search_hh} are based
+on searches for signals with leptons (electrons or muons) in the final state.
+As a result, the triggers these analyses use are all based on signatures of high-\pT~leptons.
+
+The lepton triggers used in the analyses to be presented trigger are based on the \pT~of the leptons.
+They are configured to have a given \pT~threshold and if a lepton is identified in the online trigger
+system during the $pp$ collisions to have a \pT~value at or above this threshold, the trigger `fires' and the
+event is recorded (see Section~\ref{sec:tdaq}).
+Lepton triggers are characterised by a sharp `turn-on', meaning that they become fully efficient
+very near the online threshold at which they operate. 
+Here, `efficiency' is defined as the ability for the trigger to make a decision to record the event
+when there is actually an object satisfying its requirements. A trigger is 100\% efficiency if it
+has a threshold of 10\,GeV and it fires for every single lepton with a \pT~at or above 10\,GeV.
+The maximum attainable trigger efficiency is never exactly 100\% due to non-100\% coverage of the
+trigger system, however.
+Examples of the trigger efficiencies, measured in data and in MC, are shown in Figure~\ref{fig:trig_example} which shows
+the trigger efficiency turn-on curves for representative electron and muon triggers.
+It can be seen, for example, that the electron trigger efficiency reaches a plateau very near
+its configured threshold of 28\,GeV.
+As described in Section~\ref{sec:tdaq}, the trigger system has two-levels: Level 1 (L1) and HLT.
+The efficiencies for the trigger at L1 and HLT differ, primarily due to the lower lepton momentum resolution
+achieved at L1.
+This can be seen in the right side of Figure~\ref{fig:trig_example}, which shows the trigger
+efficiency turn-on also for the L1 trigger that seeds the HLT trigger.
+The rise in efficiency, with respect to the offline reconstructed object's \pT, is shallower
+at L1 than at the HLT as a result of the poorer muon momentum resolution at L1.
+
+As can be seen in the left side of Figure~\ref{fig:trig_example}, the MC description of the trigger
+response is fairly good.
+However, analyses typically require that their offline reconstructed objects on which they base
+their trigger strategy have \pT~values that lie on the trigger efficiency plateau.
+This is because the trigger efficiency plateau represents a region in which the trigger response
+is stable (i.e. unchanging) in both data and MC and can therefore be easily calibrated in the offline analysis
+with scale-factors that account for differences in the measured trigger efficiencies in data and in MC simulation.
+The description in the MC of the region at the trigger threshold, which has non-vertical rise,
+is potentially difficult to model accurately and therefore the calibrations are not typically
+derived for these regions in which the efficiency is not at its plateau.
+This is illustrated in Figure~\ref{fig:trig_plateau_cartoon}, showing the typical case of a stable
+and flat response in both the observed data and MC in the region of the trigger efficiency
+plateau but a potentially difficult to characterise response during the turn-on phase of the trigger
+efficiency.
+Given, however, the relatively good momentum resolution for leptons at L1, the offline \pT~requirements on leptons
+can be kept very near the online \pT~thresholds, typically within 1\,GeV or so.
+Triggers based on jets or on the missing transverse momentum, however, typically require offline \pT~requirements
+that are significantly higher than the online thresholds due to the fact that the online reconstruction of these
+objects in the trigger is not at the level of precision attainable in the offline reconstruction.
+This is illustrated by the trigger efficiency curves shown in Figure~\ref{fig:met_trig_example}, showing
+the efficiency curves for triggers based on the reconstruction of the missing transverse momentum.
+These \met-based triggers all have online thresholds near $80\,\GeV$, but they do not reach their
+efficiency plateau until offline \met values nearing 250\,GeV.
+
+\begin{figure}[!htb]
+    \begin{center}
+        \includegraphics[width=0.48\textwidth]{figures/common_ana/trig/egam_trig_example} 
+        \includegraphics[width=0.48\textwidth]{figures/common_ana/trig/muon_trig_example} 
+        \caption{
+            Figures showing the measured trigger efficiency as a function of the associated
+            offline object for a representative electron trigger (\textbf{\textit{left}}, from Ref.~\cite{EgammaTrig})
+            and muon trigger (\textbf{\textit{right}}, from Ref.~\cite{MuonTrig}).
+        }
+        \label{fig:trig_example}
+    \end{center}
+\end{figure}
+
+
+\begin{figure}[!htb]
+    \begin{center}
+        \includegraphics[width=0.75\textwidth]{figures/common_ana/trig_plateauPDF}
+        \caption{
+            Cartoon illustrating the principle of a trigger efficiency `turn on' curve.
+            The efficiency for the lepton to fire the trigger, as a function of the \pT~of the offline object, is plotted
+            as a function of the offline object's \pT.
+            At the online level, given the typically poorer lepton momentum resolution, there is generally
+            not a perfectly sharp (i.e. vertical) turn on at the \pT~threshold of the trigger.
+            Instead there is an `S'-curve, with the efficiency increasing with a steep slope
+            until it reaches a point where it flattens out.
+            This latter point is referred to as the trigger efficiency `plateau'.
+            Offline analyses typically apply offline \pT~requirements on their objects
+            such that they are always on the plateau of the associated trigger used for event selection.
+        }
+        \label{fig:trig_plateau_cartoon}
+    \end{center}
+\end{figure}
+
+\begin{figure}[!htb]
+    \begin{center}
+        \includegraphics[width=0.6\textwidth]{figures/common_ana/trig/met_trig_example}
+        \caption{
+            Trigger efficiency turn-on curve for typical triggers based on the missing transverse momentum.
+            Figure taken from \href{https://twiki.cern.ch/twiki/bin/view/AtlasPublic/MissingEtTriggerPublicResults}{AtlasPublic/MissingEtTriggerPublicResults}.
+        }
+        \label{fig:met_trig_example}
+    \end{center}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% THE CONTROL REGION METHOD
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\FloatBarrier
+\subsection{Background Estimation and the Control Region Method}
+\label{sec:control_region_method}
+
+The general principle behind searches for new physics is to define a SR, or a set of SRs,
+and then make predictions about how the signal and background behave therein.
+Such predictions can then be compared to the data actually recorded by the ATLAS detector
+and the statistical procedures described in Section~\ref{sec:stat_hypo} can be used to
+make statements about whether or not --- or to what degree --- the data is likely to contain the specified signal.
+The emphasis, then, in physics analyses is on the understanding and precise estimation of the backgrounds.
+Without being able to properly estimate the contribution of the background processes to the
+events observed in the SRs, well-defined predictions cannot therein be made, resulting in ineffective
+analyses.
+
+The process of estimating the backgrounds in an analysis' SRs is aptly referred to as
+\textit{background estimation}.
+There are many background estimation methods that are used.
+There exist general background estimation techniques, applicable to a wide range of SM processes,
+as well as more dedicated estimation techniques that are specific to a smaller subset of
+SM processes.
+Most rely on the MC simulation of the SM processes, either as the primary source of providing
+the prediction of a given SM process in an analysis' SR(s) or secondarily, as a means of providing a
+cross-check on or input to a prediction obtained using the observed data obtained in auxiliary measurements as the primary source.
+The high levels of accuracy imposed upon the ATLAS MC simulation infrastructure is derived
+from the large and dominant role that the MC simulation plays in the background estimation
+procedures in almost all analyses performed by the ATLAS experiment.
+
+The same background estimation strategy is used in each of the analyses to be presented in the
+present thesis and is as follows.
+Once the SRs designed to capture the sought-for signal are defined, MC simulation can be
+used to determine the overall contribution of all SM background processes.
+In such a way, the MC simulation can be used to understand which SM processes in the SR(s)
+are dominant and which are sub-dominant.
+The former are those whose relative contribution to the total background prediction
+are large and the latter are those for which this quantity is small or negligible.
+
+As illustrated in Figure~\ref{fig:sr_search_v} for the one-dimensional example,
+SR(s) are typically defined by events populating the \textit{tails} of discriminating
+observables or probe extreme regions of phase space.
+%The tails of such observables are regions of low cross-section and
+Such regions typically exhibit low cross-section (background rates) and
+are regions of phase space for which the underlying theoretical inputs
+to the MC may be less well-understood as compared to the bulk of the phase space.
+The MC simulation by itself, therefore, may not be able to adequately describe the background
+processes in the SRs defined in these regions, failing to describe
+either the overall cross-section of specific processes or the actual shape of the discriminating observables' distributions
+therein.
+The former results in a failure in the overall predicted \textit{rate}, or normalisation, of a specific backgrounds' contribution
+to the event yields in the regions
+and the latter results in a failure in predicting the background process' \textit{acceptance}.
+In order to increase the confidence in the background estimates in such SR(s), the analyses in the present
+thesis make use of the so-called \textit{control region method}.
+This method is characterised by defining a (set of) region(s) in which there is (are) high purities
+of the dominant background process(es).
+These regions are referred to as \textit{control regions} (CRs) and are ideally defined using the
+same basis of observables used to define the analysis' SRs.
+The CRs are defined to be orthogonal to the SRs, meaning that no events that satisfy the requirements of
+the SRs populate the CRs.
+The observed data in the CRs, which are enriched in a specific background process, are used to derive
+factors that correct the cross-section predictions of the MC estimates of the dominant background processes for
+which the CRs are defined.
+The per-process normalisation corrections, $\mu_p$, can essentially be thought of as those factors
+that adjust the process' normalisation in such a way as to cover any discrepancy between the observed
+data yield and MC prediction for the process in question:
+\begin{align}
+    \mu_{p} = \frac{  N_{\text{data}}^{\text{CR}} - \sum\limits_{\substack{i \\ i\ne p}} N_{\text{MC},\,i}^{\text{CR}}} { N_{\text{MC},\,p}^{\text{CR}}},
+    \label{eq:mu_fac}
+\end{align}
+where `$p$' indicates the process for which the CR is defined, $N_{\text{data}}^{\text{CR}}$ is the observed
+data yield in the CR, and $N_{\text{MC},\,j}^{\text{CR}}$ is the predicted yield in MC for the background
+process $j$.
+If there is more than one process for which a normalisation correction factor is being derived, and therefore
+more than one CR, the normalisation factors are constrained by the process' contribution across all CRs in which
+it is present and the expression in Equation~\ref{eq:mu_fac} is expanded into a system of equations,
+\begin{align}
+    N_{\text{data,sub}}^{\text{CR1}} &= \mu_i N_i^{\text{CR1}} + \mu_j N_j^{\text{CR1}} + ... \nonumber \\
+    N_{\text{data,sub}}^{\text{CR2}} &= \mu_i N_i^{\text{CR2}} + \mu_j N_j^{\text{CR2}} + ...     \label{eq:mu_fac_expand} \\
+        &\vdots \nonumber
+\end{align}
+where $N_{\text{data,sub}}^{a}$ is the observed data yield in the region $a$ with the MC predictions
+for those processes not having a dedicated  CR subtracted (analogous to the numerator appearing in Equation~\ref{eq:mu_fac}),
+$\mu_p$ are the normalisation factors for each process being solved for, and $N_p^{a}$ are the MC predictions
+for process $p$ in region $a$.
+Each process' dedicated CR ideally exhibits both a high purity of the given process and a relatively large
+number of events\footnote{A too large difference in the numbers of events observed in the CRs, as compared to the SRs, may indicate
+that the CRs are kinematically very different from the SRs, however.} and therefore
+is the only CR that has any real constraining power on the process' normalisation correction factor.
+If this is true, the expression in Equation~\ref{eq:mu_fac} generally holds true for each process with a
+CR, even in the case of multiple CRs and
+normalisation factors.
+
+As mentioned above, the CRs are ideally defined using the same basis of kinematic observables
+as used in the definition of the SR.
+When this is the case, it is more likely that the constructed CRs probe a similar kinematic
+phase space as that of the SRs.
+It is important that the CRs are kinematically similar to the SRs so that the correction factors
+derived in them are representative of the SRs; that is, that the underlying root cause of the need for the
+correction is the same in both the CRs, where the corrections are derived, and the SRs, where
+the corrections are applied.
+If an SR requires high numbers of jets (high event activity), for example, but the CR is defined to have zero
+jets (low event activity) then any normalisation correction derived in the CR may be correcting for physics effects
+that are not relevant to the phase space probed by the SR.
+In such a case, extrapolation uncertainties will generally be incurred in the final background estimate in the SR.
+
+In addition to the CRs, so-called \textit{validation regions} (VRs) are typically defined.
+The VRs are typically kinematically more similar to the SRs than the CRs, while still maintaining orthogonality
+between the CRs and the SRs.
+VRs are defined for each CR and allow for one to validate the extrapolation of the CR-derived normalisation
+correction for each process in a region more similar to the SR.
+As they are kinematically closer to the SRs, VRs are generally less pure in the specific process for which they are defined,
+and will also have generally fewer events, as compared to the associated CRs.
+The validation is done by comparing the post-corrected MC prediction of the backgrounds to the
+observed data in the VRs, ensuring that both the overall normalisation of the backgrounds
+agrees with the observed data as well as the overall shape of the relevant observables used
+in the definition of the SRs.
+The relationship between the CR, VR, and SR is illustrated in the one-dimensional case in
+Figure~\ref{fig:sr_search_v_CR}.
+
+When constructing a set of CRs and VRs, it is important to do so using the right set of observables
+out of the total basis of observables from which the SRs are defined.
+It is important that the shape as predicted by the simulated background process for which
+the normalisation correction is being derived reproduces that of the observed data.
+If this is not the case, then the extrapolation from the CR to the SR suffers.
+This is illustrated in Figure~\ref{fig:crvr_extrap_shape} for two scenarios in which
+the MC-based background prediction of the shape of the observable used for defining
+the various regions both agrees and does not agree with the observed data.
+If the MC simulation for the specific background for which a normalisation correction is being derived
+has monotonic shape mis-modellings, as in the case of Scenario B in Figure~\ref{fig:crvr_extrap_shape},
+the normalisation correction will generally not be applicable in the SR and may lead to
+SR background estimates with false over- or under-predictions of the data.
+In the latter case, a false excess in data may be observed and lead to mis-statements about the
+likelihood of the existence of new physics in the SRs.
+In the former case, a false over-prediction will lead to too-prematurely excluding the possibility for new
+physics to arise when it may in fact exist.
+For this reason, dedicated studies on the dependence of the derived normalisation corrections
+on the set of observables used to define the CRs and VRs should generally be made so
+that the analysis avoids these susceptibilities to shape mis-modellings in the MC.
+Of course, this can become challenging in the general case where the SRs are defined using a large basis of potentially
+correlated observables
+and/or when one wishes to define several CRs to correct multiple processes' normalisations.
+
+\begin{figure}[!htb]
+    \begin{center}
+        \includegraphics[width=0.65\textwidth]{figures/common_ana/sr_search_v_CRPDF}
+        \caption{
+            Illustration of the control region method, in the one-dimensional case analogous to that
+            presented in Figure~\ref{fig:sr_search_v}.
+            The control region (CR) is pure in the background process but is defined kinematically alongside the signal region (SR).
+            A validation region (VR), ideally still with high background purity, is defined between the CR and SR and is used to validate
+            the extrapolation of the background estimate from the CR to the SR.
+            The $y$-axis represents the probability distribution of the background and signal
+            processes, not their absolute yield for a given range of the quantity on the $x$-axis.
+        }
+        \label{fig:sr_search_v_CR}
+    \end{center}
+\end{figure}
+
+\begin{figure}[!htb]
+    \begin{center}
+        \includegraphics[width=0.8\textwidth]{figures/common_ana/crvr_extrap_shape}
+        \caption{
+            Illustration of CR extrapolation scenarios in the control region method.
+            In Scenario A (green data) the predicted shape of the discriminating variable
+            used to define the CR, VR, and SR agrees well with the observed data
+            in both the CR and VR, as seen by the flat data-to-background ratio in the bottom.
+            In Scenario B (red data) the predicted shape of the discriminating variable
+            differs with respect to that of the observed data, leading to an observed
+            slope in the data-to-background ratio.
+            In Scenario A, the normalisation correction derived for the background process
+            in the CR will be well extrapolated into the VR and gives confidence in its applicability
+            in the SR.
+            In Scenario B, the CR-derived normalisation factor for the background process
+            will pull the background prediction in the wrong direction when extrapolated
+            to the VR, making the data-to-background agreement even worse and reducing
+            its applicability in the SR.
+        }
+        \label{fig:crvr_extrap_shape}
+    \end{center}
+\end{figure}
+
+\FloatBarrier
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% SYSTEMATIC UNCERTAINTIES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

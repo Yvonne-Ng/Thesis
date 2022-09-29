@@ -1,0 +1,23 @@
+Figure~\ref{fig:BulletCluster_figure}
+
+
+\begin{figure}[!htb]
+    \begin{center}
+        \includegraphics[width=0.75\textwidth]{figures/chapter_DM/BulletCluster}
+        \caption{
+			Bullet cluster (1E 0657-56) showing two colliding galaxy clusters, the part in red came from x-ray image by Chandra, highlighting normal matter distribution; the part in blue came from gravitational lensing. ~\cite{BulletCluster}.
+        }
+        \label{fig:BulletCluster_figure}
+    \end{center}
+\end{figure}
+
+EQUATION
+
+(Equation~\ref{eq:chiral_projection})
+
+~\ref{eq:chiral_projection}
+
+-\begin{equation}
+2    f_{\text{L}} = P_L f = \frac{1}{2}(1- \gamma_5)f \hspace{0.3cm}\text{and}\hspace{0.3cm} f_{\text{R}} = P_R f = \frac{1}{2}(1+\gamma_5)f.
+2    \label{eq:chiral_projection}
+2\end{equation}

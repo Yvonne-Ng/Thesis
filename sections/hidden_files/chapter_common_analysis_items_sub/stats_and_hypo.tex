@@ -1,0 +1,724 @@
+\section{Hypothesis Testing and Statistics}
+\label{sec:stat_hypo}
+
+This section describes the statistical procedures used in the analyses to be
+presented in Chapters~\ref{chap:search_stop} and \ref{chap:search_hh} that allow
+for conclusions to be drawn about the compatibility of the observed data with theories of
+BSM physics.
+The statistical inference tools described are inherently Frequentist and
+are, for the most part, the \textit{de facto} standard for physics analyses searching for evidence of BSM physics
+at the large experiments at the LHC.
+Their widespread adoption by the experiments at the LHC does not indicate the
+philosophical merit of Frequentist inference methodology, but rather highlights the technically simple implementation
+of Frequentist hypothesis testing that allows for physics analyses to not get
+bogged down in some of the details associated with Bayesian analyses, computational
+or otherwise.
+Indeed, most people by default think and interact with the world around them
+in a Bayesian manner.
+Taking the path of least resistance, physicists have tended to opt for the simpler
+implementation of reporting their results, which, at the end of the day,
+tend to not lose out much in terms of the picture of the objective truth that they draw~\cite{CousinsBayes}.
+Section~\ref{sec:hypo_test} will describe, in somewhat general terms, what
+hypotheses tests are and the way in which they are performed in ATLAS.
+Sections~\ref{sec:likelihood}-\ref{sec:asymptotics} describe the details by which the measurements and systematic
+uncertainties of
+an analysis are transcribed into the language of the hypothesis test described
+in Section~\ref{sec:hypo_test} using a likelihood-based test statistic.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% HYPOTHESIS TESTING
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Hypothesis Testing and the \cls Construction}
+\label{sec:hypo_test}
+
+Hypothesis testing starts with the unambiguous formulation of the hypothesis being
+tested.
+In the search for evidence of BSM physics, there are two hypothesis pitted
+against one another.
+The first is the \textit{null hypothesis}, denoted $H_0$, which is the hypothesis
+subject to the test and corresponds to the SM hypothesis. The null hypothesis is commonly
+referred to simply as the background-only (B) hypothesis.
+The second hypothesis is the \textit{alternate hypothesis}, denoted $H_1$, and corresponds
+to the SM with the addition of the BSM physics process being sought out.
+The hypothesis $H_1$ is commonly referred to as the signal-plus-background (S+B) hypothesis.
+In both searches presented in Chapters~\ref{chap:search_stop} and \ref{chap:search_hh},
+$H_0$ is taken to be the SM.
+In the search presented in Chapter~\ref{chap:search_stop}, $H_1$ is taken to be a specific
+instantiation of the MSSM (Section~\ref{sec:susy}), with specific masses of the
+stop quark and LSP.
+In the search presented in Chapter~\ref{chap:search_hh}, $H_1$ is taken to be the
+non-resonant production of Higgs boson pairs.
+In this latter case, the $H_1$ hypothesis is indeed a process predicted by the SM but
+it is one that is not included in the $H_0$ hypothesis.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% TEST STATISTICS
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{The Test Statistic and $p$-Values}
+
+In order to perform a hypothesis test in the Frequentist arena, a \textit{test statistic}, $q(x)$,
+is defined.
+A test statistic is defined using the analysis' measurements $x$ alone and is
+used in order to define metrics by which the observed data is said to agree with
+one of the two hypothesis, either $H_0$ or $H_1$.
+In Section~\ref{sec:likelihood}, the exact form of the likelihood used in modern LHC experiments,
+and that used in the analyses discussed in Chapters~\ref{chap:search_stop} and \ref{chap:search_hh},
+will be introduced.
+Here we will discuss general features of Frequentist test statistics and introduce
+some of the language that will be used later on when discussing the results of the
+analyses.
+
+The conclusions eventually drawn about a given hypothesis are based on the observed value
+of $q(x)$ and where this value lies in relation to the pre-defined \textit{critical region}.
+The critical region is defined by a cut value, $q_c$, on the distribution of $q(x)$ under a specified hypothesis.
+In the one-sided tests to be considered in the present thesis, $H_1$
+will tend to have larger values of $q(x)$ as compared to $H_0$.
+The critical region defines two important parameters associated with the hypothesis test.
+The first is the quantity $\alpha$, which is referred to as the \textit{significance level},
+and is defined as follows,
+\begin{align}
+    \int\limits_{q_c}^{+\infty} \, f(q | H_0) \, \mathrm{d}q = \alpha,
+    \label{eq:sig_level}
+\end{align}
+where $f(q|H_0)$ is the probability distribution for the test statistic under
+the background-only hypothesis.
+The quantity $\alpha$ reports the probability for the background-only hypothesis (the SM) to be rejected when it is actually
+true. This is commonly referred to as the Type I error rate.
+The second quantity is $\beta$ and is defined as,
+\begin{align}
+    \int\limits_{-\infty}^{q_c} \, f(q|H_1) \, \mathrm{d}q = \beta,
+    \label{eq:power_level}
+\end{align}
+where $f(q|H_1)$ is the probability distribution for the test statistic under
+the signal-plus-background hypothesis.
+The quantity $\beta$ gives the probability to reject the signal-plus-background hypothesis
+when it is actually true. This is commonly referred to as the Type II error rate.
+The quantity $(1-\beta)$ is referred to as the \textit{power of the test}.
+The better a given physics analysis is at being able to discriminate between the signal
+and background, i.e. to have clear separation between the $H_0$ and $H_1$ hypotheses,
+the smaller (larger) is $\beta$ (the power of the test).
+
+For simplicity, the two hypotheses $H_0$ and $H_1$ can be generalised by introducing a so-called
+`signal strength' parameter, $\mu$, which acts as a multiplicative factor on the signal cross-section
+appearing in $H_1$.
+The hypothesis $H_0$, then, corresponds to the case $\mu = 0$ and that of $H_1$ corresponds to
+$\mu = 1$.
+With this general notation, then, the test statistic under either hypothesis is labelled as $q_{\mu}$.
+
+Once a test statistic is specified, and its expected distribution under a given hypothesis is obtained,
+$p$-values can be defined in order to compute the probability that the observed data originates from the
+considered hypothesis (value of $\mu$).
+They are computed as follows,
+\begin{align}
+    p_{\mu} = \int\limits_{q_{\mu, \text{obs}}}^{+\infty} \, f(q_{\mu} | \mu) \, \mathrm{d}q_{\mu},
+    \label{eq:test_stat_pvalue}
+\end{align}
+where $q_{\mu, \text{obs}}$ is the observed value of the test statistic in data and $f(q_{\mu} | \mu)$ is the probability
+density function of $q_{\mu}$ assuming hypothesis $\mu$.
+A particular case of Equation~\ref{eq:test_stat_pvalue} is that of $p_0$, which quantifies the agreement of the data with the background-only
+hypothesis ($\mu = 0$).
+The $p_{\mu}$-value associated with a given hypothesis ($\mu$-value) is typically converted into the equivalent corresponding Gaussian significance, $Z$, defined
+as the number of standard deviations that correspond to an upper-tail probability of $p_{\mu}$.
+This is illustrated in Figure~\ref{fig:pval_sig}.
+
+As the value of $p_{\mu}$ gets smaller, the confidence that the assumed hypothesis (value of $\mu$) is true
+decreases.
+At a certain point, it becomes acceptable to say that the assumed hypothesis is incompatible with
+reality and the hypothesis described by the particular value of $\mu$ is said to be \textit{excluded}.
+In the particle physics community, the conventional threshold to take for the value of $p_{\mu}$
+at which point a hypothesis is said to be excluded is $p_{\mu} = 0.05$, corresponding to $Z=1.64$ as
+illustrated in Figure~\ref{fig:pval_sig}.
+This choice of the $p_{\mu}$-value at which point exclusion is said to occur defines
+the critical region, described above, of the test.
+The value of $0.05$ corresponds to the significance level of the test (c.f. Equation~\ref{eq:sig_level}), and is referred
+to a hypothesis test being performed at the $95\%$ confidence level (CL) (i.e. CL $\equiv (1-\alpha)$)
+
+In order to claim that new physics has been seen, the null hypothesis ($\mu = 0$) must be rejected.
+The thresholds at which new physics can be said to have been observed and discovered are
+much more stringent than that used for the exclusion of a specified hypothesis.
+Incompatibilities with the null-hypothesis at the level of $p_0 = 1.3 \times 10^{-3}$ and
+$p_0 = 2.9\times 10^{-7}$ are required in order to state that observation and discovery, respectively,
+of new phenomena has occurred.
+These thresholds, illustrated in Figure~\ref{fig:pval_sig}, for claiming observation and discovery are the fabled `$3\sigma$' and `$5\sigma$'
+$p_0$-value criterion adopted by the particle physics community.
+
+\begin{figure}[!htb]
+    \begin{center}
+        \includegraphics[width=0.48\textwidth]{figures/common_ana/stat_hypo/pval_sig_lin}
+        \includegraphics[width=0.48\textwidth]{figures/common_ana/stat_hypo/pval_sig_log}
+        \caption{
+            Gaussian tail significance levels corresponding to specific $p$-values.
+            The significance level of $Z=1.64\sigma$ corresponds to $p = 0.05$,
+            that of $Z=3\sigma$ to $p = 1.3 \times 10^{-3}$, and that of
+            $Z = 5\sigma$ to $p = 2.9\times 10^{-7}$.
+            The area under the tail to the right of each indicated significance level corresponds to
+            the associated $p$-value.
+            \textbf{\textit{Left}}: Linear $y$-scale. \textbf{\textit{Right}}: Logarithmic $y$-scale.
+        }
+        \label{fig:pval_sig}
+    \end{center}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% THE CLS METHOD
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsubsection{The \cls Construction}
+\label{sec:cls_method}
+
+In searches for new physics, the statement that a given signal hypothesis has been excluded
+is an important one.
+Once made by the LHC experiments, the specific signal model is essentially considered
+no longer important to be searched for.
+Therefore, the metrics by which the experiments make claims of exclusion have surrounding them
+a wide-ranging literature discussing the merits and drawbacks of the many such metrics
+that have been proposed over the years.
+The bare $p_{\mu}$-value, for example, extracted from the observed data is subject to statistical fluctuations
+and it can lead to unphysical exclusions when a downward fluctuation in the observed
+number of events occurs.
+This could lead to a premature exclusion of a broad region of new physics
+that would perhaps no longer be looked into by future analyses or experiments.
+
+The standard metric used by the LHC experiments today is known as `\cls'~\cite{CLSReadI,CLSReadII},
+and is constructed in such a way as to reduce the likelihood of excluding signal
+hypotheses that a search is not a-priori sensitive to.
+The \cls metric is given by,
+\begin{align}
+    \text{CL}_s = \frac{p_{\mu}}{1-p_0},
+    \label{eq:cls_def}
+\end{align}
+where the quantities $p_{\mu}$ and $p_0$ quantify the compatibilities between the data and the signal-plus-background
+and background-only hypotheses, respectively.
+Downward fluctuations in data, as those described above, will lead to larger values of $p_0$; thus
+leading to larger values of \cls that avoid premature exclusion.
+
+At the LHC, the \cls metric is used primarily for performing hypothesis tests aimed at claiming exclusion.
+The standard null-hypothesis $p_0$-value is still used for claiming observation and discovery, as described above.
+A given signal hypothesis with $\mu = 1$ is considered excluded at 95\% CL when $\cls \le 0.05$.
+Note that this prescription for exclusion, $\cls \le \alpha$, is generally a stronger requirement than the
+standard prescription, $p_{\mu} \le \alpha$.
+The \cls metric is also used to compute \textit{upper limits}.
+A 95\% CL upper limit on a given signal hypothesis specified by $\mu$
+is the largest value of $\mu$ satisfying $\cls \ge 0.05$.
+The interpretation being that this corresponds to the largest possible signal cross-section
+that is unable to be excluded and therefore smaller values of $\mu$, corresponding
+to smaller signal cross-sections, are still consistent with the observed data and cannot therefore
+be excluded.
+The process of scanning $\mu$ hypotheses and computing the \cls in order to find
+an upper limit on $\mu$ is illustrated in Figure~\ref{fig:upper_limit_scan_cartoon}.
+
+\begin{figure}[!htb]
+    \begin{center}
+        \includegraphics[width=0.5\textwidth]{figures/common_ana/stat_hypo/upper_limit_scan_examplePDF}
+        \caption{
+            An upper limit scan on the signal strength parameter $\mu$ associated with a signal hypothesis.
+            The \cls, given by Equation~\ref{eq:cls_def}, is recomputed for a range of $\mu$ values
+            describing a given signal hypothesis.
+            This is shown by the blue line.
+            The $\mu$ value at which the \cls curve crosses the line $\cls = 0.05$, $\mu^{\text{UL}}$, is the
+            upper limit on $\mu$ for the signal hypothesis.
+            Values of $\mu$ smaller than $\mu^{\text{UL}}$ remain compatible with the observed data,
+            while those values greater than $\mu^{\text{UL}}$ are excluded at $95\%$ CL.
+        }
+        \label{fig:upper_limit_scan_cartoon}
+    \end{center}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% PROFILE LIKELIHOOD
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{The Profile Likelihood Ratio Test Statistic}
+\label{sec:likelihood}
+
+The test statistic associated with many of the LHC experiments, including ATLAS,
+and the one used in the analyses to be presented in Chapters~\ref{chap:search_stop} and
+\ref{chap:search_hh} is based on a likelihood ratio.
+The construction of the test statistic is described in this section.
+
+In the analyses to be presented, so-called `counting experiments' are performed wherein
+only the numbers of events, from data and the predicted background and signal,
+are used as input.
+These numbers are taken from all relevant regions in the analysis: the CRs and the SRs.
+The expected number of events populating each region is given by the following:
+
+\begin{align}
+    N_r^\text{exp}(\mu_{\text{sig}}, \bm{\mu_{\text{bkg}}}, \bm{\theta}) = \mu_{\text{sig}} \cdot N_{r,\,\text{sig}}^{\text{exp}}(\bm{\theta}) + \sum\limits_{b\,\in \,\text{bkg}} \, \mu_b \cdot N_{r,\,b}^{\text{exp}}(\bm{\theta}),
+    \label{eq:test_stat_n_r}
+\end{align}
+where $\bm{\theta}$ are a set of fit nuisance parameters (NP) associated with the systematic
+uncertainties described in Section~\ref{sec:common_systematics},
+$\bm{\mu_{\text{bkg}}}$ are normalisation factors associated with the background processes (indexed by `$b$'),
+$\mu_{\text{sig}}$ is the signal-strength modifier associated with the signal hypothesis,
+$N_{r,\,\text{sig}}^{\text{exp}}$ is the predicted signal yield in region $r$,
+and $N_{r,\,b}^{\text{exp}}$ is the predicted background yield in region $r$ for process $b$.
+The predicted number of events for each process, signal or background, depend on the $\bm{\theta}$ parameter vector
+since systematic variations can adjust the overall normalisation of a given process or adjust
+the acceptance of a given process in the phase space probed by the regions indexed by $r$.
+Both of these effects result in a change in the predicted rate of a process in a given region.
+
+The observed data yield in each region of the analysis is expected to obey Poisson statistics.
+Therefore, the likelihood function $L(\mu_{\text{sig}}, \bm{\mu_{\text{bkg}}}, \bm{\theta})$ is
+constructed as a product of Poisson probability terms:
+\begin{align}
+    L_0(\mu_{\text{sig}}, \bm{\mu_{\text{bkg}}}, \bm{\theta}) = \prod\limits_{r\,\in\,\text{regions}} \, 
+            \frac
+            {
+                \left[N_r^{\text{exp}} ( \mu_{\text{sig}}, \bm{\mu_{\text{bkg}}}, \bm{\theta}) \right] ^ {N_r^{\text{obs}}}
+            }
+            {
+                N_r^{\text{obs}}!
+            }
+            \cdot
+            \exp\left[ N_r^{\text{exp}} ( \mu_{\text{sig}}, \bm{\mu_{\text{bkg}}}, \bm{\theta}) \right],
+    \label{eq:likelihood_main}
+\end{align}
+where $N_r^{\text{obs}}$ is the observed data yield in region $r$.
+
+It is standard practice to parametrize the systematic uncertainties associated with the measurements
+of the $N_r^{\text{exp}}$ in such a way that $\bm{\theta} = 0$ (all of the $\theta_i$ equal to zero) corresponds to the central (nominal) value
+of the set of parameters associated with the uncertainty (e.g. the nominal value of JES).
+The values $\theta_i = \pm 1$ represent shifts in the parameter values by their $\pm 1\sigma$
+variation, as defined by the systematic uncertainty (e.g. systematic shifts in the value of the JES).
+The systematic uncertainties described in Section~\ref{sec:common_systematics} are typically
+computed such that, at the level of performing a physics analysis, only the $\pm 1 \sigma$ shifts about the central value
+in the associated parameter are known.
+Means of interpolation and extrapolation, needed to obtain a smoothly varying response in the
+numbers of predicted events as the $\theta$ parameters vary continuously between their $\pm 1 \sigma$ values,
+are provided by the \textsc{HistFactory} toolkit~\cite{HistFactory}.
+The effects of the NP associated with each of the analysis' systematic uncertainties
+are implemented as \textit{constraint terms} in the likelihood appearing in Equation~\ref{eq:likelihood_main}.
+These terms are typically implemented as Gaussians centered on zero and with a width of one:
+\begin{align}
+    L(\mu_{\text{sig}}, \bm{\mu_{\text{bkg}}}, \bm{\theta}) = L_0(\mu_{\text{sig}}, \bm{\mu_{\text{bkg}}}, \bm{\theta})
+        \, \cdot \, \underbrace{\prod\limits_{i = 1}^{n} \frac{1}{\sqrt{2 \pi}} \, \exp \left( - \frac{\theta_i^2}{2} \right)}_{\text{Constraints}}.
+    \label{eq:full_likelihood}
+\end{align}
+The best estimates (maximum likelihood estimates, MLE) for the parameters ($\mu_{\text{sig}}$, $\bm{\mu_{\text{bkg}}}$, $\bm{\theta}$)
+are determined in the fit to the observed data, $\bm{N^{\text{obs}}}$, via the maximization
+of the likelihood function given by Equation~\ref{eq:full_likelihood}. 
+Typically, and equivalently, the negative log likelihood, $-\ln L$, is minimized.
+Technically, the minimization of Equation~\ref{eq:full_likelihood} in the analyses to be presented
+in Chapters~\ref{chap:search_stop} and \ref{chap:search_hh} is done using \textsc{Miniuit}
+via an interface provided by \textsc{RooFit}~\cite{MINUIT,RooFitI}.
+The values of all parameters prior to (after) the minimization procedure are referred to as the
+`pre-fit' (`post-fit') values.
+The pre-fit values for the $\mu_{\text{bkg}}$ parameters are set to 1 and the $\theta_i$ are set to $0$, corresponding
+to the central values of the Gaussian-shifted parameters associated with the systematic uncertainties.
+
+The test statistic defined for the analyses to be presented is based on the following
+\textit{profile likelihood ratio},
+\begin{align}
+    \lambda(\mu_{\text{sig}}) \equiv
+        \frac{
+            L(\mu_{\text{sig}}, \hat{\hat{\bm{\mu}}}_{\text{bkg}}, \hat{\hat{\bm{\theta}}})
+        }
+        {
+            L(\hat{\mu}_{\text{sig}}, \hat{\bm{\mu}}_{\text{bkg}}, \hat{\bm{\theta}})
+        },
+    \label{eq:likelihood_ratio}
+\end{align}
+where in the numerator the parameters $(\bm{\mu}_{\text{bkg}}, \bm{\theta})$ are fit to their MLE values
+for a given value of the assumed value of the signal-strength parameter $\mu_{\text{sig}}$.
+In the denominator, the full set of parameters ($\mu_{\text{sig}}$, $\bm{\mu_{\text{bkg}}}$, $\bm{\theta}$) are
+equal to their MLE values.
+The likelihood ratio defined in Equation~\ref{eq:likelihood_ratio} is used to define the
+final test statistic relevant to the analyses,
+\begin{align}
+    q_{\mu_{\text{sig}}} = - 2 \ln \lambda (\mu_{\text{sig}}),
+    \label{eq:pll_test_stat}
+\end{align}
+which is used to perform the hypothesis tests described in Section~\ref{sec:hypo_test}.
+
+\subsubsection{Profile Likelihood Fit Determination of Background Constraints}
+
+We note here that the quantities described by $\bm{\mu_{\text{bkg}}}$ in Equations~\ref{eq:test_stat_n_r}--\ref{eq:pll_test_stat} correspond to normalisation correction
+factors for a given SM background process.
+In the analyses to be presented in Chapters~\ref{chap:search_stop} and \ref{chap:search_hh},
+for the background processes for which a dedicated CR is not defined, the associated $\mu_b$ are
+set to 1 and are not allowed to vary during the fit (i.e. their pre-fit and post-fit values are equal).
+For those processes for which a dedicated CR is defined, the associated $\mu_b$ parameters
+are analogous to the normalisation correction factors described in Section~\ref{sec:control_region_method} and
+are unconstrained in the fit procedure.
+They are therefore said to `freely float' during the fit and 
+their post-fit value does not necessarily correspond to their pre-fit one.
+Given the low numbers of events typically expected in the SRs, and the relatively
+large numbers and purities expected in the CRs, the post-fit values of the $\mu_b$ typically
+correspond to those values expected from the simple computations provided by Equation~\ref{eq:mu_fac}
+and/or Equation~\ref{eq:mu_fac_expand}.
+An additional note is that in the signal-plus-background hypotheses with $\mu_{\text{sig}} \ne 0$, if
+the CRs have a non-negligible contamination of signal events, however, this correspondence will generally not be true
+since the post-fit values of the $\mu_b$ will depend on a given value of the $\mu_{\text{sig}}$ parameter.
+The desire to construct a robust background-only model is one of the motivating factors, then,
+in designing analyses in such a way as to minimize the signal contamination in the CRs.
+
+\subsubsection{Profiling}
+\label{sec:profiling}
+
+The Gaussian constraint terms in Equation~\ref{eq:full_likelihood}, centered on 0 and with widths of 1,
+are equivalent to transforming the $\bm{\theta}$ parameters associated with the systematic uncertainties as follows,
+\begin{align}
+    \bm{\theta}^{\prime} = \frac{\bm{\theta} - \bm{\hat{\theta}}}{\bm{\hat{\sigma}}},
+    \label{eq:theta_gaus}
+\end{align}
+where the quantity $\bm{\sigma}$ corresponds to the initial widths of the $\pm 1 \sigma$ variations
+associated with the systematic variation represented by $\bm{\theta}$.
+Equation~\ref{eq:theta_gaus} normalises all NP to facilitate the easy comparison of their pre- and post-fit values and uncertainties.
+For a given NP, then, a post-fit value and uncertainty near 0 and 1, respectively, indicate
+that the data was not able to adjust the NP.
+Changes in the post-fit NP values (uncertainties) are referred to as NP `pulling' (`profiling').
+NP values may be pulled far from zero in order to maximize the overall agreement of the background prediction
+with data during the fit procedure.
+NP may be profiled in such a way that the post-fit uncertainties on the NP are smaller than
+the initial estimate of the uncertainty provided by auxiliary measurements and data.
+Such a case indicates that the initial prior on the impact of the systematic uncertainty was too
+large and that the uncertainties may be reduced so as to be more compatible  with the range allowed by
+the data statistics relevant for the analysis at hand.
+This potential for the profiling mechanism to reduce the overall impact of systematic uncertainties
+on an analysis' results is seen as a general benefit of the profile likelihood prescription described
+by Equations~\ref{eq:likelihood_ratio} and \ref{eq:pll_test_stat}.
+The interpretation of this is that the profiling mechanism allows for the impact of the systematic uncertainties
+to be more accurately characterised in the phase space in which they are being applied, as opposed
+to that of the auxiliary measurements in which they are initially derived.
+
+
+\subsection{Toy Examples of the Profile Likelihood Fit}
+\label{sec:profile_examples}
+
+The best way to get a feel for the profiling mechanisms just described is via a few simple
+examples, to which we turn now.
+
+\subsubsection{Profile Likelihood Fit Example 1a}
+\label{sec:profiling_example_1a}
+
+This example illustrates the mechanisms of both NP profiling and pulling.
+We set up a dummy analysis, with two regions and two backgrounds only.
+The regions are referred to as `Region 1' and `Region 2' and the backgrounds
+are `Bkg 1' and `Bkg 2'.
+A summary of the predicted and observed yields, as well as the uncertainties on
+the predicted yields, is as follows:
+
+\begin{itemize}
+    \item \underline{\textbf{Region 1}}
+        \begin{itemize}
+            \item Background composition: 80 events from Bkg 1
+            \item Observed data: 100 events
+            \item Systematic Uncertainties:
+            \begin{itemize}
+                \item `Norm. Bkg. 1': A 50\% systematic uncertainty on the predicted yield of Bkg 1
+            \end{itemize}
+        \end{itemize}
+    \item \underline{\textbf{Region 2}}
+        \begin{itemize}
+            \item Background composition: 100 events from Bkg 2
+            \item Observed data: 100 events
+            \item Systematic Uncertainties:
+            \begin{itemize}
+                \item `Norm. Bkg. 2$_1$': A 10\% systematic uncertainty on the predicted yield of Bkg 2
+                \item `Norm. Bkg. 2$_2$': An additional 10\% systematic uncertainty on the predicted yield of Bkg 2
+            \end{itemize}
+        \end{itemize}
+\end{itemize}
+
+From this information, a likelihood as described by Equation~\ref{eq:full_likelihood} is constructed.
+In this setup, all of the $\mu$ parameters are set to 1 for the backgrounds
+and NP constraint terms parametrized by $\theta$ terms
+for each of the three uncertainties are included.
+The pre-fit situation is illustrated by the left side of Figure~\ref{fig:prof_ex_1_np50}.
+A profile-likelihood fit to the observed data is performed and the results for the fitted parameters
+are shown in Figure~\ref{fig:prof_ex_1_pulls} and by the
+right side of Figure~\ref{fig:prof_ex_1_np50}.
+
+Focusing first on Region 1, we see that after the fit the pre-fit 20 event excess is removed by
+the increase in Bkg. 1's predicted yield.
+This is explained by the NP on Bkg. 1 being pulled by nearly 0.5, as seen in Figure~\ref{fig:prof_ex_1_pulls}.
+Using Equation~\ref{eq:theta_gaus}, a pull by 0.5 in this NP is precisely 20 events ($\theta^{\text{post-fit}} \times ( \text{pre-fit uncertainty} \times N^{\text{pre-fit}}) \rightarrow 0.5 \times (0.5 \times 80) = 20$).
+The post-fit uncertainty has also been reduced to that allowed by the data statistics, which is driven
+by the NP on Bkg. 1 being profiled from its initial uncertainty of $\pm 1$ to $\pm 0.25$ ($\Delta \theta^{\text{post-fit}} \times (\text{pre-fit uncertainty} \times N^{\text{pre-fit}}) \rightarrow 0.25 \times (0.5 \times 80) = 10$), also seen in Figure~\ref{fig:prof_ex_1_pulls}.
+
+Looking to the post-fit results of Region 2, we see that, as with Region 1, the overall
+background uncertainty has been profiled so as to be compatible with that allowed by the data statistics.
+The main difference with respect to Region 1, however, is the fact that there are two NP constraints
+on Bkg. 2.
+Each of the NP constraint terms is already at the level of $10\%$ that corresponds to the data statistics.
+There is therefore a redundancy in the NP constraints on Bkg. 2 and the fit develops a correlation between
+them such that their combined post-fit impact on Bkg. 2 is as seen on the right side of Figure~\ref{fig:prof_ex_1_np50}.
+The correlation between the two constraints is seen in Figure~\ref{fig:prof_ex_1_pulls} to be $\rho = -0.5$,
+which, in this simple scenario, can be expected to be the case by the following:
+\begin{align}
+    \sigma_{1} &= \sigma_{2} = \sigma, \nonumber \\
+    \sigma_{1 \oplus 2} &= \sqrt{ \sigma_1^2 + \sigma_2^2 + 2 \sigma_1 \sigma_2 \rho } = \sigma, \nonumber
+\end{align}
+where, in the second line, we expect $\sigma$ to be at the level of the data statistics.
+This requires $\rho = -0.5$ and is indeed what the profile-likelihood fit ends up with.
+
+\begin{figure}[!htb]
+    \begin{center}
+        \includegraphics[width=0.48\textwidth]{figures/common_ana/stat_hypo/profile_examples/profile_ex_1_NP50_pre}
+        \includegraphics[width=0.48\textwidth]{figures/common_ana/stat_hypo/profile_examples/profile_ex_1_NP50_post}
+        \caption{
+            \textbf{\textit{Left}}: Pre-fit scenario for Example 1a, described in the text.
+                The hatched areas indicate the uncertainty in the predicted yields.
+            \textbf{\textit{Right}}: Post-fit scenario for Example 1a, described in the text.
+                The hatched areas indicate the uncertainty in the predicted yields.
+        }
+        \label{fig:prof_ex_1_np50}
+    \end{center}
+\end{figure}
+
+\begin{figure}[!htb]
+    \begin{center}
+        \includegraphics[width=0.48\textwidth]{figures/common_ana/stat_hypo/profile_examples/profile_ex_1_pulls}
+        \includegraphics[width=0.48\textwidth]{figures/common_ana/stat_hypo/profile_examples/np_corr_ex_1}
+        \caption{
+            \textbf{\textit{Left}}: Post-fit values for the parameters entering the profile-likelihood fit
+                described in Example 1a. The post-fit result for the NP `Norm. Bkg. 1' in pink corresponds
+                to that of the fit configuration described in Example 1b, below.
+                All other parameters (in black) correspond to those in the fit configuration described in Example 1a.
+            \textbf{\textit{Right}}: Post-fit correlation matrix for the parameters entering the profile-likelihood
+                fit described in Example 1a.
+        }
+        \label{fig:prof_ex_1_pulls}
+    \end{center}
+\end{figure}
+
+\subsubsection{Profile Likelihood Fit Example 1b}
+\label{sec:profiling_example_1b}
+
+In the previous example we saw that, through the pulling of a constraint term,
+the complete removal of a discrepancy between the observed data and the
+predicted background was made possible.
+This reinforces the idea that the predicted numbers of events are dependent
+upon the NP entering the fit ($N^{\text{exp}} \rightarrow N^{\text{exp}}(\bm{\theta})$)
+and that their post-fit values can change even if their is no explicit normalisation-correcting $\mu$ terms in the fit.
+Of course, the large uncertainty on Bkg. 1's prediction in Example 1a equates to a loose constraint term and allows for a large degree of
+flexibility in the fit for it to be pulled in such a way as to have the post-fit prediction perfectly line up with
+the data being fit to.
+In this current example we reproduce the fit configuration introduced in Example 1a, but instead the
+uncertainty on Bkg. 1 in Region 1 is reduced to $10\%$.
+The pre- and post-fit distributions of the observed and predicted events, with their uncertainties,
+are shown in Figure~\ref{fig:prof_ex_1_np10}.
+The results of the fit for Region 2 are exactly the same as in Example 1a since we have not altered
+the parameters describing this region.
+
+Given the tighter constraint on the predicted yield of Bkg. 1 in Region 1, as compared to Example 1a,
+the NP describing Bkg. 1's normalisation uncertainty does not have enough freedom to be pulled to fully
+cover the 20 event excess.
+The post-fit value of the NP is shown in pink in Figure~\ref{fig:prof_ex_1_pulls}.
+It is pulled to a value of 1.04, which corresponds to just above 8 events as seen in Figure~\ref{fig:prof_ex_1_np10}.
+The smaller uncertainty on Bkg. 1's prediction in this example, as compared to Example 1a, corresponds
+to a higher level of confidence in its pre-fit value.
+The associated NP constraint term, therefore, should not be allowed the freedom to contradict this
+high degree of confidence by shifting the prediction to the same extent as that in Example 1a.
+
+\begin{figure}[!htb]
+    \begin{center}
+        \includegraphics[width=0.48\textwidth]{figures/common_ana/stat_hypo/profile_examples/profile_ex_1_NP10_pre}
+        \includegraphics[width=0.48\textwidth]{figures/common_ana/stat_hypo/profile_examples/profile_ex_1_NP10_post}
+        \caption{
+            \textbf{\textit{Left}}: Pre-fit scenario for Example 1b, described in the text.
+                The hatched areas indicate the uncertainty in the predicted yields.
+            \textbf{\textit{Right}}: Post-fit scenario for Example 1b, described in the text.
+                The hatched areas indicate the uncertainty in the predicted yields.
+        }
+        \label{fig:prof_ex_1_np10}
+    \end{center}
+\end{figure}
+
+\subsubsection{Profile Likelihood Fit Example 2}
+\label{sec:profiling_example_2}
+
+In this example we again set up the same fit configuration as in Example 1a.
+However, a signal process `Signal' with 20 events predicted in Region 1 is added.
+The signal-strength parameter $\mu_{\text{sig}}$, acting as a freely floating normalisation
+term for the signal process, is now included in the fit as well.
+A profile-likelihood fit to the observed data is once again performed.
+The pre- and post-fit distributions of the observed data and predicted backgrounds,
+with their uncertainties, are shown in Figure~\ref{fig:prof_ex_2_pre}.
+
+From the post-fit distributions shown in Figure~\ref{fig:prof_ex_2_pre}, we see the
+expected result that the post-fit uncertainties on the predicted backgrounds
+are such that they match the precision allowed by the data statistics.
+As we have not changed anything in Region 2, relative to Example 1a and Example 1b,
+we do not expect the post-fit values of the NP associated with Bkg. 2 to have changed relative
+to those examples.
+The post-fit value of the NP associated with Bkg. 1, however, differs quite substantially
+relative to the earlier examples, as is seen in Figure~\ref{fig:prof_ex_2_pulls}.
+We see that the NP term `Norm. Bkg. 1' is neither pulled nor profiled.
+Instead, the unconstrained signal-strength parameter $\mu_{\text{sig}}$ is able to `eat up'
+the remaining degrees of freedom needed for the reduction in the background prediction's uncertainty.
+Since the pre-fit predicted yield of the signal process is such that the complete background
+prediction in Region 1 matches the data, the post-fit value for $\mu_{\text{sig}}$ is equal to its
+pre-fit value of 1.
+It's uncertainty, however, is $\pm 1.90$ and corresponds to a post-fit uncertainty
+on the signal process' prediction of nearly 40 events ($1.90 \times 20$).
+This precision on the signal matches the pre-fit uncertainty of of Bkg. 1, with its predicted 80 events
+and 50\% uncertainty.
+This illustrates the fact that the $\mu_{\text{sig}}$ term is completely degenerate with the NP associated with Bkg. 1:
+any variation in the NP term can be fully compensated by the unconstrained $\mu_{\text{sig}}$ term.
+This compensation allows for the background precision in Region 1 to be reduced nearly to
+that of the data statistics, as seen in Figure~\ref{fig:prof_ex_2_pre},
+and is characterised by the nearly perfect anti-correlation between the $\mu_{\text{sig}}$ and
+Bkg. 1 NP constraint terms, shown in the right side of Figure~\ref{fig:prof_ex_2_pulls}.
+This ability for $\mu_{\text{sig}}$ to compensate the NP by preventing it from being pulled is a general
+feature of the addition of unconstrained normalisation-scaling $\mu$ terms in these types of fits, regardless
+of whether they are associated with signal or background processes.
+
+\begin{figure}[!htb]
+    \begin{center}
+        \includegraphics[width=0.48\textwidth]{figures/common_ana/stat_hypo/profile_examples/profile_ex_2_pre}
+        \includegraphics[width=0.48\textwidth]{figures/common_ana/stat_hypo/profile_examples/profile_ex_2_post}
+        \caption{
+            \textbf{\textit{Left}}: Pre-fit scenario for Example 2, described in the text. 
+                The hatched areas indicate the uncertainty in the predicted yields only on the background processes.
+            \textbf{\textit{Right}}: Post-fit scenario for Example 2, described in the text.
+                The hatched areas indicate the uncertainty in the predicted yields only on the background processes.
+        }
+        \label{fig:prof_ex_2_pre}
+    \end{center}
+\end{figure}
+
+\begin{figure}[!htb]
+    \begin{center}
+        \includegraphics[width=0.48\textwidth]{figures/common_ana/stat_hypo/profile_examples/profile_ex_2_pulls}
+        \includegraphics[width=0.48\textwidth]{figures/common_ana/stat_hypo/profile_examples/np_corr_ex_2}
+        \caption{
+            \textbf{\textit{Left}}: Post-fit values for the parameters entering the profile-likelihood fit
+                of Example 2,
+                described in the text. 
+            \textbf{\textit{Right}}: Post-fit correlation matrix for the parameters entering the profile-likelihood
+                fit of Example 2, described in the text.
+        }
+        \label{fig:prof_ex_2_pulls}
+    \end{center}
+\end{figure}
+
+It is interesting to make note of the fact, exemplified by the above discussion, that the precision on a given process' $\mu$ term,
+if allowed to vary in the fit, is highly dependent on the precision of the prediction of the
+other backgrounds.
+This, of course, is intuitive and has meaningful consequences for searches for new physics, in which the signal-plus-background
+hypotheses are characterised by $\mu_{\text{sig}}$ terms associated with the sought-for signal processes.
+Large uncertainties in background predictions result in less precise statements about the presence
+of signal in the analyses' regions.
+This, then, reduces the statistical power (c.f. Equation~\ref{eq:power_level}) of the hypothesis tests
+being performed and, if the uncertainties are large enough, prevent the analyses from making meaningful
+statements about the compatibility of the signal-plus-background hypotheses with the observed data.
+
+As an illustration, Figure~\ref{fig:cls_scan_uncert} shows the CL$_s$ computed as a function of varying signal-to-background ratio, for several background uncertainty hypotheses,
+for a fixed number of predicted background and data events in a single-region analysis.
+The number of signal events needed to cross into the critical CL$_s <0.05$ region,
+at which point a signal hypothesis may be considered excluded at 95\% CL, is quite sensitive to the uncertainty
+on the background prediction.
+Again, this is intuitive mainly from the perspective that reduced levels of precision
+in the background prediction correspond directly to increased levels of ambiguity 
+as to the point at which a signal becomes apparent.
+
+Figure~\ref{fig:cls_scan_uncert} also illustrates the increase in the upper limit
+on a signal process' cross-section, as a result of increased background uncertainty,
+in cases where no significant excess in data over the predicted background level is observed.
+For example, imagine that the sought-for signal process has a predicted cross-section leading to an
+$S/B$ value of 0.4 in Figure~\ref{fig:cls_scan_uncert}.
+At a level of background uncertainty of $30\%$, with a CL$_s \approx 0.35$, this process can neither be said
+to be excluded nor to actually exist.
+At this background uncertainty, the analysis would find an upper-limit on the signal process' $\mu_{\text{sig}}$ term nearing a value of 2,
+since the CL$_s$ crossing point is near $S/B = 0.8$.
+Using this terminology, then, when no meaningful discrepancies (characterised by very low $p_0$-values) between the predicted background and observed event counts
+are seen, the upper-limit value under the hypothesis for a
+given signal process gives a measure of `how far' the analysis is from being sensitive to that process.
+If the upper-limit value is $200$ times the predicted cross-section, the analysis is not sensitive to the process at all.
+However, if the upper-limit value is $\mathcal{O}(1)$ times the process' predicted cross-section, the analysis
+is entering the regime wherein it will be able to resolve the presence of the signal and can begin to make meaningful statements about
+its likelihood of existence.
+If an upper-limit value corresponds to a cross-section value that is \textit{less} than the predicted one,
+the process --- as predicted --- is excluded.
+
+\begin{figure}[!htb]
+    \begin{center}
+        \includegraphics[width=0.6\textwidth]{figures/common_ana/stat_hypo/cls_bkguncert_scan}
+        \caption{
+            Dependence of computed CL$_s$ on the signal-to-background ratio for a single-region
+            analysis in which 20 events are predicted and 20 events are observed, shown
+            for varying levels of uncertainty on the predicted background.
+        }
+        \label{fig:cls_scan_uncert}
+    \end{center}
+\end{figure}
+
+\FloatBarrier
+\subsection{Asymptotic Formulation of Likelihood Ratio Tests}
+\label{sec:asymptotics}
+
+In Section~\ref{sec:profile_examples} we have made use of the profile likelihood ratio fits and
+even shown some examples of hypothesis testing.
+We have not shown, however, how the probability density functions of the test statistics described
+by Equation~\ref{eq:pll_test_stat} are obtained.
+The probability density functions are needed in order to compute the $p_{\mu}$-values as indicated
+by Equation~\ref{eq:test_stat_pvalue}.
+There are two general approaches taken to obtain such distributions.
+The first is by generating so-called `pseudo-experiments', in which the predictions of the hypotheses are sampled within their uncertainties many times,
+with a value of the corresponding test statistic computed for each sample, such that a distribution
+of the $q_{\mu}$ may be obtained.
+This method can be computationally intensive if high-levels
+of precision are required for the analysis.
+The method used in the searches presented in Chapters~\ref{chap:search_stop} and \ref{chap:search_hh}
+relies on asymptotic approximations of the sampling distributions of the 
+profile-likelihood ratio test statistic of Equation~\ref{eq:pll_test_stat}.
+The complete discussion and description of the asymptotic formulae used to represent
+Equation~\ref{eq:pll_test_stat} is given in Ref.~\cite{AsymptoticFormula}.
+
+The key takeaway from Ref.~\cite{AsymptoticFormula}, is that in the large $N$ limit, with $N$
+corresponding to the data sample size, the sampling distributions of the profile likelihood test statistics
+take the form of non-central chi-square distributions with single degrees of freedom,
+\begin{align}
+    f(q_{\mu} | \Lambda) = \frac{1}{2\sqrt{q_{\mu}}} \frac{1}{\sqrt{2\pi}} \left[ \exp \left( -\frac{1}{2} (\sqrt{q_{\mu}} + \sqrt{\Lambda})^2 \right) 
+        + \exp \left( -\frac{1}{2}(\sqrt{q_{\mu}} - \sqrt{\Lambda} )^2 \right) \right],
+    \label{eq:test_stat_asym}
+\end{align}
+where the non-centrality term, $\Lambda$, is given by the following:
+\begin{align}
+    \Lambda = \frac{ (\mu - \hat{\mu})^2 } {\sigma^2}.
+    \label{eq:noncentrality}
+\end{align}
+Example distributions of the test statistic probability density function are shown in Figure~\ref{fig:qmu_dist},
+using Equation~\ref{eq:test_stat_asym}, illustrating the differences between the background-only
+and signal-plus-background hypotheses for a case in which there is a large predicted rate of signal
+and for the case in which there is not.
+As described by Equation~\ref{eq:test_stat_pvalue}, the $p_{\mu}$ and $p_0$ values needed, among other things, for the computation of \cls can be obtained from these distributions
+for a given value of $q_{\mu}$ by integrating the areas to the right of the specified $q_{\mu}$ under the distributions associated
+with the $S+B$ and $B$ hypotheses, respectively.
+
+\begin{figure}[!htb]
+    \begin{center}
+        \includegraphics[width=0.48\textwidth]{figures/common_ana/stat_hypo/qmu_dist_large_s}
+        \includegraphics[width=0.48\textwidth]{figures/common_ana/stat_hypo/qmu_dist_small_s}
+        \caption{
+            Probability densities of the profile likelihood test statistic of Equation~\ref{eq:pll_test_stat}
+            obtained under the asymptotic formulae described in Ref.~\cite{AsymptoticFormula} and shown
+            in Equation~\ref{eq:test_stat_asym}.
+            The background-only hypothesis ($\mu = 0$) is shown in blue, and the signal-plus-background
+            hypothesis ($\mu \ne 0$) is shown in red.
+            \textit{\textbf{Left}}: The case in which the predicted amount of signal is large compared to the
+                background rate.
+            \textit{\textbf{Right}}:  The case in which the predicted signal rate is similar to that of the background.
+        }
+        \label{fig:qmu_dist}
+    \end{center}
+\end{figure}

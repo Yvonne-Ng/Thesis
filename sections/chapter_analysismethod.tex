@@ -11,10 +11,10 @@
 
 
 \section{Introduction}
-Both analyses presented in this thesis fall into the resonance search category, which are analyses that look for bumps like excesses on top of smooth backgrounds. The method is simple in its experimental signature, as can be seen in Figure~\ref{fig:bump} and theoretical calculation. Many particles have been discovered in this way before, which include the $J/\Psi$~\cite{PhysRevLett.33.1406}~\cite{PhysRevLett.33.1404}, the $\upsilon$~\cite{Herb:1977ek}, the $W$~\cite{Arnison:142059}, $Z$~\cite{hollik1984composite}, and the Higgs boson. The method has great potential in making future discoveries. This chapter describes
+Both analyses presented in this thesis fall into the resonance search category, which are analyses that look for bumps like excesses on top of smooth backgrounds. The method is simple in its experimental signature, as can be seen in Figure~\ref{fig:bump} and theoretical calculation. Many particles have been discovered in this way before, which include the $J/\Psi$~\cite{PhysRevLett.33.1406}~\cite{PhysRevLett.33.1404}, the $\Upsilon$~\cite{Herb:1977ek}, $Z$~\cite{hollik1984composite}, and the Higgs boson. The method has great potential in making future discoveries. This chapter describes
 the analysis methods used in performing the analyses covered in Chapter~\ref{chapter:dijetISR} and Chapter~\ref{chapter:dimuon}. 
 
-These analyses perform searches in the resonance mass variable. The variable came from the addition of the 4-vector of the two candidate final state particles.
+These analyses perform searches in the resonance mass variable(the target signal spectrum). The variable came from the addition of the 4-vector of the two candidate final state particles.
 
 \begin{figure}[!htb]
     \begin{center}
@@ -31,7 +31,7 @@ The chapter below provides a recipe for a resonance finding analysis: Monte Carl
 
 \section{Simulated Physics Events(Monte Carlo)}
 \label{sec:MC}
-Simulated physics events(Monte Carlo) are used to design the cuts which optimize the selection, verifying the validity of the data-driven background estimation strategies as well as deriving the different systematic uncertainties(E.G. luminosity uncertainty) present in the experiment.
+Simulated physics events(Monte Carlo) are used to design the cuts which optimize the selection, verifying the validity of the data-driven background estimation strategies as well as deriving the different systematic uncertainties(E.G. energy resolution uncertainty) present in the experiment.
 An event generator used by ATLAS is PYTHIA~\cite{PYTHIA}, which is used to simulate the proton-proton collision, the tree-level generation, the hadronization, the fragmentation as well as the showering. 
 Other than PYTHIA, the PowHeg generator~\cite{oleari2010powheg} and NLOJet++~\cite{nagynlojet++} are also used. The detector effect is simulated by GEANT4~\cite{Agostinelli:602040}.
 
@@ -42,14 +42,13 @@ Other than PYTHIA, the PowHeg generator~\cite{oleari2010powheg} and NLOJet++~\ci
 \label{sec:dataprep}
 The data of the analyses discussed in this chapter originate from collision data. It is collected from the ATLAS detector and its triggering hardware and software discussed in Chapter~\ref{chapter:ATLAS}. The data collected as energy deposits and tracks are analyzed and collected analysis objects as discussed in Chapter~\ref{chapter:common_analysis_items}. After that, the dataset goes through several more steps in data preparation before getting analyzed for resonance finding in the chapter: the following is a short outline of how data are being prepared for the analyses.
 
-First trigger chains addition is studied, balancing both events collected and signal sensitivity of the dataset studied. After that, the data is processed with the optimal analysis object working points applied, then, event cuts are introduced to maximize the signal sensitivity while reducing the background events. The resolution of the data collected from detector is constrained by detector resolution, a binned approach is taken. The binning is selected based on studies on the detector resolution and signal sensitivity consideration. Details is described in Section~\ref{sec:binning}). Finally, a cross-check that compares the data and MC is performed variable regions other than the targetted spectrum. An agreement between MC and data ensures both the previous steps in data preparation are executed correctly and the MC modelling is close enough to data descriptions. After all the data preparation steps are completed, a target signal spectrum is available to be analyzed statistically for resonances. 
+First trigger chains addition is studied, balancing both events collected and signal sensitivity of the dataset studied. After that, the data is processed with the optimal analysis object working points applied, then, event cuts are introduced to maximize the signal sensitivity while reducing the background events. As the resolution of the data collected from detector is constrained by detector resolution, a binned approach is taken. The binning is selected based on studies on the detector resolution and signal sensitivity consideration. (Details are described in Section~\ref{sec:binning}). Finally, a cross-check that compares the data and MC is performed variable regions other than the target signal spectrum. An agreement between MC and data ensures both the previous steps in data preparation are executed correctly and the MC modelling is close enough to data descriptions. After all the data preparation steps are completed, a target signal spectrum is available to be analyzed statistically for resonances. 
 
 \subsection{Binning Strategy} 
 \label{sec:binning}
 
-The target spectrum is binned for the resonance hunt. The bins are chosen to be narrower than the width of the expected signal, as this would lower the probability of mistaking fluctuation in a single bin as excess.
-
-The binning is optimized through the mass resolution of the target spectrum. Since mass resolution describe the maximal sensitivity seen in the target spectrum, binnning is often chosen to be factors of the maximal resolution. This avoid the lost of information and allow the signal bump to be wider. 
+%The target spectrum is binned for the resonance hunt. The bins are chosen to be narrower than the width of the expected signal, as this would lower the probability of mistaking fluctuation in a single bin as excess.
+The binning is optimized through the mass resolution of the target spectrum. Since mass resolution describe the maximal sensitivity seen in the target spectrum, binnning is often chosen to be the resolution. This avoid the lost of information, and allow for targetted signal to be searched for the the bump like shape with sufficient sensitivity.
 The mass resolution is found through MC studies. As its main contributor is the detector response, it can be studied through by performing a Gaussian fit on the $m^{reco}-m^{truth}$ on MC sample, where $reco$ is reconstructed event from GEANT4, and $truth$ is the truth events showering and detector reconstruction from the same event.
 A Gaussian fit is performed to find the mean ($\mu$) and the width($\sigma$). The width found for the particular reconstructed mass is the resolution at that mass. 
 
@@ -59,7 +58,7 @@ A Gaussian fit is performed to find the mean ($\mu$) and the width($\sigma$). Th
 \label{sec:backgroundest}
 After the dataset has been prepared, the spectrum is ready to be analyzed to search for resonances. In order to analyze statistically whether there is an excess of events beyond the Standard Model prediction, a reliable prediction of the Standard Model events in the signal region along with its statistical error is needed. The step to estimate background Standard Model events is known as background modeling.
 Many considerations go into background modeling for analysis: accuracy, availability, size of the estimation error and ease of implementation. In ATLAS, the following methods are recommended for background modeling in order of descending preference:
-    First, the background estimation can be found by the MC generation of the events when the simulation is reliable and inexpensive for data generation. Second, in cases where the MC generated is low in event count but reliable in shape, an alternative estimation could be executed by scaling up the template from MC. In the case of the two analyses presented in this thesis, neither are there enough MC events nor are the shape of the MC event physically reliable. Thus, another class of methods of background estimation needs to be explored, all relying on the ``smoothness" feature of the background events. These include the fit function method, the expanded sliding window fit method(SWiFT) and the Gaussian Process method~\cite{frate2017modeling}.
+    First, the background estimation can be found by the MC generation of the events when the simulation is reliable and inexpensive for data generation. Second, in cases where the MC generated is low in event count but reliable in shape, an alternative estimation could be executed by scaling up the template(sample generated from MC not in full statistics) from MC. In the case of the two analyses presented in this thesis, neither are there enough MC events nor are the shape of the MC event physically reliable. Thus, another class of methods of background estimation needs to be explored, all relying on the ``smoothness" feature of the background events. These include the fit function method, the expanded sliding window fit method(SWiFT) and the Gaussian Process method~\cite{frate2017modeling}.
     In the following section, the fit function method, the SWiFT method and the Gaussian Process method are discussed.
 
 \subsection{Fit Functions/Global Fit}
@@ -122,23 +121,22 @@ While the fit function is relatively easy to implement, it is highly restrictive
 
     3. The window moves up by one bin along the resonance mass spectrum. Another fit is performed. The prediction up to the middle of the window is piece-wise appended to the prediction in step 2. 
 
-    4. Step 3 is repeated, until the end of the spectrum is reached. The final fit is checked against the threshold $p$-value of the $\chi^{2}$. If the fit $\chi^{2}$ is below the designated threshold, the background estimation ends. Otherwise, the window size is further reduced by one bin, and step 2 and 3 are repeated until either a fit with a bumphunter $p$-value 0.01 is found or the minimum window size is reached. The minimum window size is defined by the signal injection test discussed
-    below in Section~\ref{sec:signalInjection}.
+    4. Step 3 is repeated, until the end of the spectrum is reached. The final fit is checked against the threshold $p$-value of the $\chi^{2}$. If the fit $\chi^{2}$ is below the designated threshold, the background estimation ends. Otherwise, the window size is further reduced by one bin, and step 2 and 3 are repeated until either a fit with a Bumphunter $p$-value 0.01 is found or the minimum window size is reached. The minimum window size is defined by the signal injection test discussed below.
 
-    Figure~\ref{fig:swift} here shows a doodle of the sliding window method.
-    While the SWiFT can provide extra flexibility to the fit for better accuracy, it is also prone to becoming too flexible. Signal present in the data could be estimated as part of the background model. This would lead to diminished signal sensitivity. To provide the most accurate background prediction while balancing signal sensitivity, SWiFT always aims to use the largest window possible that can still accurately describe the background and a study is done (the signal injection test) is performed to find the smallest window that can be used that still provide enough signal sensitivity for the search.
+    While the SWiFT can provide extra flexibility to the fit for better accuracy, it is also prone to becoming too flexible. Signal present in the data could be estimated as part of the background model. This would lead to diminished signal sensitivity. To provide the most accurate background prediction while balancing signal sensitivity, SWiFT always aims to use the largest window possible that can still accurately describe the background.
+%d to find the smallest window that can be used that still provide enough signal sensitivity for the search.
 
-The SWiFT window size is not selected until the data is unblinded, to aid the use of the largest possible window size. A carefully designed unblinding procedure is required to select the optimal window size for the estimation. Figure~\ref{fig:unblinding} shows a sample unblinding procedure, as used in the dijetISR resolved analysis in presented in Chapter~\ref{chapter:dijetISR}.
+To aid the use of the largest window possible, the SWiFT window size is not selected until the data is unblinded. A carefully designed unblinding procedure is required to select the optimal window size for the estimation. Figure~\ref{fig:unblinding} shows a sample unblinding procedure, as used in the dijetISR resolved analysis presented in Chapter~\ref{chapter:dijetISR}.
 
-\begin{figure}[!htb]
-    \begin{center}
-        \includegraphics[width=0.75\textwidth]{figures/chapter_analysismethod/swift2}
-        \caption{
-            This figure shows a doodle on the procedure of the sliding window fit. 
-        }
-        \label{fig:swift}
-    \end{center}
-\end{figure}
+%\begin{figure}[!htb]
+%    \begin{center}
+%        \includegraphics[width=0.75\textwidth]{figures/chapter_analysismethod/swift2}
+%        \caption{
+%            This figure shows a doodle on the procedure of the sliding window fit. 
+%        }
+%        \label{fig:swift}
+%    \end{center}
+%\end{figure}
 
 \begin{figure}[!htb] \begin{center}
         \includegraphics[width=1.05\textwidth]{figures/chapter_analysismethod/swift_unblindingflowchart}
@@ -153,7 +151,7 @@ The SWiFT window size is not selected until the data is unblinded, to aid the us
     \subsection{Gaussian Process} 
     \label{sec:GP}
 
-    Gaussian process background prediction is performed through Bayesian inference. A Gaussian Process is a ``collection of random variables, any finite number of which have a joint Gaussian distribution"~\cite{rasmussen2003gaussian}. Unlike the above fit function-based method, Gaussian Process predicts an infinite number of functional forms, constrained by a kernel(See Section~\ref{sec:kernel}), which defines the bin-to-bin covariance.
+    A Gaussian Process is a ``collection of random variables, any finite number of which have a joint Gaussian distribution"~\cite{rasmussen2003gaussian}. Gaussian process background prediction is performed through Bayesian inference, where the data point provided improves the prediction in a probability distribution. The mean function of the final probability distribution is taken to be the estimate. Unlike the above fit function-based method, Gaussian Process predicts an infinite number of functional forms, constrained by a kernel(See Section~\ref{sec:kernel}), which defines the bin-to-bin covariance.
 
     Gaussian process can naturally be applied to the background estimation of a spectrum since the bin event count the resonance mass distribution are approximatedly a Gaussian distribution in each bin: the prediction in every bin is a Poisson distribution due to its counting experiment nature. Poissonian distributions can be approximately described as a Gaussian Distribution through the Central Limit Theorem~\cite{kwak2017central}. The Gaussian process allows for more flexibility in the functions compared to the above two methods, as can be shown here in this covariance matrix diagram:
 
@@ -171,7 +169,7 @@ The SWiFT window size is not selected until the data is unblinded, to aid the us
 
 \subsubsection{Gaussian Process: Regression}
 
-The Gaussian process background prediction method is a Bayesian method that predicts the posterior probability distribution. The mean function of this posterior probability distribution is the background estimation prediction, and the covariance matrix from it is the GP prediction uncertainty.
+The Gaussian process background prediction result in a joint probability distribution on the count in each bin. The mean function of this probability distribution is the background estimation prediction. The covariance matrix from it is the GP prediction uncertainty.
 
 %where the prior distributions can be ``updated" by binning information. From Bayesian inference, a new prediction can be formed from the posterior. It can be shown that the mean and covariance can be given by the following formulae:
 
@@ -182,33 +180,31 @@ The Gaussian process background prediction method is a Bayesian method that pred
     \begin{equation}
         \mu(x_{*}|y)  = \mu(x_{*})+ K(x_{*}, x)[K(x, x)+ \sigma^{2}(x)I]^{-1}(y-\mu(x))
     \end{equation}
-    Here, $\mu(x_{*}| y) $ is the mean function posterior prediction of of point $x_{*}$, given known data point x and y, K is the kernel, $I$ is the diagonal matrix, $\sigma$ is the white noise term in each bin. $\mu(x_{*})$ is the prior probability distribution mean. $x$ is a vector of the input mass point, and $x'$ are the same points in a 2d matrix.
+    Here, $\mu(x_{*}| y) $ is the mean function posterior prediction of of point $x_{*}$, given known data point x and y, K is the kernel, $I$ is the diagonal matrix, $\sigma$ is the white noise term in each bin. $\mu(x_{*})$ is the prior probability distribution mean. $x$ is a vector of the input mass point, and $x'$ are the same points in a 2d matrix. $y$ is the corresponding data count in each mass point x. x' is the vector of same points as x in a 2d matrix. $x_{*}$ is the vector of the points where the background prediction are evaluated.
 
     \item \textbf{The Covariance Function}
     \begin{equation}
         \sum(x_{*}, x_{*}') = K(x_{*}, x) - ((K(x_{*}, x')+\sigma^{2}I)^{-1)}[K(x, x')]
     \label{eq:covariance}
     \end{equation}  
-    Here, the covariance is defined for $x_{*}$ and $x_{*}'$, the data point where the predictions were made, x and x' where the input data points are given. K is the kernel of the Gaussian Process prediction.
+    Here, the covariance is defined for $x_{*}$ and $x_{*}'$.
 
     \end{itemize}
 
-    Here, x and y are input data to constrict the distribution, $x_{*}$ is the points where the posterior GP are evaluated from, x' is the same points as x in a 2d matrix.
 
     \subsubsection{Gaussian Process: the Kernel}
 \label{sec:kernel}
-From Eq.~\ref{eq:covariance}, kernel is directly related to the covariance function in Gaussian Process. Various kernels are used for different analysis backgrounds with distinct features. A specific example to the dijet spectrum is demonstrated in ~\cite{frate2017modeling}.
+From Eq.~\ref{eq:covariance}, kernel is directly related to the covariance function in Gaussian Process. Various kernels are used for different analysis backgrounds with distinct features. A specific example to the dijet spectrum is demonstrated in ~\cite{frate2017modeling}. A more general example is given as below:
 
 %t's found that the simple radial basis function and a white noise kernel are sufficient to describe the background spectrum, the signal is described by another radial basis function kernel of a particular mean value.
 %The kernels are given as the following: 
-An other more general example is given as below.
 %
     \begin{itemize}
         \item \textbf{Background Kernel}
 
             The background kernel is the addition of the Radial Basis kernel function plus the white noise kernel.
             \begin{equation}
-                K_{bkg}(x, x') = A_{1} * exp(-\frac{||x-x'||}{2\sigma^{2}}) *+ K_{noise}
+                K_{bkg}(x, x') = A_{1} * exp(-\frac{||x-x'||}{2\sigma_{1}^{2}}) *+ K_{noise}
                 \label{eq:backgroundkernel}
             \end{equation}
             Here, $A_{1}$ is the amplitude hyperparameter that describes the size of the kernel, $\sigma_{1}$ is the lengthscale parameter.
@@ -234,13 +230,13 @@ An other more general example is given as below.
     \end{itemize}
             Here, $A_{2}$ is the amplitude of the signal kernel, m is the value where the kernel peaked on, and $\sigma_{2}$ is the lengthscale of the signal kernel. 
 
-	Of all the hyperparameters, lengthscale($\sigma$) is given special attention as its value descirbes how much neighboring points affect prediction at any given point. It is prone to take on a low value and overfit the data being predicted. Its special treatment is described in the following sections.
+	Of all the hyperparameters, the lengthscales($\sigma_{1}$ and $\sigma_{2}$) are given special attention as its value descirbes how much neighboring points affect prediction at any given point. It is prone to take on a low value and overfit the data being predicted. Their special treatment are described in the following sections.
 
     \subsubsection{Gaussian Process: Hyperparameter Optimization}
     \label{sec:hyperparam}
     %The lengthscale($\sigma$) hyperparameter in both kernels(See Eq.~\ref{eq:backgroundkernel} and Eq.~\ref{eq:signalkernel}) is prone to overfitting when the chosen value is too small. This would lead to reduced signal sensitivity and the overfitting of statistical fluctuation. A lower bound is set in these hyperparameters: The lower bound in the background kernel lengthscale is determined by the signal injection test described in Section~\ref{}; the lower bound in the signal kernel lengthscale
     %is chosen through the binning studies in Section~\ref{sec:binning} respectively. 
-    Kernels are parametetrized by hyperparameters. Hyperparameters are higher level parameters that controls and aid the learning of the process through input of data. The lengthscale hyperparameter, with its special nature, has a lower bound, found through the signal injection test described in Section~\ref{sec:signalinjection}. Other hyperparameters are not bounded. The minimization of the hyperparameters is performed through a scalar conjugate gradient search. To avoid reaching a local minimum, the initial values of the hyperparameters are chosen through a grid. The minimized hyperparameter are compared to the other sets with different initial values. The set of hyperparameters with the overall lowest negative log likelihood is chosen to be the optimal hyperparameters.
+    Kernels are parametetrized by hyperparameters. Hyperparameters are higher level parameters that controls and aid the learning of the process through input of data. The lengthscale hyperparameter, with its special nature, has a lower bound, found through the signal injection test described in~\cite{ATL-PHYS-PUB-2020-028}. Other hyperparameters are not bounded. The minimization of the hyperparameters is performed through a scalar conjugate gradient search. To avoid reaching a local minimum, the initial values of the hyperparameters are chosen through a grid. The minimized hyperparameter are compared to the other sets with different initial values. The set of hyperparameters with the overall lowest negative log likelihood is chosen to be the optimal hyperparameters.
 %In fitting of a mass spectrum and its signal. The kernel hyperparameters are allowed to float and the final values are optimized through the scaled conjugate gradient algorithm, which minimizes the negative log marginal likelihood of the Gaussian Process:
 
     \begin{equation}
@@ -249,7 +245,7 @@ An other more general example is given as below.
     \end{equation}
     
 
-    In this Gaussian process testing procedure, the hyperparameters are first found on a test fit on the variation of MC, the fixed hyperparameters are then applied to data.
+%    In this Gaussian process testing procedure, the hyperparameters are first found on a test fit on the variation of MC, the fixed hyperparameters are then applied to data.
 %
 %\subsection{Background Fitting Tests}
 %Following the ATLAS smooth background recommendation~\cite{ATL-PHYS-PUB-2020-028}, the following tests are performed to ensure the validity of the background estimation for resonance searches.
@@ -343,16 +339,19 @@ An other more general example is given as below.
 %
 \section{Statistics Testing}
 \label{section:stats}
-Statistical testing is the quantification of the significance of any observed excess and the signal sensitivity exclusion presented in the data. The statistics testing of a hypothesis is related to the significance quantity Z:
+Statistical testing is the quantification of the significance of any observed excess and the signal sensitivity exclusion presented in the data. 
 
-\begin{equation}
- Z= \Phi^{-1}(1-p) 
- \label{eq:significance}
-\end{equation}
 
-Here, p is the probability of the background model to fluctuate and it describe the observation in relations to that. $\Phi$ is the conversion of the $p$-value into quantile of a cumulative Gaussian distribution. From here on, Z will be referred to as the significance and p will be referred to as the $p$-value.
-
-There are two distinct statistics tests in a typical resonance search analysis. Each test is compared to a threshold value of Z. The two tests will be referred to as ``the search" and the ``limit setting". Details are described in the following sections.
+%The statistics testing of a hypothesis is related to the significance quantity Z:
+%
+%\begin{equation}
+% Z= \Phi^{-1}(1-p) 
+% \label{eq:significance}
+%\end{equation}
+%
+%Here, p is the probability of the background model to fluctuate and it describe the observation in relations to that. $\Phi$ is the conversion of the $p$-value into quantile of a cumulative Gaussian distribution. From here on, Z will be referred to as the significance and p will be referred to as the $p$-value.
+%
+There are two distinct statistics tests in a typical resonance search analysis. The two tests will be referred to as ``the search" and the ``limit setting". Details are described in the following sections.
 
 %Before the Here, the null hypothesis is the hypothesis that include only known processes from the Standard Model hypothesis with no excess; the alternative hypotheis is the hypothesis that include both background and signal of a certain signal strength.
 
@@ -368,7 +367,7 @@ There are two distinct statistics tests in a typical resonance search analysis. 
 \label{sec:thesearch}
 %\epigraph{\textit{-``The Rejection/Acceptance of the null hypothesis"}}
 
-The search aims to look for model independent statistical excesses present in data. This test is implemented in comparison to the null hypothesis, where it is defined to be the Standard Model prediction. The search is implemented in a frequentist manner through the Bumphunter method~\cite{choudalakis2011hypothesis}. This section describes the statistics principle behind this test and details the bumphunting procedure. 
+The search aims to look for model independent statistical excesses present in data. This test is implemented in comparison to the null hypothesis, where it is defined to be the Standard Model prediction. The search is implemented in a frequentist manner through the Bumphunter method~\cite{choudalakis2011hypothesis}. This section describes the statistics principle behind this test and details the Bumphunting procedure. 
 
 %From comparing the data test statistics value to pseudoexperiement, if the significance Z $>$ 5, the null hypothesis is rejected. Something beyond the Standard Model is observed in the data to a statistically significant degree, otherwise, the Standard Model prediction is accepted. In the Higgs boson analysis of 2012, a significance of Z $>$ 5 was observed in the search.
 
@@ -383,18 +382,19 @@ The probability of having made a measurement in each bin can be described by a p
 
 Here, $\lambda$ is the expected value of the measured quantity $k$, $x$ is the quality being measured, e is Euler's number.
 
-The test is implemented in a frequentist manner. It compares the observation outcome x with a fixed $\alpha$ of a probability distribution generated from pseudo-experiment. Psuedoexperiemnt are sample distributions drawn from the the Poissonian probability distribution of each bin. Test statistics can be calculated for each of these distribution. The value used to reject or accept the null hypothesis is quantity that is compared in relation to $\alpha$ called the $p$-value. Statistically, it is known to be a false-discovery probability(See Eq.~\ref{eq:test}). If the observation compared with the pseudo-experiment distribution is smaller than the critical $p$-value, an excess could have been discovered. The rejection criteria can be shown in the following mathematical form:
+The test is implemented in a frequentist manner. It compares the observation outcome x with a fixed critical value $\alpha$ of a probability distribution. The distribution is generated from pseudoexperiments. Psuedoexperiments are sample distributions drawn from the the Poissonian probability distribution of each bin. Test statistics can be calculated for each of these distribution. The value used to reject or accept the null hypothesis is quantity that is compared in relation to $\alpha$ called the $p$-value. %Statistically, it is known to be a false-discovery probability(See Eq.~\ref{eq:test}). If the observation compared with the pseudo-experiment distribution is smaller than the critical $p$-value, an excess could have been discovered. The rejection criteria can be shown in the following mathematical form:
 
 \begin{equation}
     P(x \ni w|H_0)<= \alpha 
     \label{eq:test}
 \end{equation}
 
-Here, $H_0$ is the null hypothesis, and $\alpha$ is the critical value below which an excess will be quoted. The value is usually taken to be 0.01 for the bumphunter experiment. It corresponds to a probability of 1\%. $x$ is the observed value. $w$ is all possible outcomes. 
+Here, $H_0$ is the null hypothesis, and $\alpha$ is the critical value below which an excess will be quoted. The value is usually taken to be 0.01 for the Bumphunter experiment. It corresponds to a probability of 1\%. $x$ is the observed value. $w$ is all possible outcomes. 
+
+
 
 \subsubsection{The Search: Test Statistics}
 \label{teststatistics}
-
 The test statistic is a function of the observable $x$, that describes the agreement between data and the model.  The $p$-value in~\ref{eq:test} can be rewritten as:
     
 \begin{equation}
@@ -408,7 +408,7 @@ Equation~\ref{eq:pvaluetestStats} evaluate the $p$-value of the observed value. 
 
 Various test statistics are available to quantify the level of agreement between an observation and a hypothesis. If the test is concerned with overall agreement between data and the model, the $\chi^{2}$ test or the log-likelihood of the Poissonian distribution are fitting candidates.
 
-The bumphunter test statistic instead to quantifies localized excess. The test statistic is defined in a window and calculated for the bins within. It is a more powerful test for the kind of deviation expected in resonance hunting.
+The Bumphunter test statistic instead to quantifies localized excess. The test statistic is defined in a window and calculated for the bins within. It is a more powerful test for the kind of deviation expected in resonance hunting.
 
 In a window defined from bin number m to n, the observed data and prediction can be given as the following: 
     \begin{equation}
@@ -444,7 +444,7 @@ In a window defined from bin number m to n, the observed data and prediction can
 \end{equation}
     
 
-    The $p$-value of the bumphunter test statistic is evaluated for every windows from two-bin wide to half the spectrum($t^{\textrm{BH}}$). The overall bumphunter test statistic is defined by the to be the log of the smallest $p$-value calculated from the smallest $p$-value window, and can be represented as the following($t_{min}^{\textrm{BH}}$):
+    The $p$-value of the Bumphunter test statistic is evaluated for every windows from two-bin wide to half the spectrum($t^{\textrm{BH}}$). The overall Bumphunter test statistic is defined by the to be the log of the smallest $p$-value calculated from the smallest $p$-value window, and can be represented as the following($t_{min}^{\textrm{BH}}$):
 
     \begin{equation}
         t_{min}^{\textrm{BH}} = - \ln(t^{\textrm{BH}}_{\textrm{min}}) 
@@ -456,19 +456,19 @@ In a window defined from bin number m to n, the observed data and prediction can
 
     \subsubsection{The Search: The Bumphunting Procedure}
     % Look up the bumphunter fit. 
-    The bumphunting procedure is defined to look for excesses as defined by the bumphunter statistics~\cite{Pachal:2063032}.
+    The Bumphunting procedure is defined to look for excesses as defined by the Bumphunter statistics~\cite{Pachal:2063032}.
 
     1.  First a background model fit is performed. (See Section~\ref{sec:backgroundest}). The $\chi^{2}$ of the fit is verified to have a $p$-value $>$ 0.01. Otherwise, the fit will be revised or moved to an alternative method.
 
-    2.  If the background fit passes the $\chi^{2}$ test, the bumphunting test can begin. In all defined windows, bumphunter test statistic and their $p$-values are calculated. If the overall bumphunter test statistic has a $p$-value above 0.01, the procedure stops, no excess is found. Alternatively, if any one of the windows has  $p< 0.01$, the window most discrepant window (the window with the lowest $p$-value) is removed, and the fit is reperformed. If the new fit with the window removed has a $p$-value above 0.01, it shows the discrepancy is completely contained in the window removed.
+    2.  If the background fit passes the $\chi^{2}$ test, the Bumphunting test can begin. In all defined windows, Bumphunter test statistic and their $p$-values are calculated. If the overall Bumphunter test statistic has a $p$-value above 0.01, the procedure stops, no excess is found. Alternatively, if any one of the windows has  $p< 0.01$, the window most discrepant window (the window with the lowest $p$-value) is removed, and the fit is reperformed. If the new fit with the window removed has a $p$-value above 0.01, it shows the discrepancy is completely contained in the window removed.
 
-    3. After reperforming the fit with the window removed, if an overall bumphunter statistics $p$-value is found to be over 0.01, Stop. A local discrepancy may have been discovered in the removed window. Otherwise, if the newly discovered most discrepant window is adjacent to the window removed, it demonstrates that the signal peak may still be outside of the window, one more bin of window exclusion will be added to the removed window. If the newly discovered most discrepant window is not adjacent to the window removed, one bin of each side is added to the original removed window. The fit is re-performed with the new window removed. This step is repeated until either the $p$-value of the fit with the removed window has a $p$-value above 0.01, or no additional window could be added to the exclusion because all bins has been added to the removal window.
+    3. After reperforming the fit with the window removed, if an overall Bumphunter statistics $p$-value is found to be over 0.01, the procedure stops. A local discrepancy may have been discovered in the removed window. Otherwise, if the newly discovered most discrepant window is adjacent to the window removed, it demonstrates that the signal peak may still be outside of the window, one more bin of window exclusion will be added to the removed window. If the newly discovered most discrepant window is not adjacent to the window removed, one bin of each side is added to the original removed window. The fit is re-performed with the new window removed. This step is repeated until either the $p$-value of the fit with the removed window has a $p$-value above 0.01, or no additional window could be added to the exclusion because all bins has been added to the removal window.
 
     Summarizing from the above, three end results are possible in the search test:
 
-    1. If no window is excluded and the fit has a bumphunter $p$-value statistics above 0.01. No excess is found. 
+    1. If no window is excluded and the fit has a Bumphunter $p$-value statistics above 0.01. No excess is found. 
 
-    2. If there is one excluded window and a background fit with a bumphunter statistics $p$-value of above 0.01. An excess up to a certain significane is quoted.
+    2. If there is one excluded window and a background fit with a Bumphunter statistics $p$-value of above 0.01. An excess up to a certain significane is quoted.
 
     3. In all other scenarios, more tests are required. The background model fit could be problematic and need further testing.  
 
@@ -484,7 +484,7 @@ In a window defined from bin number m to n, the observed data and prediction can
 
 The limit setting can be performed in two different ways, the Bayesian statistical way and the frequentist way. While the interpretation and implication of the results made with the different methods are different, the results produced are designed to be comparable across different analyses. 
 
-The Bayesian method is used for the dijetISR analysis(Chapter~\ref{chapter:dijetISR}) and the frequentist method is used for the dimuon analysis(Chapter~\ref{chapter:dimuon}). A description of the dimuon frequentist limit is given as below. 
+The Bayesian method is used for the dijetISR analysis(Chapter~\ref{chapter:dijetISR}) and the frequentist method is used for the dimuon analysis(Chapter~\ref{chapter:dimuon}). A summarized formuation of the frequentist limit is given as below. 
 %The 95\% confidence level corresponds to a critical $p$-value of 0.05 or a Z value of 1.64.
 
 %The limit is a hypothesis testing procedure that test both the compares the null hypothesis of absence of signal ($H_{0}$) to the hypothesis where there is a signal($H_{1}$). 
@@ -529,7 +529,7 @@ The most probable value of the parameters are those that maximize the likelihood
 \label{eq:profilelikelihood}
 \end{equation}
 
-Here, $\hat{\hat{\mu}}$ is the $\theta$ that maximizes L for $\mu$ specified. the denominator is the maximized unconditional likelihood function, where $\hat{\mu}$ and $\hat{\theta}$ are the parameter values that would maximize the unconditional likelihood function regardless of specific $\mu$ values.
+Here, $\hat{\hat{\mu}}$ ands $\hat{\hat{\theta}}$ are the values that maximizes L for $\mu$ specified. the denominator is the maximized unconditional likelihood function, where $\hat{\mu}$ and $\hat{\theta}$ are the parameter values that would maximize the unconditional likelihood function regardless of specific $\mu$ values.
 
 %To aid the optimization process and also to reflect the nature of the excess search experiment that neglects negative signal event value, the test statistics defined as the following, the negative log taken on the likelihood ratio aid the optimization computing procedure.
 To aid the optimization process, it is usually the negative log of the profiled likelihood that is used for the limits calculation:

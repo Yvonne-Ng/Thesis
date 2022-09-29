@@ -1,0 +1,177 @@
+\chapter{The Search for the Non-resonant Production of Higgs Boson Pairs}
+\label{chap:search_hh}
+
+\epigraph{
+\textit{It was miraculous... Anybody could do it; it required no brains at all.
+It merely required no character.}
+}
+{
+--Joseph Heller, \textit{Catch-22}
+}
+
+%\epigraph{
+%\textit{Because no battle is ever won he said. They are not even fought. The field only
+%reveals to man his own folly and despair, and victory is an illusion of philosophers and fools.}
+%}
+%{
+%--William Faulkner, \textit{The Sound and the Fury}
+%}
+
+\epigraph{
+\textit{...the ass will carry his load, but not a double load; ride not a free horse to death.}
+}
+{
+--Miguel de Cervantes, \textit{Don Quixote}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% INTRO
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+In this chapter, the search for the non-resonant production of Higgs boson pairs ($hh$) will be discussed.
+As described in Section~\ref{sec:final_sm_description}, the SM predicts non-resonant $hh$ production but with
+an exceedingly small overall cross-section of $31.05$\,fb that is $\mathcal{O}(10^3)$ times smaller
+than that of the dominant production modes of single Higgs bosons~\cite{deFlorian:2016spz,Dawson:1998py,Borowka:2016ehy,Baglio:2018lrj,deFlorian:2013jea,Shao:2013bz,deFlorian:2015moa,Grazzini:2018bsd}:
+\begin{align}
+    \frac{\sigma_h}{\sigma_{hh}} = \frac{ 4.852 \times 10^3\,\mathrm{fb}}{31.05\,\mathrm{fb}} = 1.56 \times 10^3
+    \label{eq:hh_xsec_frac}
+\end{align}
+The need to complete our understanding of the 125\,GeV Higgs boson, discovered in 2012, requires
+that meaningful samples of events containing Higgs pairs be obtained, as the study of these $hh$
+events are the only way to have direct measurement of and ability to constrain the Higgs self-coupling parameter $\lambda$
+responsible for the structure of the SM vacuum and the onset of EWSB.
+At the time of writing, at the end of LHC Run 2, the current $pp$ collision datasets available to the
+general purpose LHC experiments are not large enough to observe the $hh$ process as predicted in the SM,
+as made obvious by the relation in  Equation~\ref{eq:hh_xsec_frac}.
+With 139\,fb$^{-1}$ of data collected during Run 2 of the LHC by the ATLAS detector,
+only $\mathcal{O}(1000)$ $hh$ events will have occurred (using the SM-predicted cross-section).
+Taking into account the non-100\% acceptance of the detector, the dominant branching fractions
+of the Higgs decays, and the experimentally viable channels for $hh$ decays to be observed,
+there is no possibility to observe a clearly distinguished $hh$ signal.
+With this said, however, there are clear motivations for developing a robust $hh$ search program with the
+current $pp$ collision data.
+The first being that, given such a small predicted cross-section, \textit{any} observed signal consistent
+with $hh$ production in the present data will be an unambiguous sign of new physics
+that modifies the Higgs sector in such a way as to lead to enhanced $hh$ production.
+The second motivation lies in the fact that, considering the LHC timeline (c.f. Figure~\ref{fig:lhc_schedule}), the
+forecasted amount of data required to have a $5\sigma$ evidence of $hh$ production, as predicted by the SM,
+may yet be out of reach even at the end of the HL-LHC era.
+The goal, then, is to maximize the sensitivity to $hh$ production as soon as possible so that
+the analyses of the future $pp$ collision data are as effective as possible at accumulating $hh$
+candidate events so that the nature of EWSB may have a chance of being directly scrutinized at the LHC.
+
+With this understanding, the ATLAS searches for $hh$ production in both Run 1 and for most of Run 2 have focused
+on the channels sensitive to the $hh$ decays that have the clearest experimental signatures.
+Given both the high branching fraction for the SM $h \rightarrow bb$ decay, and the distinctive signature
+of a resonance structure in the $bb$-system invariant mass at $m_h = 125\,\GeV$, the most relevant channels to search for $hh$
+production will generally have one of the Higgs bosons decaying via the $h \rightarrow bb$ channel, with the
+second Higgs typically decaying via the dominant decay modes typical for the study of single Higgs production: $h \rightarrow bb$, $h \rightarrow \tau \tau$, 
+$h \rightarrow WW$, and $h \rightarrow \gamma \gamma$.
+The relative branching fractions of the $hh$ decays are indicated in Figure~\ref{fig:hh_br}.
+
+\begin{figure}[!htb]
+    \begin{center}
+        \includegraphics[width=0.75\textwidth]{figures/search_hh/hh_br}
+        \caption{
+            Branching factions for $hh$ decays, with one Higgs decaying via the channel
+            indicated on the $x$-axis and the other decaying via the channel indicated on the $y$-axis.
+            The branching fractions indicated by the color are normalized to that of the $hh \rightarrow bbbb$
+            decay.
+            Where there is text on the figure, the upper number indicates the branching fraction
+            relative to the $hh\rightarrow bbbb$ decay and the lower number in parenthesis indicates the absolute
+            branching fraction value (i.e. not normalised to $hh \rightarrow bbbb$).
+        }
+        \label{fig:hh_br}
+    \end{center}
+\end{figure}
+
+At the time of writing, the searches for SM-like non-resonant $hh$ production have observed no discrepancies
+between the SM backgrounds and the observed data.
+That is, there has been no statistically significant observation of events consistent with $hh$ production.
+Given this, analyses searching for SM-like non-resonant $hh$ production typically quote 95\% CL
+upper-limits (UL) on the $hh$ production cross-section.
+Such UL, as discussed in Section~\ref{sec:stat_hypo}, give a measure of how sensitive these analyses
+are to observing the process as predicted by the SM.
+The UL are therefore typically quoted as a ratio of the cross-section UL over that of the cross-section
+predicted by the SM: \sigmaRatio.
+The most sensitive analyses in ATLAS, considering only those based on the analysis of the partial Run 2 data collected in 2015--2016,
+are the $hh \rightarrow bbbb$ (`\bbbb')~\cite{HHBBBB}, $hh \rightarrow bb\tau\tau$ (`\bbtautau')~\cite{HHBBTAUTAU},
+and $hh \rightarrow bb\gamma\gamma$ (`\bbyy')~\cite{HHBBGAMGAM} channels.
+Additional searches, also based on the 2015--2016 data collected by ATLAS, have also been performed
+in the $hh \rightarrow WW^*WW^*$ (`\wwww')~\cite{HHWWWW}, $hh \rightarrow WW^* \gamma \gamma$ (`\wwyy')~\cite{HHWWGAMGAM},
+and in the single-lepton channel of the $hh \rightarrow bbWW^*$ (`\bbww')~\cite{HHBBWW} channels.
+The results of these analyses, and their combination, are presented in terms of \sigmaRatio in Figure~\ref{fig:hh_comb_36}.
+It can be seen that the \bbbb, \bbtautau, and \bbyy analyses are driving the combined sensitivity
+to the $hh$ production process, with the others having little impact (all having $\sigmaRatio >100$).
+The observed (expected) \sigmaRatio value based on the combination of all six analyses is 6.9 (10), using
+$\sigmaHHSM = 33.5$\,fb as the SM assumption for the $hh$ production cross-section.
+
+From Figure~\ref{fig:hh_br}, one sees that the \bbww channel is the second-leading decay mode
+available for $hh$ production.
+This is a rich $hh$ channel as there are three decay modes available to the $WW^*$ system: the fully hadronic, semi-leptonic, or dileptonic decay.
+The only experimentally viable signatures with hope of sensitivity to the $hh$ process in the \bbww decay channel will be those with at least a single lepton.
+The fully hadronic mode will be dominated by QCD backgrounds, making this a challenging search channel.
+The clean signature of a final state lepton will help remove contamination from QCD backgrounds.
+Given that the dilepton $h \rightarrow WW^*$ channel is one of the main channels in which the study
+of single Higgs production proceeds~\cite{Aaboud:2018jqu,Aad:2016lvc,ATLAS:2014aga}, one also expects, perhaps naively, the dilepton \bbww 
+channel to have been fully explored in the 2015--2016 dataset of LHC Run 2.
+However, only the single lepton channel had been studied in this dataset and, as can be seen in Figure~\ref{fig:hh_comb_36},
+it is one of the least sensitive channels.
+In fact, the single lepton \bbww channel is less sensitive than the \wwww and \wwyy channels.
+This latter fact is counter-intuitive, especially when considering the \wwww scenario, since
+one expects that the resonant $bb$ system available to the single lepton \bbww scenario
+to at least give this channel an upper-hand at being able to select $hh$ candidate events.
+This lack of sensitivity in the single lepton \bbww search channel, based on analysis of the 2015--2016 dataset, is likely due
+to the strategy that this analysis used, in the sense that it has not yet been properly optimized to target
+the SM-like non-resonant $hh$ production process.
+Additional complications arise in this channel that are experimental in nature, such as ambiguities
+in identifying the lepton when it overlaps with one of the reconstructed jets from the hadronically decaying $W$
+boson.
+
+As a result of this discussion, an analysis searching for SM-like non-resonant $hh$ production in the dilepton channel
+of the $hh \rightarrow \bbww$ decay is presented in this chapter.
+This analysis is based on the full Run 2 $pp$ collision data collected by ATLAS between the years
+2015--2018, totalling 139\,fb$^{-1}$, and is a new addition to the searches for $hh$ in ATLAS.
+It acts to improve the sensitivity to SM-like non-resonant $hh$ production in the \bbww channel that
+was lacking in the 2015--2016 analyses.
+
+\begin{figure}[!htb]
+    \begin{center}
+        \includegraphics[width=0.75\textwidth]{figures/search_hh/hh_intro/hh_comb_36}
+        \caption{
+            Summary of 95\% CL cross-section upper-limits for non-resonant, SM-like $hh$
+            production in ATLAS, based on the searches performed using 36\,fb$^{-1}$ of
+            data collected between 2015--2016.
+            The \bbww result is based on the single lepton channel of the \bbww decay,
+            where only one of the $W$-bosons decays leptonically and the other decays hadronically.
+            Figure taken from Ref.~\cite{HHComb36}.
+            The analyses in Ref.~\cite{HHComb36} use $\sigmaHHSM = 33.5$\,fb.
+        }
+        \label{fig:hh_comb_36}
+    \end{center}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% HH PHENO
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\FloatBarrier
+\input{sections/chapter_search_hh_sub/signal_pheno}
+\FloatBarrier
+\input{sections/chapter_search_hh_sub/event_selection}
+\input{sections/chapter_search_hh_sub/strategy}
+\FloatBarrier
+\input{sections/chapter_search_hh_sub/background_estimate}
+\FloatBarrier
+\input{sections/chapter_search_hh_sub/results}

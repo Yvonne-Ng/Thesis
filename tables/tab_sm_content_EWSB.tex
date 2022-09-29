@@ -1,0 +1,53 @@
+
+\begin{table}[!htb]
+    \caption{
+        The table shows the particle fields of the SM after SSB. Coupling and mass parameters are provided. 
+    }
+        %The particle content of the SM after the process of
+        %electroweak symmetry breaking.
+        %Shown for each particle species are the associated electric charge, $Q$,
+        %coupling, and mass (approximate).
+        %The $y_i$ are the Yukawa coupling (Equation~\ref{eq:higgs_fermion_coupling}),
+        %$\alpha_{\text{EM}}$ is the QED coupling constant (`fine structure constant'),
+        %$\mathcal{V}$ indicates the parameters of the CKM matrix, and
+        %$\alpha_s$ is the QCD coupling constant.
+        %The quantities $\lambda$ and $\mu$ are the Higgs self-coupling parameter
+        %and mass terms, respectively, appearing in Higgs potential terms (Equation~\ref{eq:higgs_potential}).
+    \begin{center}
+        \begin{tabularx}{1\textwidth}{m{1em} c c c c }
+        \toprule
+        \hline
+        & Physical Field & Q & Coupling & Mass [GeV] \\
+        \hline
+        \rotatebox{90}{\hspace{-0.1cm}\textbf{Quarks} } 
+            & \makecell{ \quarkU, \quarkC, \quarkT \\ \quarkD, \quarkS, \quarkB} % FIELD
+            & \makecell{ $2/3$ \\ $-1/3$ }% Q
+            %& \makecell{ $\mathbf{3}$ \\ $\mathbf{3}$ } % SU(3)
+            & \makecell{ ($y_i=$) $1\times10^{-5}$, $7\times10^{-3}$, $1$ \\ ($y_i=$) $3\times10^{-5}$, $5\times10^{-4}$, $0.02$ } % Coupling
+            & \makecell{ $2\times10^{-3}$, $1.27$, $173$ \\ $4\times10^{-4}$, $0.10$, $4.18$ }\\% Mass
+        \rotatebox{90}{\hspace{-0.1cm}\textbf{Leptons} } 
+            & \makecell{ \leptonE, \leptonMu, \leptonTau \\ \neutrinoE, \neutrinoMu, \neutrinoTau } % FIELD
+            & \makecell{ $-1$ \\ $0$ }% Q
+            %& \makecell{ $\mathbf{1}$ \\ $\mathbf{1}$ } % SU(3)
+            & \makecell{ ($y_i=$) $3\times10^{-7}$, $6\times10^{-4}$, $0.01$ \\ -- } % Coupling
+            & \makecell{ $5\times10^{-4}$, $0.106$, $1.777$ \\ --}\\% Mass
+        \midrule
+        \rotatebox{90}{\textbf{Bosons} } 
+            & \makecell{ \fieldPhoton \\ \fieldZ \\ (\fieldWp, \fieldWm) \\ \fieldG } % FIELD
+            & \makecell{ $0$ \\ $0$ \\ $(+1,-1)$ \\ $0$ }% Q
+            %& \makecell{ $\mathbf{1}$ \\ $\mathbf{1}$ \\ $\mathbf{1}$ \\ $\mathbf{8}$ } % SU(3)
+            & \makecell{ $\alpha_{\text{EM}} \simeq 1/137$ \\ $\sin \theta_{W} \simeq 0.5$ \\ $\mathcal{V}_{\text{CKM}}$ \\ $\alpha_s \simeq 0.1$ } % Coupling
+            & \makecell{ $0$ \\ $91.2$ \\ $80.4$ \\  $0$}\\% Mass
+        \midrule
+        \rotatebox{90}{\textbf{Higgs} } 
+            & \makecell{ \fieldH } % FIELD
+            & \makecell{ $0$ }% Q
+            %& \makecell{ $\mathbf{1}$ } % SU(3)
+            & \makecell{ $\lambda$, $\mu$ } % Coupling
+            & \makecell{ $125.09$ }\\% Mass
+        \hline
+        \bottomrule
+        \end{tabularx}
+    \end{center}
+    \label{tab:sm_content_EWSB}
+\end{table}
